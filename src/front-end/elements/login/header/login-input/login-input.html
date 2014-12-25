@@ -1,0 +1,34 @@
+<html class="" lang="en">
+	<head>
+		<link rel="stylesheet" href="../../layout.css">
+		
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"> -->
+	</head>
+	<body>
+		<!-- the layout (header-conatiner, header-logo, header-input-box, username, password, submit) should be removed late, only the elements should be used -->
+		<div class="header-container border" style="margin-left: auto; margin-right: auto; width: 980px; height: 80px;">
+			<div class="header-logo border" style="width:100px;height:100%;display: inline-block;">
+				<!-- logo layout -->
+			</div>
+			<div class="header-input-box border" style="float:right;width:600px;height:100%; display: inline-block;">
+				<div style="height:100%; float: left; width:248px;display:inline-block;" class="username border">
+					<!-- width and height must be the fixed number(should be same as the width and height of its layout) if table-cell is used -->
+					<div style="padding:15px 5px 0px 5px;">
+						<input type="text" style="width:100%; height: 35px; padding: 10px;" name="username">
+					</div>
+				</div>
+				<div style="height:100%; float: left; width:246px;display:inline-block;" class="password border">
+					<div style="padding:15px 5px 0px 5px;">
+						<input type="text" name="password" style="width:100%; height: 35px; padding: 10px;" />
+						<a href="#"><span style="font-size: 0.75em;">Forgot your password?</span></a>
+					</div>
+				</div>
+				<div style="height:100%; width:100px;display:inline-block;" class="submit border">
+					<div style="padding:15px 5px 0px 5px;">
+						<input type="submit" name="signin" style="width:100%; height: 35px; padding: 10px;" value="Sign in"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
