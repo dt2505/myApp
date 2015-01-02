@@ -1,0 +1,7 @@
+home_page:
+    type: rest
+    resource: AppBundle\Controller\DefaultController
+
+demo_rest:
+    type: rest
+    resource: AppBundle\Controller\MyDemoController

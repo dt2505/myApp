@@ -1,0 +1,62 @@
+############
+## Symfony2
+############
+
+# Bootstrap
+app/bootstrap*
+
+# Symfony directories
+vendor/*
+*/logs/*
+*/cache/*
+app/cache/.gitkeep
+app/logs/.gitkeep
+web/css/*
+web/fonts/*
+web/js/*
+web/javascripts/*
+web/uploads/*
+web/bundles/*
+bin/*
+build/*
+
+# Configuration files
+app/config/parameters.ini
+app/config/parameters.yml
+app/phpunit.xml
+
+# Dependencies
+composer.phar
+
+############
+## PhpStorm
+############
+
+.idea/*
+
+
+############
+## Windows
+############
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+
+############
+## Mac
+############
+
+# Mac crap
+.DS_Store
+
+
+#############
+## Project Specifics
+#############
+
+.htaccess
+*.php~
