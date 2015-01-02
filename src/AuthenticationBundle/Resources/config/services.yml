@@ -1,4 +1,7 @@
+parameters:
+    authentication.class: Component\Authentication\Authentication
+
 services:
-#    authentication.example:
-#        class: AuthenticationBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    authentication:
+        class: %authentication.class%
+        arguments: [@doctrine.orm.entity_manager]
