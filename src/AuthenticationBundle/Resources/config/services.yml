@@ -1,0 +1,7 @@
+parameters:
+    authentication.class: Component\Authentication\Authentication
+
+services:
+    authentication:
+        class: %authentication.class%
+        arguments: [@doctrine.orm.entity_manager]

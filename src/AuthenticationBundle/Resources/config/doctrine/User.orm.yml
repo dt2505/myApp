@@ -1,0 +1,20 @@
+Component\Entity\User:
+    type: entity
+    table: user
+    repositoryClass: Component\Entity\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        username:
+            type: string
+            length: 50
+        password:
+            type: string
+            length: 300
+        type:
+            type: integer
+    lifecycleCallbacks: {  }
