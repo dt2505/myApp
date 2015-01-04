@@ -17,4 +17,10 @@ Component\Entity\User:
             length: 300
         type:
             type: integer
+        createdAt:
+            name: created_at
+            type: datetime
+        lastUpdatedAt:
+            name: last_updated_at
+            type: datetime
     lifecycleCallbacks: {  }

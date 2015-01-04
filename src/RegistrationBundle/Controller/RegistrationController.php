@@ -1,25 +1,25 @@
 <?php
 
-namespace AuthenticationBundle\Controller;
+namespace RegistrationBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AuthenticationController extends FOSRestController
+class RegistrationController extends FOSRestController
 {
     /**
      * @param Request $request
      * @return Response
      * @Rest\Post()
      */
-    public function authenticateUserAction(Request $request)
+    public function registerUserAction(Request $request)
     {
         $username = $request->request->get("username");
         $password = $request->request->get("password");
-        $token = $request->request->get("token");
+        $type = $request->request->get("type");
 
-        return new Response($this->get("authentication")->verify($username, $password, $token));
+        return new Response($this->get("user_registration")->register($username, $password, $type));
     }
 }

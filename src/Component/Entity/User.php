@@ -17,6 +17,16 @@ class User
     private $password;
     /** @var integer */
     private $type;
+    /** @var \DateTime */
+    private $createdAt;
+    /** @var \DateTime */
+    private $lastUpdatedAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->lastUpdatedAt = new \DateTime();
+    }
 
     /**
      * @return integer
@@ -72,6 +82,38 @@ class User
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getLastUpdatedAt()
+    {
+        return $this->lastUpdatedAt;
+    }
+
+    /**
+     * @param \DateTime $lastUpdatedAt
+     */
+    public function setLastUpdatedAt($lastUpdatedAt)
+    {
+        $this->lastUpdatedAt = $lastUpdatedAt;
     }
 
     /**
