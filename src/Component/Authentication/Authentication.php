@@ -30,22 +30,27 @@ class Authentication
      */
     public function verify($username, $password, $token)
     {
+        $tokenNode = array();
+        if (!empty($token)) {
+            $tokenNode["token"] = $token;
+        }
+
         if (empty($username) || empty($password)) {
-            return new JsonResponse("Insufficient argument", JsonResponse::BAD_REQUEST);
+            return new JsonResponse("Insufficient argument", JsonResponse::BAD_REQUEST, array(), $tokenNode);
         }
 
         try {
             $userRepo = $this->entityManager->getRepository(User::getClassName());
             if (empty($userRepo)) {
-                return new JsonResponse("Invalid entity supplied.", JsonResponse::BAD_REQUEST);
+                return new JsonResponse("Invalid entity supplied.", JsonResponse::BAD_REQUEST, array(), $tokenNode);
             }
 
             $found = $userRepo->findOneBy(array("username" => $username));
-            if (!$found || password_verify($password, $found->getPassword())) {
-                return new JsonResponse("Invalid username or password.", JsonResponse::BAD_REQUEST);
+            if (!$found || !password_verify($password, $found->getPassword())) {
+                return new JsonResponse("Invalid username or password.", JsonResponse::BAD_REQUEST, array(), $tokenNode);
             }
 
-            return new JsonResponse("verified", JsonResponse::OK, array(), array("token" => $token));
+            return new JsonResponse("verified", JsonResponse::OK, array(), $tokenNode);
         } catch (\Exception $e) {
             return new JsonResponse($e->getMessage(), JsonResponse::INTERNAL_SERVER_ERROR);
         }
