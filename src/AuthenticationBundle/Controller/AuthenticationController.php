@@ -12,14 +12,14 @@ class AuthenticationController extends FOSRestController
     /**
      * @param Request $request
      * @return Response
-     * @Rest\Get
+     * @Rest\Post()
      */
     public function authenticateUserAction(Request $request)
     {
-        $username = $request->query->get("username");
-        $password = $request->query->get("password");
-        $type = $request->query->get("type");
+        $username = $request->request->get("username");
+        $password = $request->request->get("password");
+        $token = $request->request->get("token");
 
-        return new Response($this->get("authentication")->verify($username, $password, $type));
+        return new Response($this->get("authentication")->verify($username, $password, $token));
     }
 }
