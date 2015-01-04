@@ -1,0 +1,3 @@
+registration_rest:
+    type: rest
+    resource: RegistrationBundle\Controller\RegistrationController

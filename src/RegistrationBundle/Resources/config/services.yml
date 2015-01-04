@@ -1,0 +1,7 @@
+parameters:
+    user_registration.class: Component\Registration\UserRegistration
+
+services:
+    user_registration:
+        class: %user_registration.class%
+        arguments: [@doctrine.orm.entity_manager]
