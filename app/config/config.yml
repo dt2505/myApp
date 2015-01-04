@@ -74,13 +74,12 @@ doctrine:
                 connection: default
                 auto_mapping: false
                 mappings:
-                    AppBundle: ~
-                    AuthenticationBundle:
+                    AppBundle:
                         type: yml
                         dir: Resources/config/doctrine
-                        alias: authentication
                         prefix: Component\Entity
                         is_bundle: true
+                    AuthenticationBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
