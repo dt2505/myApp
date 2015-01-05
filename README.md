@@ -3,6 +3,7 @@ ubuntu:
  - sudo service apache2 reload
  - sudo service apache2 restart
  - get rid of app.php|app_dev.php
+ ```
    <VirtualHost *:80>
        ServerName my-repository
        DocumentRoot /home/jerry/Project/MyRepository/web/
@@ -23,7 +24,7 @@ ubuntu:
           </IfModule>
        </Directory>
    </VirtualHost>
-
+```
 elasticsearch requires:
  - php5-curl
 
