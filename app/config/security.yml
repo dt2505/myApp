@@ -1,12 +1,49 @@
 security:
+    acl:
+        connection: default
+
+    encoders:
+        Component\User\Entity\User:
+            algorithm: sha512
+            encode_as_base64: false
+            iterations: 1
+
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER]
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    access_decision_manager:
+        strategy: unanimous
+
     providers:
-        in_memory:
-            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        main:
+            pattern:            .*
+            context:            user
+            form_login:
+                provider:       fos_userbundle
+                login_path:     /login
+                use_forward:    false
+                check_path:     /login_check
+                failure_path:   null
+#                default_target_path: /
+            logout:
+                path:           /logout
+#                success_handler: successful.logout.handler
+            anonymous:          true
+            switch_user:        true
 
-        default:
-            anonymous: ~
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        # secured area
+        - { path: ^/admin/, role: [ROLE_ADMIN] }
+        - { path: ^/_profiler/, role: [ROLE_ADMIN] }
+#        - { path: ^/.*, role: IS_AUTHENTICATED_FULLY }
+
