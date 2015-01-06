@@ -1,7 +1,6 @@
-Component\User\Entity\User:
+Component\User\Entity\Group:
     type: entity
-    table: user
-    repositoryClass: Component\User\Entity\UserRepository
+    table: group
     id:
         id:
             type: integer
