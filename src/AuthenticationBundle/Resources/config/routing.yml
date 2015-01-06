@@ -1,3 +1,0 @@
-authenticate_rest:
-    type: rest
-    resource: AuthenticationBundle\Controller\AuthenticationController
