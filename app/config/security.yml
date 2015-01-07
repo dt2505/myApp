@@ -31,7 +31,7 @@ security:
                 use_forward:    false
                 check_path:     /login_check
                 failure_path:   null
-#                default_target_path: /
+                default_target_path: /
             logout:
                 path:           /logout
                 success_handler: successful.logout.handler
@@ -43,5 +43,5 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         # secured area
         - { path: ^/admin/, role: [ROLE_ADMIN] }
-        - { path: ^/.*, role: IS_AUTHENTICATED_FULLY }
+#        - { path: ^/.*, role: IS_AUTHENTICATED_FULLY }
 
