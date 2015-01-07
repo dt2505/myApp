@@ -46,9 +46,9 @@ fos_user:
     db_driver: orm
     firewall_name: main
     use_username_form_type: false
-    user_class: Component\User\Entity\User
+    user_class: AppBundle\Entity\User
     group:
-        group_class: Component\User\Entity\Group
+        group_class: AppBundle\Entity\Group
 
 fos_rest:
     routing_loader:
@@ -79,13 +79,7 @@ doctrine:
         entity_managers:
             default:
                 connection: default
-                auto_mapping: false
-                mappings:
-                    AppBundle:
-                        type: yml
-                        dir: Resources/config/doctrine
-                        prefix: Component\User\Entity
-                        is_bundle: true
+                auto_mapping: true
 
 # Swiftmailer Configuration
 swiftmailer:
