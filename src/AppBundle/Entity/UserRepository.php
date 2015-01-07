@@ -6,10 +6,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Component\Mode;
+namespace AppBundle\Entity;
 
-final class UserType
+use Doctrine\ORM\EntityRepository;
+
+class UserRepository extends EntityRepository
 {
-    const PRACTITIONER = 0;
-    const CLIENT = 1;
+
 }
+ 
