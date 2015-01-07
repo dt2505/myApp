@@ -70,38 +70,12 @@ class Response
     const NOT_EXTENDED = 510;                                                // RFC2774
     const NETWORK_AUTHENTICATION_REQUIRED = 511;                             // RFC6585
 
-    private $message;
-    private $status;
-    private $options;
+    protected $message;
+    protected $status;
 
-    public function __construct($message = "", $status = self::OK, $arg = array(), $options = array())
+    public function __construct($message = "", $status = self::OK)
     {
-        $this->message = vsprintf($message, $arg);
+        $this->message = $message;
         $this->status = $status;
-        $this->options = $options;
-    }
-
-    /**
-     * @param $key
-     * @param $value
-     * @return Response
-     */
-    public function addOption($key, $value)
-    {
-        $this->options[$key] = $value;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function toJSON()
-    {
-        $return = array("status" => $this->status);
-        if (!empty($this->message)) {
-            $return["message"] = $this->message;
-        }
-
-        return json_encode(empty($this->options) ? $return : array_merge($return, $this->options));
     }
 }
