@@ -44,6 +44,5 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         # secured area
         - { path: ^/admin/, role: [ROLE_ADMIN] }
-        - { path: ^/_profiler/, role: [ROLE_ADMIN] }
-#        - { path: ^/.*, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/.*, role: IS_AUTHENTICATED_FULLY }
 
