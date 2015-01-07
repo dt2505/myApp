@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\DependencyInjection;
+namespace SecretBase\AppBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

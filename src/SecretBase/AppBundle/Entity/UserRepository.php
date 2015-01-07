@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Entity;
+namespace SecretBase\AppBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 

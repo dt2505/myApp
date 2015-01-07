@@ -3,7 +3,7 @@ security:
         connection: default
 
     encoders:
-        AppBundle\Entity\User:
+        SecretBase\AppBundle\Entity\User:
             algorithm: bcrypt  # need to install the ircmaxell/password-compat ("ircmaxell/password-compat": "~1.0.3") library if  PHP version is 5.4 or lower
             cost: 12
 

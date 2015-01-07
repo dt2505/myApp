@@ -6,12 +6,12 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Controller;
+namespace SecretBase\AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
-use AppBundle\Response\JsonResponse;
+use SecretBase\AppBundle\Response\JsonResponse;
 
 class UpdatesController
 {

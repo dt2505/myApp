@@ -6,7 +6,7 @@
  * Time: 2:44 PM
  */
 
-namespace AppBundle\Controller;
+namespace SecretBase\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

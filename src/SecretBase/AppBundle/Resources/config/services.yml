@@ -1,0 +1,3 @@
+services:
+    successful.logout.handler:
+        class: SecretBase\AppBundle\Listener\SuccessfulLogoutHandler

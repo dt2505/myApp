@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Listener;
+namespace SecretBase\AppBundle\Listener;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

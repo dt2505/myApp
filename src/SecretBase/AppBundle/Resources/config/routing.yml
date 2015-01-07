@@ -1,0 +1,13 @@
+home_page:
+    type: rest
+    resource: SecretBase\AppBundle\Controller\DefaultController
+updates:
+    type: rest
+    resource: SecretBase\AppBundle\Controller\UpdatesController
+files_upload:
+    type: rest
+    resource: SecretBase\AppBundle\Controller\FilesUploadController
+
+demo_rest:
+    type: rest
+    resource: SecretBase\AppBundle\Controller\MyDemoController

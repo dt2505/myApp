@@ -6,9 +6,9 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Controller;
+namespace SecretBase\AppBundle\Controller;
 
-use AppBundle\Response\JsonResponse;
+use SecretBase\AppBundle\Response\JsonResponse;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
 

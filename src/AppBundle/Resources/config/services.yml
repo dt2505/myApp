@@ -1,3 +1,0 @@
-services:
-    successful.logout.handler:
-        class: AppBundle\Listener\SuccessfulLogoutHandler

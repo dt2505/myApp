@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Response;
+namespace SecretBase\AppBundle\Response;
 
 class ErrorResponse extends Response
 {

@@ -6,13 +6,13 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Entity;
+namespace SecretBase\AppBundle\Entity;
 
 use FOS\UserBundle\Model\Group as BaseGroup;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="app_group")
+ * @ORM\Table(name="secret_base_group")
  * @ORM\Entity
  */
 class Group extends BaseGroup

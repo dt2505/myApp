@@ -6,14 +6,14 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Entity;
+namespace SecretBase\AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="app_user")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
+ * @ORM\Table(name="secret_base_user")
+ * @ORM\Entity(repositoryClass="SecretBase\AppBundle\Entity\UserRepository")
  */
 class User extends BaseUser
 {
@@ -36,7 +36,7 @@ class User extends BaseUser
 
     /**
      * @ORM\ManyToMany(targetEntity="Group")
-     * @ORM\JoinTable(name="app_user_group",
+     * @ORM\JoinTable(name="secret_base_user_group",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
      * )
