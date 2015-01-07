@@ -1,6 +1,12 @@
 home_page:
     type: rest
     resource: AppBundle\Controller\DefaultController
+updates:
+    type: rest
+    resource: AppBundle\Controller\UpdatesController
+files_upload:
+    type: rest
+    resource: AppBundle\Controller\FilesUploadController
 
 demo_rest:
     type: rest
