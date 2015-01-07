@@ -3,10 +3,9 @@ security:
         connection: default
 
     encoders:
-        Component\User\Entity\User:
-            algorithm: sha512
-            encode_as_base64: false
-            iterations: 1
+        AppBundle\Entity\User:
+            algorithm: bcrypt  # need to install the ircmaxell/password-compat ("ircmaxell/password-compat": "~1.0.3") library if  PHP version is 5.4 or lower
+            cost: 12
 
     role_hierarchy:
         ROLE_ADMIN: [ROLE_USER]
