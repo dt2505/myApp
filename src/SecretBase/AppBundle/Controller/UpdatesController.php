@@ -8,12 +8,16 @@
 
 namespace SecretBase\AppBundle\Controller;
 
+use Sonata\MediaBundle\Entity\MediaManager;
+use Sonata\MediaBundle\Provider\ImageProvider;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\FOSRestController;
 
-use SecretBase\AppBundle\Response\JsonResponse;
+use SecretBase\AppBundle\Entity\Media;
 
-class UpdatesController
+class UpdatesController extends FOSRestController
 {
     /**
      * @param Request $request
@@ -23,6 +27,55 @@ class UpdatesController
      */
     public function persistUpdatesAction(Request $request)
     {
+        /** @var MediaManager $mediaManager */
+        $mediaManager = $this->get("sonata.media.manager.media");
+
+        foreach ($request->files->get("images") as $image) {
+            $media = new Media();
+            $media->setBinaryContent($image);
+            $media->setProviderName("sonata.media.provider.image");
+            $mediaManager->save($media);
+        }
+
         return new JsonResponse("TODO: persist updates");
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function deleteImagesAction(Request $request)
+    {
+        /** @var MediaManager $mediaManager */
+        $mediaManager = $this->get("sonata.media.manager.media");
+
+        foreach($mediaManager->findAll() as $image) {
+            $mediaManager->delete($image);
+        }
+
+        return new JsonResponse("Done!");
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     */
+    public function getImageUrlAction(Request $request, $id)
+    {
+        /** @var MediaManager $mediaManager */
+        $mediaManager = $this->get("sonata.media.manager.media");
+        /** @var Media $image */
+        $image = $mediaManager->find($id);
+        /** @var ImageProvider $povider */
+        $povider = $this->get('sonata.media.pool')->getProvider($image->getProviderName());
+
+        $path = array(
+            "general.url" => $povider->generatePath($image),
+            "public.url" => $povider->generatePublicUrl($image, 'reference'),
+            "private.url" => $povider->generatePrivateUrl($image, 'default_small')
+        );
+
+        return new JsonResponse($path);
     }
 }
