@@ -30,5 +30,13 @@ class Group extends BaseGroup
     {
         parent::__construct($name);
     }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }
  

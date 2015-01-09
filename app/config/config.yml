@@ -80,6 +80,16 @@ sonata_media:
                 small: { width: 120, height: 74, quality: 100}
                 medium: { width: 300, height: 300, quality: 100}
                 big:   { width: 600, height: 600, quality: 70}
+        user:
+            download:
+                strategy: sonata.media.security.forbidden_strategy
+                mode: http
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 120, height: 74, quality: 100}
+                medium: { width: 300, height: 300, quality: 100}
+                big:   { width: 600, height: 600, quality: 70}
     cdn:
         server:
             path: /uploads/media

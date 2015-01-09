@@ -2,8 +2,7 @@ fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 sonata_media:
-    path: /media/view/{id}/{format}
-    defaults: { _controller: 'SonataMediaBundle:Media:view', format: reference }
+    resource: "@SonataMediaBundle/Resources/config/routing/media.xml"
 
 secret_base:
     resource: "@AppBundle/Resources/config/routing.yml"

@@ -26,12 +26,17 @@ class Media extends BaseMedia
      */
     private $id;
 
+    public function __construct()
+    {
+        $this->mediaId = (new \DateTime())->getTimestamp();
+    }
+
     /**
      * @return mixed
      */
     public function getId()
     {
-        $this->id;
+        return $this->id;
     }
 }
  

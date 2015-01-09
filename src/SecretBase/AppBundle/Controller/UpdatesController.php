@@ -33,6 +33,7 @@ class UpdatesController extends FOSRestController
         foreach ($request->files->get("images") as $image) {
             $media = new Media();
             $media->setBinaryContent($image);
+            $media->setContext("user");
             $media->setProviderName("sonata.media.provider.image");
             $mediaManager->save($media);
         }
@@ -48,8 +49,13 @@ class UpdatesController extends FOSRestController
     {
         /** @var MediaManager $mediaManager */
         $mediaManager = $this->get("sonata.media.manager.media");
+        $pool = $this->get('sonata.media.pool');
+        $medias = $mediaManager->findAll();
 
-        foreach($mediaManager->findAll() as $image) {
+        foreach($medias as $image) {
+            // remove thumbnails before doctrine actually delete entity otherwise there is no way to get the media id,
+            // this is a bug in sonata media bundle. It didn't save the Id in its preRemove method in BaseProvider.php
+            $pool->getProvider($image->getProviderName())->removeThumbnails($image);
             $mediaManager->delete($image);
         }
 
@@ -73,7 +79,7 @@ class UpdatesController extends FOSRestController
         $path = array(
             "general.url" => $povider->generatePath($image),
             "public.url" => $povider->generatePublicUrl($image, 'reference'),
-            "private.url" => $povider->generatePrivateUrl($image, 'default_small')
+            "private.url" => $povider->generatePrivateUrl($image, 'user_small')
         );
 
         return new JsonResponse($path);
