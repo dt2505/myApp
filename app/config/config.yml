@@ -59,6 +59,45 @@ fos_rest:
     view:
         view_response_listener: 'force'
 
+sonata_media:
+    class:
+        media: SecretBase\AppBundle\Entity\Media
+        gallery: SecretBase\AppBundle\Entity\Gallery
+        gallery_has_media: SecretBase\AppBundle\Entity\GalleryHasMedia
+    default_context: default
+    db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
+    contexts:
+        default:  # the default context is mandatory
+            download:
+                strategy: sonata.media.security.superadmin_strategy
+                mode: http
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+            formats:
+                small: { width: 120, height: 74, quality: 100}
+                medium: { width: 300, height: 300, quality: 100}
+                big:   { width: 600, height: 600, quality: 70}
+    cdn:
+        server:
+            path: /uploads/media
+    filesystem:
+        local:
+            directory:  %kernel.root_dir%/../web/uploads/media
+            create:     true
+    providers:
+        image:
+            service:    sonata.media.provider.image
+            resizer:    sonata.media.resizer.simple
+            filesystem: sonata.media.filesystem.local
+            cdn:        sonata.media.cdn.server
+            generator:  sonata.media.generator.default
+            thumbnail:  sonata.media.thumbnail.format
+            allowed_extensions: ['jpg', 'png', 'jpeg', 'gif']
+            allowed_mime_types: ['image/pjpeg', 'image/jpeg', 'image/png', 'image/x-png', 'image/gif'] # currently there is no size validation in sonata media bundle so it has to combine with symfony's constraints to achieve this
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -72,6 +111,8 @@ doctrine:
                 user:     "%database_user%"
                 password: "%database_password%"
                 charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
 
     orm:
         default_entity_manager: default
@@ -79,7 +120,9 @@ doctrine:
         entity_managers:
             default:
                 connection: default
-                auto_mapping: true
+                mappings:
+                    AppBundle: ~
+                    SonataMediaBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
