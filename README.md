@@ -28,3 +28,13 @@ ubuntu:
 elasticsearch requires:
  - php5-curl
 
+naming convention standard:
+- in layout only use the following pattern
+  - <prefix>-row e.g. album-row
+    - any sub-layout inside should inherit its parent prefix and could also its own prefix `<parent prefix>-<sub-layout's prefix>-row` e.g. album-control-row
+  - <prefix>-col e.g. album-col
+    - any sub-layout inside is same as row
+  - <prefix>-container for those divs that could wrap multiple other sub-layouts such as body e.g. body-container
+  - <prefix>-box for the those divs that only wrap one single element such as chat message, e.g. chat-message-box
+  - technique to align div vertically or horizontally should always be unified.
+
