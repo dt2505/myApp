@@ -8,6 +8,7 @@
 
 namespace SecretBase\AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -40,12 +41,30 @@ class User extends BaseUser
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
      * )
+     * @ORM\OrderBy({"name" = "ASC"})
      */
     protected $groups;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Album", mappedBy="owner", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OrderBy({"name" = "ASC"})
+     */
+    private $albums;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Media", mappedBy="user", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OrderBy({"updatedAt" = "DESC"})
+     */
+    private $medias;
 
     public function __construct()
     {
         parent::__construct();
+        $this->albums = new ArrayCollection();
     }
 
     /**
@@ -62,6 +81,38 @@ class User extends BaseUser
     public function setInvitation($invitation)
     {
         $this->invitation = $invitation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAlbums()
+    {
+        return $this->albums;
+    }
+
+    /**
+     * @param mixed $albums
+     */
+    public function setAlbums($albums)
+    {
+        $this->albums = $albums;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getMedias()
+    {
+        return $this->medias;
+    }
+
+    /**
+     * @param ArrayCollection $medias
+     */
+    public function setMedias($medias)
+    {
+        $this->medias = $medias;
     }
 }
  
