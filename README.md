@@ -28,6 +28,10 @@ ubuntu:
 elasticsearch requires:
  - php5-curl
 
+resize image
+- php5-gd (current)
+- php5-imagick (optional)
+
 naming convention standard:
 - in layout only use the following pattern
   - <prefix>-row e.g. album-row
