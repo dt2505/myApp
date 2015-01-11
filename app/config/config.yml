@@ -62,8 +62,8 @@ fos_rest:
 sonata_media:
     class:
         media: SecretBase\AppBundle\Entity\Media
-        gallery: SecretBase\AppBundle\Entity\Gallery
-        gallery_has_media: SecretBase\AppBundle\Entity\GalleryHasMedia
+        gallery: SecretBase\AppBundle\Entity\DummyGallery
+        gallery_has_media: SecretBase\AppBundle\Entity\DummyGalleryHasMedia
     default_context: default
     db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
     contexts:
@@ -80,16 +80,39 @@ sonata_media:
                 small: { width: 120, height: 74, quality: 100}
                 medium: { width: 300, height: 300, quality: 100}
                 big:   { width: 600, height: 600, quality: 70}
-        user:
+        user_profile:
             download:
                 strategy: sonata.media.security.forbidden_strategy
                 mode: http
             providers:
                 - sonata.media.provider.image
             formats:
-                small: { width: 120, height: 74, quality: 100}
-                medium: { width: 300, height: 300, quality: 100}
-                big:   { width: 600, height: 600, quality: 70}
+                small: { width: 32, height: 32, quality: 100}
+                medium: { width: 60, height: 60, quality: 100}
+                large: { width: 160, height: 160, quality: 100}
+        user_cover:
+            download:
+                strategy: sonata.media.security.forbidden_strategy
+                mode: http
+            providers:
+                - sonata.media.provider.image
+            formats:
+                large: { width: 978, height: 205, quality: 100}
+        photo:
+            download:
+                strategy: sonata.media.security.forbidden_strategy
+                mode: http
+            providers:
+                - sonata.media.provider.image
+            formats:
+                s1: { width: 600, height: 300, quality: 100}        # status with 1 image
+                s2: { width: 300, height: 300, quality: 100}        # status with 2 image
+                s3: { width: 200, height: 200, quality: 100}        # status with 3 image
+                s4: { width: 150, height: 150, quality: 100}        # status with 4 image
+                s5: { width: 120, height: 120, quality: 100}        # status with 5 image
+                s6: { width: 100, height: 100, quality: 100}        # status with 6 image
+                small: { width: 50, height: 50, quality: 100}
+                medium: { width: 240, height: 200, quality: 100}    # display in album list
     cdn:
         server:
             path: /uploads/media
