@@ -8,14 +8,16 @@
 
 namespace SecretBase\AppBundle\Entity;
 
-use Sonata\MediaBundle\Entity\BaseGalleryHasMedia;
+use Sonata\MediaBundle\Entity\BaseGallery;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="secret_base_gallery_has_media")
+ * Gallery is useless but SonataMediaBundle requires this entity to group multiple medias
+ *
+ * @ORM\Table(name="secret_base_dummy_gallery")
  * @ORM\Entity
  */
-class GalleryHasMedia extends BaseGalleryHasMedia
+class DummyGallery extends BaseGallery
 {
     /**
      * @var int
