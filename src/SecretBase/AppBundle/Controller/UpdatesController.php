@@ -8,14 +8,13 @@
 
 namespace SecretBase\AppBundle\Controller;
 
-use Sonata\MediaBundle\Entity\MediaManager;
-use Sonata\MediaBundle\Provider\ImageProvider;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
 
-use SecretBase\AppBundle\Entity\Media;
+use SecretBase\AppBundle\Services\Album\IAlbumManager;
+use SecretBase\AppBundle\Services\Photo\IPhotoManager;
 
 class UpdatesController extends FOSRestController
 {
@@ -27,16 +26,16 @@ class UpdatesController extends FOSRestController
      */
     public function persistUpdatesAction(Request $request)
     {
-        /** @var MediaManager $mediaManager */
-        $mediaManager = $this->get("sonata.media.manager.media");
+        $owner = $this->get('security.token_storage')->getToken()->getUser();
 
-        foreach ($request->files->get("images") as $image) {
-            $media = new Media();
-            $media->setBinaryContent($image);
-            $media->setContext("user");
-            $media->setProviderName("sonata.media.provider.image");
-            $mediaManager->save($media);
-        }
+        /** @var IAlbumManager $albumManager */
+        $albumManager = $this->get("media.manager.album");
+        $defaultAlbum = $albumManager->create();
+        $albumManager->persist($defaultAlbum, $owner);
+
+        /** @var IPhotoManager $photoManager */
+        $photoManager = $this->get("media.manager.photo");
+        $photoManager->persistAll($request->files->get("images"), $owner, $defaultAlbum);
 
         return new JsonResponse("TODO: persist updates");
     }
@@ -47,17 +46,9 @@ class UpdatesController extends FOSRestController
      */
     public function deleteImagesAction(Request $request)
     {
-        /** @var MediaManager $mediaManager */
-        $mediaManager = $this->get("sonata.media.manager.media");
-        $pool = $this->get('sonata.media.pool');
-        $medias = $mediaManager->findAll();
-
-        foreach($medias as $image) {
-            // remove thumbnails before doctrine actually delete entity otherwise there is no way to get the media id,
-            // this is a bug in sonata media bundle. It didn't save the Id in its preRemove method in BaseProvider.php
-            $pool->getProvider($image->getProviderName())->removeThumbnails($image);
-            $mediaManager->delete($image);
-        }
+        /** @var IPhotoManager $photoManager */
+        $photoManager = $this->get("media.manager.photo");
+        $photoManager->deleteAll();
 
         return new JsonResponse("Done!");
     }
@@ -69,17 +60,10 @@ class UpdatesController extends FOSRestController
      */
     public function getImageUrlAction(Request $request, $id)
     {
-        /** @var MediaManager $mediaManager */
-        $mediaManager = $this->get("sonata.media.manager.media");
-        /** @var Media $image */
-        $image = $mediaManager->find($id);
-        /** @var ImageProvider $povider */
-        $povider = $this->get('sonata.media.pool')->getProvider($image->getProviderName());
-
+        /** @var IPhotoManager $photoManager */
+        $photoManager = $this->get("media.manager.photo");
         $path = array(
-            "general.url" => $povider->generatePath($image),
-            "public.url" => $povider->generatePublicUrl($image, 'reference'),
-            "private.url" => $povider->generatePrivateUrl($image, 'user_small')
+            "public.url" => $photoManager->getPhotoUrl($id, "small"),
         );
 
         return new JsonResponse($path);

@@ -1,3 +1,6 @@
+imports:
+    - { resource: manager.yml }
+
 services:
     successful.logout.handler:
         class: SecretBase\AppBundle\Listener\SuccessfulLogoutHandler
