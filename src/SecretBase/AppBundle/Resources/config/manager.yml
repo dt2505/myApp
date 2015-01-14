@@ -2,6 +2,7 @@ parameters:
     media.manager.photo.class: SecretBase\AppBundle\Services\Provider\SonataMedia\Entity\PhotoManager
     media.manager.album.class: SecretBase\AppBundle\Services\Provider\SonataMedia\Entity\AlbumManager
     media.album.class: SecretBase\AppBundle\Entity\Album
+    storage.manager.class: SecretBase\AppBundle\Services\Storage\StorageManager
 
 services:
     media.manager.photo:
@@ -11,3 +12,6 @@ services:
     media.manager.album:
         class: %media.manager.album.class%
         arguments: ["%media.album.class%", "@doctrine", "@media.manager.photo"]
+
+    storage.manager:
+        class: '%storage.manager.class%'

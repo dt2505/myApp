@@ -1,0 +1,8 @@
+parameters:
+    storage_adapter.elasticsearch.class: SecretBase\AppBundle\Services\Storage\Adapter
+
+services:
+    storage_adapter.elasticsearch:
+        class: '%storage_adapter.elasticsearch.class%'
+        tags:
+            - {name: storage, alias: elasticsearch}
