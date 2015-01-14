@@ -61,6 +61,90 @@ class User extends BaseUser
      */
     private $medias;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $qq;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $webchat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $facebook;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $twitter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $mobile;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=20)
+     */
+    private $country;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=20)
+     */
+    private $state;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=20)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=20)
+     */
+    private $urban;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=150)
+     */
+    private $street;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="post_code", type="integer")
+     */
+    private $postCode;
+
     public function __construct()
     {
         parent::__construct();
@@ -113,6 +197,230 @@ class User extends BaseUser
     public function setMedias($medias)
     {
         $this->medias = $medias;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * @param string $facebook
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * @param mixed $groups
+     */
+    public function setGroups($groups)
+    {
+        $this->groups = $groups;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMobile()
+    {
+        return $this->mobile;
+    }
+
+    /**
+     * @param string $mobile
+     */
+    public function setMobile($mobile)
+    {
+        $this->mobile = $mobile;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param string $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPostCode()
+    {
+        return $this->postCode;
+    }
+
+    /**
+     * @param int $postCode
+     */
+    public function setPostCode($postCode)
+    {
+        $this->postCode = $postCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQq()
+    {
+        return $this->qq;
+    }
+
+    /**
+     * @param string $qq
+     */
+    public function setQq($qq)
+    {
+        $this->qq = $qq;
+    }
+
+    /**
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param string $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * @param string $street
+     */
+    public function setStreet($street)
+    {
+        $this->street = $street;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * @param string $twitter
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrban()
+    {
+        return $this->urban;
+    }
+
+    /**
+     * @param string $urban
+     */
+    public function setUrban($urban)
+    {
+        $this->urban = $urban;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWebchat()
+    {
+        return $this->webchat;
+    }
+
+    /**
+     * @param mixed $webchat
+     */
+    public function setWebchat($webchat)
+    {
+        $this->webchat = $webchat;
     }
 
     /**
