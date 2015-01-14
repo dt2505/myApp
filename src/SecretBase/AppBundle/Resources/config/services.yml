@@ -1,3 +1,7 @@
+imports:
+    - { resource: manager.yml }
+    - { resource: facade.yml }
+
 services:
     successful.logout.handler:
         class: SecretBase\AppBundle\Listener\SuccessfulLogoutHandler

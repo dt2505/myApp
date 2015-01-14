@@ -4,10 +4,6 @@ home_page:
 updates:
     type: rest
     resource: SecretBase\AppBundle\Controller\UpdatesController
-files_upload:
+photo:
     type: rest
-    resource: SecretBase\AppBundle\Controller\FilesUploadController
-
-demo_rest:
-    type: rest
-    resource: SecretBase\AppBundle\Controller\MyDemoController
+    resource: SecretBase\AppBundle\Controller\PhotoController

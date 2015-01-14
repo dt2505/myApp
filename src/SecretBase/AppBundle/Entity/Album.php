@@ -18,6 +18,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Album
 {
+    const DEFAULT_ALBUM = "album.name.default";
+
     /**
      * @var int
      *
@@ -63,9 +65,10 @@ class Album
      */
     private $medias;
 
-    public function __construct()
+    public function __construct($name = self::DEFAULT_ALBUM)
     {
         $this->medias = array();
+        $this->name =$name;
     }
 
     /**

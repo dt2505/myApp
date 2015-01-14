@@ -15,7 +15,7 @@ class JsonResponse extends Response
      */
     public function toJson()
     {
-        $return = array("status" => $this->status);
+        $return = array("status" => $this->code);
         if (!empty($this->message)) {
             $return["message"] = $this->message;
         }

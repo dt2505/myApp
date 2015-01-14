@@ -42,3 +42,6 @@ naming convention standard:
   - <prefix>-box for the those divs that only wrap one single element such as chat message, e.g. chat-message-box
   - technique to align div vertically or horizontally should always be unified.
 
+note:
+  - the space to store images will be about 18.75% bigger than its original because of thumbnails related to it
+
