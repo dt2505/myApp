@@ -137,5 +137,21 @@ class Upload
     {
         $this->album = $album;
     }
+
+    /**
+     * @return IAlbumManager
+     */
+    protected function getAlbumManager()
+    {
+        return $this->albumManager;
+    }
+
+    /**
+     * @return IPhotoManager
+     */
+    protected function getPhotoManager()
+    {
+        return $this->photoManager;
+    }
 }
  
