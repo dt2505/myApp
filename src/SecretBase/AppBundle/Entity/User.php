@@ -114,5 +114,15 @@ class User extends BaseUser
     {
         $this->medias = $medias;
     }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function equal(User $user)
+    {
+        return $user->getId() === $this->getId() &&
+                $user->getUsername() === $this->getUsername();
+    }
 }
  

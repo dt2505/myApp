@@ -15,7 +15,7 @@ class ErrorResponse extends Response
      */
     public function toJson()
     {
-        $return = array("code" => $this->status);
+        $return = array("code" => $this->code);
         if (!empty($this->message)) {
             $return["error"] = $this->message;
         }

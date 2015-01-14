@@ -11,36 +11,58 @@ namespace SecretBase\AppBundle\Services\Provider\SonataMedia\Entity;
 use Sonata\MediaBundle\Entity\MediaManager;
 use Sonata\MediaBundle\Provider\Pool;
 
-abstract class BaseMediaManager
+use SecretBase\AppBundle\Services\Provider\IEntityManager;
+
+abstract class BaseMediaManager implements IEntityManager
 {
-    /** @var string */
-    private $mediaProviderName;
     /** @var MediaManager $mediaManager */
     private $mediaManager;
     /** @var Pool $pool */
     private $pool;
 
-    function __construct(MediaManager $mediaManager, Pool $pool, $imageProviderName)
+    function __construct(MediaManager $mediaManager, Pool $pool)
     {
-        $this->mediaProviderName = $imageProviderName;
         $this->mediaManager = $mediaManager;
         $this->pool = $pool;
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function getMediaProviderName()
+    public function findAll()
     {
-        return $this->mediaProviderName;
+        return $this->getMediaManager()->findAll();
     }
 
     /**
-     * @param string $mediaProviderName
+     * @param array $criteria
+     * @param array $orderBy
+     * @param null $limit
+     * @param null $offset
+     * @return array
      */
-    public function setMediaProviderName($mediaProviderName)
+    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
     {
-        $this->mediaProviderName = $mediaProviderName;
+        return $this->getMediaManager()->findBy($criteria, $orderBy, $limit, $offset);
+    }
+
+    /**
+     * @param array $criteria
+     * @param array $orderBy
+     * @return object
+     */
+    public function findOneBy(array $criteria, array $orderBy = null)
+    {
+        return $this->getMediaManager()->findOneBy($criteria, $orderBy);
+    }
+
+    /**
+     * @param $id
+     * @return object
+     */
+    public function find($id)
+    {
+        return $this->getMediaManager()->find($id);
     }
 
     /**

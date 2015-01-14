@@ -71,11 +71,27 @@ class Response
     const NETWORK_AUTHENTICATION_REQUIRED = 511;                             // RFC6585
 
     protected $message;
-    protected $status;
+    protected $code;
 
-    public function __construct($message = "", $status = self::OK)
+    public function __construct($message = "", $code = self::OK)
     {
         $this->message = $message;
-        $this->status = $status;
+        $this->code = $code;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 }

@@ -10,9 +10,8 @@ namespace SecretBase\AppBundle\Services\Provider\SonataMedia\Entity;
 
 use Sonata\CoreBundle\Model\BaseEntityManager;
 
-use SecretBase\AppBundle\Services\Album\IAlbumManager;
-use SecretBase\AppBundle\Services\Photo\IPhotoManager;
-use SecretBase\AppBundle\Entity\Album;
+use SecretBase\AppBundle\Services\Provider\Album\IAlbumManager;
+use SecretBase\AppBundle\Services\Provider\Photo\IPhotoManager;
 
 class AlbumManager extends BaseEntityManager implements IAlbumManager
 {
@@ -25,6 +24,9 @@ class AlbumManager extends BaseEntityManager implements IAlbumManager
         $this->photoManager = $photoManager;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function create($name = null) {
         $this->currentAlbum = null;
 
@@ -38,6 +40,23 @@ class AlbumManager extends BaseEntityManager implements IAlbumManager
         return $this->currentAlbum;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function createDefaultAlbum($owner, $andPersistIt = true)
+    {
+        $defaultAlbum = $this->create();
+        $defaultAlbum->setOwner($owner);
+        if ($andPersistIt) {
+            $this->persist($defaultAlbum, true);
+        }
+
+        return $defaultAlbum;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function delete($album, $flush = true)
     {
         if ($medias = $album->getMedias()) {
@@ -49,15 +68,19 @@ class AlbumManager extends BaseEntityManager implements IAlbumManager
         parent::delete($album, $flush);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCurrentAlbum()
     {
         return $this->currentAlbum;
     }
 
-    public function persist($album, $owner, $flush = true)
+    /**
+     * {@inheritdoc}
+     */
+    public function persist($album, $flush = true)
     {
-        /** @var Album $album */
-        $album->setOwner($owner);
         parent::save($album, $flush);
     }
 }

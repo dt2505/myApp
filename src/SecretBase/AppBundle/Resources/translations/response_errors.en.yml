@@ -1,0 +1,11 @@
+errors:
+    notFound:
+        albumId: Album does not exist with ID %albumId%.
+        photoId: Photo does not exit with ID %photoId%
+    empty:
+        albumId: Album id is not given.
+    invalidInstance:
+        user: Invalid user, %user%, supplied.
+    denny:
+        delete:
+            photo: Denny to delete this photo

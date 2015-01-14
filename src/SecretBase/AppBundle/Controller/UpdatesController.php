@@ -11,12 +11,8 @@ namespace SecretBase\AppBundle\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use FOS\RestBundle\Controller\FOSRestController;
 
-use SecretBase\AppBundle\Services\Album\IAlbumManager;
-use SecretBase\AppBundle\Services\Photo\IPhotoManager;
-
-class UpdatesController extends FOSRestController
+class UpdatesController extends BaseController
 {
     /**
      * @param Request $request
@@ -26,46 +22,14 @@ class UpdatesController extends FOSRestController
      */
     public function persistUpdatesAction(Request $request)
     {
-        $owner = $this->get('security.token_storage')->getToken()->getUser();
+        $images = $request->files->get("images");
+        $text = $request->request->get("text");
+        $user = $this->getSecurityTokenStorage()->getToken()->getUser();
 
-        /** @var IAlbumManager $albumManager */
-        $albumManager = $this->get("media.manager.album");
-        $defaultAlbum = $albumManager->create();
-        $albumManager->persist($defaultAlbum, $owner);
+        $response = $this->getUpdatesFacade()->persistUpdates($text, $user, $images);
 
-        /** @var IPhotoManager $photoManager */
-        $photoManager = $this->get("media.manager.photo");
-        $photoManager->persistAll($request->files->get("images"), $owner, $defaultAlbum);
-
-        return new JsonResponse("TODO: persist updates");
+        return new JsonResponse($response);
     }
 
-    /**
-     * @param Request $request
-     * @return JsonResponse
-     */
-    public function deleteImagesAction(Request $request)
-    {
-        /** @var IPhotoManager $photoManager */
-        $photoManager = $this->get("media.manager.photo");
-        $photoManager->deleteAll();
 
-        return new JsonResponse("Done!");
-    }
-
-    /**
-     * @param Request $request
-     * @param $id
-     * @return JsonResponse
-     */
-    public function getImageUrlAction(Request $request, $id)
-    {
-        /** @var IPhotoManager $photoManager */
-        $photoManager = $this->get("media.manager.photo");
-        $path = array(
-            "public.url" => $photoManager->getPhotoUrl($id, "small"),
-        );
-
-        return new JsonResponse($path);
-    }
 }
