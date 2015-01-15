@@ -1,0 +1,5 @@
+app:
+    storage:
+        elasticsearch:
+            server: localhost:9200
+            index: secret_base

@@ -27,6 +27,19 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('app');
 
+        $rootNode
+            ->children()
+                ->arrayNode("storage")
+                    ->children()
+                        ->arrayNode("elasticsearch")
+                            ->children()
+                                ->scalarNode("server")->isRequired()->end()
+                                ->scalarNode("index")->isRequired()->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
         return $treeBuilder;
     }
 }

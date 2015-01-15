@@ -8,7 +8,7 @@
 
 namespace SecretBase\AppBundle\Controller;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
@@ -16,7 +16,7 @@ class UpdatesController extends BaseController
 {
     /**
      * @param Request $request
-     * @return JsonResponse
+     * @return Response
      *
      * @Rest\Post()
      */
@@ -28,7 +28,7 @@ class UpdatesController extends BaseController
 
         $response = $this->getUpdatesFacade()->persistUpdates($text, $user, $images);
 
-        return new JsonResponse($response);
+        return new Response((string)$response);
     }
 
 
