@@ -58,7 +58,7 @@ class Upload
      * @param $flush
      * @return Media|ErrorResponse
      */
-    public function deletePhoto($photoId, $owner, $flush)
+    public function deletePhoto($photoId, $owner, $flush = true)
     {
         if (empty($photoId) || empty($owner)) {
             return new JsonResponse();
@@ -78,7 +78,7 @@ class Upload
         }
 
         try {
-            return $this->photoManager->delete($photo);
+            return $this->photoManager->delete($photo, $flush);
         } catch (\Exception $e) {
             return new ErrorResponse($e->getMessage(), $e->getCode());
         }
@@ -89,13 +89,13 @@ class Upload
      * @param $flush
      * @return Array
      */
-    public function deleteAllPhotos($owner, $flush)
+    public function deleteAllPhotos($owner, $flush = true)
     {
         if (!$owner instanceof User) {
             return new ErrorResponse("errors.invalidInstance.user", ErrorResponse::BAD_REQUEST);
         }
 
-        return $this->photoManager->deletePhotos($owner);
+        return $this->photoManager->deletePhotos($owner, null, $flush);
     }
 
     /**
