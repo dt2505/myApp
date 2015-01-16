@@ -42,6 +42,29 @@ naming convention standard:
   - <prefix>-box for the those divs that only wrap one single element such as chat message, e.g. chat-message-box
   - technique to align div vertically or horizontally should always be unified.
 
+translation:
+  - The error responses returned by all services will be structured as following
+    - error without message placeholder:
+    ```
+    {
+        "error": "errors.denny.delete.photo",
+        "code": 400
+    }
+    ```
+    - error with message placeholder (parameter passed by front-end, in this case front-end knows what parameters have been passed in)
+    ```
+    {
+        "error": "errors.notFound.photoId",
+        "code": 400
+    }
+    ```
+    - error with message placeholder (parameter passed by back-end services themselves, in this case front-end doesn't know what message placeholders will be so translation code will be followed by key-value pairs ):
+    ```
+    {
+        "error": "errors.notFound.photoId|[<placeholder-name1>:<value1>[, <placeholder-name2>:<value2>]]",
+        "code": 400
+    }
+    ```
 note:
   - the space to store images will be about 18.75% bigger than its original because of thumbnails related to it
 

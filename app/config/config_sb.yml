@@ -1,4 +1,5 @@
 app:
+    default_storage: elasticsearch
     storage:
         elasticsearch:
             server: localhost:9200

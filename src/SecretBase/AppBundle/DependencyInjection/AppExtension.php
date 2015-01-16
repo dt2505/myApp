@@ -32,6 +32,7 @@ class AppExtension extends Extension
         $loader->load('services.yml');
 
         $definition = $container->getDefinition('storage.manager');
+        $definition->addMethodCall('setDefaultStorage', array($config["default_storage"]));
         $definition->addMethodCall('setConfig', array($config["storage"]));
     }
 }
