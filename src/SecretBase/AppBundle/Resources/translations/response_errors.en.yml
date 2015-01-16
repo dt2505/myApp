@@ -2,6 +2,7 @@ errors:
     notFound:
         albumId: Album does not exist with ID %albumId%.
         photoId: Photo does not exit with ID %photoId%
+        storageAdapter: No such storage adapter, %storageName%, is defined
     empty:
         albumId: Album id is not given.
     invalidInstance:

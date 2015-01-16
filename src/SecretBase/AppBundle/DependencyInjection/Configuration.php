@@ -29,6 +29,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->scalarNode("default_storage")->defaultValue("elasticsearch")->end()
                 ->arrayNode("storage")
                     ->children()
                         ->arrayNode("elasticsearch")

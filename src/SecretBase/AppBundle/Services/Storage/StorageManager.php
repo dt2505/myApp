@@ -12,6 +12,7 @@ class StorageManager
 {
     private $storages;
     private $storageConfig;
+    private $defaultStorage;
 
     public function __construct()
     {
@@ -39,7 +40,7 @@ class StorageManager
      * @param $alias
      * @return null|IStorage
      */
-    public function getStorage($alias)
+    public function getStorageAdapterBy($alias)
     {
         if (!isset($this->storages[$alias])) {
             return null;
@@ -50,6 +51,30 @@ class StorageManager
         $reference->setConfig($this->findConfigNode($alias, $this->storageConfig));
 
         return $reference;
+    }
+
+    /**
+     * @return null|IStorage
+     */
+    public function getDefaultStorageAdapter()
+    {
+        return $this->getStorageAdapterBy($this->defaultStorage);
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefaultStorage()
+    {
+        return $this->defaultStorage;
+    }
+
+    /**
+     * @param string $defaultStorage
+     */
+    public function setDefaultStorage($defaultStorage)
+    {
+        $this->defaultStorage = $defaultStorage;
     }
 
     /**

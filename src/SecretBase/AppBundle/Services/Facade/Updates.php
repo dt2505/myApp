@@ -10,9 +10,19 @@ namespace SecretBase\AppBundle\Services\Facade;
 
 use SecretBase\AppBundle\Response\ErrorResponse;
 use SecretBase\AppBundle\Response\JsonResponse;
+use SecretBase\AppBundle\Services\Storage\StorageManager;
 
 class Updates extends Upload
 {
+    /** @var StorageManager */
+    private $storageManager;
+
+    function __construct($albumManager, $photoManager, $storageManager)
+    {
+        parent::__construct($albumManager, $photoManager);
+        $this->storageManager = $storageManager;
+    }
+
     /**
      * @param $text
      * @param $user
@@ -26,8 +36,13 @@ class Updates extends Upload
             return $response;
         }
 
+        $storage = $this->storageManager->getDefaultStorageAdapter();
+        if (!$storage) {
+            return new ErrorResponse(sprintf("errors.notFound.storageAdapter|storageName:%s", $this->storageManager->getDefaultStorage()), ErrorResponse::BAD_REQUEST);
+        }
+
         try {
-            //TODO: save it to elasticsearch
+
         } catch (\Exception $e) {
             return new ErrorResponse($e->getMessage(), $e->getCode());
         }
