@@ -32,24 +32,39 @@ class Upload
     }
 
     /**
-     * @param $files
+     * @param $file
      * @param $owner
-     * @return ErrorResponse|JsonResponse
+     * @param $context
+     * @return Media|ErrorResponse|null
      */
-    public function uploadPhotos($files, $owner)
+    public function uploadPhoto($file, $owner, $context = IPhotoManager::THUMBNAIL_CONTEXT_PHOTO)
     {
-        if (empty($files)) {
-            return new JsonResponse();
-        }
-
         try {
             $album = $this->album ? $this->album : $this->albumManager->createDefaultAlbum($owner);
-            $this->photoManager->persistAll($files, $owner, $album);
+            return $this->photoManager->persist($file, $owner, $album, $context);
         } catch (\Exception $e) {
             return new ErrorResponse($e->getMessage(), $e->getCode());
         }
+    }
 
-        return new JsonResponse();
+    /**
+     * @param $files
+     * @param $owner
+     * @param $context
+     * @return array|ErrorResponse
+     */
+    public function uploadPhotos($files, $owner, $context = IPhotoManager::THUMBNAIL_CONTEXT_PHOTO)
+    {
+        if (empty($files)) {
+            return array();
+        }
+
+        $photos = array();
+        foreach ($files as $photo) {
+            $photos[] = $this->uploadPhoto($photo, $owner, $context);
+        }
+
+        return $photos;
     }
 
     /**
@@ -85,41 +100,26 @@ class Upload
     }
 
     /**
-     * @param $owner
-     * @param $flush
-     * @return Array
-     */
-    public function deleteAllPhotos($owner, $flush = true)
-    {
-        if (!$owner instanceof User) {
-            return new ErrorResponse("errors.invalidInstance.user", ErrorResponse::BAD_REQUEST);
-        }
-
-        return $this->photoManager->deletePhotos($owner, null, $flush);
-    }
-
-    /**
      * @param $albumId
      * @param null $owner
      * @param bool $flush
      * @return Array
      */
-    public function deletePhotos($albumId, $owner, $flush = true)
+    public function deletePhotos($owner, $albumId, $flush = true)
     {
         if (!$owner instanceof User) {
             return new ErrorResponse("errors.invalidInstance.user", ErrorResponse::BAD_REQUEST);
         }
 
-        if (empty($albumId)) {
-            return $this->deleteAllPhotos($owner, $flush);
+        $album = null;
+        if (!empty($albumId)) {
+            $album = $this->albumManager->find($albumId);
+            if ($album) {
+                return new ErrorResponse("errors.notFound.albumId", ErrorResponse::BAD_REQUEST);
+            }
         }
 
-        $album = $this->albumManager->find($albumId);
-        if ($album) {
-            return new ErrorResponse("errors.notFound.albumId", ErrorResponse::BAD_REQUEST);
-        }
-
-        return $this->photoManager->deletePhotos($album, $owner, $flush);
+        return $this->photoManager->deletePhotos($owner, $album, $flush);
     }
 
     /**

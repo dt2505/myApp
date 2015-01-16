@@ -40,7 +40,7 @@ class PhotoController extends BaseController
         $albumId = $request->request->get("albumId");
         $user = $this->getSecurityTokenStorage()->getToken()->getUser();
 
-        $response = $this->getUploadFacade()->deletePhotos($albumId, $user);
+        $response = $this->getUploadFacade()->deletePhotos($user, $albumId);
         if ($response instanceof ErrorResponse) {
             return new Response((string)$response);
         } else {

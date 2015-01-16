@@ -8,6 +8,8 @@
 
 namespace SecretBase\AppBundle\Services\Storage;
 
+use SecretBase\AppBundle\Response\ErrorResponse;
+
 interface IStorage
 {
     /**
@@ -22,13 +24,11 @@ interface IStorage
 
     /**
      * @param $jsonString
+     * @param string $type
      * @param null $idField
-     * @param null $type
-     * @param bool $overwritten
-     * @return array["message"]
-     *              ["status"]
+     * @return ErrorResponse
      */
-    public function save($jsonString, $idField = null, $type = null, $overwritten = false);
+    public function save($jsonString, $type, $idField = null);
 
     /**
      * @param array $jsonContent

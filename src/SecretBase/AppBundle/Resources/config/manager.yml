@@ -7,7 +7,7 @@ parameters:
 services:
     media.manager.photo:
         class: %media.manager.photo.class%
-        arguments: ["@sonata.media.manager.media", "@sonata.media.pool", "sonata.media.provider.image", "photo"]
+        arguments: ["@sonata.media.manager.media", "@sonata.media.pool", "sonata.media.provider.image"]
 
     media.manager.album:
         class: %media.manager.album.class%

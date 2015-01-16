@@ -15,27 +15,19 @@ use SecretBase\AppBundle\Services\Provider\IEntityManager;
 
 interface IPhotoManager extends IEntityManager
 {
+    const THUMBNAIL_CONTEXT_PHOTO = "photo";
+
     /**
      * @param $photo
      * @param $owner
-     * @param null $album
+     * @param $album
      * @param bool $flush
      * @return Media
      */
-    public function persist($photo, $owner, $album = null, $flush = true);
-
-    /**
-     * @param array $photos
-     * @param $owner
-     * @param null $album
-     * @param bool $flush
-     * @return array<Media>
-     */
-    public function persistAll(array $photos, $owner, $album = null, $flush = true);
+    public function persist($photo, $owner, $album, $flush = true);
 
     /**
      * @param Media $photo
-     * @param User $owner
      * @param bool $flush
      * @return Media
      */
@@ -48,5 +40,12 @@ interface IPhotoManager extends IEntityManager
      * @return ErrorResponse|Array
      */
     public function deletePhotos($owner, $inAlbum = null, $flush = true);
+
+    /**
+     * @param Media $photo
+     * @param null $attachToDomain
+     * @return array
+     */
+    public function getPhotoUrls(Media $photo, $attachToDomain = null);
 }
  

@@ -64,42 +64,42 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $qq;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $webchat;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $facebook;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $twitter;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $mobile;
 
@@ -113,37 +113,51 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $state;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $city;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $urban;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=150)
+     * @ORM\Column(type="string", length=150, nullable=true)
      */
     private $street;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="post_code", type="integer")
+     * @ORM\Column(name="post_code", type="integer", nullable=true)
      */
     private $postCode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="profile_picture", type="string", nullable=true)
+     */
+    private $profilePicture;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cover", type="string", nullable=true)
+     */
+    private $cover;
 
     public function __construct()
     {
@@ -421,6 +435,38 @@ class User extends BaseUser
     public function setWebchat($webchat)
     {
         $this->webchat = $webchat;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCover()
+    {
+        return $this->cover;
+    }
+
+    /**
+     * @param string $cover
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProfilePicture()
+    {
+        return $this->profilePicture;
+    }
+
+    /**
+     * @param string $profilePicture
+     */
+    public function setProfilePicture($profilePicture)
+    {
+        $this->profilePicture = $profilePicture;
     }
 
     /**

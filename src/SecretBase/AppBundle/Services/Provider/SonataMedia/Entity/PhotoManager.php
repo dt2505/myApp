@@ -21,22 +21,21 @@ class PhotoManager extends BaseMediaManager implements IPhotoManager
     /** @var string */
     private $mediaProviderName;
 
-    public function __construct($mediaManager, $pool, $imageProviderName, $context)
+    public function __construct($mediaManager, $pool, $imageProviderName)
     {
         parent::__construct($mediaManager, $pool);
         $this->mediaProviderName = $imageProviderName;
-        $this->context = $context;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function persist($photo, $owner, $album = null, $flush = true)
+    public function persist($photo, $owner, $album, $context = self::THUMBNAIL_CONTEXT_PHOTO, $flush = true)
     {
         $media = new Media();
         $media->setBinaryContent($photo);
         $media->setAlbum($album);
-        $media->setContext($this->context);
+        $media->setContext($context);
         $media->setProviderName($this->getMediaProviderName());
         $media->setOwner($owner);
         $this->getMediaManager()->save($media, $flush);
@@ -47,20 +46,11 @@ class PhotoManager extends BaseMediaManager implements IPhotoManager
     /**
      * {@inheritdoc}
      */
-    public function persistAll(array $photos, $owner, $album = null, $flush = true)
-    {
-        $medias = array();
-        foreach ($photos as $photo) {
-            $medias[] = $this->persist($photo, $owner, $album, $flush);
-        }
-        return $medias;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function delete($photo, $flush = true)
     {
+        if ($photo == null) {
+            return null;
+        }
         // have to manually remove thumbnails before doctrine actually delete entity otherwise there is no way to get
         // the media id, this is a bug in sonata media bundle. It didn't save the Id in its preRemove method in
         // BaseProvider.php
@@ -76,10 +66,6 @@ class PhotoManager extends BaseMediaManager implements IPhotoManager
      */
     public function deletePhotos($owner, $inAlbum = null, $flush = true)
     {
-        if (!$owner instanceof User) {
-            return new ErrorResponse("errors.invalidInstance.user", ErrorResponse::BAD_REQUEST);
-        }
-
         $criteria = array("owner" => $owner);
 
         if ($inAlbum) {
@@ -145,6 +131,22 @@ class PhotoManager extends BaseMediaManager implements IPhotoManager
     public function setMediaProviderName($mediaProviderName)
     {
         $this->mediaProviderName = $mediaProviderName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContext()
+    {
+        return $this->context;
+    }
+
+    /**
+     * @param string $context
+     */
+    public function setContext($context)
+    {
+        $this->context = $context;
     }
 
     /**

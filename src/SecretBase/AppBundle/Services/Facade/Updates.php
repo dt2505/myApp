@@ -32,7 +32,7 @@ class Updates extends Upload
     public function persistUpdates($text, $user, $files = array())
     {
         $response = $this->uploadPhotos($files, $user);
-        if ($response->getCode() !== JsonResponse::OK) {
+        if ($response instanceof ErrorResponse && $response->getCode() !== JsonResponse::OK) {
             return $response;
         }
 
@@ -42,12 +42,25 @@ class Updates extends Upload
         }
 
         try {
-
+            $jsonData = $this->createJson($text, $user, $response);
+            $storage->save($jsonData, "updates");
         } catch (\Exception $e) {
             return new ErrorResponse($e->getMessage(), $e->getCode());
         }
 
         return new JsonResponse();
+    }
+
+    private function createJson($text, $user, $medias)
+    {
+        $data = array(
+            "users" => array(),
+            "medias" => array(),
+            "text" => $text,
+            "createdAt" => new \DateTime()
+        );
+
+        return json_encode($data);
     }
 }
  

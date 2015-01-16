@@ -9,6 +9,9 @@
 namespace SecretBase\AppBundle\Services\Storage\Adapter;
 
 use Elasticsearch\Client;
+use SecretBase\AppBundle\Response\ErrorResponse;
+use SecretBase\AppBundle\Response\Response;
+use SecretBase\AppBundle\Services\Storage\Exception\StorageException;
 use SecretBase\AppBundle\Services\Storage\Storage;
 
 class ElasticsearchStorageAdapter extends Storage
@@ -31,10 +34,10 @@ class ElasticsearchStorageAdapter extends Storage
     /**
      * {@inheritdoc}
      */
-    public function save($jsonString, $idField = null, $type = null, $overwritten = false)
+    public function save($jsonString, $type, $idField = null)
     {
         if (empty($type)) {
-            return array("message" => "No index type supplied.", "status" => 400);
+            return new ErrorResponse("No index type supplied.", ErrorResponse::BAD_REQUEST);
         }
         $content = json_decode($jsonString, true);
 
@@ -42,16 +45,14 @@ class ElasticsearchStorageAdapter extends Storage
         $param["index"] = $this->getIndex();
         $param["type"] = $type;
         $param["body"] = $content;              // raw json data
-        $content = json_decode($jsonString, true);
         if ($idField && isset($content[$idField])) {
             $param["id"] = $content[$idField];
         }
 
         try {
             $this->client->index($param);
-            return array("message" => "", "status" => 200);
         } catch (\Exception $e) {
-            return array("message" => $e->getMessage(), "status" => 500);
+            return new ErrorResponse($e->getMessage(), $e->getCode());
         }
     }
 
@@ -95,11 +96,11 @@ class ElasticsearchStorageAdapter extends Storage
     public function bulk(array $jsonContent, $idField, $type)
     {
         if (empty($jsonContent)) {
-            return array("message" => "No records need to be indexed", "status" => 400);
+            return new ErrorResponse("No records need to be indexed", ErrorResponse::BAD_REQUEST);
         }
 
         if (empty($type)) {
-            return array("message" => "No index type supplied.", "status" => 400);
+            return new ErrorResponse("No index type supplied", ErrorResponse::BAD_REQUEST);
         }
 
         $params = array(
@@ -140,12 +141,12 @@ class ElasticsearchStorageAdapter extends Storage
                         $item[self::BULK_ACTION_INDEX]["status"]
                     );
                 }
-                return array("message" => join("\n", $messages), "status" => 500);
+                return new ErrorResponse(join("\n", $messages), ErrorResponse::INTERNAL_SERVER_ERROR);
             } else {
-                return array("message" => "", "status" => 200);
+                return new Response();
             }
         } catch (\Exception $e) {
-            return array("message" => $e->getMessage(), "status" => 500);
+            return new ErrorResponse($e->getMessage(), ErrorResponse::INTERNAL_SERVER_ERROR);
         }
     }
 
