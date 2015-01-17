@@ -11,7 +11,6 @@ namespace SecretBase\AppBundle\Services\Storage\Adapter;
 use Elasticsearch\Client;
 use SecretBase\AppBundle\Response\ErrorResponse;
 use SecretBase\AppBundle\Response\Response;
-use SecretBase\AppBundle\Services\Storage\Exception\StorageException;
 use SecretBase\AppBundle\Services\Storage\Storage;
 
 class ElasticsearchStorageAdapter extends Storage

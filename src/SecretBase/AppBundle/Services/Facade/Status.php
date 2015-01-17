@@ -12,14 +12,16 @@ use SecretBase\AppBundle\Response\ErrorResponse;
 use SecretBase\AppBundle\Response\JsonResponse;
 use SecretBase\AppBundle\Services\Storage\StorageManager;
 
-class Updates extends Upload
+class Status extends Upload
 {
+    const ES_IDX_TYPE_STATUS = "status";
+
     /** @var StorageManager */
     private $storageManager;
 
-    function __construct($albumManager, $photoManager, $storageManager)
+    function __construct($albumManager, $imageManager, $storageManager)
     {
-        parent::__construct($albumManager, $photoManager);
+        parent::__construct($albumManager, $imageManager);
         $this->storageManager = $storageManager;
     }
 
@@ -27,11 +29,11 @@ class Updates extends Upload
      * @param $text
      * @param $user
      * @param array $files
-     * @return ErrorResponse|JsonResponse
+     * @return ErrorResponse|array
      */
-    public function persistUpdates($text, $user, $files = array())
+    public function persistStatus($text, $user, $files = array())
     {
-        $response = $this->uploadPhotos($files, $user);
+        $response = $this->uploadImages($files, $user);
         if ($response instanceof ErrorResponse && $response->getCode() !== JsonResponse::OK) {
             return $response;
         }
@@ -41,11 +43,10 @@ class Updates extends Upload
             return new ErrorResponse(sprintf("errors.notFound.storageAdapter|storageName:%s", $this->storageManager->getDefaultStorage()), ErrorResponse::BAD_REQUEST);
         }
 
-        try {
-            $jsonData = $this->createJson($text, $user, $response);
-            $storage->save($jsonData, "updates");
-        } catch (\Exception $e) {
-            return new ErrorResponse($e->getMessage(), $e->getCode());
+        $jsonData = $this->createJson($text, $user, $response);
+        $response = $storage->save($jsonData, self::ES_IDX_TYPE_STATUS);
+        if ($response instanceof ErrorResponse) {
+            return $response;
         }
 
         return new JsonResponse();

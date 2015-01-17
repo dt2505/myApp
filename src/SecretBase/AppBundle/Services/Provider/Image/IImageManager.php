@@ -6,32 +6,31 @@
  * file that was distributed with this source code.
  */
 
-namespace SecretBase\AppBundle\Services\Provider\Photo;
+namespace SecretBase\AppBundle\Services\Provider\Image;
 
 use SecretBase\AppBundle\Entity\Media;
-use SecretBase\AppBundle\Entity\User;
 use SecretBase\AppBundle\Response\ErrorResponse;
 use SecretBase\AppBundle\Services\Provider\IEntityManager;
 
-interface IPhotoManager extends IEntityManager
+interface IImageManager extends IEntityManager
 {
-    const THUMBNAIL_CONTEXT_PHOTO = "photo";
+    const THUMBNAIL_CONTEXT_IMAGE = "image";
 
     /**
-     * @param $photo
+     * @param $image
      * @param $owner
      * @param $album
      * @param bool $flush
      * @return Media
      */
-    public function persist($photo, $owner, $album, $flush = true);
+    public function persist($image, $owner, $album, $flush = true);
 
     /**
-     * @param Media $photo
+     * @param Media $image
      * @param bool $flush
      * @return Media
      */
-    public function delete($photo, $flush = true);
+    public function delete($image, $flush = true);
 
     /**
      * @param null $owner
@@ -39,13 +38,13 @@ interface IPhotoManager extends IEntityManager
      * @param bool $flush
      * @return ErrorResponse|Array
      */
-    public function deletePhotos($owner, $inAlbum = null, $flush = true);
+    public function deleteImages($owner, $inAlbum = null, $flush = true);
 
     /**
      * @param Media $photo
      * @param null $attachToDomain
      * @return array
      */
-    public function getPhotoUrls(Media $photo, $attachToDomain = null);
+    public function getImageUrls(Media $photo, $attachToDomain = null);
 }
  

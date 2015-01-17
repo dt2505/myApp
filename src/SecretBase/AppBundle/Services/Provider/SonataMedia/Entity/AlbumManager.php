@@ -11,17 +11,17 @@ namespace SecretBase\AppBundle\Services\Provider\SonataMedia\Entity;
 use Sonata\CoreBundle\Model\BaseEntityManager;
 
 use SecretBase\AppBundle\Services\Provider\Album\IAlbumManager;
-use SecretBase\AppBundle\Services\Provider\Photo\IPhotoManager;
+use SecretBase\AppBundle\Services\Provider\Image\IImageManager;
 
 class AlbumManager extends BaseEntityManager implements IAlbumManager
 {
-    private $photoManager;
+    private $imageManager;
     private $currentAlbum;
 
-    public function __construct($class, $registry, IPhotoManager $photoManager)
+    public function __construct($class, $registry, IImageManager $imageManager)
     {
         parent::__construct($class, $registry);
-        $this->photoManager = $photoManager;
+        $this->imageManager = $imageManager;
     }
 
     /**
@@ -48,6 +48,13 @@ class AlbumManager extends BaseEntityManager implements IAlbumManager
         $defaultAlbum = $this->create();
         $defaultAlbum->setOwner($owner);
         if ($andPersistIt) {
+            $existed = $this->findOneBy(array(
+                "name" => $defaultAlbum->getName(),
+                "owner" => $defaultAlbum->getOwner()
+            ));
+            if ($existed) {
+                return $existed;
+            }
             $this->persist($defaultAlbum, true);
         }
 
@@ -61,7 +68,7 @@ class AlbumManager extends BaseEntityManager implements IAlbumManager
     {
         if ($medias = $album->getMedias()) {
             foreach ($medias as $media) {
-                $this->photoManager->delete($media, $flush);
+                $this->imageManager->delete($media, $flush);
             }
         }
 

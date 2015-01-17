@@ -9,12 +9,10 @@
 namespace SecretBase\AppBundle\Services\Provider\SonataMedia\Entity;
 
 use SecretBase\AppBundle\Entity\Media;
-use SecretBase\AppBundle\Entity\User;
-use SecretBase\AppBundle\Response\ErrorResponse;
-use SecretBase\AppBundle\Services\Provider\Photo\IPhotoManager;
+use SecretBase\AppBundle\Services\Provider\Image\IImageManager;
 use Sonata\MediaBundle\Provider\ImageProvider;
 
-class PhotoManager extends BaseMediaManager implements IPhotoManager
+class ImageManager extends BaseMediaManager implements IImageManager
 {
     /** @var string */
     private $context;
@@ -30,10 +28,10 @@ class PhotoManager extends BaseMediaManager implements IPhotoManager
     /**
      * {@inheritdoc}
      */
-    public function persist($photo, $owner, $album, $context = self::THUMBNAIL_CONTEXT_PHOTO, $flush = true)
+    public function persist($image, $owner, $album, $context = self::THUMBNAIL_CONTEXT_IMAGE, $flush = true)
     {
         $media = new Media();
-        $media->setBinaryContent($photo);
+        $media->setBinaryContent($image);
         $media->setAlbum($album);
         $media->setContext($context);
         $media->setProviderName($this->getMediaProviderName());
@@ -46,25 +44,25 @@ class PhotoManager extends BaseMediaManager implements IPhotoManager
     /**
      * {@inheritdoc}
      */
-    public function delete($photo, $flush = true)
+    public function delete($image, $flush = true)
     {
-        if ($photo == null) {
+        if ($image == null) {
             return null;
         }
         // have to manually remove thumbnails before doctrine actually delete entity otherwise there is no way to get
         // the media id, this is a bug in sonata media bundle. It didn't save the Id in its preRemove method in
         // BaseProvider.php
-        /** @var Media $photo */
-        $this->getPool()->getProvider($photo->getProviderName())->removeThumbnails($photo);
-        $this->getMediaManager()->delete($photo);
+        /** @var Media $image */
+        $this->getPool()->getProvider($image->getProviderName())->removeThumbnails($image);
+        $this->getMediaManager()->delete($image);
 
-        return $photo;
+        return $image;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function deletePhotos($owner, $inAlbum = null, $flush = true)
+    public function deleteImages($owner, $inAlbum = null, $flush = true)
     {
         $criteria = array("owner" => $owner);
 
@@ -77,32 +75,32 @@ class PhotoManager extends BaseMediaManager implements IPhotoManager
             return array();
         }
 
-        $oldPhotos = array();
+        $oldImages = array();
         foreach ($images as $image) {
-            if ($oldPhoto = $this->delete($image, $flush)) {
-                $oldPhotos[] = $oldPhoto;
+            if ($oldImage = $this->delete($image, $flush)) {
+                $oldImages[] = $oldImage;
             }
         }
 
-        return $oldPhotos;
+        return $oldImages;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getPhotoUrl(Media $photo, $contextFormat, $attachToDomain = null)
+    public function getImageUrl(Media $image, $contextFormat, $attachToDomain = null)
     {
         $domain = $attachToDomain ? sprintf("%s/", rtrim($attachToDomain, "/")) : null;
 
         /** @var ImageProvider $provider */
-        $provider = $this->getPool()->getProvider($photo->getProviderName());
-        return $domain . $provider->generatePublicUrl($photo, $photo->getContext() . "_$contextFormat");
+        $provider = $this->getPool()->getProvider($image->getProviderName());
+        return $domain . $provider->generatePublicUrl($image, $image->getContext() . "_$contextFormat");
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getPhotoUrls(Media $photo, $attachToDomain = null)
+    public function getImageUrls(Media $photo, $attachToDomain = null)
     {
         $formats = $this->getContextFormats($photo->getContext());
         if (empty($formats)) {
@@ -111,7 +109,7 @@ class PhotoManager extends BaseMediaManager implements IPhotoManager
 
         $urls = array();
         foreach ($formats as $key => $format) {
-            $urls[$this->context][$key] = $this->getPhotoUrl($photo, $key, $attachToDomain);
+            $urls[$this->context][$key] = $this->getImageUrl($photo, $key, $attachToDomain);
         }
 
         return $urls;

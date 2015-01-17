@@ -1,5 +1,5 @@
 parameters:
-    storage_adapter.elasticsearch.class: SecretBase\AppBundle\Services\Storage\Adapter
+    storage_adapter.elasticsearch.class: SecretBase\AppBundle\Services\Storage\Adapter\ElasticsearchStorageAdapter
 
 services:
     storage_adapter.elasticsearch:

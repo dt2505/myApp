@@ -1,6 +1,7 @@
 imports:
     - { resource: manager.yml }
     - { resource: facade.yml }
+    - { resource: storage.yml }
 
 services:
     successful.logout.handler:

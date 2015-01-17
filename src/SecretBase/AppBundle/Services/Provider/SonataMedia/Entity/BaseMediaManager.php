@@ -27,6 +27,19 @@ abstract class BaseMediaManager implements IEntityManager
     }
 
     /**
+     * @return object
+     */
+    public function create()
+    {
+        return $this->mediaManager->create();
+    }
+
+    public function delete($entity, $flush = true)
+    {
+        $this->mediaManager->delete($entity, $flush);
+    }
+
+    /**
      * @return array
      */
     public function findAll()

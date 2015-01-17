@@ -1,7 +1,7 @@
 errors:
     notFound:
         albumId: Album does not exist with ID %albumId%.
-        photoId: Photo does not exit with ID %photoId%
+        imageId: Image does not exit with ID %imageId%
         storageAdapter: No such storage adapter, %storageName%, is defined
     empty:
         albumId: Album id is not given.
@@ -9,4 +9,4 @@ errors:
         user: Invalid user, %user%, supplied.
     denny:
         delete:
-            photo: Denny to delete this photo
+            image: Deletion of this image is dennied

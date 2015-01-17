@@ -99,7 +99,7 @@ sonata_media:
                 - sonata.media.provider.image
             formats:
                 large: { width: 978, height: 205, quality: 100}
-        photo:
+        image:
             download:
                 strategy: sonata.media.security.forbidden_strategy
                 mode: http

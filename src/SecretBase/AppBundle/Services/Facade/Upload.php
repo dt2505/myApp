@@ -14,68 +14,72 @@ use SecretBase\AppBundle\Entity\User;
 use SecretBase\AppBundle\Response\ErrorResponse;
 use SecretBase\AppBundle\Response\JsonResponse;
 use SecretBase\AppBundle\Services\Provider\Album\IAlbumManager;
-use SecretBase\AppBundle\Services\Provider\Photo\IPhotoManager;
+use SecretBase\AppBundle\Services\Provider\Image\IImageManager;
 
 class Upload
 {
     /** @var IAlbumManager */
     private $albumManager;
-    /** @var IPhotoManager */
-    private $photoManager;
+    /** @var IImageManager */
+    private $imageManager;
     /** @var Album */
     private $album;
 
-    public function __construct($albumManager, $photoManager)
+    public function __construct($albumManager, $imageManager)
     {
         $this->albumManager = $albumManager;
-        $this->photoManager = $photoManager;
+        $this->imageManager = $imageManager;
     }
 
     /**
-     * @param $file
+     * @param $image
      * @param $owner
      * @param $context
      * @return Media|ErrorResponse|null
      */
-    public function uploadPhoto($file, $owner, $context = IPhotoManager::THUMBNAIL_CONTEXT_PHOTO)
+    public function uploadImage($image, $owner, $context = IImageManager::THUMBNAIL_CONTEXT_IMAGE)
     {
         try {
             $album = $this->album ? $this->album : $this->albumManager->createDefaultAlbum($owner);
-            return $this->photoManager->persist($file, $owner, $album, $context);
+            return $this->imageManager->persist($image, $owner, $album, $context);
         } catch (\Exception $e) {
             return new ErrorResponse($e->getMessage(), $e->getCode());
         }
     }
 
     /**
-     * @param $files
+     * @param $images
      * @param $owner
      * @param $context
      * @return array|ErrorResponse
      */
-    public function uploadPhotos($files, $owner, $context = IPhotoManager::THUMBNAIL_CONTEXT_PHOTO)
+    public function uploadImages($images, $owner, $context = IImageManager::THUMBNAIL_CONTEXT_IMAGE)
     {
-        if (empty($files)) {
+        if (empty($images)) {
             return array();
         }
 
-        $photos = array();
-        foreach ($files as $photo) {
-            $photos[] = $this->uploadPhoto($photo, $owner, $context);
+        $uploadedImages = array();
+        foreach ($images as $image) {
+            $response = $this->uploadImage($image, $owner, $context);
+            if ($response instanceof ErrorResponse) {
+                return $response;
+            }
+            $uploadedImages[] = $response;
         }
 
-        return $photos;
+        return $uploadedImages;
     }
 
     /**
-     * @param $photoId
+     * @param $imageId
      * @param $owner
      * @param $flush
      * @return Media|ErrorResponse
      */
-    public function deletePhoto($photoId, $owner, $flush = true)
+    public function deleteImage($imageId, $owner, $flush = true)
     {
-        if (empty($photoId) || empty($owner)) {
+        if (empty($imageId) || empty($owner)) {
             return new JsonResponse();
         }
 
@@ -83,20 +87,16 @@ class Upload
             return new ErrorResponse("errors.invalidInstance.user", ErrorResponse::BAD_REQUEST);
         }
 
-        $photo = $this->photoManager->find($photoId);
-        if ($photo) {
-            return new ErrorResponse("errors.notFound.photoId", ErrorResponse::BAD_REQUEST);
+        $image = $this->imageManager->find($imageId);
+        if ($image) {
+            return new ErrorResponse("errors.notFound.imageId", ErrorResponse::BAD_REQUEST);
         }
 
-        if (!$photo->getOwner()->equal($owner)) {
-            return new ErrorResponse("errors.denny.delete.photo", ErrorResponse::BAD_REQUEST);
+        if (!$image->getOwner()->equal($owner)) {
+            return new ErrorResponse("errors.denny.delete.image", ErrorResponse::BAD_REQUEST);
         }
 
-        try {
-            return $this->photoManager->delete($photo, $flush);
-        } catch (\Exception $e) {
-            return new ErrorResponse($e->getMessage(), $e->getCode());
-        }
+        return $this->imageManager->delete($image, $flush);
     }
 
     /**
@@ -105,7 +105,7 @@ class Upload
      * @param bool $flush
      * @return Array
      */
-    public function deletePhotos($owner, $albumId, $flush = true)
+    public function deleteImages($owner, $albumId, $flush = true)
     {
         if (!$owner instanceof User) {
             return new ErrorResponse("errors.invalidInstance.user", ErrorResponse::BAD_REQUEST);
@@ -119,7 +119,7 @@ class Upload
             }
         }
 
-        return $this->photoManager->deletePhotos($owner, $album, $flush);
+        return $this->imageManager->deleteImages($owner, $album, $flush);
     }
 
     /**
@@ -147,11 +147,11 @@ class Upload
     }
 
     /**
-     * @return IPhotoManager
+     * @return IImageManager
      */
-    protected function getPhotoManager()
+    protected function getImageManager()
     {
-        return $this->photoManager;
+        return $this->imageManager;
     }
 }
  

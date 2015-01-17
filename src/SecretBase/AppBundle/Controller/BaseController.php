@@ -11,17 +11,17 @@ namespace SecretBase\AppBundle\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
-use SecretBase\AppBundle\Services\Facade\Updates;
+use SecretBase\AppBundle\Services\Facade\Status;
 use SecretBase\AppBundle\Services\Facade\Upload;
 
 class BaseController extends FOSRestController
 {
     /**
-     * @return Updates
+     * @return Status
      */
-    protected function getUpdatesFacade()
+    protected function getStatusFacade()
     {
-        return $this->get("facade.updates");
+        return $this->get("facade.status");
     }
 
     /**

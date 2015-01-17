@@ -33,6 +33,6 @@ class AppExtension extends Extension
 
         $definition = $container->getDefinition('storage.manager');
         $definition->addMethodCall('setDefaultStorage', array($config["default_storage"]));
-        $definition->addMethodCall('setConfig', array($config["storage"]));
+        $definition->addMethodCall('setStorageConfig', array($config["storage"]));
     }
 }
