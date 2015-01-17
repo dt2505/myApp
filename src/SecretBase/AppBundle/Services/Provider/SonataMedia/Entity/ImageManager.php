@@ -15,8 +15,6 @@ use Sonata\MediaBundle\Provider\ImageProvider;
 class ImageManager extends BaseMediaManager implements IImageManager
 {
     /** @var string */
-    private $context;
-    /** @var string */
     private $mediaProviderName;
 
     public function __construct($mediaManager, $pool, $imageProviderName)
@@ -129,22 +127,6 @@ class ImageManager extends BaseMediaManager implements IImageManager
     public function setMediaProviderName($mediaProviderName)
     {
         $this->mediaProviderName = $mediaProviderName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContext()
-    {
-        return $this->context;
-    }
-
-    /**
-     * @param string $context
-     */
-    public function setContext($context)
-    {
-        $this->context = $context;
     }
 
     /**
