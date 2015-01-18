@@ -80,4 +80,15 @@ class UserController extends ImageController
     {
         return new JsonResponse(array("message" => "for changing user's password", "code" => 200));
     }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     *
+     * @Rest\Post()
+     */
+    public function followUserAction(Request $request)
+    {
+        return new JsonResponse(array("message" => "for user to follow someone else", "code" => 200));
+    }
 }

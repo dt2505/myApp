@@ -262,35 +262,11 @@ class User extends BaseUser
     }
 
     /**
-     * @return mixed
-     */
-    public function getGroups()
-    {
-        return $this->groups;
-    }
-
-    /**
-     * @param mixed $groups
-     */
-    public function setGroups($groups)
-    {
-        $this->groups = $groups;
-    }
-
-    /**
      * @return int
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**
@@ -477,6 +453,14 @@ class User extends BaseUser
     {
         return $user->getId() === $this->getId() &&
                 $user->getUsername() === $this->getUsername();
+    }
+
+    /**
+     * @return string <namespace>\<class-name>
+     */
+    public static function getClass()
+    {
+        return __CLASS__;
     }
 }
  

@@ -32,11 +32,11 @@ class Group extends BaseGroup
     }
 
     /**
-     * @return int
+     * @return string <namespace>\<class-name>
      */
-    public function getId()
+    public static function getClass()
     {
-        return $this->id;
+        return __CLASS__;
     }
 }
  

@@ -31,15 +31,6 @@ interface IStorage
     public function save($jsonString, $type, $idField = null);
 
     /**
-     * @param array $jsonContent
-     * @param string $idField
-     * @param string $type
-     * @return array["message"]
-     *              ["status"]
-     */
-    public function bulk(array $jsonContent, $idField, $type);
-
-    /**
      * @return mixed
      */
     public function findAll();

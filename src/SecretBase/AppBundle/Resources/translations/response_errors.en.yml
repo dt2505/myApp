@@ -10,3 +10,5 @@ errors:
     denny:
         delete:
             image: Deletion of this image is dennied
+    found:
+        username: The given username, %username%, is in use
