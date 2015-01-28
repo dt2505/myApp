@@ -50,7 +50,6 @@ class Invitation implements DomainObjectInterface
 
     public function __construct()
     {
-        // generate identifier only once, here a 15 characters length code
         $this->code = substr(md5(uniqid(rand(), true)), 0, 15);
     }
 
@@ -112,17 +111,6 @@ class Invitation implements DomainObjectInterface
     public function setUser(User $user)
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * @param   string  $code
-     * @return  Invitation
-     */
-    public function setCode($code)
-    {
-        $this->code = $code;
 
         return $this;
     }

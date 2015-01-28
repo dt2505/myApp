@@ -14,18 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends ImageController
 {
-
-    /**
-     * @param Request $request
-     * @return JsonResponse
-     *
-     * @Rest\Post()
-     */
-    public function registerAction(Request $request)
-    {
-        return new JsonResponse(array("message" => "for user registration", "code" => 200));
-    }
-
     /**
      * @param Request $request
      * @return JsonResponse

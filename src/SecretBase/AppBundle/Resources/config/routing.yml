@@ -11,3 +11,7 @@ image:
 user:
     type: rest
     resource: SecretBase\AppBundle\Controller\UserController
+
+registration:
+    type: rest
+    resource: SecretBase\AppBundle\Controller\RegistrationController
