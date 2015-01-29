@@ -8,9 +8,10 @@
 
 namespace SecretBase\AppBundle\Controller;
 
+use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\HttpFoundation\Response;
 
 class RegistrationController extends BaseController
 {
@@ -18,11 +19,21 @@ class RegistrationController extends BaseController
      * @param Request $request
      * @return JsonResponse
      *
-     * @Rest\Post("/registration/steps/one")
+     * @Rest\Post("/user/pre-register")
      */
-    public function registerUserStepOneAction(Request $request)
+    public function preRegisterUserAction(Request $request)
     {
-        return new JsonResponse(array("message" => "registration wizard step one", "code" => 200));
+        $email = $request->request->get("email");
+        $password = $request->request->get("password");
+        $role = $request->request->get("role");
+        $freeGroup = $this->getGroupManager()->createFreeGroup(true);
+
+        $errorResponse = $this->getRegistrationManager()->preRegisterUser($email, $password, $role, $freeGroup);
+        if ($errorResponse) {
+            return new Response((string)$errorResponse);
+        }
+
+        return new Response('Done');
     }
 
     /**

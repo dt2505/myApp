@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SecretBase\AppBundle\Services\Facade;
+namespace SecretBase\AppBundle\Services\Manager;
 
 use SecretBase\AppBundle\Entity\Album;
 use SecretBase\AppBundle\Entity\Media;

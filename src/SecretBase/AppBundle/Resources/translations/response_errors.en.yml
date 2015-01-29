@@ -5,10 +5,15 @@ errors:
         storageAdapter: No such storage adapter, %storageName%, is defined
     empty:
         albumId: Album id is not given.
+        email: Email is not given.
+        password: Password is not given.
+        role: Role is not given.
     invalidInstance:
         user: Invalid user, %user%, supplied.
+        email: Invalid email, %email%, supplied.
     denny:
         delete:
             image: Deletion of this image is dennied
     found:
         username: The given username, %username%, is in use
+        email: The given email, %email%, is in use

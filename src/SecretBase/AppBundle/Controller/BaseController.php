@@ -11,8 +11,8 @@ namespace SecretBase\AppBundle\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
-use SecretBase\AppBundle\Services\Facade\Status;
-use SecretBase\AppBundle\Services\Facade\Upload;
+use SecretBase\AppBundle\Services\Manager\Status;
+use SecretBase\AppBundle\Services\Manager\Upload;
 
 class BaseController extends FOSRestController
 {
@@ -38,6 +38,16 @@ class BaseController extends FOSRestController
     protected function getSecurityTokenStorage()
     {
         return $this->get('security.token_storage');
+    }
+
+    protected function getGroupManager()
+    {
+        return $this->get('group_manager');
+    }
+
+    protected function getRegistrationManager()
+    {
+        return $this->get('registration_manager');
     }
 }
  

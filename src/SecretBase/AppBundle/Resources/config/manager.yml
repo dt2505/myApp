@@ -3,6 +3,8 @@ parameters:
     media.manager.album.class: SecretBase\AppBundle\Services\Provider\SonataMedia\Entity\AlbumManager
     media.album.class: SecretBase\AppBundle\Entity\Album
     storage.manager.class: SecretBase\AppBundle\Services\Storage\StorageManager
+    group_manager.class: SecretBase\AppBundle\Services\Manager
+    registration_manager.class: SecretBase\AppBundle\Services\Manager
 
 services:
     media.manager.image:
@@ -15,3 +17,11 @@ services:
 
     storage.manager:
         class: '%storage.manager.class%'
+
+    group_manager:
+        class: '%group_manager.class%'
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    registration_manager:
+        class: '%registration_manager.class%'
+        arguments: ["@doctrine.orm.entity_manager", "@fos_user.user_manager"]

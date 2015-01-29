@@ -17,6 +17,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Group extends BaseGroup
 {
+    const FREE = "free";
+    const PAID = "paid";
+
     /**
      * @var int
      *
