@@ -11,7 +11,6 @@ namespace SecretBase\AppBundle\Services\Manager;
 use FOS\UserBundle\Model\UserManagerInterface;
 
 use SecretBase\AppBundle\Entity\User;
-use SecretBase\AppBundle\Response\ErrorResponse;
 
 class RegistrationManager extends Manager
 {
@@ -29,28 +28,29 @@ class RegistrationManager extends Manager
      * @param $password
      * @param $role
      * @param $group
-     * @return ErrorResponse|null
+     * @return User
+     * @throws \InvalidArgumentException
      */
     public function preRegisterUser($email, $password, $role, $group)
     {
         if (empty($email)) {
-            return new ErrorResponse("errors.empty.email", ErrorResponse::BAD_REQUEST);
+            throw new \InvalidArgumentException("errors.empty.email");
         }
 
         if (empty($password)) {
-            return new ErrorResponse("errors.empty.password", ErrorResponse::BAD_REQUEST);
+            throw new \InvalidArgumentException("errors.empty.password");
         }
 
         if (empty($role)) {
-            return new ErrorResponse("errors.empty.role", ErrorResponse::BAD_REQUEST);
+            throw new \InvalidArgumentException("errors.empty.role");
         }
 
         if (!$this->isValidEmail($email)) {
-            return new ErrorResponse("errors.invalidInstance.email", ErrorResponse::BAD_REQUEST);
+            throw new \InvalidArgumentException("errors.invalid.email");
         }
 
         if ($this->exists(User::getClass(), array("email" => $email))) {
-            return new ErrorResponse("errors.found.email", ErrorResponse::BAD_REQUEST);
+            throw new \InvalidArgumentException("errors.found.email");
         }
 
         /** @var User $user */
@@ -63,7 +63,7 @@ class RegistrationManager extends Manager
         $user->addGroup($group);
         $this->userManager->updateUser($user);
 
-        return null;
+        return $user;
     }
 
     /**

@@ -10,7 +10,6 @@ namespace SecretBase\AppBundle\Services\Manager;
 
 use SecretBase\AppBundle\Entity\Album;
 use SecretBase\AppBundle\Entity\Media;
-use SecretBase\AppBundle\Entity\User;
 use SecretBase\AppBundle\Response\ErrorResponse;
 use SecretBase\AppBundle\Response\JsonResponse;
 use SecretBase\AppBundle\Services\Provider\Album\IAlbumManager;
@@ -83,10 +82,6 @@ class Upload
             return new JsonResponse();
         }
 
-        if (!$owner instanceof User) {
-            return new ErrorResponse("errors.invalidInstance.user", ErrorResponse::BAD_REQUEST);
-        }
-
         $image = $this->imageManager->find($imageId);
         if ($image) {
             return new ErrorResponse("errors.notFound.imageId", ErrorResponse::BAD_REQUEST);
@@ -107,10 +102,6 @@ class Upload
      */
     public function deleteImages($owner, $albumId, $flush = true)
     {
-        if (!$owner instanceof User) {
-            return new ErrorResponse("errors.invalidInstance.user", ErrorResponse::BAD_REQUEST);
-        }
-
         $album = null;
         if (!empty($albumId)) {
             $album = $this->albumManager->find($albumId);

@@ -28,12 +28,14 @@ class RegistrationController extends BaseController
         $role = $request->request->get("role");
         $freeGroup = $this->getGroupManager()->createFreeGroup(true);
 
-        $errorResponse = $this->getRegistrationManager()->preRegisterUser($email, $password, $role, $freeGroup);
-        if ($errorResponse) {
-            return new Response((string)$errorResponse);
+        try {
+            $user = $this->getRegistrationManager()->preRegisterUser($email, $password, $role, $freeGroup);
+            return new Response('Done');
+        } catch (\InvalidArgumentException $e) {
+            return new Response($e->getMessage(), Response::HTTP_BAD_REQUEST);
+        } catch (\Exception $e) {
+            return new Response($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-
-        return new Response('Done');
     }
 
     /**
