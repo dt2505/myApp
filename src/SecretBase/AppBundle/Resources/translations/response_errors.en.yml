@@ -8,12 +8,11 @@ errors:
         email: Email is not given.
         password: Password is not given.
         role: Role is not given.
-    invalidInstance:
-        user: Invalid user, %user%, supplied.
-        email: Invalid email, %email%, supplied.
+    invalid:
+        email: The given email is not a valid email
     denny:
         delete:
             image: Deletion of this image is dennied
     found:
-        username: The given username, %username%, is in use
-        email: The given email, %email%, is in use
+        username: The given username is in use
+        email: The given email is in use
