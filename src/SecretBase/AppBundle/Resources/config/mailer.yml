@@ -1,0 +1,7 @@
+parameters:
+    mailer.class: SecretBase\AppBundle\Services\Util\Mailer
+
+services:
+    mail_handler:
+        class: '%mailer.class%'
+        arguments: ["@mailer"]

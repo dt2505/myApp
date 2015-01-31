@@ -58,18 +58,25 @@ class RegistrationController extends BaseController
         return new JsonResponse(array("message" => "for user registration", "code" => 200));
     }
 
+    /**
+     * @param Request $request
+     * @param $name
+     * @return JsonResponse
+     * @Rest\Get("/mails/{name}/send")
+     */
     public function sendMailAction(Request $request, $name)
     {
-        $mailer = $this->get('mailer');
-        $message = $mailer->createMessage()
-            ->setSubject('Hello Email')
-            ->setFrom('jerryd221@gmail.com')
-            ->setTo('dingj836@gmail.com')
-            ->setBody($this->renderView(
-                'HelloBundle:Hello:email.txt.twig',
-                array('name' => $name)
-            ))
-        ;
+        $mailer = $this->get('mail_handler');
+        $message = $mailer->createMessage(
+            'Hello Email',
+            'jerryd221@gmail.com',
+            'dingj836@gmail.com',
+            "hello~~~"
+        );
+//        $message->setBody($this->renderView(
+//            'HelloBundle:Hello:email.txt.twig',
+//            array('name' => $name)
+//        ));
         $mailer->send($message);
 
         return new JsonResponse("DONE");

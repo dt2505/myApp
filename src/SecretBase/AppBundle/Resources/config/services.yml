@@ -1,6 +1,8 @@
 imports:
     - { resource: manager.yml }
     - { resource: storage.yml }
+    - { resource: mailer.yml }
+
 parameters:
     successful_logout_handler.class: SecretBase\AppBundle\Listener\SuccessfulLogoutHandler
     updates_handler.class: SecretBase\AppBundle\Services\UpdatesHandler
