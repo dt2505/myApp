@@ -11,6 +11,7 @@ namespace SecretBase\AppBundle\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
+use SecretBase\AppBundle\Services\Util\Mailer;
 use SecretBase\AppBundle\Services\Manager\MediaManager;
 use SecretBase\AppBundle\Services\Manager\AlbumManager;
 use SecretBase\AppBundle\Services\Manager\GroupManager;
@@ -26,6 +27,14 @@ class BaseController extends FOSRestController
     protected function getSecurityTokenStorage()
     {
         return $this->get('security.token_storage');
+    }
+
+    /**
+     * @return Mailer
+     */
+    protected function getMailHandler()
+    {
+        return $this->get("mailer_handler");
     }
 
     /**

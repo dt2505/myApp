@@ -66,7 +66,7 @@ class RegistrationController extends BaseController
      */
     public function sendMailAction(Request $request, $name)
     {
-        $mailer = $this->get('mail_handler');
+        $mailer = $this->getMailHandler();
         $message = $mailer->createMessage(
             'Hello Email',
             'jerryd221@gmail.com',
