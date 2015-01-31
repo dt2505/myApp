@@ -17,15 +17,15 @@ abstract class BaseMediaManager extends ORMManager
 {
     const THUMBNAIL_CONTEXT_IMAGE = "image";
 
-    /** @var MediaManager $mediaManager */
-    private $mediaManager;
+    /** @var MediaManager $sonataMediaManager */
+    private $sonataMediaManager;
     /** @var Pool $pool */
     private $pool;
 
-    function __construct($em, MediaManager $mediaManager, Pool $pool)
+    function __construct($em, MediaManager $sonataMediaManager, Pool $pool)
     {
         parent::__construct($em, Media::getClass());
-        $this->mediaManager = $mediaManager;
+        $this->sonataMediaManager = $sonataMediaManager;
         $this->pool = $pool;
     }
 
@@ -35,7 +35,7 @@ abstract class BaseMediaManager extends ORMManager
      */
     public function persist(Media $media, $flush = true)
     {
-        $this->mediaManager->save($media, $flush);
+        $this->sonataMediaManager->save($media, $flush);
     }
 
     /**
@@ -61,7 +61,7 @@ abstract class BaseMediaManager extends ORMManager
     public function remove(Media $media, $flush = true)
     {
         $copy = clone $media;
-        $this->mediaManager->delete($media, $flush);
+        $this->sonataMediaManager->delete($media, $flush);
         // have to manually remove thumbnails before doctrine actually delete entity otherwise there is no way to get
         // the media id, this is a bug in sonata media bundle. It didn't save the Id in its preRemove method in
         // BaseProvider.php
@@ -88,7 +88,7 @@ abstract class BaseMediaManager extends ORMManager
      */
     public function findAll()
     {
-        return $this->mediaManager->findAll();
+        return $this->sonataMediaManager->findAll();
     }
 
     /**
@@ -100,7 +100,7 @@ abstract class BaseMediaManager extends ORMManager
      */
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
     {
-        return $this->mediaManager->findBy($criteria, $orderBy, $limit, $offset);
+        return $this->sonataMediaManager->findBy($criteria, $orderBy, $limit, $offset);
     }
 
     /**
@@ -110,7 +110,7 @@ abstract class BaseMediaManager extends ORMManager
      */
     public function findOneBy(array $criteria, array $orderBy = null)
     {
-        return $this->mediaManager->findOneBy($criteria, $orderBy);
+        return $this->sonataMediaManager->findOneBy($criteria, $orderBy);
     }
 
     /**
@@ -119,7 +119,7 @@ abstract class BaseMediaManager extends ORMManager
      */
     public function find($id)
     {
-        return $this->mediaManager->find($id);
+        return $this->sonataMediaManager->find($id);
     }
 
     /**
@@ -127,7 +127,7 @@ abstract class BaseMediaManager extends ORMManager
      */
     public function create()
     {
-        return $this->mediaManager->create();
+        return $this->sonataMediaManager->create();
     }
 
     /**

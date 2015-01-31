@@ -14,12 +14,12 @@ use SecretBase\AppBundle\Entity\User;
 class UserManager extends ORMManager
 {
     /** @var UserManagerInterface */
-    private $um;
+    private $fosUserManager;
 
-    public function __construct($em, $um)
+    public function __construct($em, $fosUserManager)
     {
         parent::__construct($em, User::getClass());
-        $this->um = $um;
+        $this->fosUserManager = $fosUserManager;
     }
 
     /**
@@ -27,7 +27,7 @@ class UserManager extends ORMManager
      */
     public function create()
     {
-        return $this->um->createUser();
+        return $this->fosUserManager->createUser();
     }
 
     /**
@@ -36,6 +36,6 @@ class UserManager extends ORMManager
      */
     public function persist(User $user, $flush = true)
     {
-        $this->um->updateUser($user, $flush);
+        $this->fosUserManager->updateUser($user, $flush);
     }
 }
