@@ -72,7 +72,7 @@ class Album
 
     public function __construct($name, $owner = null)
     {
-        $this->medias = array();
+        $this->medias = new ArrayCollection();
         $this->name =$name;
         $this->owner = $owner;
         $this->default = false;
