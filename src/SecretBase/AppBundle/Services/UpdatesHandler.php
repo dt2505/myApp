@@ -52,7 +52,7 @@ class UpdatesHandler extends MediaHandler
 
         // save updates to noSQL storage
         $jsonData = $this->createUpdatesJson($text, $user, $medias);
-        $this->noSqlStorage->save($jsonData, $this->getDocumentIndex(), $this->getDocumentIndexType());
+        $this->noSqlStorage->save($jsonData, null, $this->getDocumentIndex(), $this->getDocumentIndexType());
     }
 
     /**
@@ -98,7 +98,8 @@ class UpdatesHandler extends MediaHandler
         $userJson = $this->createUserJson($user);
         $data = array_merge(array("user" => $userJson), array(
             "text" => $text,
-            "createdAt" => new \DateTime()
+            "createdAt" => new \DateTime(),
+            "updatedAt" => new \DateTime()
         ));
 
         if ($mediaJson = $this->createMediaJson($medias)) {
