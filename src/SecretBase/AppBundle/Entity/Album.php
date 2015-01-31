@@ -75,6 +75,7 @@ class Album
         $this->medias = array();
         $this->name =$name;
         $this->owner = $owner;
+        $this->default = false;
     }
 
     /**
