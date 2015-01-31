@@ -1,17 +1,13 @@
 errors:
-    notFound:
-        albumId: 没有找到指定的相册
-        imageId: 没有找到指定的图片
     empty:
-        albumId: 相册为空
         email: 电子邮件为空
         password: 密码为空
         role: 角色为空
     invalid:
-        email: 输入的电子邮件不是一个有效的电子邮件格式
+        email: 输入的电子邮件不是有效的电子邮件
     denny:
-        delete:
-            image: 拒绝删除图片
+        delete: 禁止删除
     found:
-        username: 用户名已被人使用
-        email: 电子邮件已被人使用
+        username: 用户名已被使用
+        email: 电子邮件已被使用
+        group: 组名已被使用

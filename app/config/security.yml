@@ -34,7 +34,7 @@ security:
                 default_target_path: /
             logout:
                 path:           /logout
-                success_handler: successful.logout.handler
+                success_handler: successful_logout_handler
             anonymous:          true
             switch_user:        true
 

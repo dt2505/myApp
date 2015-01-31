@@ -1,8 +1,7 @@
 parameters:
-    storage_adapter.elasticsearch.class: SecretBase\AppBundle\Services\Storage\Adapter\ElasticsearchStorageAdapter
+    elasticsearch.class: SecretBase\AppBundle\Services\NoSQLStorage\Elasticsearch
 
 services:
-    storage_adapter.elasticsearch:
-        class: '%storage_adapter.elasticsearch.class%'
-        tags:
-            - {name: storage, alias: elasticsearch}
+    elasticsearch:
+        class: '%elasticsearch.class%'
+        arguments: ["%es_server%", "%es_index%", "%es_type%"]

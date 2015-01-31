@@ -30,9 +30,5 @@ class AppExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
-
-        $definition = $container->getDefinition('storage.manager');
-        $definition->addMethodCall('setDefaultStorage', array($config["default_storage"]));
-        $definition->addMethodCall('setStorageConfig', array($config["storage"]));
     }
 }

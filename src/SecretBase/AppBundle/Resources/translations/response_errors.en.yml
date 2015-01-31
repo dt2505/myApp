@@ -1,18 +1,13 @@
 errors:
-    notFound:
-        albumId: Album does not exist with ID %albumId%.
-        imageId: Image does not exit with ID %imageId%
-        storageAdapter: No such storage adapter, %storageName%, is defined
     empty:
-        albumId: Album id is not given.
         email: Email is not given.
         password: Password is not given.
         role: Role is not given.
     invalid:
         email: The given email is not a valid email
     denny:
-        delete:
-            image: Deletion of this image is dennied
+        delete: Deletion is dennied
     found:
-        username: The given username is in use
-        email: The given email is in use
+        username: The given username was already in use
+        email: The given email was already in use
+        group: The given group was already in use

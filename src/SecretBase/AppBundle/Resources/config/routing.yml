@@ -1,13 +1,9 @@
 home_page:
     type: rest
     resource: SecretBase\AppBundle\Controller\DefaultController
-status:
+updates:
     type: rest
-    resource: SecretBase\AppBundle\Controller\StatusController
-image:
-    type: rest
-    resource: SecretBase\AppBundle\Controller\ImageController
-
+    resource: SecretBase\AppBundle\Controller\UpdatesController
 user:
     type: rest
     resource: SecretBase\AppBundle\Controller\UserController

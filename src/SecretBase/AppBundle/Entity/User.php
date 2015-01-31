@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Table(name="secret_base_user")
  * @ORM\Entity(repositoryClass="SecretBase\AppBundle\Entity\UserRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class User extends BaseUser
 {
@@ -52,14 +53,6 @@ class User extends BaseUser
      * @ORM\OrderBy({"name" = "ASC"})
      */
     private $albums;
-
-    /**
-     * @var ArrayCollection
-     *
-     * @ORM\OneToMany(targetEntity="Media", mappedBy="user", cascade={"persist"}, orphanRemoval=true)
-     * @ORM\OrderBy({"updatedAt" = "DESC"})
-     */
-    private $medias;
 
     /**
      * @var string
@@ -146,23 +139,78 @@ class User extends BaseUser
     private $postCode;
 
     /**
-     * @var string
+     * @var Media
      *
-     * @ORM\Column(name="profile_picture", type="string", nullable=true)
+     * @ORM\OneToOne(targetEntity="Media", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\JoinColumn(name="avatar_id",referencedColumnName="id")
      */
-    private $profilePicture;
+    private $avatar;
+
+    /**
+     * @var Media
+     *
+     * @ORM\OneToOne(targetEntity="Media", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\JoinColumn(name="cover_id",referencedColumnName="id")
+     */
+    private $cover;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="cover", type="string", nullable=true)
+     * @ORM\Column(name="description", type="string", length=500, nullable=true)
      */
-    private $cover;
+    private $description;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
 
     public function __construct()
     {
         parent::__construct();
         $this->albums = new ArrayCollection();
+    }
+
+    /**
+     * @return Media
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param Media $avatar
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+    }
+
+    /**
+     * @return Media
+     */
+    public function getCover()
+    {
+        return $this->cover;
+    }
+
+    /**
+     * @param Media $cover
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
     }
 
     /**
@@ -416,43 +464,66 @@ class User extends BaseUser
     /**
      * @return string
      */
-    public function getCover()
+    public function getDescription()
     {
-        return $this->cover;
+        return $this->description;
     }
 
     /**
-     * @param string $cover
+     * @param string $description
      */
-    public function setCover($cover)
+    public function setDescription($description)
     {
-        $this->cover = $cover;
+        $this->description = $description;
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
-    public function getProfilePicture()
+    public function getCreatedAt()
     {
-        return $this->profilePicture;
+        return $this->createdAt;
     }
 
     /**
-     * @param string $profilePicture
+     * @param \DateTime $createdAt
      */
-    public function setProfilePicture($profilePicture)
+    public function setCreatedAt($createdAt)
     {
-        $this->profilePicture = $profilePicture;
+        $this->createdAt = $createdAt;
     }
 
     /**
-     * @param User $user
-     * @return bool
+     * @return \DateTime
      */
-    public function equal(User $user)
+    public function getUpdatedAt()
     {
-        return $user->getId() === $this->getId() &&
-                $user->getUsername() === $this->getUsername();
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->updatedAt = new \DateTime();
     }
 
     /**

@@ -6,32 +6,33 @@
  * file that was distributed with this source code.
  */
 
-namespace SecretBase\AppBundle\Services\Manager;
-
-use FOS\UserBundle\Model\UserManagerInterface;
+namespace SecretBase\AppBundle\Services;
 
 use SecretBase\AppBundle\Entity\User;
+use SecretBase\AppBundle\Services\Manager\GroupManager;
+use SecretBase\AppBundle\Services\Manager\UserManager;
 
-class RegistrationManager extends Manager
+class UserRegistrationHandler
 {
-    /** @var UserManagerInterface */
+    /** @var UserManager */
     private $userManager;
+    /** @var GroupManager */
+    private $groupManager;
 
-    public function __construct($em, $userManager)
+    public function __construct($userManager, $groupManager)
     {
-        parent::__construct($em);
         $this->userManager = $userManager;
+        $this->groupManager = $groupManager;
     }
 
     /**
      * @param $email
      * @param $password
      * @param $role
-     * @param $group
      * @return User
      * @throws \InvalidArgumentException
      */
-    public function preRegisterUser($email, $password, $role, $group)
+    public function preRegisterUser($email, $password, $role)
     {
         if (empty($email)) {
             throw new \InvalidArgumentException("errors.empty.email");
@@ -49,19 +50,25 @@ class RegistrationManager extends Manager
             throw new \InvalidArgumentException("errors.invalid.email");
         }
 
-        if ($this->exists(User::getClass(), array("email" => $email))) {
+        if ($this->userManager->exists(array("email" => $email))) {
             throw new \InvalidArgumentException("errors.found.email");
         }
 
+        // by default all users are in free group
+        $freeGroup = $this->groupManager->findFreeGroup();
+        if (!$freeGroup) {
+            $freeGroup = $this->groupManager->createFreeGroup(true);
+        }
+
         /** @var User $user */
-        $user = $this->userManager->createUser();
+        $user = $this->userManager->create();
         $user->setEmail($email);
         $user->setUsername($email);
         $user->setPlainPassword($password);
         $user->setEnabled(false);
         $user->addRole($role);
-        $user->addGroup($group);
-        $this->userManager->updateUser($user);
+        $user->addGroup($freeGroup);
+        $this->userManager->persist($user);
 
         return $user;
     }

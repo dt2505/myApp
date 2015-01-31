@@ -1,27 +1,22 @@
 parameters:
-    media.manager.image.class: SecretBase\AppBundle\Services\Provider\SonataMedia\Entity\ImageManager
-    media.manager.album.class: SecretBase\AppBundle\Services\Provider\SonataMedia\Entity\AlbumManager
-    media.album.class: SecretBase\AppBundle\Entity\Album
-    storage.manager.class: SecretBase\AppBundle\Services\Storage\StorageManager
-    group_manager.class: SecretBase\AppBundle\Services\Manager
-    registration_manager.class: SecretBase\AppBundle\Services\Manager
+    media_manager.class: SecretBase\AppBundle\Services\Manager\MediaManager
+    album_manager.class: SecretBase\AppBundle\Services\Manager\AlbumManager
+    group_manager.class: SecretBase\AppBundle\Services\Manager\GroupManager
+    user_manager.class: SecretBase\AppBundle\Services\Manager\UserManager
 
 services:
-    media.manager.image:
-        class: %media.manager.image.class%
-        arguments: ["@sonata.media.manager.media", "@sonata.media.pool", "sonata.media.provider.image"]
+    user_manager:
+        class: '%user_manager.class%'
+        arguments: ["@doctrine.orm.entity_manager", "@fos_user.user_manager"]
 
-    media.manager.album:
-        class: %media.manager.album.class%
-        arguments: ["%media.album.class%", "@doctrine", "@media.manager.image"]
+    album_manager:
+        class: '%album_manager.class%'
+        arguments: ["@doctrine.orm.entity_manager", "@media_manager"]
 
-    storage.manager:
-        class: '%storage.manager.class%'
+    media_manager:
+        class: '%media_manager.class%'
+        arguments: ["@doctrine.orm.entity_manager", "@sonata.media.manager.media", "@sonata.media.pool"]
 
     group_manager:
         class: '%group_manager.class%'
         arguments: ["@doctrine.orm.entity_manager"]
-
-    registration_manager:
-        class: '%registration_manager.class%'
-        arguments: ["@doctrine.orm.entity_manager", "@fos_user.user_manager"]

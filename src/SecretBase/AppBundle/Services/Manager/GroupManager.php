@@ -10,8 +10,13 @@ namespace SecretBase\AppBundle\Services\Manager;
 
 use SecretBase\AppBundle\Entity\Group;
 
-class GroupManager extends Manager
+class GroupManager extends ORMManager
 {
+    public function __construct($em)
+    {
+        parent::__construct($em, Group::getClass());
+    }
+
     /**
      * @param bool $andPersist
      * @return Group
@@ -31,19 +36,28 @@ class GroupManager extends Manager
     }
 
     /**
+     * @return Group
+     */
+    public function findFreeGroup()
+    {
+        return $this->findOneBy(array("name" => Group::FREE));
+    }
+
+    /**
      * @param $name
      * @param $andPersist
      * @return Group
+     * @throws \Exception
      */
-    private function createGroup($name, $andPersist)
+    public function createGroup($name, $andPersist)
     {
-        if ($group = $this->getRepository(Group::getClass())->findOneBy(array("name" => $name))) {
-            return $group;
-        }
-
         $group = new Group($name);
         if ($andPersist) {
-            $this->persist($group);
+            if (!$this->exists(array("name" => $name))) {
+                $this->persist($group);
+            } else {
+                throw new \Exception("errors.found.group");
+            }
         }
 
         return $group;

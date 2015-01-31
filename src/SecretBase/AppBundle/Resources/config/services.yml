@@ -1,8 +1,24 @@
 imports:
     - { resource: manager.yml }
-    - { resource: facade.yml }
     - { resource: storage.yml }
+parameters:
+    successful_logout_handler.class: SecretBase\AppBundle\Listener\SuccessfulLogoutHandler
+    updates_handler.class: SecretBase\AppBundle\Services\UpdatesHandler
+    user_profile_handler.class: SecretBase\AppBundle\Services\UserProfileHandler
+    user_registration_handler.class: SecretBase\AppBundle\Services\UserRegistrationHandler
 
 services:
-    successful.logout.handler:
-        class: SecretBase\AppBundle\Listener\SuccessfulLogoutHandler
+    successful_logout_handler:
+        class: '%successful_logout_handler.class%'
+
+    updates_handler:
+        class: '%updates_handler.class%'
+        arguments: ["@media_manager", "@album_manager", "@elasticsearch"]
+
+    user_profile_handler:
+        class: '%updates_handler.class%'
+        arguments: ["@media_manager", "@album_manager", "@user_manager"]
+
+    user_registration_handler:
+        class: '%user_registration_handler.class%'
+        arguments: ["@user_manager", "@group_manager"]

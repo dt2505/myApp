@@ -11,27 +11,15 @@ namespace SecretBase\AppBundle\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
-use SecretBase\AppBundle\Services\Manager\Status;
-use SecretBase\AppBundle\Services\Manager\Upload;
+use SecretBase\AppBundle\Services\Manager\MediaManager;
+use SecretBase\AppBundle\Services\Manager\AlbumManager;
+use SecretBase\AppBundle\Services\Manager\GroupManager;
+use SecretBase\AppBundle\Services\UserRegistrationHandler;
+use SecretBase\AppBundle\Services\UpdatesHandler;
+use SecretBase\AppBundle\Services\UserProfileHandler;
 
 class BaseController extends FOSRestController
 {
-    /**
-     * @return Status
-     */
-    protected function getStatusFacade()
-    {
-        return $this->get("facade.status");
-    }
-
-    /**
-     * @return Upload
-     */
-    protected function getUploadFacade()
-    {
-        return $this->get("facade.upload");
-    }
-
     /**
      * @return TokenStorage
      */
@@ -40,14 +28,51 @@ class BaseController extends FOSRestController
         return $this->get('security.token_storage');
     }
 
+    /**
+     * @return UserProfileHandler
+     */
+    protected function getUserProfileHandler()
+    {
+        return $this->get("user_profile_handler");
+    }
+
+    /**
+     * @return UpdatesHandler
+     */
+    protected function getUpdatesHandler()
+    {
+        return $this->get("updates_handler");
+    }
+    /**
+     * @return AlbumManager
+     */
+    protected function getAlbumManager()
+    {
+        return $this->get("album_manager");
+    }
+
+    /**
+     * @return MediaManager
+     */
+    protected function getMediaManager()
+    {
+        return $this->get("media_manager");
+    }
+
+    /**
+     * @return GroupManager
+     */
     protected function getGroupManager()
     {
         return $this->get('group_manager');
     }
 
-    protected function getRegistrationManager()
+    /**
+     * @return UserRegistrationHandler
+     */
+    protected function getUserRegistrationHandler()
     {
-        return $this->get('registration_manager');
+        return $this->get('user_registration_handler');
     }
 }
  

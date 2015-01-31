@@ -26,10 +26,9 @@ class RegistrationController extends BaseController
         $email = $request->request->get("email");
         $password = $request->request->get("password");
         $role = $request->request->get("role");
-        $freeGroup = $this->getGroupManager()->createFreeGroup(true);
 
         try {
-            $user = $this->getRegistrationManager()->preRegisterUser($email, $password, $role, $freeGroup);
+            $user = $this->getUserRegistrationHandler()->preRegisterUser($email, $password, $role);
             return new Response('Done');
         } catch (\InvalidArgumentException $e) {
             return new Response($e->getMessage(), Response::HTTP_BAD_REQUEST);

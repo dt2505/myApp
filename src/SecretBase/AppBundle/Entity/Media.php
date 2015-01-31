@@ -37,30 +37,15 @@ class Media extends BaseMedia
     private $album;
 
     /**
-     * @var User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="medias")
-     * @ORM\JoinColumn(name="owner_id",referencedColumnName="id")
+     * @return string
      */
-    private $owner;
-
-    /**
-     * @return User
-     */
-    public function getOwner()
+    public static function getClass()
     {
-        return $this->owner;
+        return __CLASS__;
     }
 
     /**
-     * @param User $owner
-     */
-    public function setOwner($owner)
-    {
-        $this->owner = $owner;
-    }
-
-    /**
-     * @return mixed
+     * @return Album
      */
     public function getAlbum()
     {
@@ -68,7 +53,7 @@ class Media extends BaseMedia
     }
 
     /**
-     * @param mixed $album
+     * @param Album $album
      */
     public function setAlbum($album)
     {
@@ -76,7 +61,7 @@ class Media extends BaseMedia
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {

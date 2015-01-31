@@ -11,8 +11,9 @@ namespace SecretBase\AppBundle\Controller;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-class UserController extends ImageController
+class UserController extends BaseController
 {
     /**
      * @param Request $request
@@ -20,9 +21,17 @@ class UserController extends ImageController
      *
      * @Rest\Post()
      */
-    public function uploadAvatarAction(Request $request)
+    public function changeAvatarAction(Request $request)
     {
-        return new JsonResponse(array("message" => "for uploading user's avatar", "code" => 200));
+        $avatar = $request->request->get("avatar");
+        $user = $this->getSecurityTokenStorage()->getToken()->getUser();
+
+        try {
+            $this->getUserProfileHandler()->updateAvatar($user, $avatar);
+            return new Response("DONE");
+        } catch (\Exception $e) {
+            return new Response($e->getMessage(), Response::HTTP_BAD_REQUEST);
+        }
     }
 
     /**
@@ -31,9 +40,17 @@ class UserController extends ImageController
      *
      * @Rest\Post()
      */
-    public function uploadCoverAction(Request $request)
+    public function changeCoverAction(Request $request)
     {
-        return new JsonResponse(array("message" => "for uploading user's cover", "code" => 200));
+        $cover = $request->request->get("cover");
+        $user = $this->getSecurityTokenStorage()->getToken()->getUser();
+
+        try {
+            $this->getUserProfileHandler()->updateAvatar($user, $cover);
+            return new Response("DONE");
+        } catch (\Exception $e) {
+            return new Response($e->getMessage(), Response::HTTP_BAD_REQUEST);
+        }
     }
 
     /**

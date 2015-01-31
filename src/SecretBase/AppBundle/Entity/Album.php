@@ -18,8 +18,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Album
 {
-    const DEFAULT_ALBUM = "album.name.default";
-
     /**
      * @var int
      *
@@ -58,6 +56,13 @@ class Album
     private $owner;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_default", type="boolean")
+     */
+    private $default;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Media", mappedBy="album", cascade={"persist"}, orphanRemoval=true)
@@ -65,10 +70,19 @@ class Album
      */
     private $medias;
 
-    public function __construct($name = self::DEFAULT_ALBUM)
+    public function __construct($name, $owner = null)
     {
         $this->medias = array();
         $this->name =$name;
+        $this->owner = $owner;
+    }
+
+    /**
+     * @return string
+     */
+    public static function getClass()
+    {
+        return __CLASS__;
     }
 
     /**
@@ -136,6 +150,20 @@ class Album
     }
 
     /**
+     * @param Media $media
+     * @return bool
+     */
+    public function addMedia(Media $media)
+    {
+        if (!$this->mediaExists($media)) {
+            $media->setAlbum($this);
+            $this->medias[] = $media;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * @return User
      */
     public function getOwner()
@@ -149,6 +177,22 @@ class Album
     public function setOwner($owner)
     {
         $this->owner = $owner;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isDefault()
+    {
+        return $this->default;
+    }
+
+    /**
+     * @param boolean $default
+     */
+    public function setDefault($default)
+    {
+        $this->default = $default;
     }
 
     /**
@@ -174,5 +218,23 @@ class Album
     public function preUpdate()
     {
         $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @param Media $media
+     * @return bool
+     */
+    private function mediaExists(Media $media)
+    {
+        /** @var Media $value */
+        foreach ($this->medias as $value) {
+            if ($media->getId() === $value->getId() &&
+                $media->getName() === $media->getName() &&
+                $media->getSize() === $value->getSize()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
