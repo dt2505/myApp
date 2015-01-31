@@ -96,4 +96,16 @@ class UserController extends BaseController
     {
         return new JsonResponse(array("message" => "for user to follow someone else", "code" => 200));
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     *
+     * @Rest\Post()
+     * @return JsonResponse
+     */
+    public function likeUpdatesAction(Request $request, $id)
+    {
+        return new JsonResponse(array("message" => "like updates", "code" => 200));
+    }
 }
