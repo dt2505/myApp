@@ -16,7 +16,7 @@ use SecretBase\AppBundle\Services\Manager\MediaManager;
 use SecretBase\AppBundle\Services\Manager\AlbumManager;
 use SecretBase\AppBundle\Services\Manager\GroupManager;
 use SecretBase\AppBundle\Services\UserRegistrationHandler;
-use SecretBase\AppBundle\Services\UpdatesHandler;
+use SecretBase\AppBundle\Services\StatusHandler;
 use SecretBase\AppBundle\Services\UserProfileHandler;
 
 class BaseController extends FOSRestController
@@ -46,11 +46,11 @@ class BaseController extends FOSRestController
     }
 
     /**
-     * @return UpdatesHandler
+     * @return StatusHandler
      */
-    protected function getUpdatesHandler()
+    protected function getStatusHandler()
     {
-        return $this->get("updates_handler");
+        return $this->get("status_handler");
     }
     /**
      * @return AlbumManager

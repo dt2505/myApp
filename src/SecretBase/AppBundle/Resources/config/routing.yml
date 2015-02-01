@@ -3,7 +3,7 @@ home_page:
     resource: SecretBase\AppBundle\Controller\DefaultController
 updates:
     type: rest
-    resource: SecretBase\AppBundle\Controller\UpdatesController
+    resource: SecretBase\AppBundle\Controller\StatusController
 user:
     type: rest
     resource: SecretBase\AppBundle\Controller\UserController

@@ -13,7 +13,7 @@ use SecretBase\AppBundle\Entity\User;
 use SecretBase\AppBundle\Services\NoSQLStorage\Elasticsearch;
 use SecretBase\AppBundle\Services\Util\Serializer;
 
-class UpdatesHandler extends MediaHandler
+class StatusHandler extends MediaHandler
 {
     const ES_IDX_TYPE_UPDATES = "updates";
     const ES_INDEX_UPDATES = "secret_base";

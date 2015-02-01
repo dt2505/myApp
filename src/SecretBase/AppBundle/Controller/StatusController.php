@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
-class UpdatesController extends BaseController
+class StatusController extends BaseController
 {
     /**
      * @param Request $request
@@ -20,14 +20,14 @@ class UpdatesController extends BaseController
      *
      * @Rest\Post()
      */
-    public function persistUpdatesAction(Request $request)
+    public function persistStatusAction(Request $request)
     {
         $images = $request->files->get("images");
         $text = $request->request->get("text");
         $user = $this->getSecurityTokenStorage()->getToken()->getUser();
 
         try {
-            $this->getUpdatesHandler()->save($text, $user, $images);
+            $this->getStatusHandler()->save($text, $user, $images);
             return new Response("DONE");
         } catch (\Exception $e) {
             return new Response($e->getMessage(), Response::HTTP_BAD_REQUEST);

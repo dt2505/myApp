@@ -5,7 +5,7 @@ imports:
 
 parameters:
     successful_logout_handler.class: SecretBase\AppBundle\Listener\SuccessfulLogoutHandler
-    updates_handler.class: SecretBase\AppBundle\Services\UpdatesHandler
+    status_handler.class: SecretBase\AppBundle\Services\StatusHandler
     user_profile_handler.class: SecretBase\AppBundle\Services\UserProfileHandler
     user_registration_handler.class: SecretBase\AppBundle\Services\UserRegistrationHandler
 
@@ -13,12 +13,12 @@ services:
     successful_logout_handler:
         class: '%successful_logout_handler.class%'
 
-    updates_handler:
-        class: '%updates_handler.class%'
+    status_handler:
+        class: '%status_handler.class%'
         arguments: ["@media_manager", "@album_manager", "@elasticsearch"]
 
     user_profile_handler:
-        class: '%updates_handler.class%'
+        class: '%user_profile_handler.class%'
         arguments: ["@media_manager", "@album_manager", "@user_manager"]
 
     user_registration_handler:
