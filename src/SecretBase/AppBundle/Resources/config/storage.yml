@@ -1,7 +1,9 @@
 parameters:
-    elasticsearch.class: SecretBase\AppBundle\Services\NoSQLStorage\Elasticsearch
+    elastica.class: SecretBase\AppBundle\Services\NoSQLStorage\Elasticsearch
 
 services:
     elasticsearch:
-        class: '%elasticsearch.class%'
-        arguments: ["%es_server%", "%es_index%", "%es_type%"]
+        class: '%elastica.class%'
+        arguments: [{host: '%es_server%', port: '%es_server_port%'}]
+        calls:
+            - [setIndex, ["%es_index%"]]

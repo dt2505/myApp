@@ -10,25 +10,18 @@ namespace SecretBase\AppBundle\Services;
 
 use SecretBase\AppBundle\Entity\Media;
 use SecretBase\AppBundle\Entity\User;
-use SecretBase\AppBundle\Services\NoSQLStorage\Elasticsearch;
+use SecretBase\AppBundle\Services\Manager\StatusManager;
 use SecretBase\AppBundle\Services\Util\Serializer;
 
 class StatusHandler extends MediaHandler
 {
-    const ES_IDX_TYPE_UPDATES = "updates";
-    const ES_INDEX_UPDATES = "secret_base";
+    /** @var StatusManager */
+    private $statusManager;
 
-    /** @var Elasticsearch */
-    private $noSqlStorage;
-    /** @var string */
-    private $documentIndex;
-    /** @var string */
-    private $documentIndexType;
-
-    function __construct($mediaManager, $albumManager, $noSqlStorage)
+    function __construct($mediaManager, $albumManager, $statusManager)
     {
         parent::__construct($mediaManager, $albumManager);
-        $this->noSqlStorage = $noSqlStorage;
+        $this->statusManager = $statusManager;
     }
 
     /**
@@ -51,40 +44,8 @@ class StatusHandler extends MediaHandler
         }
 
         // save updates to noSQL storage
-        $jsonData = $this->createUpdatesJson($text, $user, $medias);
-        $this->noSqlStorage->save($jsonData, null, $this->getDocumentIndex(), $this->getDocumentIndexType());
-    }
-
-    /**
-     * @return string
-     */
-    public function getDocumentIndex()
-    {
-        return $this->documentIndex;
-    }
-
-    /**
-     * @param string $documentIndex
-     */
-    public function setDocumentIndex($documentIndex)
-    {
-        $this->documentIndex = $documentIndex;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDocumentIndexType()
-    {
-        return $this->documentIndexType;
-    }
-
-    /**
-     * @param string $documentIndexType
-     */
-    public function setDocumentIndexType($documentIndexType)
-    {
-        $this->documentIndexType = $documentIndexType;
+        $jsonData = $this->createStatusJson($text, $user, $medias);
+        $this->statusManager->persist($jsonData);
     }
 
     /**
@@ -93,13 +54,13 @@ class StatusHandler extends MediaHandler
      * @param $medias
      * @return string
      */
-    private function createUpdatesJson($text, User $user, $medias)
+    private function createStatusJson($text, User $user, $medias)
     {
         $userJson = $this->createUserJson($user);
         $data = array_merge(array("user" => $userJson), array(
             "text" => $text,
-            "createdAt" => new \DateTime(),
-            "updatedAt" => new \DateTime()
+            "created_at" => new \DateTime(),
+            "updated_at" => new \DateTime()
         ));
 
         if ($mediaJson = $this->createMediaJson($medias)) {

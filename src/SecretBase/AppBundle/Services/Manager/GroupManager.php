@@ -10,7 +10,7 @@ namespace SecretBase\AppBundle\Services\Manager;
 
 use SecretBase\AppBundle\Entity\Group;
 
-class GroupManager extends ORMManager
+class GroupManager extends ORManager
 {
     public function __construct($em)
     {

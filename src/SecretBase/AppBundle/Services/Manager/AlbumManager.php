@@ -10,7 +10,7 @@ namespace SecretBase\AppBundle\Services\Manager;
 
 use SecretBase\AppBundle\Entity\Album;
 
-class AlbumManager extends ORMManager
+class AlbumManager extends ORManager
 {
     const DEFAULT_ALBUM = "album.name.default";
 
@@ -46,10 +46,9 @@ class AlbumManager extends ORMManager
     }
 
     /**
-     * @param Album $album
-     * @param bool $flush
+     * {@inheritdoc}
      */
-    public function persist(Album $album, $flush = true)
+    public function persist($album, $flush = true)
     {
         if ($album->isDefault() && ($defaultAlbum = $this->findDefaultAlbum($album->getOwner()))) {
             $defaultAlbum->setDefault(false);
@@ -60,10 +59,9 @@ class AlbumManager extends ORMManager
     }
 
     /**
-     * @param Album $album
-     * @param bool $flush
+     * {@inheritdoc}
      */
-    public function remove(Album $album, $flush = true)
+    public function remove($album, $flush = true)
     {
         if ($medias = $album->getMedias()) {
             $this->mediaManager->mremove($medias, $flush);

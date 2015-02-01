@@ -10,7 +10,7 @@ namespace SecretBase\AppBundle\Services\Manager;
 
 use Doctrine\ORM\EntityManager;
 
-abstract class ORMManager
+abstract class ORManager extends Manager
 {
     /** @var EntityManager */
     private $em;
@@ -35,7 +35,7 @@ abstract class ORMManager
     /**
      * @param $entity
      */
-    public function flush($entity)
+    public function flush($entity = null)
     {
         $this->em->flush($entity);
     }
@@ -48,7 +48,7 @@ abstract class ORMManager
     {
         $this->em->persist($entity);
         if ($flush) {
-            $this->em->flush();
+            $this->flush();
         }
     }
 
@@ -60,7 +60,7 @@ abstract class ORMManager
     {
         $this->em->remove($entity);
         if ($andFlush) {
-            $this->em->flush();
+            $this->flush();
         }
     }
 

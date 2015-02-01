@@ -3,6 +3,7 @@ parameters:
     album_manager.class: SecretBase\AppBundle\Services\Manager\AlbumManager
     group_manager.class: SecretBase\AppBundle\Services\Manager\GroupManager
     user_manager.class: SecretBase\AppBundle\Services\Manager\UserManager
+    status_manager.class: SecretBase\AppBundle\Services\Manager\StatusManager
 
 services:
     user_manager:
@@ -20,3 +21,7 @@ services:
     group_manager:
         class: '%group_manager.class%'
         arguments: ["@doctrine.orm.entity_manager"]
+
+    status_manager:
+        class: '%status_manager.class%'
+        arguments: ["@elasticsearch"]

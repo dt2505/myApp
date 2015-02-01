@@ -15,7 +15,7 @@ services:
 
     status_handler:
         class: '%status_handler.class%'
-        arguments: ["@media_manager", "@album_manager", "@elasticsearch"]
+        arguments: ["@media_manager", "@album_manager", "@status_manager"]
 
     user_profile_handler:
         class: '%user_profile_handler.class%'

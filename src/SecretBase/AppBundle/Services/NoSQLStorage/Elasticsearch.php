@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is Copyright (c)
+ * This file is Copyright (c).
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -8,31 +8,91 @@
 
 namespace SecretBase\AppBundle\Services\NoSQLStorage;
 
-use Elasticsearch\Client;
+use Elastica\Client;
+use Elastica\Query;
+use Elastica\QueryBuilder;
 
-class Elasticsearch
+class Elasticsearch implements IDocumentManager
 {
-    const BULK_ACTION_INDEX = "index";
-
-    /** @var  Client */
+    /** @var Client */
     private $client;
-    /** @var string */
     private $index;
-    /** @var string */
     private $type;
 
-    public function __construct($server, $index, $type)
+    public function __construct(array $config = null)
     {
-        $this->client = new Client(array(
-            "hosts" => array($server)
-        ));
-
-        $this->index = $index;
-        $this->type =$type;
+        $this->client = new Client($config);
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
+     */
+    public function find($id)
+    {
+        return $this->getElasticsearchType()->getDocument($id)->toArray();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findAll($orderBy = array(), $from = 0, $size = 10)
+    {
+        $resultSet = $this->search(null, $orderBy, $from, $size);
+        return $resultSet->getResponse()->getData();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findBy(array $criteria, $orderBy = array(), $from = 0, $size = 10)
+    {
+        if (empty($criteria)) {
+            return array();
+        }
+
+        $queryStr = array();
+        foreach ($criteria as $key => $value) {
+            $queryStr[] = "$key:$value";
+        }
+
+        $resultSet = $this->search(join(" AND ", $queryStr), $orderBy, $from, $size);
+        return $resultSet->getResponse()->getData();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findByQueryString($q, $orderBy = array(), $from = 0, $size = 10)
+    {
+        $resultSet = $this->search($q, $orderBy, $from, $size);
+        return $resultSet->getResponse()->getData();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function persist($doc, $id = '', $refresh = true)
+    {
+        $type = $this->getElasticsearchType();
+        $type->addDocument($type->createDocument($id, $doc));
+        if ($refresh) {
+            $this->refresh();
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function remove($id, $refresh = true)
+    {
+        $this->getElasticsearchType()->deleteById($id);
+        if ($refresh) {
+            $this->refresh();
+        }
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function getIndex()
     {
@@ -40,7 +100,7 @@ class Elasticsearch
     }
 
     /**
-     * @param string $index
+     * {@inheritdoc}
      */
     public function setIndex($index)
     {
@@ -48,7 +108,7 @@ class Elasticsearch
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getType()
     {
@@ -56,7 +116,7 @@ class Elasticsearch
     }
 
     /**
-     * @param string $type
+     * {@inheritdoc}
      */
     public function setType($type)
     {
@@ -64,177 +124,53 @@ class Elasticsearch
     }
 
     /**
-     * @param $content
-     * @param string $idField
-     * @param string $index
-     * @param string $type
-     */
-    public function save($content, $idField = null, $index = null, $type = null)
-    {
-        $decodedContent = json_decode($content, true);
-
-        $param = array();
-        $param["index"] = $index ? $index : $this->getIndex();
-        $param["type"] = $type ? $type : $this->getType();
-        $param["body"] = $content;
-
-        if ($idField && isset($decodedContent[$idField])) {
-            $param["id"] = $decodedContent[$idField];
-        }
-
-        $this->client->index($param);
-    }
-
-    /**
-     * @param array $jsonContent
-     * @param string $idField
-     * @throws \Exception
-     */
-    public function bulk(array $jsonContent, $idField = null)
-    {
-        if (empty($jsonContent)) {
-            return;
-        }
-
-        $params = array(
-            "index" => $this->getIndex(),
-            "type"  => $this->getType()
-        );
-
-        foreach ($jsonContent as $item) {
-            if (empty($item)) {
-                continue;
-            }
-
-            $content = json_decode(json_encode($item), true);
-
-            if (empty($content)) {
-                continue;
-            }
-
-            if ($idField) {
-                $id = isset($content[$idField]) ? $content[$idField] : null;
-            } else {
-                $id = null;
-            }
-
-            if ($id) {
-                $params["body"][] = array(
-                    self::BULK_ACTION_INDEX => array("_id" => $id)
-                );
-            } else {
-                $params["body"][] = array(
-                    self::BULK_ACTION_INDEX => array()
-                );
-            }
-
-            $params["body"][] = $content;
-        }
-
-        $response = $this->client->bulk($params);
-        if ($response["errors"]) {
-            throw new \Exception(json_encode($response["items"]));
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function findAll($index, $type)
-    {
-        $query["body"] = '{
-                "query": {
-                    "match_all" : {}
-                }
-            }';
-        return $this->find($query, $index, $type);
-    }
-
-    /**
-     * @param $what
-     * @param $index
-     * @param $type
-     * @param array $sort
-     * @param array $fields
-     * @param null $from
-     * @param null $size
-     * @return array
-     */
-    public function search($what, $index, $type, $sort = array(), $fields = array(), $from = null, $size = null)
-    {
-        if (empty($what)) {
-            return $this->findAll($index, $type);
-        }
-        $query['body']['query']['query_string']["query"] = $what;
-        return $this->find($query, $index, $type, $sort, $fields, $from, $size);
-    }
-
-    /**
-     * @param array $query
-     * @param $index
-     * @param $type
-     * @param array $sort
-     * @param array $fields
-     * @param null $from
-     * @param null $size
-     * @return array
-     */
-    private function find(array $query, $index, $type, $sort = array(), $fields = array(), $from = null, $size = null)
-    {
-        if (empty($query)) {
-            return array();
-        }
-        $basicParams = $this->getBasicParameters($index, $type, $fields, $from, $size);
-        if (empty($basicParams)) {
-            return array();
-        }
-
-        $param = array_merge($basicParams, $query);
-        if (!empty($sort)) {
-            $sortStr = array();
-            foreach ($sort as $key => $value) {
-                $sortStr[] = "$key:$value";
-            }
-
-            $param["sort"] = join(",", $sortStr);
-        }
-        return $this->client->search($param);
-    }
-
-    /**
-     * @param $index
-     * @param $type
-     * @param array $fieldsToReturn
+     * @param $query
+     * @param array $orderBy
      * @param int $from
      * @param int $size
-     * @throws \InvalidArgumentException
-     * @return array
+     * @return \Elastica\ResultSet
      */
-    private function getBasicParameters($index, $type, $fieldsToReturn = array(), $from = null, $size = null)
+    private function search($query, $orderBy = array(), $from = 0, $size = 10)
     {
-        if (empty($index) || empty($type)) {
-            return null;
+        $q = new Query();
+        $q->setFrom($from);
+        $q->setSize($size);
+
+        if (!empty($orderBy)) {
+            $q->setSort($orderBy);
         }
 
-        $range = array();
-        if ($from > 0) {
-            $range["from"] = $from;
-        }
-        if ($size > 0) {
-            $range["size"] = $size;
-        }
-
-        $params = array_merge(array(), $range);
-        if (!empty($fieldsToReturn)) {
-            $params["fields"] = $fieldsToReturn;
+        if (empty($query)) {
+            $q->setQuery(new Query\MatchAll());
+        } else {
+            $qb = new QueryBuilder();
+            $q->setQuery($qb->query()->query_string()->setQuery($query));
         }
 
-        return array_merge(
-            array(
-                "index"     => $index,
-                "type"      => $type
-            ),
-            $params
-        );
+        return $this->getElasticsearchType()->search($q);
+    }
+
+    /**
+     * refresh
+     */
+    private function refresh()
+    {
+        $this->getElasticsearchIndex()->refresh();
+    }
+
+    /**
+     * @return \Elastica\Type
+     */
+    private function getElasticsearchType()
+    {
+        return $this->getElasticsearchIndex()->getType($this->type);
+    }
+
+    /**
+     * @return \Elastica\Index
+     */
+    private function getElasticsearchIndex()
+    {
+        return $this->client->getIndex($this->index);
     }
 }

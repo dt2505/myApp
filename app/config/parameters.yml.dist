@@ -9,14 +9,16 @@ parameters:
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 
+    # ElasticSearch storage
+    es_server:         localhost
+    es_server_port:    9200
+    es_index:          secret_base
+
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
     mailer_user:       ~
     mailer_password:   ~
-
     locale:            en
-    es_server:         localhost:9200
-    es_index:          secret_base
-    es_type:           updates
+
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt

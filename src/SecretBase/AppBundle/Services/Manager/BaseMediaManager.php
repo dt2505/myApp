@@ -13,7 +13,7 @@ use Sonata\MediaBundle\Provider\Pool;
 
 use SecretBase\AppBundle\Entity\Media;
 
-abstract class BaseMediaManager extends ORMManager
+abstract class BaseMediaManager extends ORManager
 {
     const THUMBNAIL_CONTEXT_IMAGE = "image";
 
@@ -30,10 +30,9 @@ abstract class BaseMediaManager extends ORMManager
     }
 
     /**
-     * @param Media $media
-     * @param bool $flush
+     * {@inheritdoc}
      */
-    public function persist(Media $media, $flush = true)
+    public function persist($media, $flush = true)
     {
         $this->sonataMediaManager->save($media, $flush);
     }
@@ -54,11 +53,9 @@ abstract class BaseMediaManager extends ORMManager
     }
 
     /**
-     * @param Media $media
-     * @param bool $flush
-     * @return Media
+     * {@inheritdoc}
      */
-    public function remove(Media $media, $flush = true)
+    public function remove($media, $flush = true)
     {
         $copy = clone $media;
         $this->sonataMediaManager->delete($media, $flush);
@@ -84,7 +81,7 @@ abstract class BaseMediaManager extends ORMManager
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function findAll()
     {
@@ -92,11 +89,7 @@ abstract class BaseMediaManager extends ORMManager
     }
 
     /**
-     * @param array $criteria
-     * @param array $orderBy
-     * @param null $limit
-     * @param null $offset
-     * @return array
+     * {@inheritdoc}
      */
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
     {
@@ -104,9 +97,7 @@ abstract class BaseMediaManager extends ORMManager
     }
 
     /**
-     * @param array $criteria
-     * @param array $orderBy
-     * @return object
+     * {@inheritdoc}
      */
     public function findOneBy(array $criteria, array $orderBy = null)
     {
@@ -114,8 +105,7 @@ abstract class BaseMediaManager extends ORMManager
     }
 
     /**
-     * @param $id
-     * @return object
+     * {@inheritdoc}
      */
     public function find($id)
     {

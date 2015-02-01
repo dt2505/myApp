@@ -11,7 +11,7 @@ namespace SecretBase\AppBundle\Services\Manager;
 use FOS\UserBundle\Model\UserManagerInterface;
 use SecretBase\AppBundle\Entity\User;
 
-class UserManager extends ORMManager
+class UserManager extends ORManager
 {
     /** @var UserManagerInterface */
     private $fosUserManager;
@@ -31,10 +31,9 @@ class UserManager extends ORMManager
     }
 
     /**
-     * @param User $user
-     * @param bool $flush
+     * {@inheritdoc}
      */
-    public function persist(User $user, $flush = true)
+    public function persist($user, $flush = true)
     {
         $this->fosUserManager->updateUser($user, $flush);
     }
