@@ -110,4 +110,12 @@ class Following
     {
         $this->createdAt = new \DateTime();
     }
+
+    /**
+     * @return string
+     */
+    public static function getClass()
+    {
+        return __CLASS__;
+    }
 }

@@ -8,6 +8,7 @@ parameters:
     status_handler.class: SecretBase\AppBundle\Services\StatusHandler
     user_profile_handler.class: SecretBase\AppBundle\Services\UserProfileHandler
     user_registration_handler.class: SecretBase\AppBundle\Services\UserRegistrationHandler
+    following_handler.class: SecretBase\AppBundle\Services\FollowingHandler
 
 services:
     successful_logout_handler:
@@ -24,3 +25,7 @@ services:
     user_registration_handler:
         class: '%user_registration_handler.class%'
         arguments: ["@user_manager", "@group_manager"]
+
+    following_handler:
+        class: '%following_handler.class%'
+        arguments: ["@following_manager", "@user_manager"]

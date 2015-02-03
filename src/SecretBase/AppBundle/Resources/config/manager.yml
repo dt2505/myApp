@@ -4,6 +4,7 @@ parameters:
     group_manager.class: SecretBase\AppBundle\Services\Manager\GroupManager
     user_manager.class: SecretBase\AppBundle\Services\Manager\UserManager
     status_manager.class: SecretBase\AppBundle\Services\Manager\StatusManager
+    following_manager.class: SecretBase\AppBundle\Services\Manager\FollowingManager
 
 services:
     user_manager:
@@ -25,3 +26,7 @@ services:
     status_manager:
         class: '%status_manager.class%'
         arguments: ["@elasticsearch"]
+
+    following_manager:
+        class: '%following_manager.class%'
+        arguments: ["@doctrine.orm.entity_manager"]
