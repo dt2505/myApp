@@ -2,14 +2,14 @@
 
 {% block body %}
 	<div>
-		<div class="login-header border" style="min-width: 1024px; height: 80px">
-			{% block login_header %}{% endblock %}
+		<div class="login-header " style="min-width: 1024px; height: 80px">
+			{% include 'AppBundle:layout:login/header/header.html.twig' %}
 		</div>
-		<div class="login-body border" style="min-width: 1024px; height: 580px">
-			{% block login_body %}{% endblock %}
+		<div class="login-body " style="min-width: 1024px; height: 580px">
+			{% include "AppBundle:layout:login/body/body.html.twig" %}
 		</div>
-		<div class="login-footer border" style="min-width: 1024px; height: 100px">
-			{% block login_footer %}{% endblock %}
+		<div class="login-footer " style="min-width: 1024px; height: 100px">
+			{% include "AppBundle:layout:login/footer/footer.html.twig" %}
 		</div>
 	</div>
 {% endblock %}

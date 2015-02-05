@@ -71,6 +71,8 @@ permission:
   sudo setfacl -R -m u:"www-data":rwX -m u:whoami:rwX web/uploads/media app/cache app/logs
   sudo setfacl -dR -m u:"www-data":rwX -m u:'whoami':rwX web/uploads/media app/cache app/logs
   ```
+plugins:
+  - form-validation: https://github.com/victorjonsson/jQuery-Form-Validator
 note:
   - the space to store images will be about 18.75% bigger than its original because of thumbnails related to it
 

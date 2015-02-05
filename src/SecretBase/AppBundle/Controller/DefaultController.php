@@ -13,10 +13,15 @@ class DefaultController extends FOSRestController
      */
     public function indexAction()
     {
-        try {
-            return $this->render('default/index.html.twig');
-        } catch (\Exception $e) {
-            return new Response($e->getMessage());
-        }
+        $helper = $this->get('security.authentication_utils');
+        $csrfToken = $this->has('form.csrf_provider')
+            ? $this->get('form.csrf_provider')->generateCsrfToken('authenticate')
+            : null;
+
+        return $this->render('FOSUserBundle:Security:login.html.twig', array(
+            'last_username' => $helper->getLastUsername(),
+            'error'         => $helper->getLastAuthenticationError(),
+            'csrf_token' => $csrfToken
+        ));
     }
 }

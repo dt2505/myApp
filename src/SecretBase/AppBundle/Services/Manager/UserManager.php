@@ -37,4 +37,32 @@ class UserManager extends ORManager
     {
         $this->fosUserManager->updateUser($user, $flush);
     }
+
+    /**
+     * @param $email
+     * @return User
+     */
+    public function findByEmail($email)
+    {
+        return $this->fosUserManager->findUserByEmail($email);
+    }
+
+    /**
+     * @param $username
+     * @return User
+     */
+    public function findByUsername($username)
+    {
+        return $this->fosUserManager->findUserByUsername($username);
+    }
+
+    /**
+     * @param $usernameOrEmail
+     * @return User
+     */
+    public function findByUsernameOrEmail($usernameOrEmail)
+    {
+
+        return $this->fosUserManager->findUserByUsernameOrEmail($usernameOrEmail);
+    }
 }

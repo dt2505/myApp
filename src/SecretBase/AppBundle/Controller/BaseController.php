@@ -18,6 +18,7 @@ use SecretBase\AppBundle\Services\Manager\GroupManager;
 use SecretBase\AppBundle\Services\UserRegistrationHandler;
 use SecretBase\AppBundle\Services\StatusHandler;
 use SecretBase\AppBundle\Services\UserProfileHandler;
+use SecretBase\AppBundle\Services\FollowingHandler;
 
 class BaseController extends FOSRestController
 {
@@ -27,6 +28,14 @@ class BaseController extends FOSRestController
     protected function getSecurityTokenStorage()
     {
         return $this->get('security.token_storage');
+    }
+
+    /**
+     * @return FollowingHandler
+     */
+    protected function getFollowingHandler()
+    {
+        return $this->get("following_handler");
     }
 
     /**

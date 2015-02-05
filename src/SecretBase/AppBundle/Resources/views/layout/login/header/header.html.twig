@@ -1,13 +1,8 @@
-{% extends "AppBundle:layout:login/login.html.twig" %}
-
-{% block login_header %}
-    <div class="login-header-container border" style="margin-left: auto; margin-right: auto; width: 980px; height: 80px;">
-        <div class="login-header-logo-box border" style="width:100px;height:100%;display: inline-block;">
-            {% block login_header_logo_box %} {% endblock %}
-        </div>
-        <div class="login-header-input-box border" style="float:right;width:600px;height:100%; display: inline-block;">
-            {% block login_header_input_box %} {% endblock %}
-        </div>
+<div class="login-header-container border" style="margin-left: auto; margin-right: auto; width: 980px; height: 80px;">
+    <div class="login-header-logo-box border" style="width:100px;height:100%;display: inline-block;">
+        {% include "AppBundle:elements:login/header/logo/logo.html.twig" %}
     </div>
-{% endblock %}
-
+    <div class="login-header-input-box " style="float:right;width:600px;height:100%; display: inline-block;">
+        {% include "AppBundle:elements:login/header/login-input/inline-input-header.html.twig" %}
+    </div>
+</div>
