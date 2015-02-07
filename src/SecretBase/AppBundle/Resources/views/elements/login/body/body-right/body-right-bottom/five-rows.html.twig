@@ -1,34 +1,42 @@
-<div class="body-right-bottom-row " style="height: 70px;width: 100%;">
-	<div class="body-right-bottom-col border" style="height: 100%;width: 100%">
-		<label>
-			<input type="text" style="width:300px; height: 30px; margin: 20px 5px 0;" name="usernameOrEmail">
-		</label>
+{% trans_default_domain 'ElementLogin' %}
+
+<div class="body-right-bottom-row">
+	<div class="body-right-bottom-col">
+		<label for="username_email" class="hidden"></label>
+		<input type="email" class="form-control input-lg bg-dark-gray frt-light-pink" id="email" placeholder="{{ 'login.placeholder.email'|trans }}">
+
 	</div>
 </div>
-<div class="body-right-bottom-row " style="height: 70px;width: 100%;">
-	<div class="body-right-bottom-col border" style="height: 100%;width: 100%">
-		<label>
-			<input type="text" style="width:300px; height: 30px; margin: 20px 5px 0;" name="re-enter">
-		</label>
+<div class="body-right-bottom-row">
+	<div class="body-right-bottom-col">
+		<label for="confirm_email"></label>
+		<input type="email" class="form-control input-lg bg-dark-gray frt-light-pink" id="confirm_email" placeholder="{{ 'login.placeholder.re_enter_email'|trans }}">
 	</div>
 </div>
-<div class="body-right-bottom-row " style="height: 70px;width: 100%;">
-	<div class="body-right-bottom-col border" style="height: 100%;width: 100%">
-		<label>
-			<input type="text" style="width:300px; height: 30px; margin: 20px 5px 0;" name="password">
-		</label>
+<div class="body-right-bottom-row ">
+	<div class="body-right-bottom-col">
+		<label for="password"></label>
+		<input type="password" class="form-control input-lg bg-dark-gray frt-light-pink" id="password" placeholder="{{ 'login.placeholder.password'|trans }}">
 	</div>
 </div>
-<div class="body-right-bottom-row " style="overflow:hidden;">
-	<div class="body-right-bottom-col " style="height: 100%;width: 100%">
-		<input id="practitioner" type="radio" name="role" style="float: left">
-		<label style="float: left" for="practitioner">I am a practitioner</label>
-		<input id="client" type="radio" name="role" style="float: left; clear: both;">
-		<label style="float: left" for="client">I am a client</label>
+<div class="body-right-bottom-row ">
+	<div class="body-right-bottom-col">
+		<div class="radio">
+			<label class="frt-light-pink input-lg">
+				<input type="radio" name="role" id="practitioner" value="practitioner" checked>
+				{{ 'login.radio_button.practitioner'|trans }}
+			</label>
+		</div>
+		<div class="radio">
+			<label class="frt-light-pink input-lg">
+				<input type="radio" name="role" id="client" value="client">
+				{{ 'login.radio_button.client'|trans }}
+			</label>
+		</div>
 	</div>
 </div>
-<div class="body-right-bottom-row " style="height: 70px;width: 100%;">
-	<div class="body-right-bottom-col " style="height: 100%;width: 100%">
-		<input type="submit" name="signin" style="width:50%; height: 35px; padding: 10px;" value="Sign up now"/>
+<div class="body-right-bottom-row ">
+	<div class="body-right-bottom-col">
+		<button type="button" class="btn btn-lg bg-light-gray frt-light-pink">{{ 'login.button.signup'|trans }}</button>
 	</div>
 </div>

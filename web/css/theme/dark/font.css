@@ -1,0 +1,26 @@
+.bsmall,
+.bnormal,
+.bheading-18,
+.bheading-20 {
+    font-weight: bold;
+}
+
+.small,
+.bsmall {
+    font-size: 12px;
+}
+
+.normal,
+.bnormal {
+    font-size: 14px;
+}
+
+.heading-18,
+.bheading-18 {
+    font-size: 18px;
+}
+
+.bheading-20,
+.heading-20 {
+    font-size: 20px;
+}

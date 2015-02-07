@@ -5,10 +5,17 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <link rel="stylesheet" href="{{ asset('./css/layout.css') }}" />
+        <link rel="stylesheet" href="{{ asset('./css/bootstrap-3.3.2/bootstrap.min.css') }}" />
+
+        <link rel="stylesheet" href="{{ asset('./css/theme/dark/layout.css') }}" />
+        <link rel="stylesheet" href="{{ asset('./css/theme/dark/color.css') }}" />
+        <link rel="stylesheet" href="{{ asset('./css/theme/dark/font.css') }}" />
+        <link rel="stylesheet" href="{{ asset('./css/theme/dark/elements.css') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        <script src="{{ asset('./js/jquery-1.11.2.min.js') }}"></script>
+        <script src="{{ asset('./js/boostrap-3.3.2/bootstrap.min.js') }}"></script>
     </body>
 </html>

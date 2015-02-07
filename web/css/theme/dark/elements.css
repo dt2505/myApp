@@ -1,0 +1,57 @@
+.form-control::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #ffcce6;
+    opacity: 0.5;
+}
+.form-control:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #ffcce6;
+    opacity:  0.5;
+}
+.form-control::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #ffcce6;
+    opacity:  0.5;
+}
+.form-control:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #ffcce6;
+    opacity: 0.5;
+}
+
+input[type='radio'] {
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    width:15px;
+    height:15px;
+    border-radius:50%;
+    outline:none;
+    box-shadow:0 0 5px 0 #ffcce6 inset;
+}
+input[type='radio']:hover {
+    box-shadow:0 0 5px 0 #ff99cc inset;
+}
+input[type='radio']:before {
+    content:'';
+    display:block;
+    width:50%;
+    height:50%;
+    margin: 25% auto;
+    border-radius:50%;
+}
+input[type='radio']:checked:before {
+    background:#ffcce6;
+}
+
+a {
+    color: #ffcce6
+}
+a:hover,
+a:focus,
+a:active {
+    color: #995d7c;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active {
+    color: #ff99cc;
+    background-color: #4d4d4d;
+}
+

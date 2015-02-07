@@ -1,0 +1,33 @@
+login:
+    button:
+        signin: 登陆
+        signup: 立即注册
+    radio_button:
+        practitioner: 我是从业者
+        client: 我是寻花者
+    placeholder:
+        username: 输入用户名
+        email: 输入电邮
+        username_email: 输入用户名或电邮
+        re_enter_username: 重新输入用户名
+        re_enter_email: 重新输入电邮
+        re_enter_username_email: 重新输入用户名或电邮
+        password: 输入密码
+    link:
+        forgot_password: 忘记密码？
+    label:
+        username: 用户名
+        email: 电邮
+        username_email: 用户名或电邮
+        re_enter_username: 重新输入用户名
+        re_enter_email: 重新输入电邮
+        re_enter_username_email: 重新输入用户名或电邮
+        password: 密码
+        about_us: 关于我们
+        contact_us: 联系我们
+        privacy: 隐私条款
+        copyright: 保留所有权 2015
+    heading:
+        attractive_words: 空虚、寂寞、冷？ 今夜孤枕难眠？ 把持不住了么？
+        join_us_today: 即刻加入我们吧, 困扰将不在是困扰
+        it_is_free: 注册免费
