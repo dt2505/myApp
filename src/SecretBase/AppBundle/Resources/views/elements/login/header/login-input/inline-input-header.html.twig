@@ -4,22 +4,22 @@
 {% set csrf_token = csrf_token|default(null)%}
 
 {% if error %}
-	<div class="frt-bright-pink normal">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    <div class="frt-bright-pink normal">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
-<form action="{{ path("fos_user_security_check") }}" method="post">
-	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-	<div>
-		<div style="display: inline-block; margin-right: 10px;">
-			<label class="sr-only" for="username"></label>
-			<input type="email" class="form-control input-sm bg-light-gray frt-light-pink" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'login.placeholder.email'|trans }}">
-		</div>
-		<div style="display: inline-block; margin-right: 10px;">
-			<label class="sr-only" for="password"></label>
-			<input type="password" class="form-control input-sm bg-light-gray frt-light-pink" id="password" name="_password" required="required" placeholder="{{ 'login.placeholder.password'|trans }}"/>
-		</div>
-		<button type="submit" class="btn btn-sm bg-light-gray frt-light-pink" id="_submit" name="_submit">{{ 'login.button.signin'|trans }}</button>
-	</div>
-	<div style="margin-left:184px">
-		<a href="#" class="small">{{ 'login.link.forgot_password'|trans }}</a>
-	</div>
+<form action="{{ path("fos_user_security_check") }}" method="post" autocomplete="off">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    <div>
+        <div style="display: inline-block; margin-right: 10px;">
+            <label class="sr-only" for="username"></label>
+            <input type="email" class="form-control input-sm bg-light-gray frt-light-pink" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'login.placeholder.email'|trans }}">
+        </div>
+        <div style="display: inline-block; margin-right: 10px;">
+            <label class="sr-only" for="password"></label>
+            <input type="password" class="form-control input-sm bg-light-gray frt-light-pink" id="password" name="_password" required="required" placeholder="{{ 'login.placeholder.password'|trans }}"/>
+        </div>
+        <button type="submit" class="btn btn-sm bg-light-gray frt-light-pink" id="_submit" name="_submit">{{ 'login.button.signin'|trans }}</button>
+    </div>
+    <div style="margin-left:184px">
+        <a href="#" class="small">{{ 'login.link.forgot_password'|trans }}</a>
+    </div>
 </form>
