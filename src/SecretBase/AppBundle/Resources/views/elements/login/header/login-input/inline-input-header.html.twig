@@ -6,7 +6,7 @@
 {% if error %}
     <div class="frt-bright-pink normal">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
-<form action="{{ path("fos_user_security_check") }}" method="post" autocomplete="off">
+<form action="{{ path("fos_user_security_check") }}" id="loginForm" method="post" autocomplete="off">
     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
     <div>
         <div style="display: inline-block; margin-right: 10px;">

@@ -1,22 +1,22 @@
 {% trans_default_domain 'ElementLogin' %}
 
-<form action="" id="form" autocomplete="off">
+<form action="{{ path("pre_register_user") }}" id="preRegistrationForm" method="post" autocomplete="off">
     <div class="body-right-bottom-row">
         <div class="body-right-bottom-col">
             <label for="username_email" class="hidden"></label>
-            <input type="email" class="form-control input-lg bg-dark-gray frt-light-pink" id="email" placeholder="{{ 'login.placeholder.email'|trans }}" required>
+            <input type="email" class="form-control input-lg bg-dark-gray frt-light-pink" name ="email" id="email" placeholder="{{ 'login.placeholder.email'|trans }}" required>
         </div>
     </div>
     <div class="body-right-bottom-row">
         <div class="body-right-bottom-col">
             <label for="confirm_email"></label>
-            <input type="email" class="form-control input-lg bg-dark-gray frt-light-pink" id="confirm_email" placeholder="{{ 'login.placeholder.re_enter_email'|trans }}" required>
+            <input type="email" class="form-control input-lg bg-dark-gray frt-light-pink" name="confirm_email" id="confirm_email" placeholder="{{ 'login.placeholder.re_enter_email'|trans }}" required>
         </div>
     </div>
     <div class="body-right-bottom-row ">
         <div class="body-right-bottom-col">
             <label for="password"></label>
-            <input type="password" class="form-control input-lg bg-dark-gray frt-light-pink" id="password" placeholder="{{ 'login.placeholder.password'|trans }}" required>
+            <input type="password" class="form-control input-lg bg-dark-gray frt-light-pink" name="password" id="password" placeholder="{{ 'login.placeholder.password'|trans }}" required>
         </div>
     </div>
     <div class="body-right-bottom-row ">
@@ -37,7 +37,7 @@
     </div>
     <div class="body-right-bottom-row ">
         <div class="body-right-bottom-col">
-            <button type="submit" class="btn btn-lg bg-light-gray frt-light-pink">{{ 'login.button.signup'|trans }}</button>
+            <button type="submit" id="preRegistrationFormSubmit" name="preRegistrationFormSubmit" class="btn btn-lg bg-light-gray frt-light-pink">{{ 'login.button.signup'|trans }}</button>
         </div>
     </div>
 </form>

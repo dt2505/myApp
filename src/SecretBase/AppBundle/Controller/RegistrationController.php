@@ -29,12 +29,15 @@ class RegistrationController extends BaseController
 
         try {
             $user = $this->getUserRegistrationHandler()->preRegisterUser($email, $password, $role);
-            return new Response('Done');
+            $view = $this->view(null, Response::HTTP_OK);
         } catch (\InvalidArgumentException $e) {
-            return new Response($e->getMessage(), Response::HTTP_BAD_REQUEST);
+            $view = $this->view(array("error" => $e->getMessage()), Response::HTTP_BAD_REQUEST);
         } catch (\Exception $e) {
-            return new Response($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $view = $this->view(array("error" => $e->getMessage()), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+
+        $view->setTemplate(":default:index.html.twig");
+        return $this->handleView($view);
     }
 
     /**
