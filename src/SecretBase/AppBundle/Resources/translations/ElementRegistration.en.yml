@@ -1,6 +1,9 @@
 registration:
     wizard:
-       steps: Steps
-       brief_description:
-          paragraph1: %site_name% is a constantly updating stream of the coolest, most important news, media, sports, TV, conversations and more—all tailored just for you.
-          paragraph2: Tell us about all the stuff you love and we’ll help you get set up.
+         button:
+            start: Start
+         steps: Steps
+         title: We are pleased to meet you here,
+         brief_description:
+               paragraph1: %site_name% is a constantly updating stream of the coolest, most important news, media, sports, TV, conversations and more—all tailored just for you.
+               paragraph2: Tell us about all the stuff you love and we’ll help you get set up.

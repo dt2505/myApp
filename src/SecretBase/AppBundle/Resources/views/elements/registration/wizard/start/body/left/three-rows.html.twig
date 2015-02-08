@@ -1,15 +1,15 @@
 {% trans_default_domain 'ElementRegistration' %}
 
-<div class="title-row border" style="height: 150px;">
-    <h2><span > we are pleased to see you here,</span></h2>
-    <h2><span >{{ userName }}</span></h2>
+<div class="title-row" style="margin-bottom:20px;">
+    <p class="frt-pink bheading-28"> {{ 'registration.wizard.title'|trans }}</p>
+    <p><span class="frt-pink bheading-28">{{ userName }}</span></p>
 </div>
-<div class="description-row border" style="height: 250px;">
-    <h3><p style="font-size: 24px">
+<div class="description-row " style="height: 250px;">
+    <p class="frt-light-pink heading-24">
         {{ 'registration.wizard.brief_description.paragraph1'|trans({'%site_name%': siteName}) }}
-    </p></h3>
-    <h3><p>{{ 'registration.wizard.brief_description.paragraph2'|trans() }}</p></h3>
+    </p>
+    <p class="frt-light-pink heading-24">{{ 'registration.wizard.brief_description.paragraph2'|trans() }}</p>
 </div>
-<div class="button-row border" style="height: 100px;">
-
+<div class="button-row">
+    <a class="btn btn-lg bg-light-gray frt-light-pink" href="#" role="button">{{ 'registration.wizard.button.start'|trans }}</a>
 </div>

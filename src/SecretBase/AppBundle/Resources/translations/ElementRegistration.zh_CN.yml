@@ -1,3 +1,9 @@
 registration:
-    wizard:
-       steps: 步骤
+   wizard:
+        button:
+           start: 开始
+        steps: 步骤
+        title: 我们很高兴能在里遇见您,
+        brief_description:
+              paragraph1: %site_name% is a constantly updating stream of the coolest, most important news, media, sports, TV, conversations and more—all tailored just for you.
+              paragraph2: Tell us about all the stuff you love and we’ll help you get set up.
