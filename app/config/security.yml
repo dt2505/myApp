@@ -45,5 +45,5 @@ security:
 
         # secured area
         - { path: ^/admin/, role: [ROLE_ADMIN] }
-        - { path: ^/.*, role: IS_AUTHENTICATED_FULLY }
+#        - { path: ^/.*, role: IS_AUTHENTICATED_FULLY }
 
