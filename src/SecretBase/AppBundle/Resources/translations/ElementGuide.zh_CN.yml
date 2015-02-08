@@ -1,0 +1,9 @@
+Guide:
+    steps:
+        step1: 第一步
+        step2: 第二步
+    button:
+        letsgo: 开始
+    sayHello: 很高兴你能来到这里，
+    introduction: 秘密基地能为您及时了解最新中介，从业者动态，为你创造属于您自己的秘密基地
+    help: 告诉系统您的喜好<br/>我们将及时了解，为您竭诚服务
