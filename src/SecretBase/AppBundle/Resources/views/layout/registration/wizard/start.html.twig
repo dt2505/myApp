@@ -1,0 +1,19 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <div class="reg-wizard-header border" style="min-width: 1024px;">
+        <div class="reg-wizard-header-container border" style="margin-left: auto; margin-right: auto; width: 980px; overflow: hidden; padding-left: 15px;">
+            {% include "AppBundle:elements:registration/wizard/header/header-steps-indicator.html.twig" with {step: 1, steps: 2}%}
+        </div>
+    </div>
+    <div class="reg-wizard-body border" style="min-width: 1024px; height: 580px">
+        <div class="reg-wizard-body-container border" style="margin-left: auto; margin-right: auto; width: 980px; height: 100%;">
+            <div class="reg-wizard-body-left border" style="display: inline-block; float: left; width: 50%; height:100%; padding: 30px 15px 15px 15px">
+                {% include "AppBundle:elements:registration/wizard/start/body/left/three-rows.html.twig" with {userName: "test", siteName: 'site.name'|trans({}, 'SiteName')}%}
+            </div>
+            <div class="reg-wizard-body-right border" style="display: inline-block; float: left;width: 50%; height: 100%; padding: 30px 15px 15px 15px">
+                {% include "AppBundle:elements:registration/wizard/start/body/right/four-rows.html.twig" %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

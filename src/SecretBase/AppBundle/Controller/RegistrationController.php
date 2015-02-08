@@ -17,6 +17,17 @@ class RegistrationController extends BaseController
 {
     /**
      * @param Request $request
+     * @return Response
+     *
+     * @Rest\Get("/user/registration/wizard/start")
+     */
+    public function getPreRegistrationAction(Request $request)
+    {
+        return $this->render("AppBundle:layout:registration/wizard/start.html.twig");
+    }
+
+    /**
+     * @param Request $request
      * @return JsonResponse
      *
      * @Rest\Post("/user/pre-register")
