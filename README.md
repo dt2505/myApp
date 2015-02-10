@@ -73,6 +73,9 @@ permission:
   ```
 plugins:
   - form-validation: https://github.com/victorjonsson/jQuery-Form-Validator
+disable responsive in boostrap:
+  - http://getbootstrap.com/getting-started/#disable-responsive
+
 note:
   - the space to store images will be about 18.75% bigger than its original because of thumbnails related to it
 

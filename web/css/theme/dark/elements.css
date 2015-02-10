@@ -48,6 +48,7 @@ a:active {
     color: #995d7c;
 }
 
+/* override color defined in boostrap btn */
 .btn:hover,
 .btn:focus,
 .btn:active {
@@ -55,3 +56,24 @@ a:active {
     background-color: #4d4d4d;
 }
 
+/* override color defined in boostrap nav */
+.nav > li > a:hover,
+.nav > li > a:focus {
+    background-color: #4d4d4d;
+}
+
+.nav-tabs {
+    border-bottom:1px solid #4d4d4d;
+}
+
+.nav-tabs > li > a:hover {
+    border-color: #4d4d4d #4d4d4d #4d4d4d;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    color:#ffcce6;
+    background-color:#1a1a1a;
+    border:1px solid #4d4d4d;
+    border-bottom-color: transparent;
+}

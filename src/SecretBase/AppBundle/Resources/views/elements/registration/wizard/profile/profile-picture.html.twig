@@ -1,0 +1,28 @@
+{% trans_default_domain 'ElementRegistration' %}
+
+<form action="" method="post" class="form-horizontal">
+    <div class="row">
+        <div class="col-xs-12">
+            <p class="bheading-28 frt-pink">{{ 'registration.wizard.profile_title'|trans }}</p>
+            <p class="bheading-18 frt-light-pink">{{ 'registration.wizard.profile_hint'|trans }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="bg-charcoal" style="height: 120px; width: 450px;">
+                <img src="#" alt="cover" />
+            </div>
+            <div style="margin-top: -60px; margin-left: 20px; height: 100px; width: 100px; background-color: #5e354b; float:left;">
+                <div><img src="#" alt="avatar"/></div>
+            </div>
+            <div class="username" style="margin-left: 120px; padding: 10px;">
+                <span class="frt-pink bheading-18">{{ firstName }} &nbsp; {{ lastName }}</span>
+            </div>
+            <div class="clear-both"></div>
+            <div style="margin-top: 20px;">
+                <a class="btn btn-sm bg-light-gray frt-light-pink" href="#" role="button">{{ 'registration.wizard.button.upload_avatar'|trans }}</a>
+                <a class="btn btn-sm bg-light-gray frt-light-pink" href="#" role="button">{{ 'registration.wizard.button.upload_cover'|trans }}</a>
+            </div>
+        </div>
+    </div>
+</form>

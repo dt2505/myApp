@@ -27,6 +27,17 @@ class RegistrationController extends BaseController
     }
 
     /**
+     * @param Request $rquest
+     * @return Response
+     *
+     * @Rest\Get("/user/registration/wizard/profile")
+     */
+    public function getWizardProfileAction(Request $rquest)
+    {
+        return $this->render("AppBundle:layout:registration/wizard/profile.html.twig");
+    }
+
+    /**
      * @param Request $request
      * @return JsonResponse
      *
