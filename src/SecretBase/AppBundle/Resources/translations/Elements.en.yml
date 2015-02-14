@@ -1,0 +1,78 @@
+button:
+    signin: Sign in
+    signup: Sign up now
+    skip: Skip for now
+    prev: Previous
+    next: Next
+    finish: Finish
+    upload_avatar: Upload avatar
+    upload_cover: Upload cover
+radio_button:
+    practitioner: Practitioner
+    seeker: Seeker
+placeholder:
+    first_name: Enter first name
+    last_name: Enter last name
+    username: Enter username
+    email: Enter email
+    username_email: Enter username or email
+    re_enter_username: Re-enter username
+    re_enter_email: Re-enter email
+    re_enter_username_email: Re-enter username or email
+    re_enter_password: Re-enter password
+    password: Enter password
+    fullname: Enter full name
+    qq: Enter qq
+    webchat: Enter webchat
+    twitter: Enter twitter
+    facebook: Enter facebook
+    mobile: Enter mobile
+    phone: Enter phone
+    address: Enter address
+    suburb: Enter suburb/city
+    state: Enter state
+    country: Select country...
+    poscode: Enter post code
+    desc: Tell us something about you
+link:
+    forgot_password: Forgot password ?
+    create_new_account: Create a new account
+    terms_conditions: Terms and Conditions
+label:
+    username: Username
+    email: Email
+    username_email: Username or email
+    re_enter_username: Re-enter username
+    re_enter_email: Re-enter email
+    re_enter_username_email: Re-enter username or email
+    re_enter_password: Confirm password
+    password: Password
+    about_us: About us
+    contact_us: Contact us
+    privacy: Privacy
+    copyright: Copyright All Reserved 2015
+    remember_me: Remeber me
+    qq: QQ
+    twitter: Twitter
+    facebook: Facebook
+    webchat: Webchat
+    mobile: Mobile
+    phone: phone
+    email: Email
+    first_name: First name
+    last_name: Last name
+    address: Address
+    suburb: Suburb/City
+    state: State
+    country: Country
+    poscode: Post code
+    desc: Brief description
+    I_agree: I agree with
+    have_account: Already have an account ?
+    I_am: I am
+    gender: Gender
+    male: Male
+    female: Femal
+heading:
+    sign_in_account: Sign in to your account
+    create_account: Create an account

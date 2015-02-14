@@ -14,6 +14,11 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 
 class StatusController extends BaseController
 {
+    public function getLobbyAction(Request $request)
+    {
+        return $this->render("AppBundle:layout:lobby/lobby.html.twig");
+    }
+
     /**
      * @param Request $request
      * @return Response

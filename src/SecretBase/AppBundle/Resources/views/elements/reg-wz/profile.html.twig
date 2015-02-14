@@ -1,0 +1,61 @@
+{% trans_default_domain 'Elements' %}
+
+<div class="row">
+    <div class="col-xs-6">
+        <div class="panel widget mar-no">
+            <div class="widget-header bg-purple">
+                <img class="widget-bg img-responsive" src="{{ asset('./img/thumbs/img3.jpg') }}" alt="Image">
+            </div>
+            <div class="widget-body text-center">
+                <img alt="Profile Picture" class="widget-img img-circle img-border-light" src="{{ asset('./img/av4.png') }}">
+            </div>
+            <h4 class="mar-no">Donald Brown</h4>
+            <div class="pad-ver">
+                <input type="file" class="hidden" id="avatar" name="avatar">
+                <input type="file" class="hidden" id="cover" name="cover">
+                <button class="btn btn-sm btn-primary" id="btn-upload-avatar">{{ 'button.upload_avatar'|trans }}</button>
+                <button class="btn btn-sm btn-primary" id="btn-upload-cover">{{ 'button.upload_cover'|trans }}</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">{{ 'label.I_am'|trans }}</label>
+            <div class="col-md-9">
+                <div class="radio text-left">
+                    <label class="form-radio form-icon active"><input type="radio" checked="" name="ico-w-label">{{ 'radio_button.practitioner'|trans }}</label>
+                    <label class="form-radio form-icon"><input type="radio" name="ico-w-label">{{ 'radio_button.seeker'|trans }}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label class="col-xs-3 control-label">{{ 'label.first_name'|trans }}</label>
+            <div class="col-xs-7">
+                <input type="text" placeholder="{{ 'placeholder.first_name'|trans }}" name="firstName" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">{{ 'label.last_name'|trans }}</label>
+            <div class="col-xs-7">
+                <input type="text" placeholder="{{ 'placeholder.last_name'|trans }}" name="lastName" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">{{ 'label.gender'|trans }}</label>
+            <div class="col-xs-9">
+                <div class="col-xs-6 pad-no text-left">
+                    <div class="radio">
+                        <label class="form-radio form-icon active">
+                            <input type="radio" name="gender" checked> {{ 'label.male'|trans }}
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label class="form-radio form-icon">
+                            <input type="radio" name="gender"> {{ 'label.female'|trans }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

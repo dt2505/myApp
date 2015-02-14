@@ -1,0 +1,78 @@
+button:
+    signin: 登陆
+    signup: 立即注册
+    skip: 跳过
+    prev: 上一步
+    next: 下一步
+    finish: 完成
+    upload_avatar: 上传头像
+    upload_cover: 上传封面
+radio_button:
+    practitioner: 从业者
+    seeker: 寻花者
+placeholder:
+    first_name: 输入名
+    last_name: 输入姓
+    username: 输入用户名
+    email: 输入电子邮箱
+    username_email: 输入用户名或电子邮箱
+    re_enter_username: 重新输入用户名
+    re_enter_email: 重新输入电子邮箱
+    re_enter_username_email: 重新输入用户名或电子邮箱
+    re_enter_password: 重新输入密码
+    password: 输入密码
+    fullname: 输入全名
+    qq: 输入QQ号
+    webchat: 输入微信号
+    twitter: 输入推特(Twitter)
+    facebook: 输入脸书(Facebook)
+    mobile: 输入手机号
+    phone: 输入电话号
+    address: 输入地址
+    suburb: 输入城市
+    state: 输入省份
+    country: 选择国家...
+    poscode: 输入邮编
+    desc: 说说自己吧,让更多的人了解你
+link:
+    forgot_password: 忘记密码 ？
+    create_new_account: 建立新账户
+    terms_conditions: 服务使用协议
+label:
+    username: 用户名
+    email: 电子邮箱
+    username_email: 用户名或电子邮箱
+    re_enter_username: 确认用户名
+    re_enter_email: 确认电子邮箱
+    re_enter_username_email: 确认电子邮箱或用户名
+    re_enter_password: 确认密码
+    password: 密码
+    about_us: 关于我们
+    contact_us: 联系我们
+    privacy: 隐私条款
+    copyright: 保留所有权 2015
+    remember_me: 记住我
+    qq: QQ号
+    twitter: 推特（Twitter）
+    facebook: 脸书（Facebook）
+    webchat: 微信
+    mobile: 手机
+    phone: 电话
+    email: 电子邮箱
+    first_name: 名
+    last_name: 姓
+    address: 地址
+    suburb: 城市
+    state: 省份
+    country: 国家
+    poscode: 邮编
+    desc: 简介
+    I_agree: 我接受
+    have_account: 已经有账号了？
+    I_am: 我是
+    gender: 性别
+    male: 男
+    female: 女
+heading:
+    sign_in_account: 登陆账户
+    create_account: 新建账户

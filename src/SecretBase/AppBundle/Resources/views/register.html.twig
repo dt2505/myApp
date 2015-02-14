@@ -1,0 +1,108 @@
+{% extends "::base.html.twig" %}
+
+{% trans_default_domain 'Elements' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('./css/bg-image.css') }}" rel="stylesheet">
+    <link href="{{ asset('./plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div id="container" class="cls-container">
+        {# background image #}
+        {% include 'AppBundle:elements:bg-image.html.twig' with {imageClass: 'img-balloon'}%}
+
+        {# header #}
+        {% include 'AppBundle:elements:header.html.twig' %}
+
+        {# form wizard #}
+        <div class="cls-content">
+            <div class="cls-content-lg">
+                <div id="reg-wz" class="panel">
+                    <div class="wz-heading">
+                        {# Progress bar #}
+                        <div class="progress progress-sm progress-light-base">
+                            <div class="progress-bar progress-bar-primary"></div>
+                        </div>
+
+                        {# Nav #}
+                        <ul class="wz-icon-bw wz-nav-off">
+                            <li class="col-xs-3">
+                                <a data-toggle="tab" href="#reg-info" title="Account">
+                                    <span class="icon-wrap icon-wrap-sm icon-circle bg-mint">
+                                        <i class="wz-icon fa fa-info fa-2x"></i>
+                                        <i class="wz-icon-done fa fa-check fa-2x"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="col-xs-3">
+                                <a data-toggle="tab" href="#reg-profile" title="Profile">
+                                    <span class="icon-wrap icon-wrap-sm icon-circle bg-info">
+                                        <i class="wz-icon fa fa-user fa-2x"></i>
+                                        <i class="wz-icon-done fa fa-check fa-2x"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="col-xs-3">
+                                <a data-toggle="tab" href="#reg-contact" title="Contact">
+                                    <span class="icon-wrap icon-wrap-sm icon-circle bg-warning">
+                                        <i class="wz-icon fa fa-home fa-2x"></i>
+                                        <i class="wz-icon-done fa fa-check fa-2x"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="col-xs-3">
+                                <a data-toggle="tab" href="#reg-agreement" title="Finish">
+                                    <span class="icon-wrap icon-wrap-sm icon-circle bg-success">
+                                        <i class="wz-icon fa fa-heart fa-2x"></i>
+                                        <i class="wz-icon-done fa fa-check fa-2x"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {# form body #}
+                    <form class="form-horizontal" action="#">
+                        <div class="panel-body">
+                            <div class="tab-content">
+
+                                {# Account infor tab #}
+                                <div id="reg-info" class="tab-pane">
+                                    {% include 'AppBundle:elements:reg-wz/account-info.html.twig' %}
+                                </div>
+
+                                {# profile #}
+                                <div id="reg-profile" class="tab-pane fade">
+                                    {% include 'AppBundle:elements:reg-wz/profile.html.twig' %}
+                                </div>
+
+                                {# contact #}
+                                <div id="reg-contact" class="tab-pane">
+                                    {% include 'AppBundle:elements:reg-wz/contact.html.twig' %}
+                                </div>
+
+                                {# agreement #}
+                                <div id="reg-agreement" class="tab-pane">
+                                    {% include 'AppBundle:elements:reg-wz/agreement.html.twig' %}
+                                </div>
+                            </div>
+                        </div>
+
+                        {# footer button #}
+                        <div class="panel-footer ">
+                            {% include 'AppBundle:elements:reg-wz/footer-button.html.twig' %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('./plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
+    <script src="{{ asset('./plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}"></script>
+
+    <script src="{{ asset('./js/form-wz.js') }}"></script>
+{% endblock %}

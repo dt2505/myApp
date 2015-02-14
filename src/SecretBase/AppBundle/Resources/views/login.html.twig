@@ -1,0 +1,59 @@
+{% extends "::base.html.twig" %}
+
+{% trans_default_domain 'Elements' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('./css/bg-image.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div id="container" class="cls-container">
+        <!-- background image -->
+        {% include 'AppBundle:elements:bg-image.html.twig' with {imageClass: 'img-balloon'}%}
+
+        <!-- header -->
+        {% include 'AppBundle:elements:header.html.twig' %}
+
+        <!-- login form -->
+        <div class="cls-content">
+            <div class="cls-content-sm panel">
+                <div class="panel-body">
+                    <p class="pad-btm">{{ 'heading.sign_in_account'|trans }}</p>
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                <input type="text" class="form-control" placeholder="{{ 'placeholder.username'|trans }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+                                <input type="password" class="form-control" placeholder="{{ 'placeholder.password'|trans }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8 text-left checkbox">
+                                <label class="form-checkbox form-icon">
+                                    <input type="checkbox"> {{ 'label.remember_me'|trans }}
+                                </label>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group text-right">
+                                    <button class="btn btn-success text-uppercase" type="submit">{{ 'button.signin'|trans }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="pad-ver">
+                <a href="pages-password-reminder.html" class="btn-link mar-rgt">{{ 'link.forgot_password'|trans }}</a>
+                <a href="{{ path('register_user') }}" class="btn-link mar-lft">{{ 'link.create_new_account'|trans }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('./plugins/fast-click/fastclick.min.js') }}"></script>
+{% endblock %}

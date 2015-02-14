@@ -1,0 +1,15 @@
+{% trans_default_domain 'Elements' %}
+
+<div class="row">
+    <div class="col-xs-4">
+        {{ 'label.have_account'|trans }} <a href="{{ path('fos_user_security_login') }}" class="btn-link mar-rgt">{{ 'button.signin'|trans }}</a>
+    </div>
+    <div class="col-xs-8 text-right">
+        <div class="box-inline">
+            <a href="#" class="skip btn btn-primary">{{ 'button.skip'|trans }}</a>
+            <button type="button" class="previous btn btn-primary">{{ 'button.prev'|trans }}</button>
+            <button type="button" class="next btn btn-primary">{{ 'button.next'|trans }}</button>
+            <button type="button" class="finish btn btn-warning" disabled>{{ 'button.finish'|trans }}</button>
+        </div>
+    </div>
+</div>
