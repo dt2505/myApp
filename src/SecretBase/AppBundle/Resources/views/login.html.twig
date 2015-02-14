@@ -1,19 +1,17 @@
 {% extends "::base.html.twig" %}
 
 {% trans_default_domain 'Elements' %}
-
 {% block stylesheets %}
     <link href="{{ asset('./css/bg-image.css') }}" rel="stylesheet">
 {% endblock %}
-
 {% block body %}
     <div id="container" class="cls-container">
         <!-- background image -->
         {% include 'AppBundle:elements:bg-image.html.twig' with {imageClass: 'img-balloon'}%}
-
+        
         <!-- header -->
         {% include 'AppBundle:elements:header.html.twig' %}
-
+        
         <!-- login form -->
         <div class="cls-content">
             <div class="cls-content-sm panel">
