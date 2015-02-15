@@ -7,6 +7,7 @@ button:
     finish: 完成
     upload_avatar: 上传头像
     upload_cover: 上传封面
+    reset_password: 重置密码
 radio_button:
     practitioner: 从业者
     seeker: 寻花者
@@ -38,6 +39,7 @@ link:
     forgot_password: 忘记密码 ？
     create_new_account: 建立新账户
     terms_conditions: 服务使用协议
+    back_to_login: 返回登陆页面
 label:
     username: 用户名
     email: 电子邮箱
@@ -76,3 +78,4 @@ label:
 heading:
     sign_in_account: 登陆账户
     create_account: 新建账户
+    forgot_password: 输入电子邮箱地址，重置密码

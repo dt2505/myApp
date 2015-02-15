@@ -68,7 +68,18 @@ class UserController extends BaseController
      * @param Request $request
      * @return JsonResponse
      *
-     * @Rest\Post()
+     * @Rest\Get("/password/forgot")
+     */
+    public function forgotPasswordAction(Request $request)
+    {
+        return $this->render("AppBundle::forgot-password.html.twig");
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     *
+     * @Rest\Post("/password/reset")
      */
     public function resetPasswordAction(Request $request)
     {

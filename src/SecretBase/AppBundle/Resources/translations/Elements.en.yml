@@ -7,6 +7,7 @@ button:
     finish: Finish
     upload_avatar: Upload avatar
     upload_cover: Upload cover
+    reset_password: Reset password
 radio_button:
     practitioner: Practitioner
     seeker: Seeker
@@ -38,6 +39,7 @@ link:
     forgot_password: Forgot password ?
     create_new_account: Create a new account
     terms_conditions: Terms and Conditions
+    back_to_login: Back to login
 label:
     username: Username
     email: Email
@@ -76,3 +78,4 @@ label:
 heading:
     sign_in_account: Sign in to your account
     create_account: Create an account
+    forgot_password: Enter your email address to resset your password.
