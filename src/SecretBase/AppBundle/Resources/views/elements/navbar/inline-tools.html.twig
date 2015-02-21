@@ -1,0 +1,139 @@
+{% trans_default_domain 'Elements' %}
+
+<ul class="nav navbar-top-links {{ direction }}">
+    <li data-content="Additional Sidebar">
+        <a id="demo-toggle-aside" class="shortcut-grid" href="#">
+            <i class="fa fa-magic fa-2x"></i>
+        </a>
+    </li>
+    {# lobby #}
+    <li>
+        <a href="#">
+            <i class="fa fa-home fa-2x"></i>
+        </a>
+    </li>
+    {# end lobby #}
+
+    {# message #}
+    <li class="dropdown">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+            <i class="fa fa-envelope fa-2x"></i>
+            <span class="badge badge-header badge-warning">9</span>
+        </a>
+
+        {# message dropdown menu #}
+        <div class="dropdown-menu dropdown-menu-md with-arrow">
+            <div class="pad-all bord-btm">
+                <p class="text-lg text-muted text-thin mar-no">{{ 'tip.you_have_msg'|transchoice(9)|raw }}</p>
+            </div>
+            <div class="nano scrollable">
+                <div class="nano-content">
+                    <ul class="head-list">
+                        {# menu item #}
+                        <li>
+                            <a href="#" class="media">
+                                <div class="media-left">
+                                    <img src="{{ asset('img/av2.png') }}" alt="{{ 'alt.profile_pic'|trans }}" class="img-circle img-sm">
+                                </div>
+                                <div class="media-body">
+                                    <div class="text-nowrap">{{ 'tip.who_sent_u_msg'|trans({'%name%': 'Andy'}) }}</div>
+                                    <small class="text-muted">{{ 'tip.seconds_ago'|transchoice(1)|raw }}</small>
+                                </div>
+                            </a>
+                        </li>
+
+                        {# menu item #}
+                        <li>
+                            <a href="#" class="media">
+                                <div class="media-left">
+                                    <img src="{{ asset('img/av4.png') }}" alt="{{ 'alt.profile_pic'|trans }}" class="img-circle img-sm">
+                                </div>
+                                <div class="media-body">
+                                    <div class="text-nowrap">{{ 'tip.who_sent_u_msg'|trans({'%name%': 'Lucy'}) }}</div>
+                                    <small class="text-muted">{{ 'tip.seconds_ago'|transchoice(40)|raw }}</small>
+                                </div>
+                            </a>
+                        </li>
+
+                        {# menu item #}
+                        <li>
+                            <a href="#" class="media">
+                                <div class="media-left">
+                                    <img src="{{ asset('img/av3.png') }}" alt="{{ 'alt.profile_pic'|trans }}" class="img-circle img-sm">
+                                </div>
+                                <div class="media-body">
+                                    <div class="text-nowrap">{{ 'tip.who_sent_u_msg'|trans({'%name%': 'Jackson'}) }}</div>
+                                    <small class="text-muted">{{ 'tip.minutes_ago'|transchoice(1)|raw }}</small>
+                                </div>
+                            </a>
+                        </li>
+
+                        {# menu item #}
+                        <li>
+                            <a href="#" class="media">
+                                <div class="media-left">
+                                    <img src="{{ asset('img/av6.png') }}" alt="{{ 'alt.profile_pic'|trans }}" class="img-circle img-sm">
+                                </div>
+                                <div class="media-body">
+                                    <div class="text-nowrap">{{ 'tip.who_sent_u_msg'|trans({'%name%': 'Donna'}) }}</div>
+                                    <small class="text-muted">{{ 'tip.hours_ago'|transchoice(1)|raw }}</small>
+                                </div>
+                            </a>
+                        </li>
+
+                        {# menu item #}
+                        <li>
+                            <a href="#" class="media">
+                                <div class="media-left">
+                                    <img src="{{ asset('img/av4.png') }}" alt="{{ 'alt.profile_pic'|trans }}" class="img-circle img-sm">
+                                </div>
+                                <div class="media-body">
+                                    <div class="text-nowrap">{{ 'tip.who_sent_u_msg'|trans({'%name%': 'Lucy'}) }}</div>
+                                    <small class="text-muted">{{ 'tip.days_ago'|transchoice(1)|raw }}</small>
+                                </div>
+                            </a>
+                        </li>
+
+                        {# menu item #}
+                        <li>
+                            <a href="#" class="media">
+                                <div class="media-left">
+                                    <img src="{{ asset('img/av3.png') }}" alt="{{ 'alt.profile_pic'|trans }}" class="img-circle img-sm">
+                                </div>
+                                <div class="media-body">
+                                    <div class="text-nowrap">{{ 'tip.who_sent_u_msg'|trans({'%name%': 'Jackson'}) }}</div>
+                                    <small class="text-muted">{{ 'tip.years_ago'|transchoice(1)|raw }}</small>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {# dropdown menu footer #}
+            <div class="pad-all bord-top">
+                <a href="#" class="btn-link text-dark box-block">
+                    <i class="fa fa-angle-right fa-lg pull-right"></i>{{ 'tip.show_all_message'|trans }}
+                </a>
+            </div>
+        </div>
+    </li>
+    {# end message #}
+
+    {# search box #}
+    <li class="searchbox">
+        <a> {# <-- use <a> to align search box vertically as it has been defined in this way in nifty.css #}
+            <form>
+                <div class="form-group searchbox">
+                    <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" placeholder="{{ 'placeholder.search'|trans }}">
+                        <div class="input-group-btn">
+                            <button class="text-muted" type="button"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </a>
+    </li>
+    {# end search box #}
+</ul>

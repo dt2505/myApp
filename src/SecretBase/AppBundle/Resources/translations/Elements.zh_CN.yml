@@ -8,6 +8,8 @@ button:
     upload_avatar: 上传头像
     upload_cover: 上传封面
     reset_password: 重置密码
+    follow: 关注
+    share: 分享
 radio_button:
     practitioner: 从业者
     seeker: 寻花者
@@ -35,11 +37,18 @@ placeholder:
     country: 选择国家...
     poscode: 输入邮编
     desc: 说说自己吧,让更多的人了解你
+    search: 搜索...
+    status: 你在想什么？
 link:
     forgot_password: 忘记密码 ？
     create_new_account: 建立新账户
     terms_conditions: 服务使用协议
     back_to_login: 返回登陆页面
+    logout: 登出
+    settings: 设置
+    profile: 个人信息
+    help: 帮助
+    lock_screen: 锁屏
 label:
     username: 用户名
     email: 电子邮箱
@@ -75,6 +84,27 @@ label:
     gender: 性别
     male: 男
     female: 女
+    followers: 关注你的人
+    followings: 你关注的人
+tip:
+    you_have_msg: '{0} 你没有消息|{1} 你有<b style="color:blue">一</b>个未读消息|[2,999] 你有<b style="color:blue">%count%</b>未读消息|[1000,Inf] 你有<b style="color:red">大量</b>未读消息'
+    who_sent_u_msg: '%name% 给你发了消息'
+    seconds_ago: '[1,10] 刚刚|[11,59] %count%秒前'
+    minutes_ago: '{1} 一分钟前|[2,59] %count%分钟前'
+    hours_ago: '{1} 一小时前|[2,59] %count%小时前'
+    days_ago: '{1} 昨天|[2,Inf] %count%天前'
+    weeks_ago: '{1} 上星期|[2,Inf] %count%星期前'
+    months_ago: '{1} 上个月|[2,Inf] %count%月前'
+    years_ago: '{1} 去年|[2,Inf] %count%年前'
+    show_all_message: 显示所有消息
+    add_photo: 上传照片
+    likes: 大爱
+    comments: 留言
+    view_new_statuses: '{1} 一条新更新|[2,Inf] %count%条新更新'
+alt:
+    profile_pic: 头像
+    logo: Logo
+    cover: 封面
 heading:
     sign_in_account: 登陆账户
     create_account: 新建账户

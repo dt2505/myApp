@@ -1,0 +1,33 @@
+{% trans_default_domain 'Elements' %}
+
+<div class="media-block feed">
+    <a class="media-left" href="#"><img class="img-circle img-sm" alt="{{ profilePicAlt }}" src="{{ avatar }}"></a>
+    <div class="media-body">
+        <div class="mar-btm">
+            <a href="#" class="btn-link text-semibold media-heading box-inline">{{ name }}</a>
+            <p class="text-muted text-sm">{{ createdAt }}</p>
+        </div>
+        <p>{{ text }}</p>
+        <img class="img-responsive mar-no" src="{{ medias.url }}" alt="{{ medias.alt }}">
+        <div class="pad-ver">
+            <a href="#" class="mar-hor add-tooltip likes" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ 'tip.likes'|trans }}">
+                <i class="fa fa-heart-o fa-lg text-default"></i> <span class="text-default text-bold">{{ likes|default('') }}</span>
+            </a>
+
+            <a href="#" class="mar-hor add-tooltip comments" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ 'tip.comments'|trans }}">
+                {% set icon = "fa-comment-o" %}
+                {% if comments > 1 %}
+                    {% set icon = "fa-comments-o" %}
+                {% endif %}
+                <i class="fa {{ icon }} fa-lg text-default"></i> <span class="text-default text-bold">{{ comments|default('') }}</span>
+
+            </a>
+        </div>
+
+        <hr class="mar-no">
+        {# comments #}
+        {% include 'AppBundle:elements:status/comment.html.twig' %}
+    </div>
+</div>
+
+

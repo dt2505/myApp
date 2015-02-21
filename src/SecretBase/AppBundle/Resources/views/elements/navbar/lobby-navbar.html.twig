@@ -1,0 +1,15 @@
+<header id="navbar" >
+    <div id="navbar-container" class="boxed">
+        {# brand name and logo #}
+        <div class="navbar-header">
+            {% include 'AppBundle:elements:navbar/brand-name.html.twig' %}
+        </div>
+
+        {# navbar #}
+        <div class="navbar-content clearfix">
+            {% include 'AppBundle:elements:navbar/inline-tools.html.twig' with {direction: 'pull-left'} %}
+
+            {% include 'AppBundle:elements:navbar/user-dropdown.html.twig' with {direction: 'pull-right'} %}
+        </div>
+    </div>
+</header>

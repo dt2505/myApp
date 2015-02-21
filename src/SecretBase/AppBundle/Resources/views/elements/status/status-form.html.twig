@@ -1,0 +1,20 @@
+{% trans_default_domain 'Elements' %}
+
+<form id="status-form" action="#" class="form-horizontal" method="post">
+    <div class="form-group mar-no">
+        <textarea class="form-control status-textarea" rows="5" placeholder="{{ 'placeholder.status'|trans }}"></textarea>
+
+        {# image preview #}
+        <div class="clearfix bg-gray sf-photo-priview">
+            {% include 'AppBundle:elements:image-preview.html.twig' %}
+        </div>
+
+        {# footer tool bar #}
+        <div id="footer-toolbar" class="mar-top">
+            <button id="sf-add-photo" class="btn btn-md btn-default btn-hover-default" type="button"><i class="fa fa-camera fa-lg fa-fw"></i> {{ 'tip.add_photo'|trans }}</button>
+            <button id="sf-submit" class="btn btn-md btn-primary pull-right" type="submit"><i class="fa fa-pencil fa-fw"></i> {{ 'button.share'|trans }}</button>
+        </div>
+    </div>
+</form>
+
+

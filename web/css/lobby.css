@@ -1,0 +1,42 @@
+.user-profile-body {
+    position:relative;
+    padding: 10px 15px 15px 90px;
+}
+
+.user-profile-body > .user-profile-img {
+    position:absolute;
+    top:-32px;left:45px;
+}
+
+.user-profile-name {
+    position: absolute;
+}
+
+.status-textarea {
+    /*resize: vertical;*/
+    resize: none;
+}
+
+.status-preview-content {
+    float: left;
+    position:relative;
+    padding: 5px;
+}
+
+.status-preview-content > div > .status-preview-dismiss {
+    position:absolute;
+    top: 0;
+    left: 50px;
+}
+.status-preview-dismiss > i:hover,
+.status-preview-dismiss > i:active {
+    color: #999999;
+}
+
+.no-pad-top {
+    padding-top: 0;
+}
+
+.no-pad-bottom {
+    padding-bottom: 0;
+}

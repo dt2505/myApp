@@ -1,0 +1,152 @@
+{% trans_default_domain 'Elements' %}
+
+{# use macro #}
+{% import _self as userProfile %}
+
+{# user profile aside #}
+<aside id="aside-container">
+    <div id="aside">
+        <div class="nano">
+            <div class="nano-content">
+
+                {# user profile widget #}
+                <div class="widget">
+                    <div class="widget-header bg-purple">
+                        <img class="widget-bg img-responsive" src="{{ asset('img/thumbs/img3.jpg') }}" alt="{{ 'alt.cover'|trans }}">
+                    </div>
+                    <div class="widget-body text-center user-profile-body">
+                        <img alt="{{ 'alt.profile_pic'|trans }}" class="widget-img img-lg img-circle img-border user-profile-img" src="{{ asset('img/av1.png') }}">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h5 class="mar-no user-profile-name">{{ name }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pad-hor">
+                        <ul class="list-unstyled pad-top text-center mar-no clearfix">
+                            <li class="col-xs-6">
+                                <span class="text-lg">{{ followings|number_format }}</span>
+                                <p class="text-muted text-uppercase">
+                                    <small>{{ 'label.followings'|trans }}</small>
+                                </p>
+                            </li>
+                            <li class="col-xs-6">
+                                <span class="text-lg">{{ followers|number_format }}</span>
+                                <p class="text-muted text-uppercase">
+                                    <small>{{ 'label.followers'|trans }}</small>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-block btn-primary">{{ 'button.follow'|trans }}</button>
+
+                    <div class="pad-hor">
+                        <h5>{{ 'label.about_me'|trans }}</h5>
+                        <small class="text-thin">{{ aboutMe }}</small>
+                    </div>
+                    <hr>
+                    {% if contact is defined %}
+                        {{ userProfile.showContact(contact) }}
+                    {% else %}
+                        <div class="pad-hor text-muted">{{ 'no_contact'|trans({}, 'Messages') }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+{% macro showContact(contact) %}
+{% spaceless %}
+    {% set email = contact.email|default('') %}
+    {% set qq = contact.qq|default('') %}
+    {% set facebook = contact.facebook|default('') %}
+    {% set twitter = contact.twitter|default('') %}
+    {% set webchat = contact.webchat|default('') %}
+    {% set phone = contact.phone|default('') %}
+    {% set mobile = contact.mobile|default('') %}
+    {% set address = contact.address|default('') %}
+    {% set suburb = contact.suburb|default('') %}
+    {% set state = contact.state|default('') %}
+    {% set country = contact.country|default('') %}
+    {% set poscode = contact.poscode|default('') %}
+
+    <div class="pad-hor">
+        <h5>Contact</h5>
+        <ul class="list-unstyled">
+            {% if email %}
+            <li>
+                <small class="text-thin col-xs-4" style="padding-left: 0;">{{ 'label.email'|trans }}</small>
+                <small class="text-thin">{{ email }}</small>
+            </li>
+            {% endif %}
+            {% if qq %}
+            <li>
+                <small class="text-thin col-xs-4" style="padding-left: 0;">{{ 'label.qq'|trans }}</small>
+                <small class="text-thin">{{ qq }}</small>
+            </li>
+            {% endif %}
+            {% if facebook %}
+            <li>
+                <small class="text-thin col-xs-4" style="padding-left: 0;">{{ 'label.facebook'|trans }}</small>
+                <small class="text-thin">{{ facebook }}</small>
+            </li>
+            {% endif %}
+            {% if twitter %}
+            <li>
+                <small class="text-thin col-xs-4" style="padding-left: 0;">{{ 'label.twitter'|trans }}</small>
+                <small class="text-thin">{{ twitter }}</small>
+            </li>
+            {% endif %}
+            {% if webchat %}
+            <li>
+                <small class="text-thin col-xs-4" style="padding-left: 0;">{{ 'label.webchat'|trans }}</small>
+                <small class="text-thin">{{ webchat }}</small>
+            </li>
+            {% endif %}
+            {% if phone %}
+            <li>
+                <small class="text-thin col-xs-4" style="padding-left: 0;">{{ 'label.phone'|trans }}</small>
+                <small class="text-thin">{{ phone }}</small>
+            </li>
+            {% endif %}
+            {% if mobile %}
+            <li>
+                <small class="text-thin col-xs-4" style="padding-left: 0;">{{ 'label.mobile'|trans }}</small>
+                <small class="text-thin">{{ mobile }}</small>
+            </li>
+            {% endif %}
+            {% if address %}
+            <li>
+                <small class="text-thin col-xs-4" style="padding-left: 0;">{{ 'label.address'|trans }}</small>
+                <small class="text-thin">{{ address }}</small>
+            </li>
+            {% endif %}
+            {% if suburb %}
+            <li>
+                <small class="text-thin col-xs-4" style="padding-left: 0;">{{ 'label.suburb'|trans }}</small>
+                <small class="text-thin">{{ suburb }}</small>
+            </li>
+            {% endif %}
+            {% if state %}
+            <li>
+                <small class="text-thin col-xs-4" style="padding-left: 0;">{{ 'label.state'|trans }}</small>
+                <small class="text-thin">{{ state }}</small>
+            </li>
+            {% endif %}
+            {% if country %}
+            <li>
+                <small class="text-thin col-xs-4" style="padding-left: 0;">{{ 'label.country'|trans }}</small>
+                <small class="text-thin">{{ country }}</small>
+            </li>
+            {% endif %}
+            {% if poscode %}
+            <li>
+                <small class="text-thin col-xs-4" style="padding-left: 0;">{{ 'label.poscode'|trans }}</small>
+                <small class="text-thin">{{ poscode }}</small>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+{% endspaceless %}
+{% endmacro %}

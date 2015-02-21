@@ -1,0 +1,44 @@
+{% trans_default_domain 'Elements' %}
+<ul class="nav navbar-top-links {{ direction }}">
+    <li class="dropdown">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+            <span class="pull-right">
+                <img class="img-circle img-user media-object" src="{{ asset('img/av1.png') }}" alt="{{ 'alt.profile_pic'|trans }}">
+            </span>
+            {# 'dropdown-user' should be applied to <li> as its id if username wants to be also displayed' #}
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-xs dropdown-menu-right with-arrow panel-default">
+            {# user dropdown menu #}
+            <ul class="head-list">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user fa-fw fa-lg"></i> {{ 'link.profile'|trans }}
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-gear fa-fw fa-lg"></i> {{ 'link.settings'|trans }}
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-question-circle fa-fw fa-lg"></i> {{ 'link.help'|trans }}
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-lock fa-fw fa-lg"></i> {{ 'link.lock_screen'|trans }}
+                    </a>
+                </li>
+            </ul>
+
+            {# user dropdown footer #}
+            <div class="pad-all text-right">
+                <a href="{{ path('fos_user_security_login') }}" class="btn btn-primary">
+                    <i class="fa fa-sign-out fa-fw"></i> {{ 'link.logout'|trans }}
+                </a>
+            </div>
+        </div>
+    </li>
+</ul>

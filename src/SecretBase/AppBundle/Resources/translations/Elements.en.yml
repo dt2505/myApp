@@ -8,6 +8,8 @@ button:
     upload_avatar: Upload avatar
     upload_cover: Upload cover
     reset_password: Reset password
+    follow: Follow
+    share: Share
 radio_button:
     practitioner: Practitioner
     seeker: Seeker
@@ -35,11 +37,18 @@ placeholder:
     country: Select country...
     poscode: Enter post code
     desc: Tell us something about you
+    search: Search...
+    status: What is in your mind?
 link:
     forgot_password: Forgot password ?
     create_new_account: Create a new account
     terms_conditions: Terms and Conditions
     back_to_login: Back to login
+    logout: Logout
+    settings: Settings
+    profile: Profile
+    help: Help
+    lock_screen: Lock screen
 label:
     username: Username
     email: Email
@@ -75,6 +84,28 @@ label:
     gender: Gender
     male: Male
     female: Femal
+    followers: Followers
+    followings: Followings
+    about_me: About me
+tip:
+    you_have_msg: '{0} You have no messages|{1} You have <b style="color:blue">one</b> message unread|[2,999] You have <b style="color:blue">%count%</b> messages unread|[1000,Inf] You have <b style="color:red">so many</b> messages unread'
+    who_sent_u_msg: '%name% sent you a message'
+    seconds_ago: '{1} just now|[2,59] %count% seconds ago'
+    minutes_ago: '{1} one minute ago|[2,59] %count% minutes ago'
+    hours_ago: '{1} one hour ago|[2,59] %count% hours ago'
+    days_ago: '{1} Yestoday|[2,Inf] %count% days ago'
+    weeks_ago: '{1} Last week|[2,Inf] %count% weeks ago'
+    months_ago: '{1} Last month|[2,Inf] %count% months ago'
+    years_ago: '{1} Last year|[2,Inf] %count% years ago'
+    show_all_message: Show all messages
+    add_photo: Add Photo
+    likes: Likes
+    comments: Comments
+    view_new_statuses: '{1} View %count% status|[2,Inf] View %count% statuses'
+alt:
+    profile_pic: Profile picture
+    logo: Logo
+    cover: Cover
 heading:
     sign_in_account: Sign in to your account
     create_account: Create an account

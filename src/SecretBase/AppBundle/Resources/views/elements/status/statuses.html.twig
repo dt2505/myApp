@@ -1,0 +1,40 @@
+{% trans_default_domain 'Elements' %}
+
+<div class="row">
+    <div class="col-xs-10">
+        {# status form panel #}
+        <div class="panel bg-gray-light">
+            <div class="panel-body">
+                {% include 'AppBundle:elements:status/status-form.html.twig' %}
+            </div>
+        </div>
+
+        {# new statuses notification #}
+        <div class="new-statuses">
+            <a href="#" class="btn btn-lg btn-primary btn-block">
+                <i class="fa fa-bell-o fa-fw"></i> <span class="text-sm">{{ 'tip.view_new_statuses'|transchoice(196) }}</span>
+            </a>
+        </div>
+
+        {# feed panel #}
+        <div class="panel">
+            <div class="panel-body">
+
+                {% include 'AppBundle:elements:status/feed.html.twig' with {
+                    avatar: asset('img/av1.png'),
+                    profilePicAlt: 'John Doe',
+                    name: 'John Doe',
+                    createdAt: 'tip.minutes_ago'|transchoice(11),
+                    likes: 250,
+                    comments: 12,
+                    text: "Lorem ipsum dolor sit amet.",
+                    medias: {
+                        url: asset('img/av1.png'),
+                        alt: "ImageName"
+                    }
+                } %}
+            </div>
+        </div>
+
+    </div>
+</div>

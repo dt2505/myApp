@@ -16,7 +16,7 @@ class StatusController extends BaseController
 {
     public function getLobbyAction(Request $request)
     {
-        return $this->render("AppBundle:layout:lobby/lobby.html.twig");
+        return $this->render("AppBundle::lobby.html.twig");
     }
 
     /**

@@ -1,0 +1,44 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('plugins/dropzone/dropzone.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/lobby.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div id="container" class="effect aside-in aside-left navbar-fixed footer-fixed">
+        {# navbar #}
+        {% include 'AppBundle:elements:navbar/lobby-navbar.html.twig' %}
+
+        {# content #}
+        <div class="boxed">
+            <div id="content-container">
+                <div id="page-content">
+                    {% include 'AppBundle:elements:status/statuses.html.twig' %}
+                </div>
+            </div>
+        </div>
+
+        {# aside bar - user profile #}
+        {% include 'AppBundle:elements:aside-bar/user-profile.html.twig' with {
+            name: 'Lucy Moon',
+            followings: 1345,
+            followers: 23456,
+            aboutMe: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.'
+        } %}
+
+
+        {# footer #}
+        {% include 'AppBundle:elements:lobby-footer.html.twig' %}
+
+        {# scroll to top #}
+        <button id="scroll-top" class="btn"><i class="fa fa-chevron-up"></i></button>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('plugins/dropzone/dropzone.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/dropfile.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/feed.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/lobby.js') }}"></script>
+{% endblock %}
