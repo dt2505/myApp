@@ -2,27 +2,21 @@
     position:relative;
     padding: 10px 15px 15px 90px;
 }
-
 .user-profile-body > .user-profile-img {
     position:absolute;
     top:-32px;left:45px;
 }
-
 .user-profile-name {
     position: absolute;
 }
-
 .status-textarea {
-    /*resize: vertical;*/
     resize: none;
 }
-
 .status-preview-content {
     float: left;
     position:relative;
     padding: 5px;
 }
-
 .status-preview-content > div > .status-preview-dismiss {
     position:absolute;
     top: 0;
@@ -32,11 +26,15 @@
 .status-preview-dismiss > i:active {
     color: #999999;
 }
-
+.no-pad {
+    padding: 0;
+}
 .no-pad-top {
     padding-top: 0;
 }
-
-.no-pad-bottom {
+.no-pad-btm {
     padding-bottom: 0;
+}
+.timeline-comment-item {
+    margin-bottom: 20px;
 }

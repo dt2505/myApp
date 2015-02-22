@@ -61,7 +61,7 @@ label:
     about_us: About us
     contact_us: Contact us
     privacy: Privacy
-    copyright: Copyright All Reserved 2015
+    copyright: Copyright All Reserved %year%
     remember_me: Remeber me
     qq: QQ
     twitter: Twitter

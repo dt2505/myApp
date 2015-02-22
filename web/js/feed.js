@@ -47,18 +47,37 @@ feed = (function () {
         });
     }
 
+    /**
+     * bind click event to comment icon
+     * @param $comments
+     */
+    function bindCommentsClick($comments) {
+        $comments.on("click", function() {
+            var $currentStatus = $(this).parent().parent().parent(),
+                $commentsPanel = $currentStatus.find("#" + $currentStatus.attr("id") + "_comments_panel");
+
+            if ($commentsPanel.hasClass("hidden")) {
+                $commentsPanel.removeClass("hidden");
+            } else {
+                $commentsPanel.addClass("hidden");
+            }
+        })
+    }
+
+    /**
+     * expose public variables and functions
+     */
     return {
-        // public variables
         config: {
             el: ""
         },
 
-        // public functions
         init: function () {
             var $feed = $(".feed");
 
             hoverLikes($feed);
             hoverComments($feed);
+            bindCommentsClick($(".comments"));
         }
     };
 }());

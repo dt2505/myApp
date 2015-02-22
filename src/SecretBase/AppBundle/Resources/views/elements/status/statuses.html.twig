@@ -1,4 +1,81 @@
 {% trans_default_domain 'Elements' %}
+{# test data #}
+{% set statuses = [
+    {
+        id: 1,
+        user: {
+            avatar: asset('img/av1.png'),
+            avatarAlt: 'John Doe',
+            name: 'John Doe',
+        },
+        createdAt: 'tip.minutes_ago'|transchoice(11),
+        likes: 250,
+        comments: [
+            {
+                id: 1,
+                user: {
+                    avatar: asset('img/av5.png'),
+                    avatarAlt: "Maria Leanz",
+                    name: "Maria Leanz",
+                },
+                createdAt: 'tip.minutes_ago'|transchoice(11),
+                text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
+            },
+            {
+                id: 2,
+                user: {
+                    avatar: asset('img/av5.png'),
+                    avatarAlt: "Maria Leanz",
+                    name: "Maria Leanz",
+                },
+                createdAt: 'tip.minutes_ago'|transchoice(11),
+                text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
+            }
+        ],
+        text: "Lorem ipsum dolor sit amet.",
+        media: {
+            url: asset('img/av1.png'),
+            alt: "ImageName"
+        }
+    },
+    {
+        id: 2,
+        user: {
+            avatar: asset('img/av1.png'),
+            avatarAlt: 'John Doe',
+            name: 'John Doe',
+        },
+        createdAt: 'tip.minutes_ago'|transchoice(11),
+        likes: 250,
+        comments: [
+            {
+                id: 1,
+                user: {
+                    avatar: asset('img/av5.png'),
+                    avatarAlt: "Maria Leanz",
+                    name: "Maria Leanz",
+                },
+                createdAt: 'tip.minutes_ago'|transchoice(11),
+                text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
+            },
+            {
+                id: 2,
+                user: {
+                    avatar: asset('img/av5.png'),
+                    avatarAlt: "Maria Leanz",
+                    name: "Maria Leanz",
+                },
+                createdAt: 'tip.minutes_ago'|transchoice(11),
+                text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
+            }
+        ],
+        text: "Lorem ipsum dolor sit amet.",
+        media: {
+            url: asset('img/av1.png'),
+            alt: "ImageName"
+        }
+    }
+] %}
 
 <div class="row">
     <div class="col-xs-10">
@@ -18,21 +95,18 @@
 
         {# feed panel #}
         <div class="panel">
-            <div class="panel-body">
-
-                {% include 'AppBundle:elements:status/feed.html.twig' with {
-                    avatar: asset('img/av1.png'),
-                    profilePicAlt: 'John Doe',
-                    name: 'John Doe',
-                    createdAt: 'tip.minutes_ago'|transchoice(11),
-                    likes: 250,
-                    comments: 12,
-                    text: "Lorem ipsum dolor sit amet.",
-                    medias: {
-                        url: asset('img/av1.png'),
-                        alt: "ImageName"
-                    }
-                } %}
+            <div class="panel-body no-pad">
+                {% for status in statuses %}
+                    {% include 'AppBundle:elements:status/feed.html.twig' with {
+                        id: status.id,
+                        user: status.user,
+                        createdAt: status.createdAt,
+                        likes: status.likes,
+                        comments: status.comments,
+                        text: status.text,
+                        media: status.media
+                    } %}
+                {% endfor %}
             </div>
         </div>
 

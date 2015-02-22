@@ -1,0 +1,17 @@
+{# present comments in a classic way #}
+<div id="{{ statusId }}_comments_panel" class="bord-top">
+    {# comment form #}
+    {% include 'AppBundle:elements:comments/comment-form.html.twig' with {
+        user: user
+    } %}
+
+    {% for comment in comments %}
+        {% set commentId = statusId ~ '_' ~ comment.id %}
+        {% include 'AppBundle:elements:comments/classic-comment-item.html.twig' with {
+            commentId: commentId,
+            user: comment.user,
+            text: comment.text,
+            createdAt: comment.createdAt
+        } %}
+    {% endfor %}
+</div>

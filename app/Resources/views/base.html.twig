@@ -15,7 +15,7 @@
     </head>
 
     <body class="bg-pure-black">
-        {% block body %}{% endblock %}
+        {% block body %}{% endblock %} {# <-wrap this block with a fixed width or max-width for having a fixed style #}
 
         <script src="{{ asset('./js/jquery-1.11.2.min.js') }}"></script>
         <script src="{{ asset('./js/bootstrap.js') }}"></script>

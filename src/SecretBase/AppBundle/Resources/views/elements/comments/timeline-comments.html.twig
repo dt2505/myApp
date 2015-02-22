@@ -1,0 +1,23 @@
+<div class="timeline" id="{{ statusId }}_comments_panel">
+
+    {# timeline header #}
+    <div class="timeline-header">
+        <div class="timeline-header-title bg-gray-light">
+            {# comment form #}
+            {% include 'AppBundle:elements:comments/comment-form.html.twig' with {
+                user: user
+            } %}
+        </div>
+    </div>
+
+    {# comments #}
+    {% for comment in comments %}
+        {% set commentId = statusId ~ '_' ~ comment.id %}
+        {% include 'AppBundle:elements:comments/timeline-comment-item.html.twig' with {
+            commentId: commentId,
+            user: comment.user,
+            text: comment.text,
+            createdAt: comment.createdAt
+        } %}
+    {% endfor %}
+</div>
