@@ -27,6 +27,17 @@ class RegistrationController extends BaseController
     }
 
     /**
+     * @param Request $request
+     * @return Response
+     *
+     * @Rest\Post("/user/register")
+     */
+    public function persistUserDetailsAction(Request $request)
+    {
+        return $this->redirect($this->generateUrl("get_lobby"));
+    }
+
+    /**
      * @param Request $rquest
      * @return Response
      *
