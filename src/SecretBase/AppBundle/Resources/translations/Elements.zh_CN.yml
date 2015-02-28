@@ -101,6 +101,8 @@ tip:
     likes: 大爱
     comments: 留言
     view_new_statuses: '{1} 一条新更新|[2,Inf] %count%条新更新'
+    follow: 关注
+    last_updated_time: 最近更新时间
 alt:
     profile_pic: 头像
     logo: Logo

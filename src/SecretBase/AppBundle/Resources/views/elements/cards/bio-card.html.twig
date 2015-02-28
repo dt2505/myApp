@@ -1,0 +1,43 @@
+{% trans_default_domain 'Elements' %}
+{% import 'AppBundle:widgets:like-comment-link-widget.html.twig' as lcWidget %}
+
+<div class="item panel panel-colorful bg-dark">
+    <div class="panel-bg-cover">
+        <a href="{{ path('get_home_timeline') }}" class="btn btn-link"><img class="img-responsive" src="{{ user.cover }}" alt="{{ user.name }}"></a>
+    </div>
+    <div class="panel-media">
+        <a href="{{ path('get_home_timeline') }}" ><img src="{{ user.avatar }}" class="panel-media-img img-circle img-sm img-border-dark" alt="{{ user.name }}"></a>
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="panel-media-heading">{{ user.name }}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-9">
+                <p class="text-muted">{{ user.role }}</p>
+                <p class="text-muted">{{ user.contact }}</p>
+            </div>
+            <div class="col-xs-3">
+                <a href="#" class="pull-right"><i class="fa fa-eye fa-fw fa-lg add-tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ 'tip.follow'|trans }}"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body pad-ver-5">
+        <p>{{ user.bio }}</p>
+        <p class="mar-top text-muted">
+            <span class="add-tooltip" data-toggle="tooltip" data-placement="right" data-original-title="{{ 'tip.last_updated_time'|trans }}"><i class="fa fa-clock-o fa-fw"></i>{{ status.lastUpdatedAt }}</span>
+        </p>
+    </div>
+    <div class="panel-footer bg-trans">
+        {{ lcWidget.showLinksOFCommentAndLike(user.comments_count, user.likes_count, {class: "btn btn-link", dataPlacement: "bottom"}) }}
+
+        <div class="pull-right">
+            <span class="add-tooltip mar-rgt" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ 'label.followings'|trans }}">
+                <i class="fa fa-user fa-lg text-default"></i> <span class="text-default text-bold">{{ user.followings|default(0)|number_format }}</span>
+            </span>
+            <span class="add-tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ 'label.followers'|trans }}">
+                <i class="fa fa-users fa-lg text-default"></i> <span class="text-default text-bold">{{ user.followers|default(0)|number_format }}</span>
+            </span>
+        </div>
+    </div>
+</div>

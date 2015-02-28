@@ -1,0 +1,326 @@
+{# status cards #}
+{% set status_cards = [
+    {
+        text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+        media: {
+            url: asset('img/thumbs/img2.jpg'),
+            alt: "ImageName"
+        },
+        user: {
+            avatar: asset('img/av1.png'),
+            name: 'John Doe',
+            contact: "abc@gmail.com"
+        },
+        comments_count: 10,
+        likes_count: 2
+    },
+{
+    text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+    user: {
+    avatar: asset('img/av1.png'),
+    name: 'John Doe',
+    contact: "abc@gmail.com"
+    },
+    comments_count: 1,
+    likes_count: 2
+},
+{
+text: "Lorem ipsum dolor sit amet",
+user: {
+avatar: asset('img/av1.png'),
+name: 'John Doe',
+contact: "abc@gmail.com"
+},
+comments_count: 1,
+likes_count: 2
+},
+{
+text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+media: {
+url: asset('img/thumbs/img2.jpg'),
+alt: "ImageName"
+},
+user: {
+avatar: asset('img/av1.png'),
+name: 'John Doe',
+contact: "abc@gmail.com"
+},
+comments_count: 10,
+likes_count: 2
+},
+{
+text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+user: {
+avatar: asset('img/av1.png'),
+name: 'John Doe',
+contact: "abc@gmail.com"
+},
+comments_count: 1,
+likes_count: 2
+},
+{
+text: "Lorem ipsum dolor sit amet",
+user: {
+avatar: asset('img/av1.png'),
+name: 'John Doe',
+contact: "abc@gmail.com"
+},
+comments_count: 1,
+likes_count: 2
+},
+{
+text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+media: {
+url: asset('img/thumbs/img2.jpg'),
+alt: "ImageName"
+},
+user: {
+avatar: asset('img/av1.png'),
+name: 'John Doe',
+contact: "abc@gmail.com"
+},
+comments_count: 10,
+likes_count: 2
+},
+{
+text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+user: {
+avatar: asset('img/av1.png'),
+name: 'John Doe',
+contact: "abc@gmail.com"
+},
+comments_count: 1,
+likes_count: 2
+},
+{
+text: "Lorem ipsum dolor sit amet",
+user: {
+avatar: asset('img/av1.png'),
+name: 'John Doe',
+contact: "abc@gmail.com"
+},
+comments_count: 1,
+likes_count: 2
+},
+{
+text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+media: {
+url: asset('img/thumbs/img2.jpg'),
+alt: "ImageName"
+},
+user: {
+avatar: asset('img/av1.png'),
+name: 'John Doe',
+contact: "abc@gmail.com"
+},
+comments_count: 10,
+likes_count: 2
+},
+{
+text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+user: {
+avatar: asset('img/av1.png'),
+name: 'John Doe',
+contact: "abc@gmail.com"
+},
+comments_count: 1,
+likes_count: 2
+},
+{
+text: "Lorem ipsum dolor sit amet",
+user: {
+avatar: asset('img/av1.png'),
+name: 'John Doe',
+contact: "abc@gmail.com"
+},
+comments_count: 1,
+likes_count: 2
+}
+] %}
+
+{# bio cards #}
+{% set bio_cards = [
+{
+    user: {
+        likes_count: 10,
+        comments_count: 2,
+        avatar: asset('img/av1.png'),
+        cover: asset('img/thumbs/img1.jpg'),
+        name: 'Stephen Tran',
+        role: 'House',
+        contact: 'abc@gmail.com',
+        bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+        followers: 13504,
+        followings: 13504
+    },
+    status: {
+        lastUpdatedAt: "now"|date("Y-m-d H:i:s")
+    }
+},
+{
+user: {
+likes_count: 10,
+comments_count: 1,
+avatar: asset('img/av1.png'),
+cover: asset('img/thumbs/img1.jpg'),
+name: 'Stephen Tran',
+role: 'House',
+contact: 'abc@gmail.com',
+bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+followers: 13504,
+followings: 13504
+},
+status: {
+lastUpdatedAt: "now"|date("Y-m-d H:i:s")
+}
+},
+{
+user: {
+likes_count: 10,
+comments_count: 2,
+avatar: asset('img/av1.png'),
+cover: asset('img/thumbs/img1.jpg'),
+name: 'Stephen Tran',
+role: 'House',
+contact: 'abc@gmail.com',
+bio: "Lorem ipsum dolor sit amet",
+followers: 13504,
+followings: 13504
+},
+status: {
+lastUpdatedAt: "now"|date("Y-m-d H:i:s")
+}
+},
+{
+user: {
+likes_count: 10,
+comments_count: 2,
+avatar: asset('img/av1.png'),
+cover: asset('img/thumbs/img1.jpg'),
+name: 'Stephen Tran',
+role: 'House',
+contact: 'abc@gmail.com',
+bio: "Lorem ipsum dolor sit amet",
+},
+status: {
+lastUpdatedAt: "now"|date("Y-m-d H:i:s")
+}
+},
+{
+user: {
+likes_count: 10,
+comments_count: 1,
+avatar: asset('img/av1.png'),
+cover: asset('img/thumbs/img1.jpg'),
+name: 'Stephen Tran',
+role: 'House',
+contact: 'abc@gmail.com',
+bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+followers: 13504,
+followings: 13504
+},
+status: {
+lastUpdatedAt: "now"|date("Y-m-d H:i:s")
+}
+},
+{
+user: {
+likes_count: 10,
+comments_count: 2,
+avatar: asset('img/av1.png'),
+cover: asset('img/thumbs/img1.jpg'),
+name: 'Stephen Tran',
+role: 'House',
+contact: 'abc@gmail.com',
+bio: "Lorem ipsum dolor sit amet",
+followers: 13504,
+followings: 13504
+},
+status: {
+lastUpdatedAt: "now"|date("Y-m-d H:i:s")
+}
+},
+{
+user: {
+likes_count: 10,
+comments_count: 2,
+avatar: asset('img/av1.png'),
+cover: asset('img/thumbs/img1.jpg'),
+name: 'Stephen Tran',
+role: 'House',
+contact: 'abc@gmail.com',
+bio: "Lorem ipsum dolor sit amet",
+},
+status: {
+lastUpdatedAt: "now"|date("Y-m-d H:i:s")
+}
+},
+{
+user: {
+likes_count: 10,
+comments_count: 1,
+avatar: asset('img/av1.png'),
+cover: asset('img/thumbs/img1.jpg'),
+name: 'Stephen Tran',
+role: 'House',
+contact: 'abc@gmail.com',
+bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+followers: 13504,
+followings: 13504
+},
+status: {
+lastUpdatedAt: "now"|date("Y-m-d H:i:s")
+}
+},
+{
+user: {
+likes_count: 10,
+comments_count: 2,
+avatar: asset('img/av1.png'),
+cover: asset('img/thumbs/img1.jpg'),
+name: 'Stephen Tran',
+role: 'House',
+contact: 'abc@gmail.com',
+bio: "Lorem ipsum dolor sit amet",
+followers: 13504,
+followings: 13504
+},
+status: {
+lastUpdatedAt: "now"|date("Y-m-d H:i:s")
+}
+},
+{
+user: {
+likes_count: 10,
+comments_count: 2,
+avatar: asset('img/av1.png'),
+cover: asset('img/thumbs/img1.jpg'),
+name: 'Stephen Tran',
+role: 'House',
+contact: 'abc@gmail.com',
+bio: "Lorem ipsum dolor sit amet",
+},
+status: {
+lastUpdatedAt: "now"|date("Y-m-d H:i:s")
+}
+},
+] %}
+
+<div id="status-card" class="mar-no">
+    {% for card in status_cards %}
+        {% include 'AppBundle:elements:cards/status-card.html.twig' with {
+            text: card.text,
+            user: card.user,
+            media: card.media|default(null),
+            likes_count: card.likes_count,
+            comments_count: card.comments_count
+        } %}
+    {% endfor %}
+
+    {% for card in bio_cards %}
+        {% include 'AppBundle:elements:cards/bio-card.html.twig' with {
+            user: card.user,
+            status: card.status
+        }%}
+    {% endfor %}
+</div>

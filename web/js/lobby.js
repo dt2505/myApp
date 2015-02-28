@@ -1,8 +1,8 @@
-$(document).ready(function() {
-    // initialize image preview before it gets uploaded
-    dropfile.init();
-
-    // initialize feed
-    feed.init();
+$(window).load(function() {
+    // init
+    $('#status-card').isotope({
+        // options
+        itemSelector: '.item',
+        layoutMode: 'masonry'
+    });
 });
-

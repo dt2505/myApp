@@ -26,15 +26,6 @@
 .status-preview-dismiss > i:active {
     color: #999999;
 }
-.no-pad {
-    padding: 0;
-}
-.no-pad-top {
-    padding-top: 0;
-}
-.no-pad-btm {
-    padding-bottom: 0;
-}
 .timeline-comment-item {
     margin-bottom: 20px;
 }

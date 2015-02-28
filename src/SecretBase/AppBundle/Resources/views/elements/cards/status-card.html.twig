@@ -1,0 +1,24 @@
+{% trans_default_domain 'Elements' %}
+{% import 'AppBundle:widgets:like-comment-link-widget.html.twig' as lcWidget %}
+
+<div class="item panel panel-colorful bg-gray-dark">
+    <div class="panel-heading  bg-dark">
+        {% include 'AppBundle:elements:cards/status-card-header.html.twig' with {
+            avatarAlt: user.name,
+            avatarUrl: user.avatar,
+            userName: user.name,
+            userContact: user.contact
+        } %}
+    </div>
+
+    <div id="feed-card-panel-body" class="panel-body">
+        <p class="pad-btm">{{ text }}</p>
+        {% if media is defined and media is not null %}
+            <img class="img-responsive" src="{{ asset(media.url) }}" alt="{{ media.alt }}">
+        {% endif %}
+    </div>
+
+    <div class="panel-footer bg-trans">
+        {{ lcWidget.showLinksOFCommentAndLike(comments_count, likes_count, {class: "btn btn-link", dataPlacement: "bottom"}) }}
+    </div>
+</div>

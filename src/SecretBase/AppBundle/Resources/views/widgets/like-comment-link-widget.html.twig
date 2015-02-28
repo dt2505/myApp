@@ -1,0 +1,24 @@
+{% trans_default_domain 'Elements' %}
+
+{% macro showLinksOFCommentAndLike(comments_count, likes_count, anchor) %}
+{% spaceless %}
+    <a class=" {{ anchor.class|default('') }} add-tooltip no-pad mar-rgt likes" data-toggle="tooltip" data-placement="{{ anchor.dataPlacement|default('bottom') }}" data-original-title="{{ 'tip.likes'|trans }}">
+        {% if likes_count|default(0) == 0 %}
+            {% set likes_count = null %}
+        {% endif %}
+        <i class="fa fa-heart-o fa-lg fa-fw text-default"></i> <span class="text-default text-bold">{{ likes_count }}</span>
+    </a>
+
+    <a class="{{ anchor.class|default('') }} add-tooltip no-pad comments" data-toggle="tooltip" data-placement="{{ anchor.dataPlacement|default('bottom') }}" data-original-title="{{ 'tip.comments'|trans() }}">
+        {% set icon = "fa-comment-o" %}
+
+        {% if comments_count > 1 %}
+            {% set icon = "fa-comments-o" %}
+        {% elseif comments_count == 0 %}
+            {% set comments_count = null %}
+        {% endif %}
+
+        <i class="fa {{ icon }} fa-lg fa-fw text-default"></i><span class="text-default text-bold">{{ comments_count }}</span>
+    </a>
+{% endspaceless %}
+{% endmacro %}

@@ -1,0 +1,18 @@
+{% trans_default_domain 'Elements' %}
+
+<div class="panel-control">
+    <a href="#"><i class="fa fa-eye fa-fw fa-lg add-tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ 'tip.follow'|trans }}"></i></a>
+</div>
+<div class="panel-title media">
+    <div class="media-left">
+        <a href="#" ><img class="img-sm" alt="{{ avatarAlt }}" src="{{ asset(avatarUrl) }}"></a>
+    </div>
+    <div class="media-body">
+        <div class="pad-top-10">
+            <p class="text-semibold text-md">{{ userName }}</p>
+            <p class="text-muted mar-no text-xs">
+                <span class="text-xs">{{ userContact }}</span>
+            </p>
+        </div>
+    </div>
+</div>

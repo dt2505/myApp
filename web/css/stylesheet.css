@@ -1,0 +1,90 @@
+#status-card {
+    margin: 30px 0 50px 0;
+    width: 100%;
+    padding: 1px;
+ /* for shadow */
+}
+#content-container {
+    background-color: #000000;
+}
+.item {
+    width: 400px;
+    float: left;
+    margin: 0 15px 15px 0;
+    padding: 0;
+    -webkit-box-shadow: 0 0 9px -2px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 9px -2px rgba(0, 0, 0, 0.8);
+}
+.item p {
+    /*font-size:11px;*/
+    line-height:15px;
+    /*padding:10px;*/
+    margin-bottom:0;
+}
+
+.item .highlight {
+    margin:0;
+    padding:10px 10px;
+    font-size:15px;
+    font-weight:normal;
+    line-height: 20px;
+    }
+
+.isotope,
+.isotope .isotope-item {
+   /*change duration value to whatever you like*/
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -ms-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+.isotope {
+    -webkit-transition-property: height, width;
+    -moz-transition-property: height, width;
+    -ms-transition-property: height, width;
+    -o-transition-property: height, width;
+    transition-property: height, width;
+}
+
+.isotope .isotope-item {
+    -webkit-transition-property: -webkit-transform, opacity;
+    -moz-transition-property: -moz-transform, opacity;
+    -ms-transition-property: -ms-transform, opacity;
+    -o-transition-property: -o-transform, opacity;
+    transition-property: transform, opacity;
+}
+
+/* responsive layout */
+
+@media (min-width: 0) and (max-width: 475px) {
+    #status-card {
+        margin: 30px auto 10px auto;
+        width: 225px !important;
+        padding: 5px;
+    }
+}
+
+@media (min-width: 475px) and (max-width: 700px) {
+    #status-card {
+        margin: 30px auto 10px auto;
+        width: 470px !important;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 767px) {
+    #status-card {
+        margin: 30px auto 10px auto;
+        width: 705px;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 979px) and (min-width: 767px) {
+    #status-card {
+        margin: 30px auto 10px auto;
+        width: 705px;
+    }
+}

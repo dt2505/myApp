@@ -1,0 +1,21 @@
+.bg-black {
+    background-color: #000000;
+}
+.bg-dark {
+    background-color: #333333;
+}
+.bg-dimgray {
+    background-color: #696969;
+}
+.bg-gray {
+    background-color: #808080;
+}
+.bg-trans {
+    background-color: transparent;
+}
+.bg-trans-im {
+    background-color: transparent !important;
+}
+.img-border-dark {
+    box-shadow: 0 0 0 4px #333333;
+}

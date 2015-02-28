@@ -1,21 +1,23 @@
 {% trans_default_domain 'Elements' %}
 
 <ul class="nav navbar-top-links {{ direction }}">
-    <li data-content="Additional Sidebar">
-        <a id="demo-toggle-aside" class="shortcut-grid" href="#">
-            <i class="fa fa-magic fa-2x"></i>
+
+    {# lobby #}
+    <li class="add-tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="Lobby">
+        <a href="{{ path('get_lobby') }}" >
+            <i class="fa fa-bank fa-2x"></i>
         </a>
     </li>
-    {# lobby #}
-    <li>
-        <a href="#">
+
+    {# home timeline #}
+    <li class="add-tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="Home">
+        <a href="{{ path('get_home_timeline') }}">
             <i class="fa fa-home fa-2x"></i>
         </a>
     </li>
-    {# end lobby #}
 
     {# message #}
-    <li class="dropdown">
+    <li class="dropdown add-tooltip " data-toggle="tooltip" data-placement="bottom" data-original-title="Message">
         <a href="#" data-toggle="dropdown" class="dropdown-toggle">
             <i class="fa fa-envelope fa-2x"></i>
             <span class="badge badge-header badge-warning">9</span>
@@ -118,7 +120,13 @@
             </div>
         </div>
     </li>
-    {# end message #}
+
+    {# write status #}
+    <li class="add-tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="Write status">
+        <a href="#">
+            <i class="fa fa-pencil fa-2x"></i>
+        </a>
+    </li>
 
     {# search box #}
     <li class="searchbox">
@@ -135,5 +143,4 @@
             </form>
         </a>
     </li>
-    {# end search box #}
 </ul>

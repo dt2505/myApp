@@ -102,6 +102,8 @@ tip:
     likes: Likes
     comments: Comments
     view_new_statuses: '{1} View %count% status|[2,Inf] View %count% statuses'
+    follow: Follow
+    last_updated_time: Last updated time
 alt:
     profile_pic: Profile picture
     logo: Logo

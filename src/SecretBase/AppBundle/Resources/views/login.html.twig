@@ -6,34 +6,40 @@
 {% endblock %}
 {% block body %}
     <div id="container" class="cls-container">
-        <!-- background image -->
+        {# background image #}
         {% include 'AppBundle:elements:bg-image.html.twig' with {imageClass: 'img-balloon'}%}
         
-        <!-- header -->
+        {# header #}
         {% include 'AppBundle:elements:header.html.twig' %}
         
-        <!-- login form -->
+        {# login form #}
         <div class="cls-content">
             <div class="cls-content-sm panel">
                 <div class="panel-body">
-                    <p class="pad-btm">{{ 'heading.sign_in_account'|trans }}</p>
-                    <form action="#" method="post">
+                    {% if error %}
+                        <p class="text-danger pad-btm">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+                    {% else %}
+                        <p class="pad-btm">{{ 'heading.sign_in_account'|trans }}</p>
+                    {% endif %}
+                    <form action="{{ path('fos_user_security_check') }}" method="post">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                <input type="text" class="form-control" placeholder="{{ 'placeholder.username'|trans }}">
+                                <input type="text" class="form-control" id="username" name="_username" required="required" placeholder="{{ 'placeholder.username'|trans }}">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
-                                <input type="password" class="form-control" placeholder="{{ 'placeholder.password'|trans }}">
+                                <input type="password" class="form-control" id="password" name="_password" required="required" placeholder="{{ 'placeholder.password'|trans }}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-8 text-left checkbox">
                                 <label class="form-checkbox form-icon">
-                                    <input type="checkbox"> {{ 'label.remember_me'|trans }}
+                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"> {{ 'label.remember_me'|trans }}
                                 </label>
                             </div>
                             <div class="col-xs-4">

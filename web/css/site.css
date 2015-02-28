@@ -1,0 +1,37 @@
+.no-pad {
+    padding: 0;
+}
+.no-pad-top {
+    padding-top: 0;
+}
+.no-pad-btm {
+    padding-bottom: 0;
+}
+.no-pad-lft {
+    padding-left: 0;
+}
+.no-pad-rgt {
+    padding-right: 0;
+}
+.no-pad-hor {
+    padding-left: 0;
+    padding-right: 0;
+}
+.no-pad-ver {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.pad-ver-5 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.pad-ver-10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.pad-top-10 {
+    padding-top: 10px;
+}
+.pad-btm-5 {
+    padding-bottom: 5px;
+}

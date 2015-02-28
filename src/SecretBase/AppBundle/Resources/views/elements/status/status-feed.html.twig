@@ -1,4 +1,5 @@
 {% trans_default_domain 'Elements' %}
+{% import 'AppBundle:widgets:like-comment-link-widget.html.twig' as lcWidget %}
 
 {% set comments_count = comments|default([])|length %}
 <div class="media-block pad-all bord-btm feed" id="{{ id }}">
@@ -11,21 +12,7 @@
         <p>{{ text }}</p>
         <img class="img-responsive mar-no" src="{{ media.url }}" alt="{{ media.alt }}">
         <div class="pad-ver">
-            <a class="btn btn-link add-tooltip likes" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ 'tip.likes'|trans }}">
-                <i class="fa fa-heart-o fa-lg text-default"></i> <span class="text-default text-bold">{{ likes|default('') }}</span>
-            </a>
-
-            <a class="btn btn-link add-tooltip comments" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ 'tip.comments'|trans }}">
-                {% set icon = "fa-comment-o" %}
-
-                {% if comments_count > 1 %}
-                    {% set icon = "fa-comments-o" %}
-                {% elseif comments_count == 0 %}
-                    {% set comments_count = null %}
-                {% endif %}
-
-                <i class="fa {{ icon }} fa-lg text-default"></i> <span class="text-default text-bold">{{ comments_count }}</span>
-            </a>
+            {{ lcWidget.showLinksOFCommentAndLike(comments_count, likes, {class: "btn btn-link", dataPlacement: "bottom"}) }}
         </div>
 
          {# present comments in a classic way #}

@@ -13,3 +13,6 @@ registration:
 following:
     type: rest
     resource: SecretBase\AppBundle\Controller\FollowingController
+lobby:
+    type: rest
+    resource: SecretBase\AppBundle\Controller\LobbyController

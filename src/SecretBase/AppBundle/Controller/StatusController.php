@@ -14,9 +14,15 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 
 class StatusController extends BaseController
 {
-    public function getLobbyAction(Request $request)
+    /**
+     * @param Request $request
+     * @return Response
+     *
+     * @Rest\Get("/home-timeline")
+     */
+    public function getHomeTimelineAction(Request $request)
     {
-        return $this->render("AppBundle::lobby.html.twig");
+        return $this->render("AppBundle::home-timeline.html.twig");
     }
 
     /**
