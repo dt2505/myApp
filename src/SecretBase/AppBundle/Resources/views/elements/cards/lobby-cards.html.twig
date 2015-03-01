@@ -306,7 +306,7 @@ lastUpdatedAt: "now"|date("Y-m-d H:i:s")
 },
 ] %}
 
-<div id="status-card" class="mar-no">
+<div id="card-container" class="mar-no">
     {% for card in status_cards %}
         {% include 'AppBundle:elements:cards/status-card.html.twig' with {
             text: card.text,

@@ -1,8 +1,7 @@
 $(window).load(function() {
     // init
-    $('#status-card').isotope({
+    $('#card-container').isotope({
         // options
-        itemSelector: '.item',
-        layoutMode: 'masonry'
+        itemSelector: '.card'
     });
 });
