@@ -2,29 +2,41 @@
 
 <ul class="nav navbar-top-links {{ direction }}">
 
+    {# main navigation #}
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <li class="tgl-menu-btn">
+        <a class="mainnav-toggle push" href="#">
+            <i class="fa fa-navicon fa-lg"></i>
+        </a>
+    </li>
+
     {# lobby #}
-    <li class="add-tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="Lobby">
+    <li>
         <a href="{{ path('get_lobby') }}" >
-            <i class="fa fa-bank fa-2x"></i>
+            <span>
+                <i class="fa fa-bank fa-lg"></i>
+            </span>
         </a>
     </li>
 
     {# home timeline #}
-    <li class="add-tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="Home">
+    <li>
         <a href="{{ path('get_home_timeline') }}">
-            <i class="fa fa-home fa-2x"></i>
+            <span>
+                <i class="fa fa-home fa-2x"></i>
+            </span>
         </a>
     </li>
 
     {# message #}
-    <li class="dropdown add-tooltip " data-toggle="tooltip" data-placement="bottom" data-original-title="Message">
+    <li class="dropdown add-tooltip " data-toggle="tooltip" data-placement="bottom" data-original-title="{{ 'tip.message'|trans }}">
         <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-            <i class="fa fa-envelope fa-2x"></i>
+            <i class="fa fa-envelope fa-lg"></i>
             <span class="badge badge-header badge-warning">9</span>
         </a>
 
         {# message dropdown menu #}
-        <div class="dropdown-menu dropdown-menu-md with-arrow">
+        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right with-arrow">
             <div class="pad-all bord-btm">
                 <p class="text-lg text-muted text-thin mar-no">{{ 'tip.you_have_msg'|transchoice(9)|raw }}</p>
             </div>
@@ -122,25 +134,27 @@
     </li>
 
     {# write status #}
-    <li class="add-tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="Write status">
-        <a href="#">
-            <i class="fa fa-pencil fa-2x"></i>
-        </a>
-    </li>
+    {% if writeStatus == 'visible' %}
+        <li class="add-tooltip write-status" data-toggle="tooltip" data-placement="bottom" data-original-title="Write status">
+            <a href="#">
+                <i class="fa fa-pencil fa-lg"></i>
+            </a>
+        </li>
+    {% endif %}
 
     {# search box #}
-    <li class="searchbox">
-        <a> {# <-- use <a> to align search box vertically as it has been defined in this way in nifty.css #}
-            <form>
-                <div class="form-group searchbox">
-                    <div class="input-group custom-search-form">
-                        <input type="text" class="form-control" placeholder="{{ 'placeholder.search'|trans }}">
-                        <div class="input-group-btn">
-                            <button class="text-muted" type="button"><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </a>
-    </li>
+    {#<li class="searchbox">#}
+        {#<a> &#123;&#35; <-- use <a> to align search box vertically as it has been defined in this way in nifty.css &#35;&#125;#}
+            {#<form>#}
+                {#<div class="form-group searchbox">#}
+                    {#<div class="input-group custom-search-form">#}
+                        {#<input type="text" class="form-control" placeholder="{{ 'placeholder.search'|trans }}">#}
+                        {#<div class="input-group-btn">#}
+                            {#<button class="text-muted" type="button"><i class="fa fa-search"></i></button>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</form>#}
+        {#</a>#}
+    {#</li>#}
 </ul>

@@ -1,4 +1,4 @@
-feed = (function () {
+likesAndComments = (function () {
     "use strict";
 
     /**
@@ -53,14 +53,13 @@ feed = (function () {
      */
     function bindCommentsClick($comments) {
         $comments.on("click", function() {
-            var $currentStatus = $(this).parent().parent().parent(),
-                $commentsPanel = $currentStatus.find("#" + $currentStatus.attr("id") + "_comments_panel");
+            var $currentStatus = $(this).parent().parent(),
+                statusId = $currentStatus.data("id"),
+                commentCount = $currentStatus.data("comment-count"),
+                $commentsPanel = commentCount > 0 ? $("#" + statusId + "_comments_panel") : $("#" + statusId + "_comment_form");
 
-            if ($commentsPanel.hasClass("hidden")) {
-                $commentsPanel.removeClass("hidden");
-            } else {
-                $commentsPanel.addClass("hidden");
-            }
+            $commentsPanel.toggleClass("hidden");
+            $('#card-container').isotope('layout');
         })
     }
 
@@ -72,11 +71,10 @@ feed = (function () {
             el: ""
         },
 
-        init: function () {
-            var $feed = $(".feed");
+        init: function ($lcContainer) {
+            hoverLikes($lcContainer);
+            hoverComments($lcContainer);
 
-            hoverLikes($feed);
-            hoverComments($feed);
             bindCommentsClick($(".comments"));
         }
     };

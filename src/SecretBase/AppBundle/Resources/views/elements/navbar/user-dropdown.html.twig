@@ -1,10 +1,15 @@
 {% trans_default_domain 'Elements' %}
 <ul class="nav navbar-top-links {{ direction }}">
-    <li class="dropdown">
+
+
+
+    {# user dropdown #}
+    <li id="dropdown-user" class="dropdown">
         <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
             <span class="pull-right">
                 <img class="img-circle img-user media-object" src="{{ asset('img/av1.png') }}" alt="{{ 'alt.profile_pic'|trans }}">
             </span>
+            <div class="username hidden-xs">John Doe</div>
             {# 'dropdown-user' should be applied to <li> as its id if username wants to be also displayed' #}
         </a>
 

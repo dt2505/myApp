@@ -1,3 +1,12 @@
+/* overwritten page-content */
+#page-content {
+    padding: 15px;
+}
+
+#content-container {
+    background-color: #000000;
+}
+
 .user-profile-body {
     position:relative;
     padding: 10px 15px 15px 90px;
@@ -9,23 +18,7 @@
 .user-profile-name {
     position: absolute;
 }
-.status-textarea {
-    resize: none;
-}
-.status-preview-content {
-    float: left;
-    position:relative;
-    padding: 5px;
-}
-.status-preview-content > div > .status-preview-dismiss {
-    position:absolute;
-    top: 0;
-    left: 50px;
-}
-.status-preview-dismiss > i:hover,
-.status-preview-dismiss > i:active {
-    color: #999999;
-}
+
 .timeline-comment-item {
     margin-bottom: 20px;
 }

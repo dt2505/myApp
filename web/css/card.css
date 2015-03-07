@@ -1,0 +1,59 @@
+#card-container {
+    margin: 30px 0 50px 0;
+    width: 100%;
+    /* for shadow */
+}
+
+.stamp,
+.card {
+    width: 32.3333333%;
+    float: left;
+    margin: 0 10px 10px 0;
+    padding: 0;
+    -webkit-box-shadow: 0 0 9px -2px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 9px -2px rgba(0, 0, 0, 0.8);
+}
+
+.stamp p,
+.card p {
+    /*font-size:11px;*/
+    line-height:15px;
+    /*padding:10px;*/
+    margin-bottom:0;
+}
+
+.stamp .highlight,
+.card .highlight {
+    margin:0;
+    padding:10px 10px;
+    font-size:15px;
+    font-weight:normal;
+    line-height: 20px;
+}
+
+/* responsive layout */
+
+/* status card */
+@media (max-width: 960px) {
+    .stamp,
+    .card {
+        width: 230px;
+        float: left;
+        margin: 0 5px 5px 0;
+        padding: 0;
+        -webkit-box-shadow: 0 0 9px -2px rgba(0, 0, 0, 0.8);
+        box-shadow: 0 0 9px -2px rgba(0, 0, 0, 0.8);
+    }
+}
+
+@media (min-width: 960px) and (max-width: 1024px) {
+    .stamp,
+    .card {
+        width: 300px;
+        float: left;
+        margin: 0 5px 5px 0;
+        padding: 0;
+        -webkit-box-shadow: 0 0 9px -2px rgba(0, 0, 0, 0.8);
+        box-shadow: 0 0 9px -2px rgba(0, 0, 0, 0.8);
+    }
+}

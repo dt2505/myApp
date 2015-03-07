@@ -22,7 +22,18 @@ dropfile = (function () {
                 previewTemplate: previewTemple,
                 autoQueue: false, // Make sure the files aren't queued until manually added
                 previewsContainer: "#status-preview", // Define the container to display the previews
-                clickable: "#sf-add-photo" // Define the element that should be used as click trigger to select files.
+                clickable: "#sf-add-photo", // Define the element that should be used as click trigger to select files.
+                init: function() {
+                    this.on("thumbnail", function(file, dataUrl) {
+                        // refresh the masonry cards when image gets previewed
+                        $('#card-container').isotope('layout');
+
+                        $('.status-preview-dismiss').on('click', function() {
+                            // refresh the masonry cards when image gets removed
+                            $('#card-container').isotope('layout');
+                        });
+                    });
+                }
             });
         }
     };

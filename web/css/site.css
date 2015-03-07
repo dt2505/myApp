@@ -21,9 +21,19 @@
     padding-top: 0;
     padding-bottom: 0;
 }
+.pad-btm-5 {
+    padding-bottom: 5px;
+}
+.pad-rgt-5 {
+    padding-right: 5px;
+}
 .pad-ver-5 {
     padding-top: 5px;
     padding-bottom: 5px;
+}
+.pad-hor-5 {
+    padding-left: 5px;
+    padding-right: 5px;
 }
 .pad-ver-10 {
     padding-top: 10px;
@@ -32,6 +42,8 @@
 .pad-top-10 {
     padding-top: 10px;
 }
-.pad-btm-5 {
-    padding-bottom: 5px;
+
+/* margin */
+.mar-rgt-5 {
+    margin-right: 5px;
 }

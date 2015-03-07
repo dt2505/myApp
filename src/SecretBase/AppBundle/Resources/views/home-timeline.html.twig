@@ -3,21 +3,33 @@
 {% block stylesheets %}
     <link href="{{ asset('plugins/dropzone/dropzone.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home-timeline.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/status-form.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/card.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
-    <div id="container" class="effect aside-in aside-left navbar-fixed footer-fixed">
+    <div id="container" class="slide aside-in aside-left mainnav-out navbar-fixed">
         {# navbar #}
-        {% include 'AppBundle:elements:navbar/lobby-navbar.html.twig' %}
+        {% include 'AppBundle:elements:navbar/lobby-navbar.html.twig' with {writeStatus: 'invisible'} %}
 
         {# content #}
         <div class="boxed">
             <div id="content-container">
                 <div id="page-content">
-                    {% include 'AppBundle:elements:status/statuses.html.twig' %}
+                    {% include 'AppBundle:elements:alert/new-status.html.twig' %}
+
+                    <div id="card-container" class="mar-no">
+                        {% include 'AppBundle:elements:cards/status-form.html.twig' with {additionalClass: 'stamp'} %}
+                        {% include 'AppBundle:elements:cards/lobby-cards.html.twig' %}
+                    </div>
+
+                    {# classic feed view #}
+                    {#{% include 'AppBundle:elements:status/statuses.html.twig' %}#}
                 </div>
             </div>
         </div>
+
+        {% include 'AppBundle:elements:navbar/mainnav.html.twig' %}
 
         {# aside bar - user profile #}
         {% include 'AppBundle:elements:aside-bar/user-profile.html.twig' with {
@@ -37,8 +49,9 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('plugins/dropzone/dropzone.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/dropfile.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/feed.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/likes-and-comment.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/home-timeline.js') }}"></script>
 {% endblock %}

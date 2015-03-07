@@ -1,10 +1,13 @@
-<div class="timeline" id="{{ statusId }}_comments_panel">
+{% trans_default_domain 'Elements' %}
+
+<div class="timeline hidden" id="{{ statusId }}_comments_panel">
 
     {# timeline header #}
     <div class="timeline-header">
         <div class="timeline-header-title bg-gray-light">
             {# comment form #}
             {% include 'AppBundle:elements:comments/comment-form.html.twig' with {
+                statusId: statusId,
                 user: user
             } %}
         </div>
@@ -20,4 +23,14 @@
             createdAt: comment.createdAt
         } %}
     {% endfor %}
+
+    {# load more comment #}
+    <div class="timeline-entry timeline-comment-item">
+        <div class="timeline-stat">
+            <div class=""><img class="img-circle img-xs" src="{{ user.avatar }}" alt="{{ user.name }}"></div>
+        </div>
+        <div class="timeline-label mar-rgt-5">
+            <p class="text-semibold">{{ 'tip.I_would_like_read'|trans }} <button class="btn btn-primary">{{ 'button.more'|trans }}</button></p>
+        </div>
+    </div>
 </div>

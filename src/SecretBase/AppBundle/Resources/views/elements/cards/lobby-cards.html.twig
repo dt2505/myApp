@@ -1,3 +1,5 @@
+{% trans_default_domain 'Elements' %}
+
 {# status cards #}
 {% set status_cards = [
     {
@@ -11,8 +13,30 @@
             name: 'John Doe',
             contact: "abc@gmail.com"
         },
-        comments_count: 10,
-        likes_count: 2
+        comments_count: 2,
+        likes_count: 2,
+        comments: [
+            {
+                id: 1,
+                user: {
+                    avatar: asset('img/av5.png'),
+                    avatarAlt: "Maria Leanz",
+                    name: "Maria Leanz",
+                },
+                createdAt: 'tip.minutes_ago'|transchoice(11),
+                text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
+            },
+            {
+                id: 2,
+                user: {
+                    avatar: asset('img/av5.png'),
+                    avatarAlt: "Maria Leanz",
+                    name: "Maria Leanz",
+                },
+                createdAt: 'tip.minutes_ago'|transchoice(11),
+                text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
+            }
+        ]
     },
 {
     text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
@@ -306,14 +330,16 @@ lastUpdatedAt: "now"|date("Y-m-d H:i:s")
 },
 ] %}
 
-<div id="card-container" class="mar-no">
+{#<div id="card-container" class="mar-no">#}
     {% for card in status_cards %}
         {% include 'AppBundle:elements:cards/status-card.html.twig' with {
+            id: loop.index,
             text: card.text,
             user: card.user,
             media: card.media|default(null),
             likes_count: card.likes_count,
-            comments_count: card.comments_count
+            comments_count: card.comments|default([])|length,
+            comments: card.comments|default([])
         } %}
     {% endfor %}
 
@@ -323,4 +349,4 @@ lastUpdatedAt: "now"|date("Y-m-d H:i:s")
             status: card.status
         }%}
     {% endfor %}
-</div>
+{#</div>#}

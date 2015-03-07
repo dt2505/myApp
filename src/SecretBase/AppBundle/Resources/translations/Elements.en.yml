@@ -10,6 +10,8 @@ button:
     reset_password: Reset password
     follow: Follow
     share: Share
+    more: More...
+    go: Go
 radio_button:
     practitioner: Practitioner
     seeker: Seeker
@@ -39,6 +41,7 @@ placeholder:
     desc: Tell us something about you
     search: Search...
     status: What is in your mind?
+    comment: comment
 link:
     forgot_password: Forgot password ?
     create_new_account: Create a new account
@@ -90,7 +93,7 @@ label:
 tip:
     you_have_msg: '{0} You have no messages|{1} You have <b style="color:blue">one</b> message unread|[2,999] You have <b style="color:blue">%count%</b> messages unread|[1000,Inf] You have <b style="color:red">so many</b> messages unread'
     who_sent_u_msg: '%name% sent you a message'
-    seconds_ago: '{1} just now|[2,59] %count% seconds ago'
+    seconds_ago: '[1,30] just now|[31,59] %count% seconds ago'
     minutes_ago: '{1} one minute ago|[2,59] %count% minutes ago'
     hours_ago: '{1} one hour ago|[2,59] %count% hours ago'
     days_ago: '{1} Yestoday|[2,Inf] %count% days ago'
@@ -104,6 +107,11 @@ tip:
     view_new_statuses: '{1} View %count% status|[2,Inf] View %count% statuses'
     follow: Follow
     last_updated_time: Last updated time
+    lobby: Lobby
+    filter: Filter
+    message: Message
+    home: Home
+    I_would_like_read: I would like read
 alt:
     profile_pic: Profile picture
     logo: Logo
