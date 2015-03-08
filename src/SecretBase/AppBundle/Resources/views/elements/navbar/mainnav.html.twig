@@ -1,24 +1,23 @@
-<!--MAIN NAVIGATION-->
-<!--===================================================-->
+{% trans_default_domain 'Elements' %}
+
+{# main navigation #}
 <nav id="mainnav-container">
     <div id="mainnav">
-        <!--Menu-->
-        <!--================================-->
+        {# menu #}
         <div id="mainnav-menu-wrap">
             <div class="nano">
                 <div class="nano-content">
-                    <!--Widget-->
-                    <!--================================-->
+                    {# Widget #}
                     <div id="mainnav-widget-search" class="mainnav-widget">
                         <div class="mainnav-widget-content">
                             <ul class="list-group mar-no">
                                 <li>
                                     <form action="#">
                                         <div class="input-group">
-                                            <input type="text" placeholder="search" class="form-control">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                                                </span>
+                                            <input type="text" placeholder="{{ "placeholder.search"|trans }}" class="form-control">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                                            </span>
                                         </div>
                                     </form>
                                 </li>
@@ -27,15 +26,14 @@
                     </div>
 
                     <ul id="mainnav-menu" class="list-group">
-                        <!--Category name-->
-                        <li class="list-header">Filter</li>
-
+                        {# Category name #}
+                        <li class="list-header">{{ "tip.filter"|trans }}</li>
                         <li>
                             <a href="#">
-                                <label class="form-checkbox form-icon active"><input type="checkbox" checked> All</label>
+                                <label class="form-checkbox form-icon active"><input type="checkbox" checked> {{ "label.all"|trans }}</label>
                             </a>
                         </li>
-                        <!--Menu list item-->
+                        {# menu list item #}
                         <li>
                             <a href="#">
                                 <i class="fa fa-user"></i>
@@ -44,7 +42,7 @@
                                         </span>
                                 <i class="arrow"></i>
                             </a>
-                            <!--Submenu-->
+                            {# submenu #}
                             <ul class="collapse">
                                 <li>
                                     <a>
@@ -69,7 +67,7 @@
                             </ul>
                         </li>
 
-                        <!--Menu list item-->
+                        {# menu list item #}
                         <li>
                             <a href="#">
                                 <i class="fa fa-th"></i>
@@ -78,7 +76,7 @@
                                         </span>
                                 <i class="arrow"></i>
                             </a>
-                            <!--Submenu-->
+                            {# submenu #}
                             <ul class="collapse">
                                 <li>
                                     <a>
@@ -107,10 +105,8 @@
                 </div>
             </div>
         </div>
-        <!--================================-->
-        <!--End menu-->
+        {# End menu #}
 
     </div>
 </nav>
-<!--===================================================-->
-<!--END MAIN NAVIGATION-->
+{# END MAIN NAVIGATION #}

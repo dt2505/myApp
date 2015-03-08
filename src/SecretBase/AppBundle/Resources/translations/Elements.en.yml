@@ -15,6 +15,7 @@ button:
 radio_button:
     practitioner: Practitioner
     seeker: Seeker
+    guest: Guest
 placeholder:
     first_name: Enter first name
     last_name: Enter last name
@@ -90,6 +91,7 @@ label:
     followers: Followers
     followings: Followings
     about_me: About me
+    all: All
 tip:
     you_have_msg: '{0} You have no messages|{1} You have <b style="color:blue">one</b> message unread|[2,999] You have <b style="color:blue">%count%</b> messages unread|[1000,Inf] You have <b style="color:red">so many</b> messages unread'
     who_sent_u_msg: '%name% sent you a message'
@@ -111,7 +113,7 @@ tip:
     filter: Filter
     message: Message
     home: Home
-    I_would_like_read: I would like read
+    I_would_like_read: I would like to read
 alt:
     profile_pic: Profile picture
     logo: Logo
