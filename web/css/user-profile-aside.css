@@ -1,0 +1,11 @@
+.user-profile-body {
+    position:relative;
+    padding: 10px 15px 15px 90px;
+}
+.user-profile-body > .user-profile-img {
+    position:absolute;
+    top:-32px;left:45px;
+}
+.user-profile-name {
+    position: absolute;
+}

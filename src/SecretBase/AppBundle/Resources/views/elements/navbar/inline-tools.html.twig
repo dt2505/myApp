@@ -1,14 +1,20 @@
 {% trans_default_domain 'Elements' %}
 
+{% set writeStatus = writeStatus|default('visible') %}
+{% set image = image|default('visible') %}
+{% set mainnav = mainnav|default('visible') %}
+
 <ul class="nav navbar-top-links {{ direction }}">
 
     {# main navigation #}
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    {% if mainnav == 'visible' %}
     <li class="tgl-menu-btn">
         <a class="mainnav-toggle push" href="#">
             <i class="fa fa-navicon fa-lg"></i>
         </a>
     </li>
+    {% endif %}
 
     {# lobby #}
     <li>
@@ -138,6 +144,15 @@
         <li class="add-tooltip write-status" data-toggle="tooltip" data-placement="bottom" data-original-title="Write status">
             <a href="#">
                 <i class="fa fa-pencil fa-lg"></i>
+            </a>
+        </li>
+    {% endif %}
+
+    {# image #}
+    {% if image == 'visible' %}
+        <li class="add-tooltip images" data-toggle="tooltip" data-placement="bottom" data-original-title="Gallery">
+            <a href="{{ path('get_gallery') }}">
+                <i class="fa fa-image fa-lg"></i>
             </a>
         </li>
     {% endif %}

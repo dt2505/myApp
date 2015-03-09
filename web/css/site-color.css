@@ -19,6 +19,10 @@
 .img-border-dark {
     box-shadow: 0 0 0 4px #333333;
 }
+.text-white {
+    color: ghostwhite;
+}
+
 /* overwritten the bg-color of navbar conatiner */
 #navbar-container{
     background-color: #333333;

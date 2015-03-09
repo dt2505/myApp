@@ -92,6 +92,9 @@ label:
     followings: Followings
     about_me: About me
     all: All
+    delete: Delete
+    remove: Remove
+    new: New
 tip:
     you_have_msg: '{0} You have no messages|{1} You have <b style="color:blue">one</b> message unread|[2,999] You have <b style="color:blue">%count%</b> messages unread|[1000,Inf] You have <b style="color:red">so many</b> messages unread'
     who_sent_u_msg: '%name% sent you a message'

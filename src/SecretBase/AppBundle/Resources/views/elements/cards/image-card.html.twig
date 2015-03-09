@@ -1,0 +1,24 @@
+{% trans_default_domain 'Elements' %}
+{% import 'AppBundle:widgets:like-comment-link-widget.html.twig' as lcWidget %}
+
+<div class="card bg-gray-dark" data-id="{{ id }}" data-comment-count="{{ media.comments_count }}">
+    <div class="img-wrapper">
+        <a href="#"><img class="img-responsive" src="{{ asset(media.url) }}" alt="{{ media.alt }}"></a>
+        <div class="animated fadeIn hidden img-caption img-caption-btm pad-ver-5">
+            <div class="pull-left">
+                <p class="text-sm text-white pad-lft-10 text-lg text-bold">Nancy, 19, Russian</p>
+            </div>
+
+            <div class="pull-right">
+                {{ lcWidget.showLinksOFCommentAndLike(media.comments_count, media.likes_count, {class: "btn btn-link", dataPlacement: "top"}, "text-white") }}
+
+                <a href="#" class="btn btn-link no-pad add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{{ 'label.delete'|trans() }}">
+                    <i class="fa fa-fw fa-lg fa-trash text-white"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="ribbon-wrapper">
+        <div class="ribbon ribbon-success"><i class="fa fa-star"></i><span class="pad-lft">{{ 'label.new'|trans }}</span></div>
+    </div>
+</div>

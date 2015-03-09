@@ -16,3 +16,6 @@ following:
 lobby:
     type: rest
     resource: SecretBase\AppBundle\Controller\LobbyController
+gallery:
+    type: rest
+    resource: SecretBase\AppBundle\Controller\GalleryController

@@ -8,7 +8,9 @@
 
                 {# image preview #}
                 <div class="clearfix bg-gray sf-photo-priview">
-                    {% include 'AppBundle:elements:image-preview.html.twig' %}
+                    <div id="status-preview">
+                        {% include 'AppBundle:elements:compact-image-preview.html.twig' %}
+                    </div>
                 </div>
 
                 {# footer tool bar #}

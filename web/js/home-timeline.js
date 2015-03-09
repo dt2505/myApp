@@ -9,7 +9,7 @@ $(window).load(function() {
 
 $(document).ready(function() {
     // initialize image preview before it gets uploaded
-    dropfile.init();
+    dropfile.init("#status-preview", "#status-preview", "#sf-add-photo", "/dummy-url");
 
     // initialize feed
     likesAndComments.init($(".card > .panel-footer"));

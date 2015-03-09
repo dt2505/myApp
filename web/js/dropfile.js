@@ -8,21 +8,21 @@ dropfile = (function () {
         },
 
         // public functions
-        init: function () {
-            var $previewNode = $("#status-preview"),
+        init: function (dropArea, previewContainer, clickableEl, url) {
+            var $previewNode = $(previewContainer),
                 previewTemple = $previewNode.html();
             $previewNode.empty();
 
             Dropzone.autoDiscover = false;
-            $previewNode.dropzone({
-                url: "/dummy-url", // Set the url
+            $(dropArea).dropzone({
+                url: url, // Set the url
                 thumbnailWidth: 60,
                 thumbnailHeight: 60,
                 parallelUploads: 3,
                 previewTemplate: previewTemple,
                 autoQueue: false, // Make sure the files aren't queued until manually added
-                previewsContainer: "#status-preview", // Define the container to display the previews
-                clickable: "#sf-add-photo", // Define the element that should be used as click trigger to select files.
+                previewsContainer: previewContainer, // Define the container to display the previews
+                clickable: clickableEl||true, // Define the element that should be used as click trigger to select files.
                 init: function() {
                     this.on("thumbnail", function(file, dataUrl) {
                         // refresh the masonry cards when image gets previewed
@@ -33,7 +33,8 @@ dropfile = (function () {
                             $('#card-container').isotope('layout');
                         });
                     });
-                }
+                },
+                addRemoveLinks: true
             });
         }
     };
