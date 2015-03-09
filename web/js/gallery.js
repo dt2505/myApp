@@ -15,14 +15,16 @@ $(document).ready(function() {
     });
 
     $(".cover-menu > li > a").on("click", function() {
-        $ul = $(this).parent().parent();
-        $ul.find("li").each(function(){
-            if ($(this).hasClass("active")) {
-                $(this).removeClass("active");
-            }
-        });
+        if ($(this).attr("id") != "upload-photos") {
+            $ul = $(this).parent().parent();
+            $ul.find("li").each(function(){
+                if ($(this).hasClass("active")) {
+                    $(this).removeClass("active");
+                }
+            });
 
-        $(this).parent().addClass("active");
+            $(this).parent().addClass("active");
+        }
     });
 
     $('#upload-photos').on('click', function() {
