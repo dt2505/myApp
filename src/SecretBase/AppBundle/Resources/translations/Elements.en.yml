@@ -97,6 +97,12 @@ label:
     new: New
     link_to: Link to...
     move_to: Move to...
+    photos: '{0} empty|{1} 1 photo|[2,999] %count% photos'
+    kphotos: '[1,Inf] %count%k photos'
+    all_photos: All photos
+    album: Album
+    upload_photos: Upload photos
+    add_album: Add album
 tip:
     you_have_msg: '{0} You have no messages|{1} You have <b style="color:blue">one</b> message unread|[2,999] You have <b style="color:blue">%count%</b> messages unread|[1000,Inf] You have <b style="color:red">so many</b> messages unread'
     who_sent_u_msg: '%name% sent you a message'
@@ -119,6 +125,8 @@ tip:
     message: Message
     home: Home
     I_would_like_read: I would like to read
+    drop_file_to_upload: Drop files to upload
+    or_click_to_pick_manually: or click to pick manually
 alt:
     profile_pic: Profile picture
     logo: Logo

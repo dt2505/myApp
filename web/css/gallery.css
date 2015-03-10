@@ -23,6 +23,11 @@
     height: 30px;
     width:100%;
 }
+.img-wrapper .img-caption-fixed {
+    background-color: rgba(0,0,0, 0.7);
+    height: 40px;
+    width:100%;
+}
 
 .img-caption-btm {
     position: absolute;
@@ -38,6 +43,15 @@
 .profile-cover .cover {
     position: relative;
 }
+.profile-cover .cover .avatar-btm {
+    position: absolute;
+    bottom:5px;
+    left:25px;
+}
+.profile-cover .cover .cover-landscape {
+    height: 280px;
+}
+
 .profile-cover .cover .inner-cover {
     overflow: hidden;
     height: auto;

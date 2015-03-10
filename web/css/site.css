@@ -115,3 +115,11 @@
 .mar-all-10 {
     margin: 10px;
 }
+
+/* border */
+.border-dotted-dark {
+    border: 1px dotted #333333;
+}
+.border-dotted-2x-dark {
+    border: 2px dotted #333333;
+}

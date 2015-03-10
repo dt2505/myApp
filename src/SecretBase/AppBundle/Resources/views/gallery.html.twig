@@ -281,34 +281,7 @@ text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
         <div class="boxed">
             <div id="content-container">
                 {# cover #}
-                <div class="profile-cover">
-                    <div class="cover">
-                        {# avatar #}
-                        <div class="media" style="position: absolute;bottom:5px;left:25px;">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object img-lg" src="{{ asset('img/av1.png') }}">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <p class="text-2x media-heading mar-no text-thin text-white shadow">Lucy Moon</p>
-                                <p class="text-md text-white mar-no">abc@gmail.com</p>
-                            </div>
-                        </div>
-
-                        {# cover img #}
-                        <div class="inner-cover">
-                            <img class="img-responsive" src="{{ asset('img/thumbs/img3.jpg') }}" style="height: 228px;" alt="cover">
-                        </div>
-
-                        {# menu bar #}
-                        <ul class="list-unstyled no-pad cover-menu">
-                            <li class="active"><a href="#"><i class="fa fa-fw fa-picture-o"></i> <span>All photos</span></a></li>
-                            <li><a href="#"><i class="fa fa-fw fa-camera-retro"></i> <span>Album</span></a></li>
-                            <li><a href="#" id="upload-photos"><i class="fa fa-fw fa-camera"></i> <span>Upload photos</span></a></li>
-                        </ul>
-                    </div>
-                </div>
+                {% include "AppBundle:elements:landscape-profile-cover.html.twig" with {allPhotos: "active"} %}
 
                 {# gallery #}
                 <div id="page-content">

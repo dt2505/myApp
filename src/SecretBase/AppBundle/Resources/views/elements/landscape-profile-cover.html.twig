@@ -1,0 +1,50 @@
+{% trans_default_domain 'Elements' %}
+
+{# visibility #}
+{% set uploadPhotos = uploadPhotos|default('visible') %}
+{% set addAlbum = addAlbum|default('invisible') %}
+
+{# activity #}
+{% set allPhotos = allPhotos|default('') %}
+{% set album = album|default('') %}
+
+{# cover #}
+<div class="profile-cover">
+    <div class="cover">
+        {# avatar #}
+        <div class="media avatar-btm">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object img-lg" src="{{ asset('img/av1.png') }}">
+                </a>
+            </div>
+            <div class="media-body">
+                <p class="text-2x media-heading mar-no text-thin text-white shadow">Lucy Moon</p>
+                <p class="text-md text-white mar-no">abc@gmail.com</p>
+            </div>
+        </div>
+
+        {# cover img #}
+        <div class="inner-cover">
+            <img class="img-responsive cover-landscape" src="{{ asset('img/thumbs/img3.jpg') }}" alt="{{ 'alt.cover'|trans }}r">
+        </div>
+
+        {# menu bar #}
+        <ul class="list-unstyled no-pad cover-menu">
+            <li class="{{ allPhotos }}">
+                <a href="{{ path('get_gallery') }}"><i class="fa fa-fw fa-picture-o"></i><span class="mar-lft-5">{{ 'label.all_photos'|trans }}</span></a>
+            </li>
+
+            <li class="{{ album }}">
+                <a href="{{ path('get_album') }}"><i class="fa fa-fw fa-book"></i><span class="mar-lft-5">{{ 'label.album'|trans }}</span></a>
+            </li>
+            {% if uploadPhotos == "visible" %}
+                <li><a href="#" id="upload-photos"><i class="fa fa-fw fa-camera"></i><span class="mar-lft-5">{{ 'label.upload_photos'|trans }}</span></a></li>
+            {% endif %}
+
+            {% if addAlbum == "visible" %}
+                <li><a href="#" id="add-album"><i class="fa fa-fw fa-plus"></i><span class="mar-lft-5">{{ 'label.add_album'|trans }}</span></a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>

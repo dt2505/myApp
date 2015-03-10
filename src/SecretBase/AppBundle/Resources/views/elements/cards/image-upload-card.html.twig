@@ -1,5 +1,7 @@
+{% trans_default_domain 'Elements' %}
+
 <div id="image" class="stamp bg-dark {{ hidden|default('') }}">
-    <form id="form-image-dropzone" action="#" class="dropzone" style="border: 2px dotted #4a4a4a">
+    <form id="form-image-dropzone" action="#" class="dropzone">
         {# image preview #}
         <div id="image-preview-zone">
             {# TODO: modify the prevew page #}
@@ -22,13 +24,14 @@
                 <i class="fa fa-cloud-upload fa-3x"></i>
             </div>
             <div>
-                <p class="dz-text">Drop files to upload</p>
-                <p class="text-muted pad-ver-10">or click to pick manually</p>
+                <p class="dz-text">{{ 'tip.drop_file_to_upload'|trans }}</p>
+                <p class="text-muted pad-ver-10">{{ 'tip.or_click_to_pick_manually'|trans }}</p>
             </div>
         </div>
 
         {# it will fall back here if browser doesn't support #}
         <div class="fallback">
+            {# TODO: customize it as same as drop zone #}
             <input name="file" type="file" multiple />
         </div>
     </form>

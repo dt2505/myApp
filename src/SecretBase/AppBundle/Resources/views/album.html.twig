@@ -1,0 +1,55 @@
+{% extends "::base.html.twig" %}
+
+{% set albums = [
+    {
+         id: 1,
+        name: "other",
+        cover: {
+            url: asset('img/thumbs/img1.jpg'),
+        },
+        photos_count: 0
+    }
+] %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/card.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/gallery.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div id="container" class="navbar-fixed">
+        {# navbar #}
+        {% include 'AppBundle:elements:navbar/lobby-navbar.html.twig' with {
+        writeStatus: 'invisible',
+        image: 'invisible',
+        mainnav: 'invisible'
+        } %}
+
+        {# content #}
+        <div class="boxed">
+            <div id="content-container">
+                {# cover #}
+                {% include "AppBundle:elements:landscape-profile-cover.html.twig" with {uploadPhotos: "invisible", album: "active", addAlbum: "visible"} %}
+
+                {# album #}
+                <div id="page-content">
+                    <div id="card-container" class="mar-no">
+                        {% for album in albums %}
+                            {% include "AppBundle:elements:cards/album-card.html.twig" with {
+                                album: album
+                            } %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# scroll to top #}
+        <button id="scroll-top" class="btn"><i class="fa fa-chevron-up"></i></button>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/album.js') }}"></script>
+{% endblock %}

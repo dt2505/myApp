@@ -1,0 +1,30 @@
+{% trans_default_domain 'Elements' %}
+
+<div class="card" data-id="{{ album.id }}">
+    <div class="img-wrapper">
+        <a href="#"><img class="img-responsive" src="{{ asset(album.cover.url) }}" alt="{{ album.name }}"></a>
+
+        <div class="img-caption-fixed img-caption-btm pad-ver-5">
+            <div>
+                <div class="pull-left">
+                    <p class="text-md text-white pad-lft-10 text-thin">{{ album.name }}</p>
+                    {# show basic info only when broswer window is in full size #}
+                    <span class="text-sm text-white pad-lft-10 text-thin">
+                        {% if album.photos_count <= 999 %}
+                            {{ 'label.photos'|transchoice(album.photos_count) }}
+                        {% elseif album.photos_count % 1000 == 0 %}
+                            {{ 'label.kphotos'|transchoice(album.photos_count/1000) }}
+                        {% else %}
+                            {{ 'label.kphotos'|transchoice((album.photos_count/1000)|round(1, 'floor')) }}
+                        {% endif %}
+                    </span>
+                    {# end #}
+                </div>
+
+                <div class="pull-right pad-ver-5">
+                    {% include "AppBundle:widgets:img-action-itemset-widget.html.twig" with { moveTo: 'invisible'} %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

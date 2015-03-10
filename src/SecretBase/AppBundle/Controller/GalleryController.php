@@ -23,4 +23,13 @@ class GalleryController extends BaseController
     {
         return $this->render("AppBundle::gallery.html.twig");
     }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function getAlbumAction(Request $request)
+    {
+        return $this->render("AppBundle::album.html.twig");
+    }
 }

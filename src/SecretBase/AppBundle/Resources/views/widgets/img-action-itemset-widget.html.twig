@@ -1,0 +1,17 @@
+{% trans_default_domain 'Elements' %}
+
+{% set moveTo = moveTo|default('visible') %}
+
+{% if moveTo == 'visible' %}
+    <a href="#" class="btn btn-link no-pad add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{{ 'label.move_to'|trans() }}">
+        <i class="fa fa-fw fa-lg fa-share text-white"></i>
+    </a>
+{% endif %}
+
+<a href="#" class="btn btn-link no-pad add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{{ 'label.link_to'|trans() }}">
+    <i class="fa fa-fw fa-lg fa-link text-white"></i>
+</a>
+
+<a href="#" class="btn btn-link no-pad add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{{ 'label.delete'|trans() }}">
+    <i class="fa fa-fw fa-lg fa-trash text-white"></i>
+</a>
