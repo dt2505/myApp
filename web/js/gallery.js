@@ -10,10 +10,6 @@ $(window).load(function() {
 $(document).ready(function() {
     dropfile.init("#form-image-dropzone", "#image-preview-zone", true, "/dummy-url");
 
-    $(".card > .img-wrapper").hover(function() {
-        $(this).find(".img-caption").toggleClass("hidden");
-    });
-
     $(".cover-menu > li > a").on("click", function() {
         if ($(this).attr("id") != "upload-photos") {
             $ul = $(this).parent().parent();

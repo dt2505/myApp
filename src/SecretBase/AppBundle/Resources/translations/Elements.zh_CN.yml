@@ -95,6 +95,8 @@ label:
     delete: 删除
     remove: 移除
     new: 新到
+    link_to: 链接到...
+    move_to: 转移到...
 tip:
     you_have_msg: '{0} 你没有消息|{1} 你有<b style="color:blue">一</b>个未读消息|[2,999] 你有<b style="color:blue">%count%</b>未读消息|[1000,Inf] 你有<b style="color:red">大量</b>未读消息'
     who_sent_u_msg: '%name% 给你发了消息'

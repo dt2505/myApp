@@ -4,13 +4,21 @@
 }
 
 /* image card wrapper start */
-.img-wrappe {
+.img-wrapper {
     position: relative;
 }
-.img-wrappe:hover {
-    cursor: pointer;
+.img-wrapper > .img-info-sm {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: rgba(0,0,0,0.7);
 }
-.img-caption {
+/* toggle img-caption to display*/
+.img-wrapper:hover>.img-caption {
+    display: block;
+}
+.img-wrapper .img-caption {
+    display: none;
     background-color: rgba(0,0,0, 0.7);
     height: 30px;
     width:100%;

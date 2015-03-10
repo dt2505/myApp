@@ -258,3 +258,37 @@
     -moz-box-shadow: 0 0 3px rgba(42, 42, 42, 0.5) !important;
     box-shadow: 0 0 3px rgba(42, 42, 42, 0.5) !important;
 }
+
+@media (max-width: 960px) {
+    .ribbon-wrapper {
+        width: 65px;
+        height: 68px;
+        overflow: hidden;
+        position: absolute;
+        top: -4px;
+        right: -2px;
+        z-index: 2;
+    }
+
+    .ribbon-wrapper .ribbon {
+        display: block;
+        font-size: 10px;
+        font-weight: 600;
+        color: #FFF;
+        text-align: center;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+        position: relative;
+        padding: 4px 0;
+        left: -5px;
+        top: 10px;
+        width: 94px;
+        line-height: 20px;
+        text-decoration: none;
+        cursor: pointer;
+        background-color: #797979;
+    }
+}
