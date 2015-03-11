@@ -30,21 +30,43 @@
         </div>
 
         {# menu bar #}
-        <ul class="list-unstyled no-pad cover-menu">
+        <ul class="list-unstyled no-pad cover-menu mar-btm-5" style="overflow: visible">
             <li class="{{ allPhotos }}">
                 <a href="{{ path('get_gallery') }}"><i class="fa fa-fw fa-picture-o"></i><span class="mar-lft-5">{{ 'label.all_photos'|trans }}</span></a>
             </li>
 
-            <li class="{{ album }}">
+            <li class="{{ album }} hidden-xs">
                 <a href="{{ path('get_album') }}"><i class="fa fa-fw fa-book"></i><span class="mar-lft-5">{{ 'label.album'|trans }}</span></a>
             </li>
             {% if uploadPhotos == "visible" %}
-                <li><a href="#" id="upload-photos"><i class="fa fa-fw fa-camera"></i><span class="mar-lft-5">{{ 'label.upload_photos'|trans }}</span></a></li>
+                <li class="hidden-xs"><a href="#" id="upload-photos"><i class="fa fa-fw fa-camera"></i><span class="mar-lft-5">{{ 'label.upload_photos'|trans }}</span></a></li>
             {% endif %}
 
             {% if addAlbum == "visible" %}
-                <li><a href="#" id="add-album"><i class="fa fa-fw fa-plus"></i><span class="mar-lft-5">{{ 'label.add_album'|trans }}</span></a></li>
+                <li class="hidden-xs"><a href="#" id="add-album"><i class="fa fa-fw fa-plus"></i><span class="mar-lft-5">{{ 'label.add_album'|trans }}</span></a></li>
             {% endif %}
+
+            {# show bars only when browser is in mobile size. It is responsive purpose #}
+            <li class="dropdown hidden-md hidden-lg hidden-sm">
+                <a id="dropdownMenu1" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-bars"></i></a>
+                <div class="dropdown-menu bg-dark" style="border: 0;" role="menu" aria-labelledby="dropdownMenu1">
+                    <div class="{{ album }}">
+                        <a href="{{ path('get_album') }}" role="menuitem"><i class="fa fa-fw fa-book"></i><span class="mar-lft-5">{{ 'label.album'|trans }}</span></a>
+                    </div>
+                    {% if uploadPhotos == "visible" %}
+                        <div class="">
+                            <a href="#" id="upload-photos-sm" role="menuitem"><i class="fa fa-fw fa-camera"></i><span class="mar-lft-5">{{ 'label.upload_photos'|trans }}</span></a>
+                        </div>
+                    {% endif %}
+
+                    {% if addAlbum == "visible" %}
+                        <div class="">
+                            <a href="#" id="add-album-sm" role="menuitem"><i class="fa fa-fw fa-plus"></i><span class="mar-lft-5">{{ 'label.add_album'|trans }}</span></a>
+                        </div>
+                    {% endif %}
+                </div>
+            </li>
+            {# end #}
         </ul>
     </div>
 </div>

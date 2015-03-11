@@ -15,6 +15,10 @@ $(document).ready(function() {
         $cardContainer.find(".stamp").toggleClass("hidden");
         $cardContainer.isotope('layout');
     });
+    // in mobile size
+    $('#upload-photos-sm').on('click', function() {
+        $('#upload-photos').trigger("click");
+    });
 
     // initialize feed
     likesAndComments.init($(".card > .img-wrapper > .img-caption"), "text-white", function () {

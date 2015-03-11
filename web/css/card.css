@@ -39,7 +39,7 @@
     .stamp,
     .card {
         position:relative;
-        width: 230px;
+        width: 350px;
         float: left;
         margin: 0 5px 5px 0;
         padding: 0;
@@ -52,7 +52,7 @@
     .stamp,
     .card {
         position:relative;
-        width: 300px;
+        width: 32.5555555%;
         float: left;
         margin: 0 5px 5px 0;
         padding: 0;
