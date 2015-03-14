@@ -1,8 +1,20 @@
+@import url("dropzone-theme-dark.css");
+
 #content-container {
     /*padding-top: 33px;*/
     background-color: #000000;
 }
+.show-overflow {
+    overflow: visible;
+}
+.pad-rgt-120 {
+    padding-right: 120px;
+}
 
+/* over-written boostrap select */
+.bootstrap-select {
+    margin-bottom: 0;
+}
 /* image card wrapper start */
 .img-wrapper {
     position: relative;
@@ -118,3 +130,4 @@
 .profile-cover .profile-timeline {
     padding: 15px;
 }
+/* profile end */

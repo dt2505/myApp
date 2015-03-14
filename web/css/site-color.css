@@ -22,6 +22,24 @@
 .text-white {
     color: ghostwhite;
 }
+.text-pink {
+    color: #ff99cc;
+}
+
+.text-hover-info:hover,
+.text-hover-info:active {
+    color: #2285a0;
+}
+
+.text-hover-pink:hover,
+.text-hover-pink:active {
+    color: #DC83B0;
+}
+
+.text-hover-danger:hover,
+.text-hover-danger:active {
+    color: #f76447;
+}
 
 /* overwritten the bg-color of navbar conatiner */
 #navbar-container{

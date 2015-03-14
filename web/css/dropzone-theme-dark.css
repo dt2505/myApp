@@ -1,0 +1,55 @@
+/* overwritten dropzone */
+.dropzone {
+    padding: 0;
+    min-height: 220px;
+    background-color: transparent;
+}
+
+.dropzone .dz-preview:hover,
+.dropzone .dz-preview:active,
+.dropzone .dz-preview:active {
+    border: 2px solid #DC83B0;
+}
+.dropzone .dz-preview:hover .dz-image img {
+    -webkit-filter: blur(0);
+    filter: blur(0);
+}
+.dropzone .dz-preview:hover> .dz-remove { /* dz-remove shows on hover */
+    display: block;
+}
+
+.dropzone .dz-preview.dz-image-preview {
+    background-color: transparent;
+}
+.dropzone .dz-preview .dz-image {
+    border-radius: 0;
+    z-index: 0;
+    /*height: 110px;*/
+    /*width: 110px;*/
+}
+.dropzone .dz-preview {
+    padding: 0;
+    background-color: transparent;
+    margin: 0 5px 5px 0;
+    border: 1px solid #000000;
+}
+/* dz remove btn */
+.dropzone .dz-preview .dz-remove {
+    display: none;
+}
+.dropzone .dz-preview .dz-remove:hover {
+    text-decoration: none;
+}
+.dropzone .dz-preview .dz-remove-lg {
+    font-size: 20px;
+}
+.dropzone .dz-preview .dz-remove-lg-top-right-corner {
+    position:absolute;
+    top: -5px;
+    right: -9px;
+}
+/* end */
+
+#image-preview-zone {
+    padding-left: 18px;
+}

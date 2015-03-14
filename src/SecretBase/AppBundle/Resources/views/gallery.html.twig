@@ -262,6 +262,8 @@ text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
 ] %}
 
 {% block stylesheets %}
+    <link href="{{ asset('plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/dropzone/dropzone.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/dropzone/dropzone.css') }}" rel="stylesheet">
     <link href="{{ asset('css/card.css') }}" rel="stylesheet">
     <link href="{{ asset('css/gallery.css') }}" rel="stylesheet">
@@ -286,14 +288,28 @@ text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
                 {# gallery #}
                 <div id="page-content">
                     <div id="card-container" class="mar-no">
-                        {% include 'AppBundle:elements:cards/image-upload-card.html.twig' with {hidden: "hidden"} %}
+                        {% embed 'AppBundle:widgets:dropfile-widget-dark.html.twig' with {
+                            panelTitleClass: "pad-rgt-120 show-overflow",
+                            panelClass: "hidden"
+                        } %}
+                            {% block panel_title %}
+                                <select class="selectpicker" data-width="100%" data-size="5">
+                                    <option value="1" selected>Default Album</option>
+                                    <option value="2">My Album</option>
+                                    <option value="3">Student</option>
+                                    <option value="4">Model</option>
+                                    <option value="5">Lover</option>
+                                    <option value="6">Office Lady</option>
+                                </select>
+                            {% endblock %}
+                        {% endembed %}
 
                         {% for media in medias %}
-                        {% include 'AppBundle:elements:cards/image-card.html.twig' with {
-                            id: loop.index,
-                            user: user,
-                            media: media|default(null)
-                        } %}
+                            {% include 'AppBundle:elements:cards/image-card.html.twig' with {
+                                id: loop.index,
+                                user: user,
+                                media: media|default(null)
+                            } %}
                         {% endfor %}
                     </div>
                 </div>
@@ -306,6 +322,7 @@ text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
 {% endblock %}
 
 {% block javascripts %}
+    <script type="text/javascript" src="{{ asset('plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('plugins/dropzone/dropzone.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/dropfile.js') }}"></script>

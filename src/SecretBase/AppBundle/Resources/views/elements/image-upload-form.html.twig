@@ -1,0 +1,36 @@
+{% trans_default_domain 'Elements' %}
+
+<div id="photo-dropzone" class="dropzone">
+    {# image preview #}
+    <div id="image-preview-zone" class="pad-top-5">
+        <div class="dz-preview dz-image-preview">
+            <div class="dz-image">
+                <img data-dz-thumbnail>
+            </div>
+            <span data-dz-remove class="dz-remove dz-remove-lg dz-remove-lg-top-right-corner fa fa-fw fa-times-circle text-pink text-hover-pink"></span>
+
+            <div class="dz-size">
+                <span data-dz-size></span>
+            </div>
+            <div class="dz-progress hidden">
+                <span class="dz-upload" data-dz-uploadprogress></span>
+            </div>
+            <div class="dz-error-message">
+                <span data-dz-errormessage></span>
+            </div>
+            <div class="dz-success-mark"></div>
+            <div class="dz-error-mark"></div>
+        </div>
+    </div>
+
+    {# show message #}
+    <div class="dz-default dz-message">
+        <div class="icon-wrap icon-circle icon-wrap-md pad-all-5">
+            <i class="fa fa-cloud-upload fa-3x"></i>
+        </div>
+        <div>
+            <p class="dz-text">{{ 'tip.drop_file_to_upload'|trans }}</p>
+            <p class="text-muted pad-ver-5">{{ 'tip.or_click_to_pick_manually'|trans }}</p>
+        </div>
+    </div>
+</div>

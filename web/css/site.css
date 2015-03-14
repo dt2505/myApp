@@ -123,3 +123,6 @@
 .border-dotted-2x-dark {
     border: 2px dotted #333333;
 }
+.border-btm-solid-dark-4a {
+    border-bottom: 1px dotted #4a4a4a;
+}

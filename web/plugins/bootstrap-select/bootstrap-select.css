@@ -1,73 +1,20 @@
 /*!
- * Bootstrap-select v1.6.2 (http://silviomoreto.github.io/bootstrap-select/)
+ * Bootstrap-select v1.6.4 (http://silviomoreto.github.io/bootstrap-select)
  *
- * Copyright 2013-2014 bootstrap-select
+ * Copyright 2013-2015 bootstrap-select
  * Licensed under MIT (https://github.com/silviomoreto/bootstrap-select/blob/master/LICENSE)
  */
 
-
 .bootstrap-select {
-  /*width: 220px\9; IE8 and below*/
   width: 220px \0;
   /*IE9 and below*/
-  margin-bottom: 15px;
 }
-
-select.bs-validation{
-  display: inline-block !important;
-  opacity: 1;
-  visibility: hidden;
-  position: absolute;
-  margin-top: -20px
-}
-
-.bootstrap-select:not(.open) > .btn.btn-default{
-  background-color: #fff;
-  border-color: #e1e5ea
-}
-
-.form-control.bootstrap-select .caret,
-.has-warning .form-control.bootstrap-select .caret,
-.has-success .form-control.bootstrap-select .caret,
-.has-error .form-control.bootstrap-select .caret{
-  color:transparent;
-}
-
-.has-error .form-control.bootstrap-select .btn{
-  color: #e33a4b;
-}
-.has-success .form-control.bootstrap-select .btn{
-  color: #24692F;
-}
-.has-warning .form-control.bootstrap-select .btn{
-  color: #f0a238;
-}
-
-
-.has-error .form-control.bootstrap-select > .btn{
-  border-color: #e33a4b;
-}
-
-.has-success .form-control.bootstrap-select > .btn{
-  border-color: #24692F;
-}
-.has-warning .form-control.bootstrap-select > .btn{
-  border-color: #f0a238;
-}
-
-.bootstrap-select.open > .btn.btn-default{
-  background-color: #f1f4f8;
-  border-color: #3f83de
-}
-
 .bootstrap-select > .btn {
   width: 100%;
   padding-right: 25px;
 }
-.error .bootstrap-select .btn {
-  border: 1px solid #b94a48;
-}
-.control-group.error .bootstrap-select .dropdown-toggle {
+.has-error .bootstrap-select .dropdown-toggle,
+.error .bootstrap-select .dropdown-toggle {
   border-color: #b94a48;
 }
 .bootstrap-select.fit-width {
@@ -77,7 +24,9 @@ select.bs-validation{
   width: 220px;
 }
 .bootstrap-select .btn:focus {
-  outline: 0 !important
+  outline: thin dotted #333333 !important;
+  outline: 5px auto -webkit-focus-ring-color !important;
+  outline-offset: -2px;
 }
 .bootstrap-select.form-control {
   margin-bottom: 0;
@@ -87,26 +36,17 @@ select.bs-validation{
 .bootstrap-select.form-control:not([class*="col-"]) {
   width: 100%;
 }
-/*
 .bootstrap-select.btn-group:not(.input-group-btn),
 .bootstrap-select.btn-group[class*="col-"] {
   float: none;
   display: inline-block;
   margin-left: 0;
-}*/
-
-.bootstrap-select.btn-group[class*="col-"] .dropdown-menu.open {
-  left: 10px;
-  right: 10px;
-  min-width: inherit
 }
-
 .bootstrap-select.btn-group.dropdown-menu-right,
 .bootstrap-select.btn-group[class*="col-"].dropdown-menu-right,
 .row-fluid .bootstrap-select.btn-group[class*="col-"].dropdown-menu-right {
   float: right;
 }
-.form-search .bootstrap-select.btn-group,
 .form-inline .bootstrap-select.btn-group,
 .form-horizontal .bootstrap-select.btn-group,
 .form-group .bootstrap-select.btn-group {
@@ -118,12 +58,6 @@ select.bs-validation{
 }
 .form-inline .bootstrap-select.btn-group .form-control {
   width: 100%;
-}
-.input-append .bootstrap-select.btn-group {
-  margin-left: -1px;
-}
-.input-prepend .bootstrap-select.btn-group {
-  margin-right: -1px;
 }
 .bootstrap-select.btn-group > .disabled {
   cursor: not-allowed;
@@ -169,7 +103,6 @@ select.bs-validation{
 .bootstrap-select.btn-group .dropdown-menu li:not(.disabled) a:hover small,
 .bootstrap-select.btn-group .dropdown-menu li:not(.disabled) a:focus small,
 .bootstrap-select.btn-group .dropdown-menu li.active:not(.disabled) a small {
-  color: #64b1d8;
   color: rgba(100, 177, 216, 0.4);
 }
 .bootstrap-select.btn-group .dropdown-menu li.disabled a {
@@ -231,16 +164,13 @@ select.bs-validation{
   margin-right: 34px;
 }
 .bootstrap-select.show-menu-arrow.open > .btn {
-  z-index: 1035 + 1;
+  z-index: 1036;
 }
 .bootstrap-select.show-menu-arrow .dropdown-toggle:before {
   content: '';
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-bottom-width: 7px;
-  border-bottom-style: solid;
-  border-bottom-color: #cccccc;
-  border-bottom-color: rgba(204, 204, 204, 0.2);
+  border-bottom: 7px solid rgba(204, 204, 204, 0.2);
   position: absolute;
   bottom: -4px;
   left: 9px;
@@ -259,11 +189,8 @@ select.bs-validation{
 .bootstrap-select.show-menu-arrow.dropup .dropdown-toggle:before {
   bottom: auto;
   top: -3px;
+  border-top: 7px solid rgba(204, 204, 204, 0.2);
   border-bottom: 0;
-  border-top-width: 7px;
-  border-top-style: solid;
-  border-top-color: #cccccc;
-  border-top-color: rgba(204, 204, 204, 0.2);
 }
 .bootstrap-select.show-menu-arrow.dropup .dropdown-toggle:after {
   bottom: auto;
@@ -284,7 +211,8 @@ select.bs-validation{
   display: block;
 }
 .bs-searchbox,
-.bs-actionsbox {
+.bs-actionsbox,
+.bs-donebutton {
   padding: 4px 8px;
 }
 .bs-actionsbox {
@@ -296,6 +224,16 @@ select.bs-validation{
 }
 .bs-actionsbox .btn-group button {
   width: 50%;
+}
+.bs-donebutton {
+  float: left;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.bs-donebutton .btn-group button {
+  width: 100%;
 }
 .bs-searchbox + .bs-actionsbox {
   padding: 0 8px 4px;

@@ -6,12 +6,12 @@
     position:relative;
     padding: 5px;
 }
-.status-preview-content > div > .status-preview-dismiss {
+.status-preview-content > div > .dz-remove {
     position:absolute;
     top: 0;
     left: 50px;
 }
-.status-preview-dismiss > i:hover,
-.status-preview-dismiss > i:active {
+.dz-remove > i:hover,
+.dz-remove > i:active {
     color: #999999;
 }
