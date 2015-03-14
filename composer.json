@@ -22,7 +22,9 @@
         "jms/serializer-bundle": "0.13.*",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "sonata-project/media-bundle": "2.3.*",
-        "ruflin/elastica": "1.4.*"
+        "ruflin/elastica": "1.4.*",
+        "enyo/dropzone": "4.0.*",
+        "bootstrap-select/bootstrap-select": "1.6.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
