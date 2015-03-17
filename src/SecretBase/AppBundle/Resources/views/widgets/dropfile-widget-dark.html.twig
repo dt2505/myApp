@@ -1,3 +1,5 @@
+{% trans_default_domain 'Elements' %}
+
 <div id="upload-photo-panel" class="stamp panel bg-dark {{ panelClass }}">
     {% set showForm = formAction|default('#') != '#' %}
     {% if showForm %}
@@ -7,19 +9,19 @@
         <div class="panel-heading border-btm-solid-dark-4a">
             <div class="panel-control">
                 <input type="file" id="hidden-file" multiple class="hidden">
-                <button id="btn-new-photo" class="btn btn-xs add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Add photo">
+                <button id="btn-new-photo" class="btn btn-xs add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{{ 'tip.add_photo'|trans }}">
                     <i class="fa fa-plus fa-fw fa-lg text-dark text-hover-info"></i>
                 </button>
-                <button class="btn btn-xs add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Upload">
+                <button class="btn btn-xs add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{{ 'tip.upload'|trans }}">
                     <i class="fa fa-check fa-fw fa-lg text-dark text-hover-info"></i>
                 </button>
-                <button id="upload-photo-dismiss" class="btn btn-xs add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Close">
+                <button id="upload-photo-dismiss" class="btn btn-xs add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{{ 'tip.close'|trans }}">
                     <i class="fa fa-times text-dark text-hover-danger fa-fw fa-lg"></i>
                 </button>
             </div>
             <div class="panel-title {{ panelTitleClass }}">
                 {% block panel_title %}
-                    <span>Upload photo</span>
+                    <span>{{ 'label.upload_photo'|trans }}</span>
                 {% endblock %}
             </div>
         </div>

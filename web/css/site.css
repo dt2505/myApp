@@ -117,6 +117,9 @@
 }
 
 /* border */
+.no-border {
+    border: 0;
+}
 .border-dotted-dark {
     border: 1px dotted #333333;
 }

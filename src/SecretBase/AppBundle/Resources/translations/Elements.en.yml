@@ -43,6 +43,7 @@ placeholder:
     search: Search...
     status: What is in your mind?
     comment: comment
+    album_name: Enter album name
 link:
     forgot_password: Forgot password ?
     create_new_account: Create a new account
@@ -102,7 +103,11 @@ label:
     all_photos: All photos
     album: Album
     upload_photos: Upload photos
+    upload_photo: Upload photo
     add_album: Add album
+    upload: Upload
+    close: Close
+    notification: Notification
 tip:
     you_have_msg: '{0} You have no messages|{1} You have <b style="color:blue">one</b> message unread|[2,999] You have <b style="color:blue">%count%</b> messages unread|[1000,Inf] You have <b style="color:red">so many</b> messages unread'
     who_sent_u_msg: '%name% sent you a message'
@@ -127,6 +132,7 @@ tip:
     I_would_like_read: I would like to read
     drop_file_to_upload: Drop files to upload
     or_click_to_pick_manually: or click to pick manually
+    new_status_notification: '{1} One new status is waiting for you|[2,Inf] %count% new statuses are waiting for you'
 alt:
     profile_pic: Profile picture
     logo: Logo

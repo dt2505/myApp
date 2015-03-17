@@ -102,7 +102,11 @@ label:
     all_photos: 全部照片
     album: 相册
     upload_photos: 上传照片
+    upload_photo: 上传照片
     add_album: 新增相册
+    upload: 上传
+    close: 关闭
+    notification: 通知
 tip:
     you_have_msg: '{0} 你没有消息|{1} 你有<b style="color:blue">一</b>个未读消息|[2,999] 你有<b style="color:blue">%count%</b>未读消息|[1000,Inf] 你有<b style="color:red">大量</b>未读消息'
     who_sent_u_msg: '%name% 给你发了消息'
@@ -123,6 +127,7 @@ tip:
     I_would_like_read: 我想要看
     drop_file_to_upload: 拖放照片上传
     or_click_to_pick_manually: 或者手动点击上传
+    new_status_notification: '{1} 有一个人更新了他的状态|[2,Inf] 有%count%个人更新了他们的状态'
 alt:
     profile_pic: 头像
     logo: Logo

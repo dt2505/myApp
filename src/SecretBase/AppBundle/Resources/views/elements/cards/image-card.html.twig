@@ -6,7 +6,7 @@
         <a href="#"><img class="img-responsive" src="{{ asset(media.url) }}" alt="{{ media.alt }}"></a>
 
         {# show basic info only when broswer window is in small size #}
-        <span class="hidden-lg hidden-md img-info-sm text-xs text-white pad-all-10 text-lg text-bold">Nancy, 19, Russian</span>
+        <span class="hidden-lg hidden-md img-info-sm text-xs text-white pad-all-10 text-lg text-bold">{{ media.user.name }}, {{ media.user.age }}, {{ media.user.nationality }}</span>
         {# end #}
 
         <div class="animated fadeIn img-caption img-caption-btm pad-ver-5">
@@ -14,7 +14,7 @@
                 {{ lcWidget.showLinksOFCommentAndLike(media.comments_count, media.likes_count, {class: "btn btn-link pad-lft-10", dataPlacement: "top"}, "text-white") }}
 
                 {# show basic info only when broswer window is in full size #}
-                <span class="hidden-xs hidden-sm text-sm text-white pad-lft-10 text-lg text-bold">Nancy, 19, Russian</span>
+                <span class="hidden-xs hidden-sm text-sm text-white pad-lft-10 text-lg text-bold">{{ media.user.name }}, {{ media.user.age }}, {{ media.user.nationality }}</span>
                 {# end #}
 
                 <div class="pull-right">

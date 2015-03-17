@@ -8,6 +8,12 @@
 
 {% set medias = [
     {
+        user: {
+            name: "Nancy",
+            age: 19,
+            nationality: "Russia",
+            occupation: "student"
+        },
         url: asset('img/thumbs/img1.jpg'),
         alt: "ImageName",
         comments_count: 2,
@@ -36,6 +42,12 @@
         ]
     },
 {
+user: {
+name: "Nancy",
+age: 19,
+nationality: "Russia",
+occupation: "student"
+},
 url: asset('img/thumbs/img2.jpg'),
 alt: "ImageName",
 comments_count: 2,
@@ -64,6 +76,12 @@ text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
 ]
 },
 {
+user: {
+name: "Nancy",
+age: 19,
+nationality: "Russia",
+occupation: "student"
+},
 url: asset('img/thumbs/img3.jpg'),
 alt: "ImageName",
 comments_count: 2,
@@ -92,6 +110,12 @@ text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
 ]
 },
 {
+user: {
+name: "Nancy",
+age: 19,
+nationality: "Russia",
+occupation: "student"
+},
 url: asset('img/bg-img/bg-img-2.jpg'),
 alt: "ImageName",
 comments_count: 2,
@@ -120,6 +144,12 @@ text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
 ]
 },
 {
+user: {
+name: "Nancy",
+age: 19,
+nationality: "Russia",
+occupation: "student"
+},
 url: asset('img/bg-img/bg-img-1.jpg'),
 alt: "ImageName",
 comments_count: 2,
@@ -148,6 +178,12 @@ text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
 ]
 },
 {
+user: {
+name: "Nancy",
+age: 19,
+nationality: "Russia",
+occupation: "student"
+},
 url: asset('img/bg-img/bg-img-3.jpg'),
 alt: "ImageName",
 comments_count: 2,
@@ -176,6 +212,12 @@ text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
 ]
 },
 {
+user: {
+name: "Nancy",
+age: 19,
+nationality: "Russia",
+occupation: "student"
+},
 url: asset('img/bg-img/bg-img-4.jpg'),
 alt: "ImageName",
 comments_count: 2,
@@ -204,6 +246,12 @@ text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
 ]
 },
 {
+user: {
+name: "Nancy",
+age: 19,
+nationality: "Russia",
+occupation: "student"
+},
 url: asset('img/bg-img/bg-img-5.jpg'),
 alt: "ImageName",
 comments_count: 2,
@@ -232,6 +280,12 @@ text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
 ]
 },
 {
+user: {
+name: "Nancy",
+age: 19,
+nationality: "Russia",
+occupation: "student"
+},
 url: asset('img/thumbs/img3.jpg'),
 alt: "ImageName",
 comments_count: 2,
@@ -261,6 +315,38 @@ text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
 }
 ] %}
 
+{% set albums = [
+    {
+        id: 1,
+        name: "Default Album",
+        isDefault: true
+    },
+{
+id: 2,
+name: "My Album",
+isDefault: false
+},
+{
+id: 3,
+name: "Student",
+isDefault: false
+},
+{
+id: 4,
+name: "Model",
+isDefault: false
+},
+{
+id: 5,
+name: "Lover",
+isDefault: false
+},
+{
+id: 6,
+name: "Office Lady",
+isDefault: false
+}
+] %}
 {% block stylesheets %}
     <link href="{{ asset('plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/dropzone/dropzone.css') }}" rel="stylesheet">
@@ -294,12 +380,13 @@ text: "Duis autem vel eum iriure dolor in hendrerit in vulputate ?"
                         } %}
                             {% block panel_title %}
                                 <select class="selectpicker" data-width="100%" data-size="5">
-                                    <option value="1" selected>Default Album</option>
-                                    <option value="2">My Album</option>
-                                    <option value="3">Student</option>
-                                    <option value="4">Model</option>
-                                    <option value="5">Lover</option>
-                                    <option value="6">Office Lady</option>
+                                    {% for album in albums %}
+                                        {% if album.isDefault %}
+                                            <option value="{{ album.id }}" selected>{{ album.name }}</option>
+                                        {% else %}
+                                            <option value="{{ album.id }}">{{ album.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
                                 </select>
                             {% endblock %}
                         {% endembed %}

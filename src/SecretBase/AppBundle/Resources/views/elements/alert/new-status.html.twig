@@ -1,3 +1,5 @@
+{% trans_default_domain 'Elements' %}
+
 <div id="alert-new-status" class="alert alert-dark media fade in {{ addtionalClass|default('') }}">
     <div class="media-left">
         <span class="icon-wrap icon-wrap-xs icon-circle alert-icon">
@@ -5,7 +7,7 @@
         </span>
     </div>
     <div class="media-body">
-        <h4 class="alert-title">Notification</h4>
-        <p class="alert-message">198 new statuses are waiting for you</p>
+        <h4 class="alert-title">{{ 'label.notification'|trans }}</h4>
+        <p class="alert-message">{{ 'tip.new_status_notification'|transchoice(198) }}</p>
     </div>
 </div>
