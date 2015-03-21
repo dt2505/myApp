@@ -1,9 +1,9 @@
 @import url("dropzone-theme-dark.css");
 
-#content-container {
+/*#content-container {*/
     /*padding-top: 33px;*/
-    background-color: #000000;
-}
+    /*background-color: #000000;*/
+/*}*/
 .show-overflow {
     overflow: visible;
 }

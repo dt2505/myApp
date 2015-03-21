@@ -12,7 +12,9 @@
 {% block body %}
 <div id="container" class="effect navbar-fixed mainnav-out">
     {# navbar #}
-    {% include 'AppBundle:elements:navbar/lobby-navbar.html.twig' %}
+    {% include 'AppBundle:elements:navbar/lobby-navbar.html.twig' with {
+        girl: 'visible'
+    } %}
 
     {# content #}
     <div class="boxed">

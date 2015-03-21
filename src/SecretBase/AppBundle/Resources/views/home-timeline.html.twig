@@ -11,7 +11,10 @@
 {% block body %}
     <div id="container" class="effect slide aside-in aside-left mainnav-out navbar-fixed">
         {# navbar #}
-        {% include 'AppBundle:elements:navbar/lobby-navbar.html.twig' with {writeStatus: 'invisible'} %}
+        {% include 'AppBundle:elements:navbar/lobby-navbar.html.twig' with {
+            writeStatus: 'invisible',
+            girl: 'visible'
+        } %}
 
         {# content #}
         <div class="boxed">

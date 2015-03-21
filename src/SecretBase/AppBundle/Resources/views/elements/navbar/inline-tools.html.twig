@@ -3,6 +3,7 @@
 {% set writeStatus = writeStatus|default('visible') %}
 {% set image = image|default('visible') %}
 {% set mainnav = mainnav|default('visible') %}
+{% set girl = girl|default('invisible') %}
 
 <ul class="nav navbar-top-links {{ direction }}">
 
@@ -139,20 +140,29 @@
         </div>
     </li>
 
-    {# write status #}
-    {% if writeStatus == 'visible' %}
-        <li class="add-tooltip write-status" data-toggle="tooltip" data-placement="bottom" data-original-title="Write status">
-            <a href="#">
-                <i class="fa fa-pencil fa-lg"></i>
-            </a>
-        </li>
-    {% endif %}
-
     {# image #}
     {% if image == 'visible' %}
         <li class="add-tooltip images" data-toggle="tooltip" data-placement="bottom" data-original-title="Gallery">
             <a href="{{ path('get_gallery') }}">
                 <i class="fa fa-image fa-lg"></i>
+            </a>
+        </li>
+    {% endif %}
+
+    {# girl #}
+    {% if girl == 'visible' %}
+        <li class="add-tooltip girl" data-toggle="tooltip" data-placement="bottom" data-original-title="Girl Manager">
+            <a href="{{ path('get_girls') }}">
+                <i class="fa fa-female fa-lg"></i>
+            </a>
+        </li>
+    {% endif %}
+
+    {# write status #}
+    {% if writeStatus == 'visible' %}
+        <li class="add-tooltip write-status" data-toggle="tooltip" data-placement="bottom" data-original-title="Write status">
+            <a href="#">
+                <i class="fa fa-pencil fa-lg"></i>
             </a>
         </li>
     {% endif %}

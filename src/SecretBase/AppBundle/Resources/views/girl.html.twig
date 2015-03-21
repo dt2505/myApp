@@ -1,0 +1,118 @@
+{% extends "::base.html.twig" %}
+
+{% trans_default_domain 'Elements' %}
+
+{% set detail = {
+    groups: [
+        {
+            id: 1,
+            name: "Model",
+            isDefault: true
+        },
+        {
+            id: 2,
+            name: "Office Lady",
+            isDefault: false
+        },
+        {
+            id: 3,
+            name: "Student",
+            isDefault: false
+        },
+        {
+            id: 4,
+            name: "G-CUP",
+            isDefault: false
+        },
+    ],
+    services: [
+        {
+            id: 1,
+            name: "In-call",
+            checked: true,
+            items: []
+        },
+        {
+            id: 2,
+            name: "Out-call",
+            checked: true,
+            items: []
+        },
+        {
+            id: 3,
+            name: "Overnight",
+            checked: false,
+            items: []
+        },
+        {
+            id: 4,
+            name: "Escort",
+            checked: false,
+            items: []
+        },
+    ],
+    options: [
+        {
+            id: 1,
+            name: "SM",
+            checked: false,
+            items: []
+        },
+        {
+            id: 2,
+            name: "Uniform",
+            checked: false,
+            items: []
+        }
+    ]
+}
+%}
+
+{% block stylesheets %}
+    <link href="{{ asset('plugins/chosen/chosen.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/fullcalendar/fullcalendar.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/girl.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/card.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div id="container" class="effect navbar-fixed mainnav-out">
+        {# navbar #}
+        {% include 'AppBundle:elements:navbar/lobby-navbar.html.twig' with {
+            writeStatus: 'invisible',
+            mainnav: 'invisible',
+            girl: 'invisible'
+        } %}
+
+        {# content #}
+        <div class="boxed">
+            <div id="content-container">
+                <div id="page-content" class="row">
+                    {# show empty message #}
+                    {% if detail|default(null) is null %}
+                        <div class="text-center pad-all text-white center-block girl-profile-wrapper">
+                            <h1>Good Day</h1>
+                            <p class="text-2x mar-btm">Girls are the key to success, and to enter guest's heart</p>
+                            <button class="btn btn-info btn-large"><span class="text-2x">Add new girl</span></button>
+                        </div>
+                    {% else %}
+                        {% include 'AppBundle:elements:girl/detail-form.html.twig' with {
+                            detail: detail
+                        } %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {# scroll to top #}
+        <button id="scroll-top" class="btn"><i class="fa fa-chevron-up"></i></button>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('plugins/chosen/chosen.jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('plugins/fullcalendar/lib/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('plugins/fullcalendar/lib/jquery-ui.custom.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('plugins/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/girl.js') }}"></script>
+{% endblock %}

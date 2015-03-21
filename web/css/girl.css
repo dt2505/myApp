@@ -1,0 +1,22 @@
+/* overwritten chosen */
+.chosen-container-multi .chosen-choices li.search-field input[type=text] {
+    color: #7D7D7D;
+    padding-left: 7px;
+}
+/* end overwritten */
+
+.girl-acceptable-opt-panel-title {
+    font-size: 1em;
+}
+.girl-acceptable-opt-panel-control {
+    line-height: 40px;
+}
+.girl-profile-wrapper {
+    width: 800px;
+}
+
+@media (max-width: 800px) {
+    .girl-profile-wrapper {
+        width: 100%;
+    }
+}

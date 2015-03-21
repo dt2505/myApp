@@ -1,0 +1,94 @@
+<div class="panel bg-dark panel-colorful">
+    <!--Accordion title-->
+    <div class="panel-heading border-btm-solid-dark-4a">
+        <h4 class="panel-title">
+            <a data-parent="#{{ accordionParent }}" data-toggle="collapse" href="#profile-panel">
+                <span class="text-lg">Profile</span>
+            </a>
+        </h4>
+    </div>
+
+    <!--Accordion content-->
+    <div class="panel-collapse collapse in" id="profile-panel">
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="name">Name</label>
+                <div class="col-sm-9">
+                    <input type="email" placeholder="Name" id="name" name="name" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="">Age</label>
+                <div class="col-sm-9">
+                    <input type="text" placeholder="Age" id="age" name="age" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="">Occupation</label>
+                <div class="col-sm-9">
+                    <input type="text" placeholder="Occupation" id="occupation" name="occupation" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="dob">Date of Birth</label>
+                <div class="col-sm-9">
+                    <input type="text" placeholder="Date of birth" id="dob" name="dob" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="nationality">Nationality</label>
+                <div class="col-sm-9">
+                    <input type="text" placeholder="Nationality" id="nationality" name="nationality" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="acceptable-clients">Target clients</label>
+                <div class="col-sm-9">
+                    <!-- Multiple Select Choosen -->
+                    <!--===================================================-->
+                    <select id="acceptable-clients" data-placeholder="Choose target clients..." multiple tabindex="4">
+                        <option value="Aland Islands">Any</option>
+                        <option value="United States">Chinese</option>
+                        <option value="United Kingdom">Local</option>
+                        <option value="Afghanistan">European</option>
+                        <option value="Aland Islands">American</option>
+                    </select>
+                    <!--===================================================-->
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="group">Group</label>
+                <div class="col-sm-9">
+                    <select id="group" class="form-control">
+                        {% for group in groups %}
+                            {% if group.isDefault %}
+                                <option value="{{ group.id }}" selected>{{ group.name }}</option>
+                            {% else %}
+                                <option value="{{ group.id }}">{{ group.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="bio">Bio</label>
+                <div class="col-sm-9">
+                    <textarea rows="10" placeholder="Description about the girl or group" id="bio" name="bio" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Hybrid</label>
+                <div class="col-sm-9">
+                    <div class="radio">
+                        <label class="form-radio form-normal form-text">
+                            <input type="radio" name="hybrid">Yes
+                        </label>
+                        <label class="form-radio form-normal form-text active">
+                            <input type="radio" name="hybrid" checked>No
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

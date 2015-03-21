@@ -1,0 +1,32 @@
+<div class="panel bg-dark panel-colorful">
+
+    <!-- Accordion title -->
+    <div class="panel-heading border-btm-solid-dark-4a">
+        <div class="panel-control girl-acceptable-opt-panel-control">
+            <a class="btn btn-link">
+                <i class="fa fa-plus-square fa-fw fa-lg text-dark text-hover-info"></i>
+            </a>
+        </div>
+
+        <h4 class="panel-title">
+            <a data-parent="#{{ accordionParent }}" data-toggle="collapse" href="#acceptable-opt-panel">
+                <span class="text-lg">Acceptable options</span>
+            </a>
+        </h4>
+    </div>
+
+    <!-- Accordion content -->
+    <div class="panel-collapse collapse" id="acceptable-opt-panel">
+        <div class="panel-body no-pad-top">
+            <div class="panel-group accordion" id="acceptable-opt-panel-group">
+                {% for option in options %}
+                    {% include 'AppBundle:elements:girl/acceptable-option-item.html.twig' with {
+                        accordionParent: 'acceptable-opt-panel-group',
+                        option: option,
+                        isFirst: loop.index == 1
+                    } %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

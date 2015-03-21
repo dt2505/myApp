@@ -1,0 +1,43 @@
+<form id="girl-profile-form" class="form-horizontal">
+    <div class="center-block girl-profile-wrapper">
+
+        {# girl's photo preview #}
+        <div class="col-xs-12 col-sm-5 col-md-5">
+            <div class="panel bg-dark panel-colorful">
+                <!--Panel body-->
+                <div class="panel-body no-pad">
+                    <a href="#"><img class="img-responsive" src="{{ asset('img/thumbs/img2.jpg') }}" alt=""></a>
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-primary text-lg">Update profile</button>
+                </div>
+            </div>
+        </div>
+
+        {# girl's profile and acceptable options #}
+        <div class="col-xs-12 col-sm-6 col-md-7 no-pad-lft">
+            <div class="panel-group accordion" id="profile-panel-group">
+                {# profile #}
+                {% include 'AppBundle:elements:girl/profile.html.twig' with {
+                    accordionParent: 'profile-panel-group',
+                    groups: detail.groups
+                } %}
+
+                {# services #}
+                {% include 'AppBundle:elements:girl/services.html.twig' with {
+                    accordionParent: 'profile-panel-group',
+                    services: detail.services
+                } %}
+
+                {# acceptable options #}
+                {% include 'AppBundle:elements:girl/acceptable-options.html.twig' with {
+                    accordionParent: 'profile-panel-group',
+                    options: detail.options
+                } %}
+
+
+            </div>
+            <!--End Accordion-->
+        </div>
+    </div>
+</form>
