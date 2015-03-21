@@ -107,6 +107,14 @@ label:
     upload: 上传
     close: 关闭
     notification: 通知
+    add_photo: 上传照片
+    likes: 大爱
+    comments: 留言
+    follow: Follow
+    lobby: 大厅
+    filter: 筛选
+    message: 消息
+    home: 个人主页
 tip:
     you_have_msg: '{0} 你没有消息|{1} 你有<b style="color:blue">一</b>个未读消息|[2,999] 你有<b style="color:blue">%count%</b>未读消息|[1000,Inf] 你有<b style="color:red">大量</b>未读消息'
     who_sent_u_msg: '%name% 给你发了消息'
@@ -118,11 +126,7 @@ tip:
     months_ago: '{1} 上个月|[2,Inf] %count%月前'
     years_ago: '{1} 去年|[2,Inf] %count%年前'
     show_all_message: 显示所有消息
-    add_photo: 上传照片
-    likes: 大爱
-    comments: 留言
     view_new_statuses: '{1} 一条新更新|[2,Inf] %count%条新更新'
-    follow: 关注
     last_updated_time: 最近更新时间
     I_would_like_read: 我想要看
     drop_file_to_upload: 拖放照片上传

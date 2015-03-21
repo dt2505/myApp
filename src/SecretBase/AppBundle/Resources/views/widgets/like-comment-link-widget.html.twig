@@ -4,14 +4,14 @@
 {% spaceless %}
     {% set color = color|default('text-default') %}
 
-    <a class=" {{ anchor.class|default('') }} add-tooltip no-pad mar-rgt-5 likes" data-toggle="tooltip" data-placement="{{ anchor.dataPlacement|default('bottom') }}" data-original-title="{{ 'tip.likes'|trans }}">
+    <a class=" {{ anchor.class|default('') }} add-tooltip no-pad mar-rgt-5 likes" data-toggle="tooltip" data-placement="{{ anchor.dataPlacement|default('bottom') }}" data-original-title="{{ 'label.likes'|trans }}">
         {% if likes_count|default(0) == 0 %}
             {% set likes_count = null %}
         {% endif %}
         <i class="fa fa-heart-o fa-lg fa-fw {{ color }}"></i> <span class="{{ color }} text-bold">{{ likes_count }}</span>
     </a>
 
-    <a class="{{ anchor.class|default('') }} add-tooltip no-pad comments" data-toggle="tooltip" data-placement="{{ anchor.dataPlacement|default('bottom') }}" data-original-title="{{ 'tip.comments'|trans() }}">
+    <a class="{{ anchor.class|default('') }} add-tooltip no-pad comments" data-toggle="tooltip" data-placement="{{ anchor.dataPlacement|default('bottom') }}" data-original-title="{{ 'label.comments'|trans() }}">
         {% set icon = "fa-comment-o" %}
 
         {% if comments_count > 1 %}

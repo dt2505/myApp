@@ -108,6 +108,14 @@ label:
     upload: Upload
     close: Close
     notification: Notification
+    add_photo: Add Photo
+    likes: Likes
+    comments: Comments
+    follow: Follow
+    lobby: Lobby
+    filter: Filter
+    message: Message
+    home: Home
 tip:
     you_have_msg: '{0} You have no messages|{1} You have <b style="color:blue">one</b> message unread|[2,999] You have <b style="color:blue">%count%</b> messages unread|[1000,Inf] You have <b style="color:red">so many</b> messages unread'
     who_sent_u_msg: '%name% sent you a message'
@@ -119,16 +127,8 @@ tip:
     months_ago: '{1} Last month|[2,Inf] %count% months ago'
     years_ago: '{1} Last year|[2,Inf] %count% years ago'
     show_all_message: Show all messages
-    add_photo: Add Photo
-    likes: Likes
-    comments: Comments
     view_new_statuses: '{1} View %count% status|[2,Inf] View %count% statuses'
-    follow: Follow
     last_updated_time: Last updated time
-    lobby: Lobby
-    filter: Filter
-    message: Message
-    home: Home
     I_would_like_read: I would like to read
     drop_file_to_upload: Drop files to upload
     or_click_to_pick_manually: or click to pick manually
