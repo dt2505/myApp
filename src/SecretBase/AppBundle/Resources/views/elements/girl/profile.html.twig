@@ -1,16 +1,25 @@
+{% set collapseIn = collapse|default(false) ? "collapse" : "collapse in" %}
+{% set accordionParent = collapseAll|default(true) ? accordionParent|default('') : '' %}
+
 <div class="panel bg-dark panel-colorful">
     <!--Accordion title-->
     <div class="panel-heading border-btm-solid-dark-4a">
-        <h4 class="panel-title">
+        <div class="panel-control girl-acceptable-opt-panel-control">
+            <a class="btn btn-link no-pad-hor">
+                <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save"></i>
+            </a>
+        </div>
+
+        <div class="panel-title">
             <a data-parent="#{{ accordionParent }}" data-toggle="collapse" href="#profile-panel">
                 <span class="text-lg">Profile</span>
             </a>
-        </h4>
+        </div>
     </div>
 
     <!--Accordion content-->
-    <div class="panel-collapse collapse in" id="profile-panel">
-        <div class="panel-body">
+    <div class="panel-collapse {{ collapseIn }}" id="profile-panel">
+        <div class="panel-body no-pad-btm">
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="name">Name</label>
                 <div class="col-sm-9">
@@ -18,13 +27,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="">Age</label>
+                <label class="col-sm-3 control-label" for="age">Age</label>
                 <div class="col-sm-9">
                     <input type="text" placeholder="Age" id="age" name="age" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="">Occupation</label>
+                <label class="col-sm-3 control-label" for="occupation">Occupation</label>
                 <div class="col-sm-9">
                     <input type="text" placeholder="Occupation" id="occupation" name="occupation" class="form-control">
                 </div>
@@ -42,24 +51,24 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="acceptable-clients">Target clients</label>
+                <label class="col-sm-3 control-label" for="">Target guest</label>
                 <div class="col-sm-9">
-                    <!-- Multiple Select Choosen -->
-                    <!--===================================================-->
-                    <select id="acceptable-clients" data-placeholder="Choose target clients..." multiple tabindex="4">
+                    {# target guest #}
+                    <select id="acceptable-clients" data-placeholder="Choose target guest..." multiple tabindex="4">
                         <option value="Aland Islands">Any</option>
                         <option value="United States">Chinese</option>
                         <option value="United Kingdom">Local</option>
                         <option value="Afghanistan">European</option>
                         <option value="Aland Islands">American</option>
+                        <option value="Aland Islands">African</option>
+                        <option value="Aland Islands">Other Asian</option>
                     </select>
-                    <!--===================================================-->
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="group">Group</label>
                 <div class="col-sm-9">
-                    <select id="group" class="form-control">
+                    <select id="group" name="group" class="form-control">
                         {% for group in groups %}
                             {% if group.isDefault %}
                                 <option value="{{ group.id }}" selected>{{ group.name }}</option>
@@ -68,12 +77,6 @@
                             {% endif %}
                         {% endfor %}
                     </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="bio">Bio</label>
-                <div class="col-sm-9">
-                    <textarea rows="10" placeholder="Description about the girl or group" id="bio" name="bio" class="form-control"></textarea>
                 </div>
             </div>
             <div class="form-group">

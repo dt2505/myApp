@@ -24,7 +24,8 @@
         "sonata-project/media-bundle": "2.3.*",
         "ruflin/elastica": "1.4.*",
         "enyo/dropzone": "4.0.*",
-        "bootstrap-select/bootstrap-select": "1.6.*"
+        "bootstrap-select/bootstrap-select": "1.6.*",
+        "moment/moment": "2.9.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

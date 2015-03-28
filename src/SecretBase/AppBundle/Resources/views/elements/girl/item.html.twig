@@ -1,0 +1,50 @@
+{% set prefix = identifier|default('') %}
+{% set itemIdentifier = item.name ~ '-' ~ item.id %}
+{% set checked = item.checked ? 'checked' : '' %}
+{% set checkboxActive = item.checked ? 'active' : '' %}
+{% set displayName = item.diaplayName|default(item.name) %}
+
+{# this is used by js for gathering all items #}
+{% set itemChkBoxCls = prefix ~ "-item-checkbox" %}
+
+{% set collapseIn = isFirst ? 'collapse in' : 'collapse' %}
+{% set panelCollapseId = 'item-panel-collapse-' ~ itemIdentifier %}
+
+{% set itemBodyId = 'item-body-' ~ itemIdentifier %}
+
+<div class="panel bg-trans panel-colorful" data-item-id="{{ item.id }}" data-item-name="{{ item.name }}">
+
+    <!--Accordion title-->
+    <div class="panel-heading">
+        <div class="panel-control girl-acceptable-opt-panel-control">
+            <a class="btn btn-link no-pad-hor" data-parent="#{{ accordionParent }}" data-toggle="collapse" href="#{{ panelCollapseId }}" aria-expanded="true">
+                <i class="fa fa-caret-down fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Expand/Collapse"></i>
+            </a>
+            <a class="btn btn-link no-pad-hor item-save" data-toggle="panel-overlay" data-target="#{{ panelCollapseId }}" data-item-body="#{{ itemBodyId }}">
+                <i class="fa fa-check fa-fw fa-md text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save item"></i>
+            </a>
+            <a class="btn btn-link no-pad-hor">
+                <i class="fa fa-plus fa-fw fa-md text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Add item"></i>
+            </a>
+            <a class="btn btn-link no-pad-hor">
+                <i class="fa fa-times fa-fw fa-md text-dark text-hover-danger add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Remove item"></i>
+            </a>
+        </div>
+
+        <div class="panel-title girl-acceptable-opt-panel-title">
+            <div class="checkbox">
+                <label class="form-checkbox form-icon {{ checkboxActive }} form-text">
+                    <input type="checkbox" {{ checked }} class="{{ itemChkBoxCls }}" data-item-body="#{{ itemBodyId }}" data-item-id="{{ item.id }}" data-item-name="{{ item.name }}"><span>{{ displayName }}</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!--Accordion content-->
+    <div class="panel-collapse {{ collapseIn }}" id="{{ panelCollapseId }}" aria-expanded="true">
+        <div class="panel-body pad-no-top-but-btm-5" id="{{ itemBodyId }}">
+            {% block item_body %}{% endblock %}
+        </div>
+    </div>
+</div>
+

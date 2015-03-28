@@ -1,0 +1,160 @@
+{% set prefix = name %}
+{% set itemId = item.id %}
+
+{% set panelId = prefix ~ '-panel-' ~ itemId %}
+{% set hasUnit = item.hasUnit|default(false) %}
+{% set hasDesc = item.hasDesc|default(false) %}
+
+{% set checked = item.checked ? 'checked' : '' %}
+
+{% set price = item.price %}
+{% set unit = item.unit|default(null) %}
+{% set desc = item.desc|default(null) %}
+
+{% set itemDisplayName = item.displayName|default(null) %}
+
+{% import _self as div %}
+
+<div class="panel bg-trans panel-colorful no-border-shadow" id="{{ panelId }}">
+    <div class="panel-body no-pad">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 pad-rgt-5">
+                <div class="checkbox text-center">
+                    <label class="form-checkbox form-icon">
+                        <input type="checkbox" class="form-control" data-has-unit="{{ hasUnit }}" data-has-desc="{{ hasDesc }}" data-item-id="{{ itemId }}" data-prefix="{{ prefix }}" {{ checked }}>
+                    </label>
+                </div>
+            </div>
+            {% if hasUnit %}
+                {{ div.showUnit(unit, prefix, itemId) }}
+            {% endif %}
+
+            {{ div.showPrice(price, prefix, itemId, hasUnit, itemDisplayName) }}
+        </div>
+        {% if hasDesc %}
+            {{ div.showDesc(desc, prefix, itemId) }}
+        {% endif %}
+    </div>
+</div>
+
+{% macro showUnit(unit, prefix, itemId) %}
+{% spaceless %}
+    {% import _self as func %}
+
+    {% set unitId = prefix ~ '-unit-' ~ itemId %}
+
+    {% set btnDropDownId = "btn-dropdown-" ~ unitId %}
+    {% set inputGrpBtnId = "input-grp-" ~ unitId %}
+    {% set unitValueInputId = prefix ~ '-input-unit-value-' ~ itemId %}
+    {% set selectedInputId = prefix ~ "-input-selected-unit-" ~ itemId  %}
+
+    {% set unitValueRangeMin = unit.min %}
+    {% set unitValueRangeMax = unit.max|default(-1) %}
+    {% set unitValue = unit.value %}
+
+    {% set unitOptions = unit.options %}
+    {% set selectedUnitId = unit.selected %}
+
+    <div class="col-xs-5 col-sm-5 no-pad-lft pad-rgt-5">
+        <div class="input-group">
+            <input class="form-control" type="number" id="{{ unitValueInputId }}" name="{{ unitValueInputId }}" min="{{ unitValueRangeMin }}" {{ unitValueRangeMax > 0 ? 'max="' ~ unitValueRangeMax ~ '"' : ''}} value="{{ unitValue }}">
+            <div class="input-group-btn" id ="{{ inputGrpBtnId }}">
+                <input type="hidden" id="{{ selectedInputId }}" value="{{ selectedUnitId }}">
+
+                <button id="{{ btnDropDownId }}" data-toggle="dropdown" class="btn btn-primary dropdown-toggle dropdown-toggle-icon pad-hor-5" type="button">
+                    {{ func.getUnit(selectedUnitId, unitOptions, unitId) }}<i class="dropdown-caret fa fa-caret-down"></i>
+                </button>
+                <ul class="dropdown-menu up-unit-dropdown-menu" id="{{ unitId }}">
+                    {{ func.getUnit(selectedUnitId, unitOptions, unitId, true) }}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endspaceless %}
+{% endmacro %}
+
+{% macro showPrice(price, prefix, itemId, hasUnit, labelName) %}
+{% spaceless %}
+    {% import _self as func %}
+
+    {% set currencyId = prefix ~ '-currency-' ~ itemId %}
+
+    {% set inputGrpBtnId = "input-grp-" ~ currencyId %}
+    {% set btnDropDownId = "btn-dropdown-" ~ currencyId %}
+
+    {% set priceValueInputId = prefix ~ '-input-price-' ~ itemId %}
+    {% set selectedCurrencyInputId = prefix ~ '-input-selected-currency-' ~ itemId %}
+
+    {% set currencyColClass = hasUnit ? "col-xs-5 col-sm-5" : "col-xs-10 col-sm-10" %}
+
+    {% set priceValue = price.value %}
+    {% set currency = price.currency %}
+    {% set currencyOpions = currency.options %}
+    {% set selectedCurrencyId = currency.selected %}
+    {% set hasLabel = hasLabel|default(false) %}
+    {% set labelName = labelName|default('') %}
+
+    <div class="{{ currencyColClass }} no-pad-lft">
+        <div class="input-group">
+            {% if labelName %}
+                <span class="input-group-addon bg-primary no-border">{{ labelName }}</span>
+            {% endif %}
+
+            <div class="input-group-btn" id="{{ inputGrpBtnId }}">
+                <input type="hidden" id="{{ selectedCurrencyInputId }}" value="{{ selectedCurrencyId }}">
+
+                <button id="{{ btnDropDownId }}" data-toggle="dropdown" class="btn btn-primary dropdown-toggle dropdown-toggle-icon pad-hor-5" type="button">
+                    {{ func.getCurrency(selectedCurrencyId, currencyOpions, currencyId) }}<i class="dropdown-caret fa fa-caret-down"></i>
+                </button>
+                {# 'up-dropdown-menu' is used by js for bind click event for each menu item #}
+                <ul class="dropdown-menu up-currency-dropdown-menu" id="{{ currencyId }}">
+                    {{ func.getCurrency(selectedCurrencyId, currencyOpions, currencyId, true) }}
+                </ul>
+            </div>
+            <input type="text" class="form-control" placeholder="Price" id="{{ priceValueInputId }}" name="{{ priceValueInputId }}" value="{{ priceValue }}">
+        </div>
+    </div>
+{% endspaceless %}
+{% endmacro %}
+
+{% macro showDesc(desc, prefix, itemId) %}
+{% spaceless %}
+    {% set descId = prefix ~ '-textarea-desc-' ~ itemId %}
+    {% set descRows = desc.rows|default(3) %}
+    {% set descText = desc.text|default('') %}
+
+    <div class="row mar-top-5">
+        <div class="col-xs-push-2 col-sm-push-2 col-xs-10 col-sm-10">
+            <textarea class="form-control" id="{{ descId }}" name="{{ descId }}" rows="{{ descRows }}" placeholder="Any thing to say about?">{{ descText }}</textarea>
+        </div>
+    </div>
+{% endspaceless %}
+{% endmacro %}
+
+{% macro getCurrency(selectedCurrencyId, currencyOptions, currencyId, withMarkup) %}
+    {% spaceless %}
+        {% if not withMarkup|default(false) %}
+            {% for option in currencyOptions if option.id == selectedCurrencyId %}
+                {{ option.shortName ~ option.symbol }}
+            {% endfor %}
+        {% else %}
+            {% for option in currencyOptions %}
+                <li class="{{ option.id == selectedCurrencyId ? "active" : "" }}"><a href="#" id="{{ currencyId ~ '-' ~ option.id }}" data-id="{{ option.id }}" data-short-name="{{ option.shortName }}" data-symbol="{{ option.symbol }}" data-currency-id="{{ currencyId }}">{{ option.shortName }}</a></li>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endmacro %}
+
+{% macro getUnit(selectedUnitId, unitOptions, unitId, withMarkup) %}
+    {% spaceless %}
+        {% if not withMarkup|default(false) %}
+            {% for option in unitOptions if option.id == selectedUnitId %}
+                {{ option.name }}
+            {% endfor %}
+        {% else %}
+            {% for option in unitOptions %}
+                <li class="{{ option.id == selectedUnitId ? "active" : "" }}"><a href="#" id="{{ unitId ~ '-' ~ option.id }}" data-unit-id="{{ unitId }}" data-id="{{ option.id }}" data-name="{{ option.name }}">{{ option.name }}</a></li>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endmacro %}

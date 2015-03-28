@@ -1,9 +1,49 @@
-/* overwritten chosen */
+/* overwritten */
+
+/* chosen */
 .chosen-container-multi .chosen-choices li.search-field input[type=text] {
     color: #7D7D7D;
     padding-left: 7px;
 }
+.chosen-container {
+    margin-bottom: 0;
+}
+/* chosen */
+
+/* boostrap and nifty */
+
+/**
+ *  It is for solving the issue in which tool tip on control button in panel header
+ *  can not display correctly as by default overflow is set to 'hidden' by nifty
+ **/
+.panel-group.accordion .panel:last-child {
+    overflow: visible;
+}
+
+/**
+    solve the issue gap between two columns that contain calendar and photo preview panel
+    is too wide
+*/
+[class^="col-"]:not(.pad-no) {
+    padding-left: 0;
+}
+
+/* It is for changing the background color defined in both boostrap and nifty to dark */
+/*.table-striped>tbody>tr:nth-of-type(odd),  /* boostrap */
+/*#container .table-striped > tbody > tr:nth-child(2n+1) {  /* nifty */
+    /*background-color: #3a3a3a;*/
+/*}*/
+
+/*#container .table.dataTable tbody tr.selected {*/
+    /*background-color: #5e354b;*/
+/*}*/
+
+
 /* end overwritten */
+
+textarea {
+    resize: vertical;
+}
 
 .girl-acceptable-opt-panel-title {
     font-size: 1em;
@@ -12,10 +52,31 @@
     line-height: 40px;
 }
 .girl-profile-wrapper {
-    width: 800px;
+    width: 950px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 950px) {
+    /* overwritten */
+
+    /** reset back to default value - nifty */
+    [class^="col-"]:not(.pad-no) {
+        padding-left: 12px;
+    }
+
+    /** fix the issue in which calendar's header is squeezed
+    together when window is in mobile size - nifty */
+    #container .fc-toolbar .fc-left {
+        float: left;
+    }
+    #container .fc-toolbar .fc-center {
+        display: inline-block;
+    }
+    #container .fc-toolbar .fc-right {
+        float: right;
+    }
+    /* end - overwritten */
+
+
     .girl-profile-wrapper {
         width: 100%;
     }

@@ -17,6 +17,7 @@ web/fonts/*
 web/javascripts/*
 web/uploads/*
 web/bundles/*
+web/plugins/*
 bin/*
 build/*
 

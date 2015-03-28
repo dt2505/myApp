@@ -28,39 +28,317 @@
     services: [
         {
             id: 1,
-            name: "In-call",
+            diaplayName: "In-call",
+            name: 'incall',
             checked: true,
-            items: []
+            items: [
+                {
+                    id: 1,
+                    checked: true,
+                    template: "unit-price",
+                    hasUnit: true,
+                    unit: {
+                        value: 2,
+                        min: 1,
+                        selected: "h",
+                        options:[
+                            {
+                                id: 'm',
+                                name: 'Minute'
+                            },
+                            {
+                                id: 'h',
+                                name: 'Hour'
+                            }
+                        ]
+                    },
+                    price: {
+                        value: 570,
+                        currency: {
+                            selected: 1,
+                            options: [
+                                {
+                                    id: 1,
+                                    symbol: '$',
+                                    shortName: 'AUD',
+                                    fullName: 'Australia Dollar'
+                                },
+                                {
+                                    id: 2,
+                                    symbol: '¥',
+                                    shortName: 'CNY',
+                                    fullName: 'Chinese Yuan'
+                                },
+                                {
+                                    id: 3,
+                                    symbol: '$',
+                                    shortName: 'USD',
+                                    fullName: 'American Dollar'
+                                },
+                                {
+                                    id: 4,
+                                    symbol: '€',
+                                    shortName: 'EUR',
+                                    fullName: 'European Dollar'
+                                },
+                            ]
+                        },
+                    },
+                    hasDesc: false
+                },
+{
+id: 2,
+checked: true,
+template: "unit-price",
+hasUnit: true,
+unit: {
+value: 2,
+min: 1,
+selected: "h",
+options:[
+{
+id: 'm',
+name: 'Minute'
+},
+{
+id: 'h',
+name: 'Hour'
+}
+]
+},
+price: {
+value: 270,
+currency: {
+selected: 2,
+options: [
+{
+id: 1,
+symbol: '$',
+shortName: 'AUD',
+fullName: 'Australia Dollar'
+},
+{
+id: 2,
+symbol: '¥',
+shortName: 'CNY',
+fullName: 'Chinese Yuan'
+},
+{
+id: 3,
+symbol: '$',
+shortName: 'USD',
+fullName: 'American Dollar'
+},
+{
+id: 4,
+symbol: '€',
+shortName: 'EUR',
+fullName: 'European Dollar'
+},
+]
+},
+},
+hasDesc: false
+},
+            ]
         },
         {
             id: 2,
-            name: "Out-call",
+            diaplayName: "Out-call",
+            name: "outcall",
             checked: true,
-            items: []
+            items: [
+            ]
         },
         {
             id: 3,
-            name: "Overnight",
+            diaplayName: "Overnight",
+            name: "overnight",
             checked: false,
-            items: []
+            items: [
+{
+id: 1,
+checked: true,
+template: "unit-price",
+hasUnit: false,
+price: {
+value: 2000,
+currency: {
+selected: 1,
+options: [
+{
+id: 1,
+symbol: '$',
+shortName: 'AUD',
+fullName: 'Australia Dollar'
+},
+{
+id: 2,
+symbol: '¥',
+shortName: 'CNY',
+fullName: 'Chinese Yuan'
+},
+{
+id: 3,
+symbol: '$',
+shortName: 'USD',
+fullName: 'American Dollar'
+},
+{
+id: 4,
+symbol: '€',
+shortName: 'EUR',
+fullName: 'European Dollar'
+},
+]
+},
+},
+hasDesc: true,
+    desc: {
+        rows: 4,
+        text: "Don't miss out this girl, she is freaking hot and skilled"
+}
+},
+            ]
         },
         {
             id: 4,
-            name: "Escort",
+            diaplayName:"Escort",
+            name: "escort",
             checked: false,
+            items: [
+{
+id: 1,
+checked: true,
+template: "unit-price",
+hasUnit: true,
+unit: {
+value: 2,
+min: 1,
+selected: "h",
+options:[
+{
+id: 'm',
+name: 'Minute'
+},
+{
+id: 'h',
+name: 'Hour'
+},
+{
+id: 'd',
+name: 'Day'
+},
+{
+id: 'mo',
+name: 'Month'
+},
+{
+id: 'y',
+name: 'Year'
+}
+]
+},
+price: {
+value: 570,
+currency: {
+selected: 1,
+options: [
+{
+id: 1,
+symbol: '$',
+shortName: 'AUD',
+fullName: 'Australia Dollar'
+},
+{
+id: 2,
+symbol: '¥',
+shortName: 'CNY',
+fullName: 'Chinese Yuan'
+},
+{
+id: 3,
+symbol: '$',
+shortName: 'USD',
+fullName: 'American Dollar'
+},
+{
+id: 4,
+symbol: '€',
+shortName: 'EUR',
+fullName: 'European Dollar'
+},
+]
+},
+},
+hasDesc: true,
+    desc: {
+        rows: 4,
+        text: "Escort detail goes here."
+}
+},
+            ]
+        },
+        {
+            id: 5,
+            diaplayName: "Suana",
+            name: "suana",
+            checked: true,
             items: []
         },
     ],
     options: [
         {
             id: 1,
-            name: "SM",
+            diaplayName: "SM",
+            name: "sm",
             checked: false,
-            items: []
+            items: [
+                {
+                    id: 1,
+                    displayName: "Handcuffs",
+                    name: "handcuffs",
+                    template: "unit-price",
+                    checked: true,
+                    price: {
+                        value: 20,
+                        currency: {
+                            selected: 1,
+                            options: [
+                                {
+                                    id: 1,
+                                    symbol: '$',
+                                    shortName: 'AUD',
+                                    fullName: 'Australia Dollar'
+                                },
+                                {
+                                    id: 2,
+                                    symbol: '¥',
+                                    shortName: 'CNY',
+                                    fullName: 'Chinese Yuan'
+                                },
+                                {
+                                    id: 3,
+                                    symbol: '$',
+                                    shortName: 'USD',
+                                    fullName: 'American Dollar'
+                                },
+                                {
+                                    id: 4,
+                                    symbol: '€',
+                                    shortName: 'EUR',
+                                    fullName: 'European Dollar'
+                                },
+                            ]
+                        }
+                    }
+                }
+            ]
         },
         {
             id: 2,
-            name: "Uniform",
+            diaplayName: "Uniform",
+            name: "uniform",
             checked: false,
             items: []
         }
@@ -70,7 +348,8 @@
 
 {% block stylesheets %}
     <link href="{{ asset('plugins/chosen/chosen.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('plugins/fullcalendar/fullcalendar.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/fullcalendar-2.3.1/fullcalendar.css') }}" rel="stylesheet">
+
     <link href="{{ asset('css/girl.css') }}" rel="stylesheet">
     <link href="{{ asset('css/card.css') }}" rel="stylesheet">
 {% endblock %}
@@ -81,7 +360,8 @@
         {% include 'AppBundle:elements:navbar/lobby-navbar.html.twig' with {
             writeStatus: 'invisible',
             mainnav: 'invisible',
-            girl: 'invisible'
+            girl: 'invisible',
+            submitDetails: 'visible'
         } %}
 
         {# content #}
@@ -111,8 +391,8 @@
 
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset('plugins/chosen/chosen.jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('plugins/fullcalendar/lib/moment.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('plugins/fullcalendar/lib/jquery-ui.custom.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('plugins/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('plugins/fullcalendar-2.3.1/lib/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('plugins/fullcalendar-2.3.1/fullcalendar.min.js') }}"></script>
+
     <script type="text/javascript" src="{{ asset('js/girl.js') }}"></script>
 {% endblock %}

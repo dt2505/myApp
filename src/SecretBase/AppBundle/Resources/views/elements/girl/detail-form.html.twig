@@ -1,43 +1,92 @@
-<form id="girl-profile-form" class="form-horizontal">
-    <div class="center-block girl-profile-wrapper">
+{% set profilePanel = profilePanel|default('visible') %}
 
-        {# girl's photo preview #}
-        <div class="col-xs-12 col-sm-5 col-md-5">
-            <div class="panel bg-dark panel-colorful">
+<form id="girl-profile-form" class="form-horizontal">
+    <div class="center-block girl-profile-wrapper bg-dark">
+
+        {# preview and navigation menu panel #}
+        <div class="col-xs-12 col-sm-6 col-md-7 pad-rgt-5">
+
+            {# photo preview #}
+            <div class="panel bg-dark panel-colorful mar-btm-5">
                 <!--Panel body-->
                 <div class="panel-body no-pad">
                     <a href="#"><img class="img-responsive" src="{{ asset('img/thumbs/img2.jpg') }}" alt=""></a>
                 </div>
-                <div class="panel-footer">
-                    <button type="submit" class="btn btn-primary text-lg">Update profile</button>
+            </div>
+            {# end photo preview #}
+
+            {# description #}
+            <div class="panel bg-dark panel-colorful mar-btm-5">
+                <div class="panel-heading border-btm-solid-dark-4a">
+                    <div class="panel-control girl-acceptable-opt-panel-control">
+                        <a class="btn btn-link no-pad-hor">
+                            <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save"></i>
+                        </a>
+                    </div>
+
+                    <div class="panel-title girl-acceptable-opt-panel-title">
+                        <span class="text-lg">Description</span>
+                    </div>
+                </div>
+
+                <!--Panel body-->
+                <div class="panel-body no-pad">
+                    <textarea rows="7" placeholder="Any thing to say about?" id="description" name="description" class="form-control"></textarea>
                 </div>
             </div>
+            {# end description #}
+
+            {# calendar #}
+            <div class="panel bg-dark panel-colorful mar-btm-5" id="girl-schedule-panel">
+                <div class="panel-heading border-btm-solid-dark-4a">
+                    <div class="panel-control girl-acceptable-opt-panel-control">
+                        <a class="btn btn-link no-pad-hor">
+                            <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save"></i>
+                        </a>
+                    </div>
+
+                    <div class="panel-title girl-acceptable-opt-panel-title">
+                        <span class="text-lg">Calendar</span>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    {# hold place for full calendar #}
+                    <div id="calendar"></div>
+                </div>
+            </div>
+            {# end calendar #}
         </div>
 
-        {# girl's profile and acceptable options #}
-        <div class="col-xs-12 col-sm-6 col-md-7 no-pad-lft">
+        {# detail panel #}
+        <div class="col-xs-12 col-sm-6 col-md-5">
+            {# profile, services and acceptable options - panel group accordion #}
             <div class="panel-group accordion" id="profile-panel-group">
-                {# profile #}
-                {% include 'AppBundle:elements:girl/profile.html.twig' with {
-                    accordionParent: 'profile-panel-group',
-                    groups: detail.groups
-                } %}
+
+                {# add accordionParent: 'profile-panel-group' to each of the following
+                include statement for enabling accordion effect globally #}
+
+                {% if profilePanel == 'visible' %}
+                    {# profile #}
+                    {% include 'AppBundle:elements:girl/profile.html.twig' with {
+                        collapse: false,
+                        groups: detail.groups
+                    } %}
+                {% endif %}
 
                 {# services #}
                 {% include 'AppBundle:elements:girl/services.html.twig' with {
-                    accordionParent: 'profile-panel-group',
+                    collapse: false,
                     services: detail.services
                 } %}
 
                 {# acceptable options #}
                 {% include 'AppBundle:elements:girl/acceptable-options.html.twig' with {
-                    accordionParent: 'profile-panel-group',
+                    collapse: false,
                     options: detail.options
                 } %}
-
-
             </div>
-            <!--End Accordion-->
+            {# end panel group accordion #}
         </div>
     </div>
 </form>

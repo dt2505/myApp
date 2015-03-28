@@ -1,5 +1,12 @@
 {% trans_default_domain 'Elements' %}
+
 <ul class="nav navbar-top-links {{ direction }}">
+    {% if submitDetails == 'visible' %}
+        <li class="pad-ver-10 mar-rgt-40">
+            <button id="btn-submit-details" class="btn btn-primary text-semibold">Update details</button>
+        </li>
+    {% endif %}
+
     {# user dropdown #}
     <li id="dropdown-user" class="dropdown">
         <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
