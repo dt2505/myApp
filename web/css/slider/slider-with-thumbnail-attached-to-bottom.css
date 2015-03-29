@@ -1,0 +1,174 @@
+/* jssor slider arrow navigator skin 02 css */
+/*
+.jssora02l              (normal)
+.jssora02r              (normal)
+.jssora02l:hover        (normal mouseover)
+.jssora02r:hover        (normal mouseover)
+.jssora02ldn            (mousedown)
+.jssora02rdn            (mousedown)
+*/
+.jssora02l, .jssora02r, .jssora02ldn, .jssora02rdn
+{
+    position: absolute;
+    cursor: pointer;
+    display: block;
+    overflow:hidden;
+}
+.jssora02l:hover {
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(0,0,0,0.7);
+}
+.jssora02r:hover {
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(0,0,0,0.7);
+}
+/* jssor slider thumbnail navigator skin 03 css */
+/*
+.jssort03 .p            (normal)
+.jssort03 .p:hover      (normal mouseover)
+.jssort03 .pav          (active)
+.jssort03 .pav:hover    (active mouseover)
+.jssort03 .pdn          (mousedown)
+*/
+.jssort03 .w, .jssort03 .pav:hover .w
+{
+    position: absolute;
+    width: 60px;
+    height: 50px;
+    border: white 1px solid;
+}
+* html .jssort03 .w
+{
+    width /**/: 62px;
+    height /**/: 50px;
+}
+.jssort03 .c
+{
+    width: 62px;
+    height: 50px;
+    filter:  alpha(opacity=45);
+    opacity: .45;
+
+    transition: opacity .6s;
+    -moz-transition: opacity .6s;
+    -webkit-transition: opacity .6s;
+    -o-transition: opacity .6s;
+}
+.jssort03 .slider-thumbnail-body:hover .c, .jssort03 .pav .c
+{
+    filter:  alpha(opacity=0);
+    opacity: 0;
+}
+.jssort03 .slider-thumbnail-body:hover .c
+{
+    transition: none;
+    -moz-transition: none;
+    -webkit-transition: none;
+    -o-transition: none;
+}
+
+/* slider container size */
+.slider-container-df, /* df: default */
+.slider-body-df,
+.slider-thumbnail-container-df {
+    width: 600px; /* must specify particular number in pixel, otherwise jssor won't work as expected */
+}
+.slider-container-df,
+.slider-body-df {
+    height: 400px; /* same as above */
+}
+
+/* slider container */
+.slider-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+.slider-container .slider-body {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+/* slider thumbnail */
+.slider-container .slider-thumbnail-container {
+    position: absolute;
+    /*width: 600px; *//* same as above */
+    height: 60px;
+    left:0;
+    bottom: 0;
+}
+.slider-container .slider-thumbnail-container .slider-thumbnail-banner {
+    background-color: #000;
+    filter:alpha(opacity=30);
+    opacity:.3;
+    width: 100%;
+    height:100%;
+}
+.slider-container .slider-thumbnail-container .slider-thumbnail-body {
+    position: absolute;
+    width: 62px;
+    height: 50px;
+    top: 0;
+    left: 0;
+}
+.slider-container .slider-thumbnail-container .slider-thumbnail-body .slider-thumbnail {
+    width: 100%;
+    height: 100%;
+    border: none;
+    position:absolute;
+    top: 0;
+    left: 0;
+}
+.slider-container .slider-thumbnail-container .slider-thumbnail-body .slider-thumbnail-placeholder {
+    position: absolute;
+    background-color: #000;
+    top: 0;
+    left: 0
+}
+/* slider - loading */
+.slider-container .slider-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.slider-container .slider-loading .slider-loading-background {
+    filter: alpha(opacity=70);
+    opacity:0.7;
+    position: absolute;
+    display: block;
+    background-color: #000000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:100%;
+}
+.slider-container .slider-loading .slider-loading-spinner {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    padding-top: 30%;
+    width: 100%;
+    height:100%;
+}
+.navigation-left {
+    color: rgba(189, 189, 189, 0.73);
+    background-color: rgba(0,0,0,0.4);
+    width: 55px;
+    height: 55px;
+    top: 123px;
+    left: 8px;
+    line-height: 64px;
+}
+.navigation-right {
+    color: rgba(189, 189, 189, 0.73);
+    background-color: rgba(0,0,0,0.4);
+    width: 55px;
+    height: 55px;
+    line-height: 64px;
+    top: 123px;
+    right: 8px
+}
+

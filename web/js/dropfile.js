@@ -104,7 +104,3 @@ dropfile = (function () {
         }
     };
 }());
-
-//dropfile.init("#photo-dropzone", "#image-preview-zone", true, "/dummy-url", 110, 110);
-//dropfile.bind($("#btn-new-photo"), $("#hidden-file"));
-//dropfile.dismiss($('#card-container'), $('#upload-photo-panel'), $("#upload-photo-dismiss"), $("#upload-photos"));

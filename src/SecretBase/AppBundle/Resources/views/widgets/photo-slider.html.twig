@@ -1,0 +1,61 @@
+{% set sliderContainerSize = sliderContainerSize|default("slider-container-df") %}
+{% set sliderBodySize = sliderBodySize|default("slider-body-df") %}
+{% set sliderThumbnailContainerSize = sliderThumbnailContainerSize|default("slider-thumbnail-container-df") %}
+
+{% set album = media.album|default(null) %}
+{% set showThumbnail = album and album.photos_count > 1 %}
+{% set singlePhoto = media.photo|default(null) %}
+
+<div id="{{ sliderContainerId }}" class="slider-container {{ sliderContainerSize }}">
+    {# loading screen #}
+    <div u="loading" class="slider-loading">
+        <div class="slider-loading-background">
+        </div>
+        <div class="slider-loading-spinner text-center">
+            <i class="fa fa-fw fa-3x fa-spinner fa-pulse"></i>
+        </div>
+    </div>
+
+    {# slider body #}
+    <div u="slides" class="slider-body {{ sliderBodySize }}">
+        {% if singlePhoto %}
+            <div>
+                <a href="#"><img u="image" src="{{ asset(singlePhoto.url) }}" /></a>
+            </div>
+        {% else %}
+            {% for photo in album.photos %}
+                <div>
+                    <a href="#"><img u="image" src="{{ asset(photo.url) }}" /></a>
+                    <img u="thumb" src="{{ asset(photo.thumbnail) }}" />
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    {% if showThumbnail %}
+        {# arrow left - jssora02l must be the last one otherwise the arrow will not work#}
+        <span u="arrowleft" class="navigation-left text-center jssora02l">
+            <i class="fa fa-2x fa-chevron-left"></i>
+        </span>
+        {# arrow right - same as above #}
+        <span u="arrowright" class="navigation-right text-center jssora02r">
+            <i class="fa fa-2x fa-chevron-right"></i>
+        </span>
+
+        {# thumbnail navigator #}
+        <div u="thumbnavigator" class="slider-thumbnail-container {{ sliderThumbnailContainerSize }} jssort03">
+            <div class="slider-thumbnail-banner"></div>
+
+            <div u="slides">
+                <div u="prototype" class="slider-thumbnail-body">
+                    <div class="w">
+                        <div u="thumbnailtemplate" class="slider-thumbnail"></div>
+                    </div>
+                    <div class="c slider-thumbnail-placeholder">
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {# thumbnail navigator - end #}
+</div>

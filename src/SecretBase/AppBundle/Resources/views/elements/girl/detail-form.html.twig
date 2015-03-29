@@ -10,7 +10,12 @@
             <div class="panel bg-dark panel-colorful mar-btm-5">
                 <!--Panel body-->
                 <div class="panel-body no-pad">
-                    <a href="#"><img class="img-responsive" src="{{ asset('img/thumbs/img2.jpg') }}" alt=""></a>
+
+                    {# photo slider #}
+                    {% include 'AppBundle:widgets:photo-slider.html.twig' with {
+                        media: detail.media,
+                        sliderContainerId: "detail-photo-preview-container"
+                    } %}
                 </div>
             </div>
             {# end photo preview #}

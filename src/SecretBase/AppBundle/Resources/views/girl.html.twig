@@ -3,6 +3,75 @@
 {% trans_default_domain 'Elements' %}
 
 {% set detail = {
+    media: {
+        album: {
+            id: 1,
+            name: "Album one",
+            photos_count: 12,
+            photos: [
+                {
+                    id: 1,
+                    url: "img/alila/01.jpg",
+                    thumbnail: "img/alila/thumb-01.jpg"
+                },
+                {
+                    id: 2,
+                    url: "img/alila/02.jpg",
+                    thumbnail: "img/alila/thumb-02.jpg"
+                },
+                {
+                    id: 3,
+                    url: "img/alila/03.jpg",
+                    thumbnail: "img/alila/thumb-03.jpg"
+                },
+                {
+                    id: 4,
+                    url: "img/alila/04.jpg",
+                    thumbnail: "img/alila/thumb-04.jpg"
+                },
+                {
+                    id: 5,
+                    url: "img/alila/05.jpg",
+                    thumbnail: "img/alila/thumb-05.jpg"
+                },
+                {
+                    id: 6,
+                    url: "img/alila/06.jpg",
+                    thumbnail: "img/alila/thumb-06.jpg"
+                },
+                {
+                    id: 7,
+                    url: "img/alila/07.jpg",
+                    thumbnail: "img/alila/thumb-07.jpg"
+                },
+                {
+                    id: 8,
+                    url: "img/alila/08.jpg",
+                    thumbnail: "img/alila/thumb-08.jpg"
+                },
+                {
+                    id: 9,
+                    url: "img/alila/09.jpg",
+                    thumbnail: "img/alila/thumb-09.jpg"
+                },
+                {
+                    id: 10,
+                    url: "img/alila/10.jpg",
+                    thumbnail: "img/alila/thumb-10.jpg"
+                },
+                {
+                    id: 11,
+                    url: "img/alila/11.jpg",
+                    thumbnail: "img/alila/thumb-11.jpg"
+                },
+                {
+                    id: 12,
+                    url: "img/alila/12.jpg",
+                    thumbnail: "img/alila/thumb-12.jpg"
+                }
+            ]
+        }
+    },
     groups: [
         {
             id: 1,
@@ -347,11 +416,11 @@ hasDesc: true,
 %}
 
 {% block stylesheets %}
-    <link href="{{ asset('plugins/chosen/chosen.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/chosen_v1.4.2/chosen.min.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/fullcalendar-2.3.1/fullcalendar.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/girl.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/card.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/slider/slider-with-thumbnail-attached-to-bottom.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -390,9 +459,12 @@ hasDesc: true,
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('plugins/chosen/chosen.jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('plugins/moment.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('plugins/fullcalendar-2.3.1/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('plugins/chosen_v1.4.2/chosen.jquery.min.js') }}"></script>
+    <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('plugins/fullcalendar-2.3.1/fullcalendar.js') }}"></script>
+    <script src="{{ asset('plugins/jssor-slider/js/jssor.slider.js') }}"></script>
+    <script src="{{ asset('plugins/jssor-slider/js/jssor.js') }}"></script>
 
-    <script type="text/javascript" src="{{ asset('js/girl.js') }}"></script>
+    <script src="{{ asset('js/slider/slider-with-thumbnail-attached-to-bottom.js') }}"></script>
+    <script src="{{ asset('js/girl.js') }}"></script>
 {% endblock %}

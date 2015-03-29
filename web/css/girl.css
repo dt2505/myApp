@@ -54,14 +54,19 @@ textarea {
 .girl-profile-wrapper {
     width: 950px;
 }
+.photo-preview-box {
+    min-height: 400px;
+}
+
+@media (max-width: 768px) {
+    /** reset back to default value - nifty */
+    [class^="col-"]:not(.pad-no) {
+        padding-right: 5px;
+    }
+}
 
 @media (max-width: 950px) {
     /* overwritten */
-
-    /** reset back to default value - nifty */
-    [class^="col-"]:not(.pad-no) {
-        padding-left: 12px;
-    }
 
     /** fix the issue in which calendar's header is squeezed
     together when window is in mobile size - nifty */
@@ -76,7 +81,11 @@ textarea {
     }
     /* end - overwritten */
 
+    .photo-preview-box {
+        height: 100%;
+    }
 
+    .photo-preview-box,
     .girl-profile-wrapper {
         width: 100%;
     }

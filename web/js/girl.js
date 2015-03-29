@@ -6,7 +6,6 @@ $(document).ready(function() {
     // http://fullcalendar.io/
     // =================================================================
 
-
     // initialize the external events
     // -----------------------------------------------------------------
     //$('#demo-external-events .fc-event').each(function() {
@@ -19,14 +18,14 @@ $(document).ready(function() {
     //
     //
     //    // make the event draggable using jQuery UI
-    //    $(this).draggable({
+    //    $(this).draggable({ // this requires jquery-ui.custom.min.js
     //        zIndex: 99999,
     //        revert: true,      // will cause the event to go back to its
     //        revertDuration: 0  //  original position after the drag
     //    });
     //});
 
-    $opt = {
+    var $opt = {
         header: {
             left: 'prev,next today',
             center: 'title',
@@ -62,7 +61,7 @@ $(document).ready(function() {
             $(this).css('border-color', 'red');
 
         },
-        defaultDate: '2015-01-1',
+        defaultDate: '2015-02-01', // giving an incorrect date format like '2015-01-1' will cause an issue not to display calendar in firefox, but it works in chrome
         eventLimit: true, // allow "more" link when too many events
         events: [
             {
@@ -157,6 +156,10 @@ $(document).ready(function() {
     // Initialize chosen
     // -----------------------------------------------------------------
     $('#acceptable-clients').chosen({width:'100%'});
+
+    // Initailize image slider
+    // -----------------------------------------------------------------
+    ImageSlider.init('detail-photo-preview-container');
 
     // Initialize click event
     // -----------------------------------------------------------------
