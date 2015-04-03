@@ -187,6 +187,25 @@ $(document).ready(function() {
             $inputGrpBtn.toggleClass("open");
 
             return false;
+        },
+        onUnitClick = function() {
+            var $self = $(this),
+                selectedText = $self.data("name"),
+                selectedId = $self.data("id"),
+                unitId = $self.data("unit-id"),
+                $inputGrpBtn = $("#input-grp-" + unitId),
+                $hiddeninput = $('#hidden-input-' + unitId),
+                $btnDropDownCurrency = $('#btn-dropdown-' + unitId),
+                currentUnit = $btnDropDownCurrency.text().trim();
+
+            $btnDropDownCurrency.html($btnDropDownCurrency.html().trim().replace(currentUnit, selectedText));
+            $hiddeninput.val(selectedId);
+
+            $unitUl.find("li.active").removeClass("active");
+            $(this).parent().addClass("active");
+            $inputGrpBtn.toggleClass("open");
+
+            return false;
         };
 
     // currency dropdown click
@@ -194,27 +213,11 @@ $(document).ready(function() {
     $serviceCurrencyUl.find("li a").on("click", onCurrencyClick);
 
     // unit dropdown click
-    $unitUl.find("li a").on("click", function(){
-        var $self = $(this),
-            selectedText = $self.data("name"),
-            selectedId = $self.data("id"),
-            unitId = $self.data("unit-id"),
-            $inputGrpBtn = $("#input-grp-" + unitId),
-            $hiddeninput = $('#hidden-input-' + unitId),
-            $btnDropDownCurrency = $('#btn-dropdown-' + unitId),
-            currentUnit = $btnDropDownCurrency.text().trim();
+    $unitUl.find("li a").on("click", onUnitClick);
 
-        $btnDropDownCurrency.html($btnDropDownCurrency.html().trim().replace(currentUnit, selectedText));
-        $hiddeninput.val(selectedId);
-
-        $unitUl.find("li.active").removeClass("active");
-        $(this).parent().addClass("active");
-        $inputGrpBtn.toggleClass("open");
-
-        return false;
-    });
-
-    // save btn click - loading overlay
+    //-======================================-
+    // save button click event - loading overlay
+    //-======================================-
     var $itemSaveBtn = $('.item-save'),
         overlay = function($el, process) {
             var relTime;
@@ -241,10 +244,12 @@ $(document).ready(function() {
                     selectedUnit = hasUnit ? $('#' + prefix + "-input-selected-unit-" + itemId).val() : null,
                     price = $('#' + prefix + "-input-price-" + itemId).val(),
                     selectedCurrency = $('#' + prefix + "-input-selected-currency-" + itemId).val(),
-                    desc = hasDesc ? $('#' + prefix + "-textarea-desc-" + itemId).val() : null;
+                    desc = hasDesc ? $('#' + prefix + "-textarea-desc-" + itemId).val() : null,
+                    optItemName = $('#' + prefix + "-input-opt-item-name-" + itemId).val();
 
                 items[index] = {
                     id: itemId,
+                    optItemName: optItemName,
                     unit: {
                         value: unitValue,
                         selected: selectedUnit
@@ -260,7 +265,7 @@ $(document).ready(function() {
             return items;
         };
 
-    // save item details(services and options)
+    // click "Save item" in both service panel and option panel
     $itemSaveBtn.niftyOverlay().on('click', function(){
         var items;
 
@@ -272,7 +277,7 @@ $(document).ready(function() {
         //TODO: make an ajax call to server for persisting data
     });
 
-    // save all services and options
+    // click "Save services" or "Save options"
     $(".service-save, .option-save").niftyOverlay().on('click', function(){
 
         overlay($(this), function ($el) {
@@ -283,14 +288,123 @@ $(document).ready(function() {
             $target.find("." + itemIdentifier + "-item-checkbox").each(function(index){
                 var $el = $(this),
                     $itemBody = $($el.data("item-body")),
-                    $itemId = $el.data("item-id"),
-                    $itemName = $el.data("item-name");
+                    $itemId = $el.data("item-id");
 
-                items[index] = {id: $itemId, name: $itemName, items: getItems($itemBody)};
+                items[index] = {id: $itemId, items: getItems($itemBody)};
             });
 
             console.log(items);
             //TODO: make an ajax call to server for persisting data
         });
     });
+    //-======================================-
+    //end save button click event
+    //-======================================-
+
+    //-======================================-
+    // Add and remove click event
+    //-======================================-
+    var onItemAddClick = function (){
+            var $el = $(this),
+                $itemBody = $($el.data("item-body")),
+                expended = $itemBody.parent().hasClass("collapse in"),
+                parent = $el.data("parent"),
+                hasChildren = $itemBody.find("input[type=checkbox]").length > 0,
+                itemId = $el.data("item-id"),
+                itemType = $el.data("item-type"),
+                itemTemplate = $el.data("item-template"),
+                $firstPanel = $itemBody.find("div.panel:first");
+
+            if (!expended) {
+                $itemBody.parent().collapse({
+                    parent: parent
+                });
+            }
+
+            if (hasChildren) {
+                $.get("/empty/item", { itemId: itemId, itemType: itemType, itemTemplate: itemTemplate } )
+                    .done(function( data ) {
+                        $firstPanel.before(data);
+
+                        $("#" + itemType + "-remove-new-item-only-" + itemId).removeClass("hidden");
+
+                        // refresh checkbox
+                        var $newPanel = $itemBody.find("div.panel:first"),
+                            $checkboxLabel = $newPanel.find(".form-checkbox");
+                        if($checkboxLabel.length) $checkboxLabel.niftyCheck();
+
+                        $newPanel.addClass(itemType + "-removable-new-item-panel-" + itemId);
+
+                        // re-define click event for new currency and unit dropdown menu
+                        $newPanel.find(".up-currency-dropdown-menu li a").on("click", onCurrencyClick);
+                        $newPanel.find(".up-unit-dropdown-menu li a").on("click", onUnitClick);
+                    });
+            } else {
+                console.log("no children");
+            }
+        },
+        onRemoveNewItemOnlyClick = function (){
+            var itemId = $(this).data("item-id"),
+                itemType = $(this).data("item-type");
+
+            $("." + itemType + "-removable-new-item-panel-" + itemId).remove();
+            $(this).addClass("hidden");
+        },
+        onRemoveItemClick = function () {
+            var $el = $(this),
+                $itemBody = $($el.data("item-body")),
+                expended = $itemBody.parent().hasClass("collapse in"),
+                parent = $el.data("parent"),
+                itemId = $el.data("item-id"),
+                itemType = $el.data("item-type"),
+                emptyInfoMarkup = $el.data("empty-info-markup"),
+                selectedItems = $itemBody.find("input[type=checkbox]:checked"),
+                removingAll = selectedItems.length == $itemBody.find("input[type=checkbox]").length,
+                selectedItemIds = [],
+                selectedPanels = [];
+
+            selectedItems.each(function(index) {
+                var $el = $(this),
+                    prefix = $el.data("prefix"),
+                    itemId = $el.data("item-id");
+
+                selectedPanels[index] = "#" + prefix + "-panel-" + itemId;
+                selectedItemIds[index] = $(this).data("item-id");
+            });
+
+            if (!expended) {
+                $itemBody.parent().collapse({
+                    parent: parent
+                });
+            }
+
+            if (selectedItemIds.length > 0) {
+                $.ajax({
+                    method: "DELETE",
+                    url: "/items/remove",
+                    data: {itemId: itemId, itemType: itemType, subitems: selectedItemIds}
+                }).done(function (response) {
+                    console.log(response);
+                    $(selectedPanels.join()).remove();
+                    if (removingAll) {
+                        $itemBody.append(emptyInfoMarkup);
+                    }
+                });
+            } else {
+                console.log("no children");
+            }
+        };
+
+    // click "Add new item"
+    $(".item-add").on("click", onItemAddClick);
+
+    // click "Remove new item only"
+    $(".remove-new-item-only").on('click', onRemoveNewItemOnlyClick);
+
+    // click "Remove item"
+    $(".item-remove").on("click", onRemoveItemClick);
+
+    //-======================================-
+    // Add and remove click event - end
+    //-======================================-
 });

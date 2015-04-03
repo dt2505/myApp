@@ -1,0 +1,47 @@
+{% macro showUnit(unit, prefix, uniPriceItemId) %}
+    {% spaceless %}
+        {% import _self as func %}
+
+        {% set unitId = prefix ~ '-unit-' ~ uniPriceItemId %}
+
+        {% set btnDropDownId = "btn-dropdown-" ~ unitId %}
+        {% set inputGrpBtnId = "input-grp-" ~ unitId %}
+        {% set unitValueInputId = prefix ~ '-input-unit-value-' ~ uniPriceItemId %}
+        {% set selectedInputId = prefix ~ "-input-selected-unit-" ~ uniPriceItemId  %}
+
+        {% set unitValueRangeMin = unit.min %}
+        {% set unitValueRangeMax = unit.max|default(-1) %}
+        {% set unitValue = unit.value %}
+
+        {% set unitOptions = unit.options %}
+        {% set selectedUnitId = unit.selected %}
+
+        <div class="input-group">
+            <input class="form-control" type="number" id="{{ unitValueInputId }}" name="{{ unitValueInputId }}" min="{{ unitValueRangeMin }}" {{ unitValueRangeMax > 0 ? 'max="' ~ unitValueRangeMax ~ '"' : ''}} value="{{ unitValue }}">
+            <div class="input-group-btn" id ="{{ inputGrpBtnId }}">
+                <input type="hidden" id="{{ selectedInputId }}" value="{{ selectedUnitId }}">
+
+                <button id="{{ btnDropDownId }}" data-toggle="dropdown" class="btn btn-primary dropdown-toggle dropdown-toggle-icon pad-hor-5" type="button">
+                    {{ func.getUnit(selectedUnitId, unitOptions, unitId) }}<i class="dropdown-caret fa fa-caret-down"></i>
+                </button>
+                <ul class="dropdown-menu up-unit-dropdown-menu" id="{{ unitId }}">
+                    {{ func.getUnit(selectedUnitId, unitOptions, unitId, true) }}
+                </ul>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endmacro %}
+
+{% macro getUnit(selectedUnitId, unitOptions, unitId, withMarkup) %}
+    {% spaceless %}
+        {% if not withMarkup|default(false) %}
+            {% for option in unitOptions if option.id == selectedUnitId %}
+                {{ option.name }}
+            {% endfor %}
+        {% else %}
+            {% for option in unitOptions %}
+                <li class="{{ option.id == selectedUnitId ? "active" : "" }}"><a href="#" id="{{ unitId ~ '-' ~ option.id }}" data-unit-id="{{ unitId }}" data-id="{{ option.id }}" data-name="{{ option.name }}">{{ option.name }}</a></li>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endmacro %}

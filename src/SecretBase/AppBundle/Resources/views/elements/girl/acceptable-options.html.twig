@@ -20,7 +20,7 @@
         </div>
 
         <div class="panel-title">
-            <a data-parent="#{{ accordionParent }}" data-toggle="collapse" href="#acceptable-opt-panel">
+            <a data-parent="#{{ accordionParent }}" data-toggle="collapse" href="#{{ optionPanelId }}">
                 <span class="text-lg">Acceptable options</span>
             </a>
         </div>
@@ -30,59 +30,14 @@
     <div class="panel-collapse {{ collapseIn }}" id="{{ optionPanelId }}">
         <div class="panel-body no-pad-top">
             <div class="panel-group accordion no-mar-btm" id="acceptable-opt-panel-group">
+
                 {% for option in options %}
-                    {% embed 'AppBundle:elements:girl/item.html.twig' with {
+                    {% include 'AppBundle:elements:girl/item.html.twig' with {
                         accordionParent: 'acceptable-opt-panel-group',
                         item: option,
-                        identifier: itemIdentifier,
-                        isFirst: loop.index == 1
+                        type: itemIdentifier,
+                        isFirst: loop.index == 1,
                     } %}
-                        {% block item_body %}
-
-                            {% for item in option.items %}
-                                {% if item.template == "unit-price" %}
-                                    {% include 'AppBundle:widgets:unit-price.html.twig' with {
-                                        item: item,
-                                        name: option.name
-                                    } %}
-                                {% endif %}
-
-                                {#<div class="panel bg-trans panel-colorful no-border-shadow">#}
-                                    {#<div class="panel-body no-pad">#}
-                                        {#<div class="row">#}
-                                            {#<div class="col-xs-2 col-sm-2 pad-rgt-5">#}
-                                                {#<div class="checkbox text-center">#}
-                                                    {#<label class="form-checkbox form-icon">#}
-                                                        {#<input type="checkbox" class="form-control">#}
-                                                    {#</label>#}
-                                                {#</div>#}
-                                            {#</div>#}
-                                            {#<div class="col-xs-10 col-sm-10">#}
-                                                {#<div class="input-group">#}
-                                                    {#<span class="input-group-addon bg-primary no-border">Handcuffs</span>#}
-                                                    {#<div class="input-group-btn">#}
-                                                        {#<button data-toggle="dropdown" class="btn btn-primary dropdown-toggle dropdown-toggle-icon" type="button"><i class="dropdown-caret fa fa-caret-down"></i>#}
-                                                        {#</button>#}
-                                                        {#<ul class="dropdown-menu">#}
-                                                            {#<li><a href="#">Action</a></li>#}
-                                                            {#<li><a href="#">Another action</a></li>#}
-                                                            {#<li><a href="#">Something else here</a></li>#}
-                                                            {#<li class="divider"></li>#}
-                                                            {#<li><a href="#">Separated link</a></li>#}
-                                                        {#</ul>#}
-                                                    {#</div>#}
-                                                    {#<input type="text" placeholder="Price" class="form-control">#}
-                                                {#</div>#}
-                                            {#</div>#}
-                                        {#</div>#}
-                                    {#</div>#}
-                                {#</div>#}
-                            {% else %}
-                                <p class="text-muted text-center">There are no items defined. Click "+" on top right corner to add new item for this option.</p>
-                            {% endfor %}
-
-                        {% endblock %}
-                    {% endembed %}
                 {% endfor %}
             </div>
         </div>

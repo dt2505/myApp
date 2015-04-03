@@ -1,0 +1,48 @@
+{% macro showPrice(price, prefix, uniPriceItemId) %}
+    {% spaceless %}
+        {% import _self as func %}
+
+        {% set currencyId = prefix ~ '-currency-' ~ uniPriceItemId %}
+
+        {% set inputGrpBtnId = "input-grp-" ~ currencyId %}
+        {% set btnDropDownId = "btn-dropdown-" ~ currencyId %}
+
+        {% set optionItemNameInputId = prefix ~ '-input-opt-item-name-' ~ uniPriceItemId %}
+        {% set priceValueInputId = prefix ~ '-input-price-' ~ uniPriceItemId %}
+        {% set selectedCurrencyInputId = prefix ~ '-input-selected-currency-' ~ uniPriceItemId %}
+
+        {% set priceValue = price.value %}
+        {% set currency = price.currency %}
+        {% set currencyOpions = currency.options %}
+        {% set selectedCurrencyId = currency.selected %}
+
+        <div class="input-group">
+            <div class="input-group-btn" id="{{ inputGrpBtnId }}">
+                <input type="hidden" id="{{ selectedCurrencyInputId }}" value="{{ selectedCurrencyId }}">
+
+                <button id="{{ btnDropDownId }}" data-toggle="dropdown" class="btn btn-primary dropdown-toggle dropdown-toggle-icon pad-hor-5" type="button">
+                    {{ func.getCurrency(selectedCurrencyId, currencyOpions, currencyId) }}<i class="dropdown-caret fa fa-caret-down"></i>
+                </button>
+                {# 'up-dropdown-menu' is used by js for bind click event for each menu item #}
+                <ul class="dropdown-menu up-currency-dropdown-menu" id="{{ currencyId }}">
+                    {{ func.getCurrency(selectedCurrencyId, currencyOpions, currencyId, true) }}
+                </ul>
+            </div>
+            <input type="text" class="form-control" placeholder="Price" id="{{ priceValueInputId }}" name="{{ priceValueInputId }}" value="{{ priceValue }}">
+        </div>
+    {% endspaceless %}
+{% endmacro %}
+
+{% macro getCurrency(selectedCurrencyId, currencyOptions, currencyId, withMarkup) %}
+    {% spaceless %}
+        {% if not withMarkup|default(false) %}
+            {% for option in currencyOptions if option.id == selectedCurrencyId %}
+                {{ option.shortName ~ option.symbol }}
+            {% endfor %}
+        {% else %}
+            {% for option in currencyOptions %}
+                <li class="{{ option.id == selectedCurrencyId ? "active" : "" }}"><a href="#" id="{{ currencyId ~ '-' ~ option.id }}" data-id="{{ option.id }}" data-short-name="{{ option.shortName }}" data-symbol="{{ option.symbol }}" data-currency-id="{{ currencyId }}">{{ option.shortName }}</a></li>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endmacro %}

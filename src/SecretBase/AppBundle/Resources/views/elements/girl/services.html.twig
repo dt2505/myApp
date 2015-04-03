@@ -1,7 +1,7 @@
 {% set collapseIn = collapse|default(false) ? "collapse" : "collapse in" %}
 {% set accordionParent = collapseAll|default(true) ? accordionParent|default('') : '' %}
 {% set servicesPanelId = "services-panel" %}
-{% set itemIdentifier = "services" %}
+{% set itemIdentifier = "service" %}
 
 <div class="panel bg-dark panel-colorful">
 
@@ -31,30 +31,13 @@
         <div class="panel-body no-pad-top">
             <div class="panel-group accordion no-mar-btm" id="services-panel-group">
                 {# load services #}
-                {% for service in services|slice(0, 4)%}
-                    {% embed 'AppBundle:elements:girl/item.html.twig' with {
+                {% for service in services %}
+                    {% include 'AppBundle:elements:girl/item.html.twig' with {
                         accordionParent: 'services-panel-group',
                         item: service,
-                        identifier: itemIdentifier,
-                        isFirst: loop.index == 1
+                        type: itemIdentifier,
+                        isFirst: loop.index == 1,
                     } %}
-                        {% block item_body %}
-
-                            {# load items #}
-                            {% for item in service.items %}
-                                {% if item.template == "unit-price" %}
-                                    {% include 'AppBundle:widgets:unit-price.html.twig' with {
-                                        item: item,
-                                        name: service.name
-                                    } %}
-                                {% endif %}
-                            {% else %}
-                                <p class="text-muted text-center">There are no items defined. Click "+" on top right corner to add new item for this service.</p>
-                            {% endfor %}
-                            {# end - load item #}
-
-                        {% endblock %}
-                    {% endembed %}
                 {% endfor %}
                 {# end - load service #}
             </div>
