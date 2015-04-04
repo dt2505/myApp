@@ -29,17 +29,17 @@
             <a class="btn btn-link no-pad-hor" data-parent="#{{ accordionParent }}" data-toggle="collapse" href="#{{ panelCollapseId }}" aria-expanded="true">
                 <i class="fa fa-caret-down fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Expand/Collapse"></i>
             </a>
-            <a class="btn btn-link no-pad-hor remove-new-item-only hidden" id="{{ removeNewItemLinkId }}" data-item-id="{{ itemId }}" data-item-type="{{ prefix }}">
+            <a class="btn btn-link no-pad-hor remove-new-item-only hidden" id="{{ removeNewItemLinkId }}" data-toggle="panel-overlay" data-target="#{{ panelCollapseId }}" data-item-id="{{ itemId }}" data-item-type="{{ prefix }}">
                 <i class="fa fa-trash fa-fw fa-md text-dark text-hover-danger add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Remove new item only"></i>
             </a>
 
             <a class="btn btn-link no-pad-hor item-save" data-toggle="panel-overlay" data-target="#{{ panelCollapseId }}" data-item-body="#{{ itemBodyId }}">
                 <i class="fa fa-check fa-fw fa-md text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save item"></i>
             </a>
-            <a class="btn btn-link no-pad-hor item-add" data-parent="#{{ accordionParent }}" data-item-body="#{{ itemBodyId }}" data-item-type="{{ prefix }}" data-item-id="{{ itemId }}" data-item-template="{{ itemTemplate }}">
+            <a class="btn btn-link no-pad-hor item-add" data-toggle="panel-overlay" data-target="#{{ panelCollapseId }}" data-parent="#{{ accordionParent }}" data-item-body="#{{ itemBodyId }}" data-item-type="{{ prefix }}" data-item-id="{{ itemId }}" data-item-template="{{ itemTemplate }}">
                 <i class="fa fa-plus fa-fw fa-md text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Add item"></i>
             </a>
-            <a class="btn btn-link no-pad-hor item-remove" data-parent="#{{ accordionParent }}" data-item-body="#{{ itemBodyId }}" data-item-type="{{ prefix }}" data-item-id="{{ itemId }}" data-empty-info-markup='{{ emptyInfomation }}'>
+            <a class="btn btn-link no-pad-hor item-remove" data-toggle="panel-overlay" data-target="#{{ panelCollapseId }}" data-parent="#{{ accordionParent }}" data-item-body="#{{ itemBodyId }}" data-item-type="{{ prefix }}" data-item-id="{{ itemId }}" data-empty-info-markup='{{ emptyInfomation }}'>
                 <i class="fa fa-times fa-fw fa-md text-dark text-hover-danger add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Remove item"></i>
             </a>
         </div>

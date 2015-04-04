@@ -222,15 +222,27 @@ $(document).ready(function() {
         overlay = function($el, process) {
             var relTime;
             $el.niftyOverlay('show');
+            $el.parent().find("a").each(function() {
+                $(this).addClass("disabled");
+            });
 
             process($el);
 
-            relTime = setInterval(function(){
-                // Hide the screen overlay
-                $el.niftyOverlay('hide');
+            // Hide the screen overlay
+            $el.niftyOverlay('hide');
+            $el.parent().find("a").each(function() {
+                $(this).removeClass("disabled");
+            });
 
-                clearInterval(relTime);
-            }, 2000);
+            //relTime = setInterval(function(){
+            //    // Hide the screen overlay
+            //    $el.niftyOverlay('hide');
+            //
+            //    clearInterval(relTime);
+            //    $el.parent().find("a").each(function() {
+            //        $(this).removeClass("disabled");
+            //    });
+            //}, 1000);
         },
         getItems = function ($itemBody) {
             var items = [];
@@ -304,9 +316,8 @@ $(document).ready(function() {
     //-======================================-
     // Add and remove click event
     //-======================================-
-    var onItemAddClick = function (){
-            var $el = $(this),
-                $itemBody = $($el.data("item-body")),
+    var processAddingItem = function ($el){
+            var $itemBody = $($el.data("item-body")),
                 expended = $itemBody.parent().hasClass("collapse in"),
                 parent = $el.data("parent"),
                 hasChildren = $itemBody.find("input[type=checkbox]").length > 0,
@@ -324,71 +335,81 @@ $(document).ready(function() {
             if (hasChildren) {
                 $.get("/empty/item", { itemId: itemId, itemType: itemType, itemTemplate: itemTemplate } )
                     .done(function( data ) {
-                        $firstPanel.before(data);
+                        var html = data.trim(),
+                            $panel = $(html),
+                            $checkboxLabel = $panel.find(".form-checkbox");
 
-                        $("#" + itemType + "-remove-new-item-only-" + itemId).removeClass("hidden");
-
-                        // refresh checkbox
-                        var $newPanel = $itemBody.find("div.panel:first"),
-                            $checkboxLabel = $newPanel.find(".form-checkbox");
+                        $panel.find(".up-currency-dropdown-menu li a").on("click", onCurrencyClick);
+                        $panel.find(".up-unit-dropdown-menu li a").on("click", onUnitClick);
                         if($checkboxLabel.length) $checkboxLabel.niftyCheck();
 
-                        $newPanel.addClass(itemType + "-removable-new-item-panel-" + itemId);
+                        $panel.addClass(itemType + "-removable-new-item-panel-" + itemId);
+                        $firstPanel.before($panel);
 
-                        // re-define click event for new currency and unit dropdown menu
-                        $newPanel.find(".up-currency-dropdown-menu li a").on("click", onCurrencyClick);
-                        $newPanel.find(".up-unit-dropdown-menu li a").on("click", onUnitClick);
+                        $("#" + itemType + "-remove-new-item-only-" + itemId).removeClass("hidden");
                     });
             } else {
                 console.log("no children");
             }
         },
-        onRemoveNewItemOnlyClick = function (){
-            var itemId = $(this).data("item-id"),
-                itemType = $(this).data("item-type");
+        processRemovingNewItems = function ($el){
+            var itemId = $el.data("item-id"),
+                itemType = $el.data("item-type");
 
             $("." + itemType + "-removable-new-item-panel-" + itemId).remove();
-            $(this).addClass("hidden");
+            $el.addClass("hidden");
         },
-        onRemoveItemClick = function () {
-            var $el = $(this),
-                $itemBody = $($el.data("item-body")),
-                expended = $itemBody.parent().hasClass("collapse in"),
-                parent = $el.data("parent"),
-                itemId = $el.data("item-id"),
-                itemType = $el.data("item-type"),
-                emptyInfoMarkup = $el.data("empty-info-markup"),
-                selectedItems = $itemBody.find("input[type=checkbox]:checked"),
-                removingAll = selectedItems.length == $itemBody.find("input[type=checkbox]").length,
-                selectedItemIds = [],
-                selectedPanels = [];
+        processRemovingSelectedItems = function ($el) {
+            var $itemBody = $($el.data("item-body")),
+                allItems = $itemBody.find("input[type=checkbox]");
 
-            selectedItems.each(function(index) {
-                var $el = $(this),
-                    prefix = $el.data("prefix"),
-                    itemId = $el.data("item-id");
+            if (allItems.length > 0) {
+                var selectedItems = $itemBody.find("input[type=checkbox]:checked"),
+                    removingAll = selectedItems.length == allItems.length,
+                    expended = $itemBody.parent().hasClass("collapse in"),
+                    parent = $el.data("parent"),
+                    itemId = $el.data("item-id"),
+                    itemType = $el.data("item-type"),
+                    emptyInfoMarkup = $el.data("empty-info-markup"),
+                    selectedItemIds = [],
+                    selectedPanels = [];
 
-                selectedPanels[index] = "#" + prefix + "-panel-" + itemId;
-                selectedItemIds[index] = $(this).data("item-id");
-            });
+                selectedItems.each(function(index) {
+                    var $el = $(this),
+                        prefix = $el.data("prefix"),
+                        itemId = $el.data("item-id");
 
-            if (!expended) {
-                $itemBody.parent().collapse({
-                    parent: parent
+                    selectedPanels[index] = "#" + prefix + "-panel-" + itemId;
+                    selectedItemIds[index] = $(this).data("item-id");
                 });
-            }
 
-            if (selectedItemIds.length > 0) {
+                if (!expended) {
+                    $itemBody.parent().collapse({
+                        parent: parent
+                    });
+                }
+
                 $.ajax({
                     method: "DELETE",
                     url: "/items/remove",
                     data: {itemId: itemId, itemType: itemType, subitems: selectedItemIds}
                 }).done(function (response) {
+                    var $panls = $(selectedPanels.join());
+
                     console.log(response);
-                    $(selectedPanels.join()).remove();
+
+                    $panls.remove();
                     if (removingAll) {
-                        $itemBody.append(emptyInfoMarkup);
+                        $itemBody.append($(emptyInfoMarkup));
                     }
+                    // uncomment animation if wanted
+                    //$panls.addClass("animated fadeOut");
+                    //$panls.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                    //    $panls.remove();
+                    //    if (removingAll) {
+                    //        $itemBody.append($(emptyInfoMarkup).addClass("animated fadeIn"));
+                    //    }
+                    //});
                 });
             } else {
                 console.log("no children");
@@ -396,14 +417,19 @@ $(document).ready(function() {
         };
 
     // click "Add new item"
-    $(".item-add").on("click", onItemAddClick);
+    $(".item-add").niftyOverlay().on("click", function() {
+        overlay($(this), processAddingItem);
+    });
 
     // click "Remove new item only"
-    $(".remove-new-item-only").on('click', onRemoveNewItemOnlyClick);
+    $(".remove-new-item-only").niftyOverlay().on('click', function() {
+        overlay($(this), processRemovingNewItems);
+    });
 
     // click "Remove item"
-    $(".item-remove").on("click", onRemoveItemClick);
-
+    $(".item-remove").niftyOverlay().on("click", function(){
+        overlay($(this), processRemovingSelectedItems);
+    });
     //-======================================-
     // Add and remove click event - end
     //-======================================-
