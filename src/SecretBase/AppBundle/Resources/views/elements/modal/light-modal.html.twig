@@ -1,0 +1,7 @@
+{% extends "AppBundle:elements:modal/base-modal.html.twig" %}
+
+{% block content %}
+    <div id="{{ modalId }}-modal-body" class="modal-body {{ modalBodyClass|default('') }}">
+        {% block body %}{% endblock %}
+    </div>
+{% endblock %}

@@ -33,27 +33,19 @@ $(document).ready(function() {
         },
         editable: true,
         droppable: true, // this allows things to be dropped onto the calendar
-        drop: function() {
-            // is the "remove after drop" checkbox checked?
-            if ($('#drop-remove').is(':checked')) {
-                // if so, remove the element from the "Draggable Events" list
-                $(this).remove();
-            }
-        },
+        //drop: function() {
+        //    // is the "remove after drop" checkbox checked?
+        //    //if ($('#drop-remove').is(':checked')) {
+        //    //    // if so, remove the element from the "Draggable Events" list
+        //    //    $(this).remove();
+        //    //}
+        //},
         dayClick: function(date, jsEvent, view) {
-
-            alert('Clicked on: ' + date.format());
-
-            alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-
-            alert('Current view: ' + view.name);
-
-            // change the day's background color just for fun
-            $(this).css('background-color', 'red');
+            $("#new-event-modal").modal();
         },
         eventClick: function(calEvent, jsEvent, view) {
 
-            alert('Event: ' + calEvent.title);
+            alert('Event: ' + calEvent.title + " Type: " + calEvent.eventType||"undefined");
             alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
             alert('View: ' + view.name);
 
@@ -127,7 +119,8 @@ $(document).ready(function() {
             },
             {
                 title: 'Meeting',
-                start: '2015-02-12T14:30:00'
+                start: '2015-02-12T14:30:00',
+                color: "#333333"
             },
             {
                 title: 'Happy Hour',
@@ -156,6 +149,8 @@ $(document).ready(function() {
     // Initialize chosen
     // -----------------------------------------------------------------
     $('#acceptable-clients').chosen({width:'100%'});
+    $('#group').chosen({width:'100%'});
+    $('#event-color').chosen({width:'100%'});
 
     // Initailize image slider
     // -----------------------------------------------------------------
@@ -215,9 +210,7 @@ $(document).ready(function() {
     // unit dropdown click
     $unitUl.find("li a").on("click", onUnitClick);
 
-    //-======================================-
     // save button click event - loading overlay
-    //-======================================-
     var $itemSaveBtn = $('.item-save'),
         overlay = function($el, process) {
             var relTime;
@@ -286,7 +279,15 @@ $(document).ready(function() {
         });
 
         console.log(items);
+
         //TODO: make an ajax call to server for persisting data
+
+        $.niftyNoty({
+            type: "dark",
+            container : "floating",
+            html : "Successfully saved",
+            timer : 3000
+        });
     });
 
     // click "Save services" or "Save options"
@@ -307,19 +308,21 @@ $(document).ready(function() {
 
             console.log(items);
             //TODO: make an ajax call to server for persisting data
+
+            $.niftyNoty({
+                type: "dark",
+                container : "floating",
+                html : "Successfully saved",
+                timer : 3000
+            });
         });
     });
-    //-======================================-
     //end save button click event
-    //-======================================-
 
-    //-======================================-
-    // Add and remove click event
-    //-======================================-
+    // add and remove click event
     var processAddingItem = function ($el){
             var $itemBody = $($el.data("item-body")),
                 expended = $itemBody.parent().hasClass("collapse in"),
-                parent = $el.data("parent"),
                 hasChildren = $itemBody.find("input[type=checkbox]").length > 0,
                 itemId = $el.data("item-id"),
                 itemType = $el.data("item-type"),
@@ -327,9 +330,7 @@ $(document).ready(function() {
                 $firstPanel = $itemBody.find("div.panel:first");
 
             if (!expended) {
-                $itemBody.parent().collapse({
-                    parent: parent
-                });
+                $el.parent().find(".collapse-expand").trigger("click");
             }
 
             if (hasChildren) {
@@ -367,7 +368,6 @@ $(document).ready(function() {
                 var selectedItems = $itemBody.find("input[type=checkbox]:checked"),
                     removingAll = selectedItems.length == allItems.length,
                     expended = $itemBody.parent().hasClass("collapse in"),
-                    parent = $el.data("parent"),
                     itemId = $el.data("item-id"),
                     itemType = $el.data("item-type"),
                     emptyInfoMarkup = $el.data("empty-info-markup"),
@@ -384,9 +384,7 @@ $(document).ready(function() {
                 });
 
                 if (!expended) {
-                    $itemBody.parent().collapse({
-                        parent: parent
-                    });
+                    $el.parent().find(".collapse-expand").trigger("click");
                 }
 
                 $.ajax({
@@ -394,22 +392,29 @@ $(document).ready(function() {
                     url: "/items/remove",
                     data: {itemId: itemId, itemType: itemType, subitems: selectedItemIds}
                 }).done(function (response) {
-                    var $panls = $(selectedPanels.join());
+                    var $panels = $(selectedPanels.join());
 
                     console.log(response);
 
-                    $panls.remove();
+                    $panels.remove();
                     if (removingAll) {
                         $itemBody.append($(emptyInfoMarkup));
                     }
                     // uncomment animation if wanted
-                    //$panls.addClass("animated fadeOut");
-                    //$panls.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-                    //    $panls.remove();
+                    //$panels.addClass("animated fadeOut");
+                    //$panels.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                    //    $panels.remove();
                     //    if (removingAll) {
                     //        $itemBody.append($(emptyInfoMarkup).addClass("animated fadeIn"));
                     //    }
                     //});
+
+                    $.niftyNoty({
+                        type: "dark",
+                        container : "floating",
+                        html : "Successfully removed",
+                        timer : 3000
+                    });
                 });
             } else {
                 console.log("no children");
@@ -430,7 +435,63 @@ $(document).ready(function() {
     $(".item-remove").niftyOverlay().on("click", function(){
         overlay($(this), processRemovingSelectedItems);
     });
-    //-======================================-
-    // Add and remove click event - end
-    //-======================================-
+    // add and remove click event - end
+
+    // click on girl's photo
+    $('.profile-img-link').on("click", function() {
+        var $el = $(this),
+            target = $el.data("target-modal");
+
+        if (target) {
+            var $modal = $("#" + target),
+                $modalBody = $modal.find(".modal-body"),
+                $img = $el.find(".profile-img");
+
+            $modalBody.find("img").attr("src", $img.attr("src"));
+            $modal.modal();
+        }
+
+        return false;
+    });
+
+    // click save calendar
+    $("a.save-calendar").on("click", function () {
+        var clientEvents = $('#calendar').fullCalendar("clientEvents"),
+            events = [];
+
+        $.each(clientEvents, function(index, eventObj) {
+
+            if (eventObj.end) {
+                events[index] = {
+                    allDay:eventObj.allDay,
+                    title: eventObj.title,
+                    start: eventObj.start.format(),
+                    end: eventObj.end.format(),
+                    className: eventObj.className,
+                    url: eventObj.url
+                };
+            } else {
+                events[index] = {
+                    allDay:eventObj.allDay,
+                    title: eventObj.title,
+                    start: eventObj.start.format(),
+                    className: eventObj.className,
+                    url: eventObj.url
+                };
+            }
+        });
+
+        $.ajax({
+            method: "POST",
+            url: "/calendars/save",
+            data: {data: events}
+        }).done(function (response) {
+            console.log(response);
+        });
+    });
+
+    // click save profile
+    $("a.save-profile").on("click", function () {
+        console.log("profile");
+    });
 });

@@ -5,7 +5,7 @@
     <!--Accordion title-->
     <div class="panel-heading border-btm-solid-dark-4a">
         <div class="panel-control girl-acceptable-opt-panel-control">
-            <a class="btn btn-link no-pad-hor">
+            <a class="btn btn-link no-pad-hor save-profile">
                 <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save"></i>
             </a>
         </div>
@@ -68,7 +68,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="group">Group</label>
                 <div class="col-sm-9">
-                    <select id="group" name="group" class="form-control">
+                    <select id="group" name="group">
                         {% for group in groups %}
                             {% if group.isDefault %}
                                 <option value="{{ group.id }}" selected>{{ group.name }}</option>

@@ -9,6 +9,7 @@
 namespace SecretBase\AppBundle\Controller;
 
 use SecretBase\AppBundle\Services\Util\TokenGenerator;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -86,6 +87,16 @@ class GirlController extends BaseController
         }
 
         return new Response(json_encode(["success" => true]));
+    }
+
+    /**
+     * @param Request $request
+     * @Rest\Post()
+     * @return Response
+     */
+    public function saveCalendarAction (Request $request)
+    {
+        return new JsonResponse($request->request->get("data"));
     }
 
     /**
@@ -225,6 +236,26 @@ class GirlController extends BaseController
                 ]
             ]
         ];
+//        return [
+//            "album" => [
+//                "id" => 1,
+//                "name" => "Album one",
+//                "photos_count" => 12,
+//                "photos" => [
+//                    ["id" => 1, "url" => "/plugins/jssor-slider/img/paint/01.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/01.jpg"],
+//                    ["id" => 2, "url" => "/plugins/jssor-slider/img/paint/02.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/02.jpg"],
+//                    ["id" => 3, "url" => "/plugins/jssor-slider/img/paint/03.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/03.jpg"],
+//                    ["id" => 4, "url" => "/plugins/jssor-slider/img/paint/04.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/04.jpg"],
+//                    ["id" => 5, "url" => "/plugins/jssor-slider/img/paint/05.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/05.jpg"],                    ["id" => 6, "url" => "img/alila/06.jpg", "thumbnail" => "img/alila/thumb-06.jpg"],
+//                    ["id" => 6, "url" => "/plugins/jssor-slider/img/paint/06.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/06.jpg"],
+//                    ["id" => 7, "url" => "/plugins/jssor-slider/img/paint/07.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/07.jpg"],
+//                    ["id" => 8, "url" => "/plugins/jssor-slider/img/paint/08.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/08.jpg"],
+//                    ["id" => 9, "url" => "/plugins/jssor-slider/img/paint/09.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/09.jpg"],
+//                    ["id" => 10, "url" => "/plugins/jssor-slider/img/paint/10.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/10.jpg"],
+//                    ["id" => 11, "url" => "/plugins/jssor-slider/img/paint/11.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/11.jpg"],
+//                ]
+//            ]
+//        ];
     }
 
     private function getGroup()

@@ -1,5 +1,20 @@
 {% set profilePanel = profilePanel|default('visible') %}
 
+{% include 'AppBundle:elements:modal/simple-img-modal.html.twig' with {
+    modalId: "simple-img-modal",
+    animationClass: "fade",
+    modalBodyClass: "no-pad",
+    modalContentBGColor: "bg-black",
+    size: "modal-lg"
+} %}
+
+{% include 'AppBundle:elements:modal/new-event-modal.html.twig' with {
+    modalId: "new-event-modal",
+    animationClass: "fade",
+    modalBodyClass: "no-pad",
+    modalContentBGColor: "bg-dark",
+} %}
+
 <form id="girl-profile-form" class="form-horizontal">
     <div class="center-block girl-profile-wrapper bg-dark">
 
@@ -14,7 +29,8 @@
                     {# photo slider #}
                     {% include 'AppBundle:widgets:photo-slider.html.twig' with {
                         media: detail.media,
-                        sliderContainerId: "detail-photo-preview-container"
+                        sliderContainerId: "detail-photo-preview-container",
+                        target: "simple-img-modal"
                     } %}
                 </div>
             </div>
@@ -24,7 +40,7 @@
             <div class="panel bg-dark panel-colorful mar-btm-5">
                 <div class="panel-heading border-btm-solid-dark-4a">
                     <div class="panel-control girl-acceptable-opt-panel-control">
-                        <a class="btn btn-link no-pad-hor">
+                        <a class="btn btn-link no-pad-hor save-desc">
                             <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save"></i>
                         </a>
                     </div>
@@ -45,7 +61,7 @@
             <div class="panel bg-dark panel-colorful mar-btm-5" id="girl-schedule-panel">
                 <div class="panel-heading border-btm-solid-dark-4a">
                     <div class="panel-control girl-acceptable-opt-panel-control">
-                        <a class="btn btn-link no-pad-hor">
+                        <a class="btn btn-link no-pad-hor save-calendar">
                             <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save"></i>
                         </a>
                     </div>

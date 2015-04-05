@@ -6,6 +6,9 @@
 {% set showThumbnail = album and album.photos_count > 1 %}
 {% set singlePhoto = media.photo|default(null) %}
 
+{% set target = target|default('') %}
+{% set dataTargetModal = target ? 'data-target-modal=' ~ target : '' %}
+
 <div id="{{ sliderContainerId }}" class="slider-container {{ sliderContainerSize }}">
     {# loading screen #}
     <div u="loading" class="slider-loading">
@@ -20,13 +23,13 @@
     <div u="slides" class="slider-body {{ sliderBodySize }}">
         {% if singlePhoto %}
             <div>
-                <a href="#"><img u="image" src="{{ asset(singlePhoto.url) }}" /></a>
+                <a href="{{ asset(singlePhoto.url) }}" class="profile-img-link" {{ dataTargetModal }}><img class="profile-img" u="image" src="{{ asset(singlePhoto.url) }}" /></a>
             </div>
         {% else %}
             {% for photo in album.photos %}
                 <div>
-                    <a href="#"><img u="image" src="{{ asset(photo.url) }}" /></a>
-                    <img u="thumb" src="{{ asset(photo.thumbnail) }}" />
+                    <a href="#" class="profile-img-link" {{ dataTargetModal }}><img class="profile-img" u="image" src="{{ asset(photo.url) }}" /></a>
+                    <img class="profile-img-thumbnail" u="thumb" src="{{ asset(photo.thumbnail) }}" />
                 </div>
             {% endfor %}
         {% endif %}
@@ -49,7 +52,7 @@
             <div u="slides">
                 <div u="prototype" class="slider-thumbnail-body">
                     <div class="w">
-                        <div u="thumbnailtemplate" class="slider-thumbnail"></div>
+                        <div u="thumbnailtemplate" class="slider-thumbnail img-responsive"></div>
                     </div>
                     <div class="c slider-thumbnail-placeholder">
                     </div>

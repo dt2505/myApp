@@ -1,0 +1,12 @@
+{% set animationClass = animationClass|default('') %}
+{% set ariaLabelledBy = labelledBy|default('') ? 'aria-labelledby="' ~ labelledBy ~ '"' : '' %}
+{% set modalBGColor = bgColor|default('') %}
+{% set modalContentBGColor = modalContentBGColor|default('') %}
+
+<div class="modal {{ animationClass }} {{ modalBGColor }} " id="{{ modalId }}" tabindex="-1" role="dialog" aria-hidden="true" {{ ariaLabelledBy }}>
+    <div class="modal-dialog {{ size|default('') }}">
+        <div class="modal-content {{ modalContentBGColor }}">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</div>
