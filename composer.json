@@ -25,6 +25,8 @@
         "ruflin/elastica": "1.4.*",
         "enyo/dropzone": "4.0.*",
         "bootstrap-select/bootstrap-select": "1.6.*",
+        "eternicode/bootstrap-datepicker": "1.4.*",
+        "jdewit/bootstrap-timepicker": "0.2.*",
         "moment/moment": "2.9.*"
     },
     "require-dev": {
