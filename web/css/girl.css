@@ -63,6 +63,9 @@
 #container .fc-unthemed .fc-today {
     background-color: #2285a0;
 }
+.input-group-addon {
+    background-color: #eee;
+}
 /* end overwritten */
 
 textarea {
