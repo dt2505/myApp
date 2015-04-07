@@ -27,7 +27,9 @@
         "bootstrap-select/bootstrap-select": "1.6.*",
         "eternicode/bootstrap-datepicker": "1.4.*",
         "jdewit/bootstrap-timepicker": "0.2.*",
-        "moment/moment": "2.9.*"
+        "moment/moment": "2.9.*",
+        "twbs/bootstrap": "3.3.*",
+        "fortawesome/font-awesome": "4.3.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
