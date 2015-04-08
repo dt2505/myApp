@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: config_assetic.yml }
 
 framework:
     #esi:             ~
@@ -30,98 +31,98 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
-# Assetic Configuration
-assetic:
-    debug:          "%kernel.debug%"
-    use_controller: false
-    bundles:        [ ]
-    #java: /usr/bin/java
-    filters:
-        cssrewrite: ~
-        #closure:
-        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
-        #yui_css:
-        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
-    assets:
-        boostrap_css:
-            inputs:
-                - @AppBundle/Resources/plugins/bootstrap.min.css
-            output: css/bootstrap.min.css
-        nifty_css:
-            inputs:
-                - @AppBundle/Resources/plugins/nifty/nifty.css
-            output: css/nifty.css
-        nifty_theme_dark_css:
-            inputs:
-                - @AppBundle/Resources/plugins/nifty/themes/type-c/theme-dark.css
-            output: css/nifty_theme_dark.css
-        site_css:
-            inputs:
-                - @AppBundle/Resources/css/site.css
-                - @AppBundle/Resources/css/site-color.css
-            output: css/compiled/site.css
-        pace_css:
-            inputs:
-                - '@AppBundle/Resources/plugins/pace/pace.css'
-            output: css/pace.css
-        fontawesome_css:
-            inputs:
-                - %kernel.root_dir%/../vendor/fortawesome/font-awesome/css/font-awesome.min.css
-            output: css/font-awesome.min.css
-        fontawesome_otf:
-            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/FontAwesome.otf
-            output: fonts/FontAwesome.otf
-        fontawesome_eot:
-            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.eot
-            output: fonts/fontawesome-webfont.eot
-        fontawesome_svg:
-            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.svg
-            output: fonts/fontawesome-webfont.svg
-        fontawesome_ttf:
-            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.ttf
-            output: fonts/fontawesome-webfont.ttf
-        fontawesome_woff:
-            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.woff
-            output: fonts/fontawesome-webfont.woff
-        fontawesome_woff2:
-            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.woff2
-            output: fonts/fontawesome-webfont.woff2
-        bootstrap_js:
-            inputs:
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/transition.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/alert.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/button.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/carousel.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/collapse.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/dropdown.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/modal.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/tooltip.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/popover.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/scrollspy.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/tab.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/affix.js
-                - %kernel.root_dir%/../vendor/bootstrap-select/bootstrap-select/dist/js/bootstrap-select.js
-            output: js/bootstrap.js
-        boostrap_datepicker:
-            inputs:
-                - %kernel.root_dir%/../vendor/eternicode/bootstrap-datepicker/dist/js/bootstrap-datepicker.js
-            output: js/bootstrap_datepicker.js
-        nifty:
-            inputs:
-                - '@AppBundle/Resources/plugins/nifty/nifty.js'
-            output: js/nifty.js
-        pace:
-            inputs:
-                - '@AppBundle/Resources/plugins/pace/pace.js'
-            output: js/pace.js
-        fastclick:
-             inputs:
-                 - '@AppBundle/Resources/plugins/fast-click/fastclick.js'
-             output: js/fastclick.js
-        jquery:
-            inputs:
-                - '@AppBundle/Resources/plugins/jquery-1.11.2.min.js'
-            output: js/jquery.js
+## Assetic Configuration
+#assetic:
+#    debug:          "%kernel.debug%"
+#    use_controller: false
+#    bundles:        [ ]
+#    #java: /usr/bin/java
+#    filters:
+#        cssrewrite: ~
+#        #closure:
+#        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
+#        #yui_css:
+#        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+#    assets:
+#        boostrap_css:
+#            inputs:
+#                - @AppBundle/Resources/plugins/bootstrap.min.css
+#            output: css/bootstrap.min.css
+#        nifty_css:
+#            inputs:
+#                - @AppBundle/Resources/plugins/nifty/nifty.css
+#            output: css/nifty.css
+#        nifty_theme_dark_css:
+#            inputs:
+#                - @AppBundle/Resources/plugins/nifty/themes/type-c/theme-dark.css
+#            output: css/nifty_theme_dark.css
+#        site_css:
+#            inputs:
+#                - @AppBundle/Resources/css/site.css
+#                - @AppBundle/Resources/css/site-color.css
+#            output: css/compiled/site.css
+#        pace_css:
+#            inputs:
+#                - '@AppBundle/Resources/plugins/pace/pace.css'
+#            output: css/pace.css
+#        fontawesome_css:
+#            inputs:
+#                - %kernel.root_dir%/../vendor/fortawesome/font-awesome/css/font-awesome.min.css
+#            output: css/font-awesome.min.css
+#        fontawesome_otf:
+#            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/FontAwesome.otf
+#            output: fonts/FontAwesome.otf
+#        fontawesome_eot:
+#            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.eot
+#            output: fonts/fontawesome-webfont.eot
+#        fontawesome_svg:
+#            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.svg
+#            output: fonts/fontawesome-webfont.svg
+#        fontawesome_ttf:
+#            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.ttf
+#            output: fonts/fontawesome-webfont.ttf
+#        fontawesome_woff:
+#            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.woff
+#            output: fonts/fontawesome-webfont.woff
+#        fontawesome_woff2:
+#            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.woff2
+#            output: fonts/fontawesome-webfont.woff2
+#        bootstrap_js:
+#            inputs:
+#                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/transition.js
+#                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/alert.js
+#                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/button.js
+#                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/carousel.js
+#                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/collapse.js
+#                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/dropdown.js
+#                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/modal.js
+#                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/tooltip.js
+#                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/popover.js
+#                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/scrollspy.js
+#                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/tab.js
+#                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/affix.js
+#                - %kernel.root_dir%/../vendor/bootstrap-select/bootstrap-select/dist/js/bootstrap-select.js
+#            output: js/bootstrap.js
+#        boostrap_datepicker:
+#            inputs:
+#                - %kernel.root_dir%/../vendor/eternicode/bootstrap-datepicker/dist/js/bootstrap-datepicker.js
+#            output: js/bootstrap_datepicker.js
+#        nifty:
+#            inputs:
+#                - '@AppBundle/Resources/plugins/nifty/nifty.js'
+#            output: js/nifty.js
+#        pace:
+#            inputs:
+#                - '@AppBundle/Resources/plugins/pace/pace.js'
+#            output: js/pace.js
+#        fastclick:
+#             inputs:
+#                 - '@AppBundle/Resources/plugins/fast-click/fastclick.js'
+#             output: js/fastclick.js
+#        jquery:
+#            inputs:
+#                - '@AppBundle/Resources/plugins/jquery-1.11.2.min.js'
+#            output: js/jquery.js
 fos_user:
     db_driver: orm
     firewall_name: main

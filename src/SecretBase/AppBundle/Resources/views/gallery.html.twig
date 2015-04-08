@@ -348,11 +348,13 @@ isDefault: false
 }
 ] %}
 {% block stylesheets %}
-    <link href="{{ asset('plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('plugins/dropzone/dropzone.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/card.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/gallery.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/ribbon.css') }}" rel="stylesheet">
+    {% stylesheets
+        '@boostrap_select_css'
+        '@dropzone_css'
+        '@gallery_css'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}
 
 {% block body %}
@@ -408,10 +410,12 @@ isDefault: false
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('plugins/dropzone/dropzone.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/dropfile.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/likes-and-comment.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/gallery.js') }}"></script>
+    {% javascripts
+        '@bootstrap_select_js'
+        '@isotope'
+        '@dropzone'
+        '@gallery'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

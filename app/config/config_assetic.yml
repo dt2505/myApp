@@ -1,0 +1,222 @@
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        [AppBundle]
+    #java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        #closure:
+        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
+        #yui_css:
+        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+    assets:
+        site_css:
+            inputs:
+                - @AppBundle/Resources/css/site.css
+                - @AppBundle/Resources/css/site-color.css
+            output: css/compiled/site.css
+        bg_img_css:
+            input:
+                - %kernel.root_dir%/../src/SecretBase/AppBundle/Resources/css/bg-image.css
+            filter:
+                - cssrewrite   # use cssrewrite to fix the issue of path
+            output: css/compiled/bg.css
+        album_css:
+            inputs:
+                - @AppBundle/Resources/css/card.css
+                - @AppBundle/Resources/css/gallery.css
+                - @AppBundle/Resources/css/dropzone-theme-dark.css
+            output: css/compiled/album.css
+        gallery_css:
+            inputs:
+                - @AppBundle/Resources/css/status-form.css
+                - @AppBundle/Resources/css/card.css
+                - @AppBundle/Resources/css/ribbon.css
+                - @AppBundle/Resources/css/gallery.css
+                - @AppBundle/Resources/css/dropzone-theme-dark.css
+            output: css/compiled/gallery.css
+        detail_css:
+            inputs:
+                - @AppBundle/Resources/css/detail.css
+                - @AppBundle/Resources/css/slider/slider-with-thumbnail-attached-to-bottom.css
+            output: css/compiled/detail.css
+        hometime_line_css:
+            inputs:
+                - @AppBundle/Resources/css/home-timeline.css
+                - @AppBundle/Resources/css/user-profile-aside.css
+                - @AppBundle/Resources/css/status-form.css
+                - @AppBundle/Resources/css/card.css
+            output: css/compiled/home-timeline.css
+        lobby_css:
+            inputs:
+                - @AppBundle/Resources/css/status-form.css
+                - @AppBundle/Resources/css/card.css
+                - @AppBundle/Resources/css/lobby.css
+            output: css/compiled/lobby.css
+        animate_css:
+            inputs:
+                - @AppBundle/Resources/plugins/animate.css-3.2.3/animate.css
+            output: css/animate.css
+        fullcalendar_css:
+            inputs:
+                - @AppBundle/Resources/plugins/fullcalendar-2.3.1/fullcalendar.css
+            output: css/fullcalendar.css
+        bootstrap_datepicker_css:
+            inputs:
+                - %kernel.root_dir%/../vendor/eternicode/bootstrap-datepicker/dist/css/bootstrap-datepicker.css
+            output: css/bootstrap-datepicker.css
+        chosen_css:
+            inputs:
+                - @AppBundle/Resources/plugins/chosen_v1.4.2/chosen.min.css
+            output: css/chosen.min.css
+        dropzone_css:
+            input:
+                - %kernel.root_dir%/../vendor/enyo/dropzone/dist/min/dropzone.min.css
+            output: css/dropzone.css
+        boostrap_select_css:
+            inputs:
+                - %kernel.root_dir%/../vendor/bootstrap-select/bootstrap-select/dist/css/bootstrap-select.min.css
+            output: css/bootstrap-select.min.css
+        boostrap_css:
+            inputs:
+                - @AppBundle/Resources/plugins/bootstrap.min.css
+            output: css/bootstrap.min.css
+        nifty_css:
+            inputs:
+                - @AppBundle/Resources/plugins/nifty/nifty.css
+            output: css/nifty.css
+        nifty_theme_dark_css:
+            inputs:
+                - @AppBundle/Resources/plugins/nifty/themes/type-c/theme-dark.css
+            output: css/nifty_theme_dark.css
+        pace_css:
+            inputs:
+                - '@AppBundle/Resources/plugins/pace/pace.css'
+            output: css/pace.css
+        fontawesome_css:
+            inputs:
+                - %kernel.root_dir%/../vendor/fortawesome/font-awesome/css/font-awesome.min.css
+            output: css/font-awesome.min.css
+        fontawesome_otf:
+            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/FontAwesome.otf
+            output: fonts/FontAwesome.otf
+        fontawesome_eot:
+            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.eot
+            output: fonts/fontawesome-webfont.eot
+        fontawesome_svg:
+            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.svg
+            output: fonts/fontawesome-webfont.svg
+        fontawesome_ttf:
+            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.ttf
+            output: fonts/fontawesome-webfont.ttf
+        fontawesome_woff:
+            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.woff
+            output: fonts/fontawesome-webfont.woff
+        fontawesome_woff2:
+            inputs: %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.woff2
+            output: fonts/fontawesome-webfont.woff2
+        bootstrap_js:
+            inputs:
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/transition.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/alert.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/button.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/carousel.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/collapse.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/dropdown.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/modal.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/tooltip.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/popover.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/scrollspy.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/tab.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/affix.js
+            output: js/bootstrap.js
+        bootstrap_select_js:
+            inputs:
+                - %kernel.root_dir%/../vendor/bootstrap-select/bootstrap-select/dist/js/bootstrap-select.js
+            outputs: bootstrap-select.js
+        bootstrap_wizard_js:
+            inputs:
+                - '@AppBundle/Resources/plugins/boostrap-wizard/jquery.bootstrap.wizard.min.js'
+            outputs: bootstrap.wizard.min.js
+        boostrap_datepicker:
+            inputs:
+                - '%kernel.root_dir%/../vendor/eternicode/bootstrap-datepicker/dist/js/bootstrap-datepicker.js'
+            output: js/bootstrap_datepicker.js
+        jssor:
+            inputs:
+                - @AppBundle/Resources/plugins/jssor-slider/jssor.js
+            output: js/jssor.js
+        jssor_slider:
+            inputs:
+                - @AppBundle/Resources/plugins/jssor-slider/jssor.slider.js
+            output: js/jssor.slider.js
+        fullcalendar:
+            inputs:
+                - @AppBundle/Resources/plugins/fullcalendar-2.3.1/fullcalendar.js
+            output: js/fullcalendar.js
+        moment:
+            inputs:
+                - '%kernel.root_dir%/../vendor/moment/moment/min/moment.min.js'
+            output: js/moment.min.js
+        chosen:
+            inputs:
+                - '@AppBundle/Resources/plugins/chosen_v1.4.2/chosen.jquery.min.js'
+            output: js/chosen.jquery.min.js
+        dropzone:
+            inputs:
+                - '%kernel.root_dir%/../vendor/enyo/dropzone/dist/min/dropzone.min.js'
+            output: js/dropzone.min.js
+        isotope:
+            inputs:
+                - '@AppBundle/Resources/plugins/isotope/isotope.pkgd.min.js'
+            output: js/isotope.pkgd.min.js
+        nifty:
+            inputs:
+                - '@AppBundle/Resources/plugins/nifty/nifty.js'
+            output: js/nifty.js
+        pace:
+            inputs:
+                - '@AppBundle/Resources/plugins/pace/pace.js'
+            output: js/pace.js
+        fastclick:
+             inputs:
+                 - '@AppBundle/Resources/plugins/fast-click/fastclick.js'
+             output: js/fastclick.js
+        jquery:
+            inputs:
+                - '@AppBundle/Resources/plugins/jquery-1.11.2.min.js'
+            output: js/jquery.js
+        registration:
+            inputs:
+                - '@AppBundle/Resources/js/form-wz.js'
+            output: js/compiled/form-wz.js
+        lobby:
+            inputs:
+                - '@AppBundle/Resources/js/dropfile.js'
+                - '@AppBundle/Resources/js/likes-and-comment.js'
+                - '@AppBundle/Resources/js/lobby.js'
+            output: js/compiled/lobby.js
+        hometime_line:
+            inputs:
+                - '@AppBundle/Resources/js/dropfile.js'
+                - '@AppBundle/Resources/js/likes-and-comment.js'
+                - '@AppBundle/Resources/js/home-timeline.js'
+            output: js/compiled/home-timeline.js
+        detail:
+            inputs:
+                - '@AppBundle/Resources/js/slider/slider-with-thumbnail-attached-to-bottom.js'
+                - '@AppBundle/Resources/js/calendar-event-modal.js'
+                - '@AppBundle/Resources/js/detail.js'
+            output: js/compiled/detail.js
+        gallery:
+            inputs:
+                - '@AppBundle/Resources/js/dropfile.js'
+                - '@AppBundle/Resources/js/likes-and-comment.js'
+                - '@AppBundle/Resources/js/gallery.js'
+            output: js/compiled/gallery.js
+        album:
+            inputs:
+                - '@AppBundle/Resources/js/dropfile.js'
+                - '@AppBundle/Resources/js/album.js'
+            output: js/compiled/album.js

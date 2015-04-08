@@ -1,11 +1,11 @@
 {% extends "::base.html.twig" %}
 
 {% block stylesheets %}
-    <link href="{{ asset('plugins/dropzone/dropzone.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/home-timeline.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/user-profile-aside.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/status-form.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/card.css') }}" rel="stylesheet">
+    {% stylesheets
+        '@dropzone_css'
+        '@hometime_line_css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}
 
 {% block body %}
@@ -37,10 +37,10 @@
 
         {# aside bar - user profile #}
         {% include 'AppBundle:elements:aside-bar/user-profile.html.twig' with {
-        name: 'Lucy Moon',
-        followings: 1345,
-        followers: 23456,
-        aboutMe: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.'
+            name: 'Lucy Moon',
+            followings: 1345,
+            followers: 23456,
+            aboutMe: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.'
         } %}
 
 
@@ -53,9 +53,10 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('plugins/dropzone/dropzone.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/dropfile.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/likes-and-comment.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/home-timeline.js') }}"></script>
+    {% javascripts
+        '@isotope'
+        '@dropzone'
+        '@hometime_line' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

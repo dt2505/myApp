@@ -3,10 +3,11 @@
 {% trans_default_domain 'Elements' %}
 
 {% block stylesheets %}
-    <link href="{{ asset('plugins/dropzone/dropzone.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/lobby.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/status-form.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/card.css') }}" rel="stylesheet">
+    {% stylesheets
+        '@dropzone_css'
+        '@lobby_css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}
 
 {% block body %}
@@ -38,9 +39,10 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('plugins/dropzone/dropzone.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/dropfile.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/likes-and-comment.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/lobby.js') }}"></script>
+    {% javascripts
+        '@isotope'
+        '@dropzone'
+        '@lobby' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

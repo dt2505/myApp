@@ -14,9 +14,13 @@
 ] %}
 
 {% block stylesheets %}
-    <link href="{{ asset('plugins/dropzone/dropzone.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/card.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/album.css') }}" rel="stylesheet">
+    {% stylesheets
+        '@boostrap_select_css'
+        '@dropzone_css'
+        '@album_css'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}
 
 {% block body %}
@@ -64,8 +68,11 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('plugins/dropzone/dropzone.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/dropfile.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/album.js') }}"></script>
+    {% javascripts
+        '@isotope'
+        '@dropzone'
+        '@album'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

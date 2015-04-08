@@ -3,8 +3,11 @@
 {% trans_default_domain 'Elements' %}
 
 {% block stylesheets %}
-    <link href="{{ asset('./css/bg-image.css') }}" rel="stylesheet">
-    <link href="{{ asset('./plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet">
+    {% stylesheets
+        '@boostrap_select_css'
+        '@bg_img_css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}
 
 {% block body %}
@@ -101,8 +104,11 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('./plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
-    <script src="{{ asset('./plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}"></script>
-
-    <script src="{{ asset('./js/form-wz.js') }}"></script>
+    {% javascripts
+        '@bootstrap_select_js'
+        '@bootstrap_wizard_js'
+        '@registration'
+     %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

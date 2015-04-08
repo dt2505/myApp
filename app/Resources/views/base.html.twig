@@ -12,10 +12,11 @@
             '@site_css'
             '@pace_css'
             '@fontawesome_css'
+            '@animate_css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
-        <link href="{{ asset('plugins/animate.css-3.2.3/animate.css') }}" rel="stylesheet">
+        {#<link href="{{ asset('plugins/animate.css-3.2.3/animate.css') }}" rel="stylesheet">#}
 
         {% block stylesheets %}{% endblock %}
         <title>{% block title %}Welcome!{% endblock %}</title>

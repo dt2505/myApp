@@ -1,9 +1,12 @@
 {% extends "::base.html.twig" %}
-
 {% trans_default_domain 'Elements' %}
+
 {% block stylesheets %}
-    <link href="{{ asset('./css/bg-image.css') }}" rel="stylesheet">
+    {% stylesheets '@bg_img_css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}
+
 {% block body %}
     <div id="container" class="cls-container">
         {# background image #}
@@ -57,7 +60,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
-{% block javascripts %}
-    <script src="{{ asset('./plugins/fast-click/fastclick.min.js') }}"></script>
 {% endblock %}

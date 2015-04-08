@@ -1,0 +1,131 @@
+/*#content-container {*/
+    /*padding-top: 33px;*/
+    /*background-color: #000000;*/
+/*}*/
+.show-overflow {
+    overflow: visible;
+}
+.pad-rgt-120 {
+    padding-right: 120px;
+}
+
+/* over-written boostrap select */
+.bootstrap-select {
+    margin-bottom: 0;
+}
+/* image card wrapper start */
+.img-wrapper {
+    position: relative;
+}
+.img-wrapper > .img-info-sm {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: rgba(0,0,0,0.7);
+}
+/* toggle img-caption to display*/
+.img-wrapper:hover>.img-caption {
+    display: block;
+}
+.img-wrapper .img-caption {
+    display: none;
+    background-color: rgba(0,0,0, 0.7);
+    height: 30px;
+    width:100%;
+}
+.img-wrapper .img-caption-fixed {
+    background-color: rgba(0,0,0, 0.7);
+    height: 40px;
+    width:100%;
+}
+
+.img-caption-btm {
+    position: absolute;
+    bottom: 0;
+    left:0;
+}
+/* image card wrapper end */
+
+/* profile-cover */
+.profile-cover {
+    width: 100%;
+}
+.profile-cover .cover {
+    position: relative;
+}
+.profile-cover .cover .avatar-btm {
+    position: absolute;
+    bottom:5px;
+    left:25px;
+}
+.profile-cover .cover .cover-landscape {
+    height: 280px;
+}
+
+.profile-cover .cover .inner-cover {
+    overflow: hidden;
+    height: auto;
+}
+.profile-cover .cover .inner-cover img {
+    border: 1px solid transparent;
+    text-align: center;
+    width: 100%;
+}
+.profile-cover .cover .inner-cover .cover-menu-mobile {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.profile-cover .cover .inner-cover .cover-menu-mobile button i {
+    font-size: 17px;
+}
+.profile-cover .cover ul.cover-menu {
+    /*padding-left: 25px;*/
+    margin-left: 131px;
+    position: absolute;
+    overflow: hidden;
+    left: 1px;
+    float: left;
+    bottom: 0;
+    /*width: 100%;*/
+    background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.24);
+}
+
+.profile-cover .cover ul.cover-menu li {
+    display: block;
+    float: left;
+    margin-right: 0px;
+    padding: 0px 10px;
+    line-height: 40px;
+    height: 40px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.profile-cover .cover ul.cover-menu li:hover {
+    background-color: rgba(0, 0, 0, 0.44);
+}
+.profile-cover .cover ul.cover-menu li.active {
+    background-color: rgba(0, 0, 0, 0.64);
+}
+.profile-cover .cover ul.cover-menu li a {
+    color: #FFF;
+    font-weight: bold;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+}
+.profile-cover .cover ul.cover-menu li a i {
+    font-size: 18px;
+}
+.profile-cover .profile-body {
+    margin: 0px auto 10px;
+    position: relative;
+}
+.profile-cover .profile-timeline {
+    padding: 15px;
+}
+/* profile end */
