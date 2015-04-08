@@ -11,9 +11,10 @@ vendor/*
 */cache/*
 app/cache/.gitkeep
 app/logs/.gitkeep
-#web/css/*
+web/css/*
 web/fonts/*
-#web/js/*
+web/js/*
+web/img/*
 web/javascripts/*
 web/uploads/*
 web/bundles/*
@@ -61,5 +62,3 @@ Desktop.ini
 
 .htaccess
 *.php~
-
-web/img/alila
