@@ -70,6 +70,14 @@ assetic:
             inputs:
                 - @AppBundle/Resources/plugins/chosen_v1.4.2/chosen.min.css
             output: css/chosen.min.css
+        chosen_css_sprite: # this image is required by chosen css
+            inputs:
+                - @AppBundle/Resources/plugins/chosen_v1.4.2/chosen-sprite.png
+            output: css/chosen-sprite.png
+        chosen_css_sprite2x:
+            inputs:
+                - @AppBundle/Resources/plugins/chosen_v1.4.2/chosen-sprite@2x.png
+            output: css/chosen-sprite@2x.png
         dropzone_css:
             input:
                 - %kernel.root_dir%/../vendor/enyo/dropzone/dist/min/dropzone.min.css

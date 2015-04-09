@@ -11,7 +11,7 @@
     padding-left: 0;
 }
 .no-pad-rgt {
-    padding-right: 0;
+    padding-right: 0 !important;
 }
 .no-pad-hor {
     padding-left: 0;

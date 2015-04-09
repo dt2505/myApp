@@ -19,6 +19,6 @@ lobby:
 gallery:
     type: rest
     resource: SecretBase\AppBundle\Controller\GalleryController
-girl:
+detail:
     type: rest
-    resource: SecretBase\AppBundle\Controller\GirlController
+    resource: SecretBase\AppBundle\Controller\DetailController

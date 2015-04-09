@@ -299,42 +299,60 @@ $(document).ready(function() {
                 itemId = $el.data("item-id"),
                 itemType = $el.data("item-type"),
                 itemTemplate = $el.data("item-template"),
-                $firstPanel = $itemBody.find("div.panel:first");
+                $firstPanel = $itemBody.find("div.panel:first"),
+                data = { itemId: itemId, itemType: itemType, itemTemplate: itemTemplate };
 
             if (!expended) {
                 $el.parent().find(".collapse-expand").trigger("click");
             }
 
-            if (hasChildren) {
-                $.get("/empty/item", { itemId: itemId, itemType: itemType, itemTemplate: itemTemplate } )
-                    .done(function( data ) {
-                        var html = data.trim(),
-                            $panel = $(html),
-                            $checkboxLabel = $panel.find(".form-checkbox");
+            $.get("/empty/item", data)
+                .done(function( data ) {
+                    var html = data.trim(),
+                        $panel = $(html),
+                        $checkboxLabel = $panel.find(".form-checkbox");
 
-                        $panel.find(".up-currency-dropdown-menu li a").on("click", onCurrencyClick);
-                        $panel.find(".up-unit-dropdown-menu li a").on("click", onUnitClick);
-                        if($checkboxLabel.length) $checkboxLabel.niftyCheck();
+                    $panel.find(".up-currency-dropdown-menu li a").on("click", onCurrencyClick);
+                    $panel.find(".up-unit-dropdown-menu li a").on("click", onUnitClick);
+                    if($checkboxLabel.length) {
+                        $checkboxLabel.niftyCheck();
+                        // this is for distinguishing new item from existed items
+                        $checkboxLabel.find("input[type=checkbox]").addClass("newly-added-item");
+                    }
 
-                        $panel.addClass(itemType + "-removable-new-item-panel-" + itemId);
-                        $firstPanel.before($panel);
+                    $panel.addClass(itemType + "-removable-new-item-panel-" + itemId);
 
-                        $("#" + itemType + "-remove-new-item-only-" + itemId).removeClass("hidden");
-                    });
-            } else {
-                console.log("no children");
-            }
+                    if (hasChildren) {
+                        $firstPanel. before($panel);
+                    } else {
+                        $itemBody.empty();
+                        $itemBody.append($panel);
+                    }
+
+                    $("#" + itemType + "-remove-new-item-only-" + itemId).removeClass("hidden");
+                }).error(function(XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(XMLHttpRequest.responseText);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                });
         },
         processRemovingNewItems = function ($el){
             var itemId = $el.data("item-id"),
-                itemType = $el.data("item-type");
+                itemType = $el.data("item-type"),
+                emptyInfoMarkup = $el.data("empty-info-markup"),
+                $itemBody = $($el.data("item-body"));
 
             $("." + itemType + "-removable-new-item-panel-" + itemId).remove();
+
+            if (!$itemBody.html().trim()) {
+                $itemBody.append(emptyInfoMarkup);
+            }
             $el.addClass("hidden");
         },
         processRemovingSelectedItems = function ($el) {
             var $itemBody = $($el.data("item-body")),
-                allItems = $itemBody.find("input[type=checkbox]");
+                allItems = $itemBody.find("input[type=checkbox]"),
+                btnRemoveNewItemOnly = $el.parent().find(".remove-new-item-only");
 
             if (allItems.length > 0) {
                 var selectedItems = $itemBody.find("input[type=checkbox]:checked"),
@@ -344,50 +362,65 @@ $(document).ready(function() {
                     itemType = $el.data("item-type"),
                     emptyInfoMarkup = $el.data("empty-info-markup"),
                     selectedItemIds = [],
-                    selectedPanels = [];
+                    selectedPanels = [],
+                    removeItems = function($items, $itemContainer, removingAllItems, $emptyInfo, response, showNotification) {
+                        if (response) console.log(response);
 
+                        $items.remove();
+                        if (removingAllItems) {
+                            $itemContainer.append($emptyInfo);
+                        }
+                        // uncomment animation if wanted
+                        //$panels.addClass("animated fadeOut");
+                        //$panels.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                        //    $panels.remove();
+                        //    if (removingAll) {
+                        //        $itemBody.append($(emptyInfoMarkup).addClass("animated fadeIn"));
+                        //    }
+                        //});
+
+                        if (showNotification) {
+                            $.niftyNoty({
+                                type: "dark",
+                                container: "floating",
+                                html: "Successfully removed",
+                                timer: 3000
+                            });
+                        }
+                    };
+
+                // go through each item
                 selectedItems.each(function(index) {
                     var $el = $(this),
                         prefix = $el.data("prefix"),
                         itemId = $el.data("item-id");
 
                     selectedPanels[index] = "#" + prefix + "-panel-" + itemId;
-                    selectedItemIds[index] = $(this).data("item-id");
+
+                    if (!$el.hasClass("newly-added-item")) {
+                        selectedItemIds[index] = $(this).data("item-id");
+                    }
                 });
 
+                // expend panel if it was collapsed
                 if (!expended) {
                     $el.parent().find(".collapse-expand").trigger("click");
                 }
 
-                $.ajax({
-                    method: "DELETE",
-                    url: "/items/remove",
-                    data: {itemId: itemId, itemType: itemType, subitems: selectedItemIds}
-                }).done(function (response) {
-                    var $panels = $(selectedPanels.join());
-
-                    console.log(response);
-
-                    $panels.remove();
-                    if (removingAll) {
-                        $itemBody.append($(emptyInfoMarkup));
-                    }
-                    // uncomment animation if wanted
-                    //$panels.addClass("animated fadeOut");
-                    //$panels.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-                    //    $panels.remove();
-                    //    if (removingAll) {
-                    //        $itemBody.append($(emptyInfoMarkup).addClass("animated fadeIn"));
-                    //    }
-                    //});
-
-                    $.niftyNoty({
-                        type: "dark",
-                        container : "floating",
-                        html : "Successfully removed",
-                        timer : 3000
+                if (selectedItemIds.length > 0) {
+                    $.ajax({
+                        method: "DELETE",
+                        url: "/items/remove",
+                        data: {itemId: itemId, itemType: itemType, subitems: selectedItemIds}
+                    }).done(function (response) {
+                        removeItems($(selectedPanels.join()), $itemBody, removingAll, emptyInfoMarkup, response, true);
                     });
-                });
+                } else if (selectedPanels.length > 0) {
+                    removeItems($(selectedPanels.join()), $itemBody, removingAll, emptyInfoMarkup, null, false);
+                    if (btnRemoveNewItemOnly && !btnRemoveNewItemOnly.hasClass("hidden")) {
+                        btnRemoveNewItemOnly.addClass("hidden");
+                    }
+                }
             } else {
                 console.log("no children");
             }

@@ -3,7 +3,6 @@
 {% set writeStatus = writeStatus|default('visible') %}
 {% set image = image|default('visible') %}
 {% set mainnav = mainnav|default('visible') %}
-{% set girl = girl|default('invisible') %}
 
 <ul class="nav navbar-top-links {{ direction }}">
 
@@ -149,15 +148,6 @@
         </li>
     {% endif %}
 
-    {# girl #}
-    {% if girl == 'visible' %}
-        <li class="add-tooltip girl" data-toggle="tooltip" data-placement="bottom" data-original-title="Girl">
-            <a href="{{ path('get_girl') }}">
-                <i class="fa fa-female fa-lg"></i>
-            </a>
-        </li>
-    {% endif %}
-
     {# write status #}
     {% if writeStatus == 'visible' %}
         <li class="add-tooltip write-status" data-toggle="tooltip" data-placement="bottom" data-original-title="Write status">
@@ -166,20 +156,4 @@
             </a>
         </li>
     {% endif %}
-
-    {# search box #}
-    {#<li class="searchbox">#}
-        {#<a> &#123;&#35; <-- use <a> to align search box vertically as it has been defined in this way in nifty.css &#35;&#125;#}
-            {#<form>#}
-                {#<div class="form-group searchbox">#}
-                    {#<div class="input-group custom-search-form">#}
-                        {#<input type="text" class="form-control" placeholder="{{ 'placeholder.search'|trans }}">#}
-                        {#<div class="input-group-btn">#}
-                            {#<button class="text-muted" type="button"><i class="fa fa-search"></i></button>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</form>#}
-        {#</a>#}
-    {#</li>#}
 </ul>

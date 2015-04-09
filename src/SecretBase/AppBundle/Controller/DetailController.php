@@ -14,15 +14,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
-class GirlController extends BaseController
+class DetailController extends BaseController
 {
     /**
      * @param Request $request
      * @return Response
      */
-    public function getGirlAction(Request $request)
+    public function getDetailAction(Request $request)
     {
-        return $this->render("AppBundle::girl.html.twig", array(
+        return $this->render("AppBundle::detail.html.twig", array(
             "detail" => $this->getGirlDetails()
         ));
     }
@@ -54,7 +54,7 @@ class GirlController extends BaseController
                 "unitPricePrefix" => $itemType . '-' . $itemId
             ));
         } else {
-            return new Response(json_encode(["empty" => true]));
+            return new JsonResponse(["empty" => true], Response::HTTP_EXPECTATION_FAILED);
         }
     }
 
@@ -225,6 +225,26 @@ class GirlController extends BaseController
             ],
             "hasDesc" => false
         ];
+        $outcallItemData = [
+            "id" => $id,
+            "checked" => $checked,
+            "template" => "unit-price",
+            "hasUnit" => true,
+            "unit" => [
+                "value" => $unitValue,
+                "min" => 1,
+                "selected" => $selectedUnit,
+                "options" => $this->getUnitOptions()
+            ],
+            "price" => [
+                "value" => $price,
+                "currency" => [
+                    "selected" => $selectedCurrency,
+                    "options" => $this->getCurrencyOptions()
+                ]
+            ],
+            "hasDesc" => false
+        ];
         $overnightItemData = [
             "id" => $id,
             "checked" => $checked,
@@ -267,12 +287,36 @@ class GirlController extends BaseController
                 "text" => $desc
             ]
         ];
+        $suanaItemData = [
+            "id" => $id,
+            "checked" => $checked,
+            "template" => "unit-price",
+            "hasUnit" => true,
+            "unit" => [
+                "value" => $unitValue,
+                "min" => 1,
+                "selected" => $selectedUnit,
+                "options" => $this->getUnitOptions()
+            ],
+            "price" => [
+                "value" => $price,
+                "currency" => [
+                    "selected" => $selectedCurrency,
+                    "options" => $this->getCurrencyOptions()
+                ]
+            ],
+            "hasDesc" => true,
+            "desc" => [
+                "rows" => 4,
+                "text" => $desc
+            ]
+        ];
         $itemData = [
             1 => $incallItemData,
             2 => $overnightItemData,
-            3 => [],
+            3 => $outcallItemData,
             4 => $escortItemData,
-            5 => []
+            5 => $suanaItemData
         ];
 
         return $itemData[$name];
