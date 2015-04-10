@@ -8,7 +8,6 @@ button:
     upload_avatar: Upload avatar
     upload_cover: Upload cover
     reset_password: Reset password
-    follow: Follow
     share: Share
     more: More...
     go: Go
@@ -39,11 +38,14 @@ placeholder:
     state: Enter state
     country: Select country...
     poscode: Enter post code
-    desc: Tell us something about you
+    self_desc: Tell us something about you
     search: Search...
     status: What is in your mind?
     comment: comment
     album_name: Enter album name
+    any_thing_to_say: Any thing to say about?
+    choose_target_client: Choose target guest...
+    hybrid_type: Eurasian?
 link:
     forgot_password: Forgot password ?
     create_new_account: Create a new account
@@ -51,7 +53,6 @@ link:
     back_to_login: Back to login
     logout: Logout
     settings: Settings
-    profile: Profile
     help: Help
     lock_screen: Lock screen
 label:
@@ -80,9 +81,9 @@ label:
     address: Address
     suburb: Suburb/City
     state: State
-    country: Country
+    country: CountryDescription
     poscode: Post code
-    desc: Brief description
+    brief_desc: Brief description
     I_agree: I agree with
     have_account: Already have an account ?
     I_am: I am
@@ -116,6 +117,23 @@ label:
     filter: Filter
     message: Message
     home: Home
+    save: Save
+    description: Description
+    services: Services
+    accptbl_opts: Acceptable options
+    calendar: Calendar
+    profile: Profile
+    name: Name
+    age: Age
+    occupation: Occupation
+    dob: Date of birth
+    nationality: Nationality
+    targe_client: Target client
+    group: Group
+    hybrid: Hybrid
+    yes: Yes
+    no: No
+    gallery: Gallery
 tip:
     you_have_msg: '{0} You have no messages|{1} You have <b style="color:blue">one</b> message unread|[2,999] You have <b style="color:blue">%count%</b> messages unread|[1000,Inf] You have <b style="color:red">so many</b> messages unread'
     who_sent_u_msg: '%name% sent you a message'
@@ -133,6 +151,22 @@ tip:
     drop_file_to_upload: Drop files to upload
     or_click_to_pick_manually: or click to pick manually
     new_status_notification: '{1} One new status is waiting for you|[2,Inf] %count% new statuses are waiting for you'
+    save_profile: Save profile
+    save_desc: Save description
+    save_calendar: Save calendar
+    save_services: Save services
+    save_opt: Save options
+    remove_new_service_only: Remove new service only
+    remove_new_opt_only: Remove new option only
+    save_service_item: Save service
+    save_opt_item: Save option
+    add_service_item: Add service
+    add_opt_item: Add option
+    remove_service_item: Remove service
+    remove_opt_item: Remove option
+    service_expend_collapse: Expand/Collapse service
+    opt_expend_collapse: Expand/Collapse option
+    write_status: write status
 alt:
     profile_pic: Profile picture
     logo: Logo

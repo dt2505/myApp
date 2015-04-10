@@ -141,7 +141,7 @@
 
     {# image #}
     {% if image == 'visible' %}
-        <li class="add-tooltip images" data-toggle="tooltip" data-placement="bottom" data-original-title="Gallery">
+        <li class="add-tooltip images" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ 'label.gallery'|trans }}">
             <a href="{{ path('get_gallery') }}">
                 <i class="fa fa-image fa-lg"></i>
             </a>
@@ -150,7 +150,7 @@
 
     {# write status #}
     {% if writeStatus == 'visible' %}
-        <li class="add-tooltip write-status" data-toggle="tooltip" data-placement="bottom" data-original-title="Write status">
+        <li class="add-tooltip write-status" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ 'tip.write_status'|trans }}">
             <a href="#">
                 <i class="fa fa-pencil fa-lg"></i>
             </a>

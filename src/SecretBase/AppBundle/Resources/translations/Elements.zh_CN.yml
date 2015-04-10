@@ -8,7 +8,6 @@ button:
     upload_avatar: 上传头像
     upload_cover: 上传封面
     reset_password: 重置密码
-    follow: 关注
     share: 分享
     more: 更多...
     go: 走起
@@ -39,18 +38,21 @@ placeholder:
     state: 输入省份
     country: 选择国家...
     poscode: 输入邮编
-    desc: 说说自己吧,让更多的人了解你
+    self_desc: 说说自己吧,让更多的人了解你
     search: 搜索...
     status: 你在想什么？
-    comment: 留言
+    comment: 评论
+    album_name: 输入相册名
+    any_thing_to_say: 有任何想要说的吗?
+    choose_target_client: 选择目标客户...
+    hybrid_type: 欧亚混血？
 link:
-    forgot_password: 忘记密码 ？
+    forgot_password: 忘记密码？
     create_new_account: 建立新账户
     terms_conditions: 服务使用协议
     back_to_login: 返回登陆页面
     logout: 登出
     settings: 设置
-    profile: 个人信息
     help: 帮助
     lock_screen: 锁屏
 label:
@@ -81,7 +83,7 @@ label:
     state: 省份
     country: 国家
     poscode: 邮编
-    desc: 简介
+    brief_desc: 简介
     I_agree: 我接受
     have_account: 已经有账号了？
     I_am: 我是
@@ -105,16 +107,33 @@ label:
     upload_photo: 上传照片
     add_album: 新增相册
     upload: 上传
-    close: 关闭
+    close: 关闭any_thing_to_say: Any thing to say about?
     notification: 通知
     add_photo: 上传照片
     likes: 大爱
     comments: 留言
-    follow: Follow
+    follow: 关注
     lobby: 大厅
     filter: 筛选
     message: 消息
     home: 个人主页
+    save: 保存
+    description: 描述
+    services: 服务项目
+    accptbl_opts: 可接受的选项
+    calendar: 日历
+    profile: 基本信息
+    name: 名字
+    age: 年龄
+    occupation: 职业
+    dob: 出生年月
+    nationality: 国籍
+    targe_client: 目标客户
+    group: 所在组
+    hybrid: 混血
+    yes: 是
+    no: 否
+    gallery: 相片库
 tip:
     you_have_msg: '{0} 你没有消息|{1} 你有<b style="color:blue">一</b>个未读消息|[2,999] 你有<b style="color:blue">%count%</b>未读消息|[1000,Inf] 你有<b style="color:red">大量</b>未读消息'
     who_sent_u_msg: '%name% 给你发了消息'
@@ -132,6 +151,22 @@ tip:
     drop_file_to_upload: 拖放照片上传
     or_click_to_pick_manually: 或者手动点击上传
     new_status_notification: '{1} 有一个人更新了他的状态|[2,Inf] 有%count%个人更新了他们的状态'
+    save_profile: 保存基本信息
+    save_desc: 保存描述
+    save_calendar: 保存日历
+    save_services: 保存服务项目
+    save_opt: 保存选项
+    remove_new_service_only: 仅删除新增服务项目
+    remove_new_opt_only: 仅删除新增选项
+    save_service_item: 保存服务项目
+    save_opt_item: 保存选项
+    add_service_item: 新增服务项目
+    add_opt_item: 新增选项
+    remove_service_item: 删除服务项目
+    remove_opt_item: 删除选项
+    service_expend_collapse: 展开或收起服务项目
+    opt_expend_collapse: 展开或收起选项
+    write_status: 分享你的想法
 alt:
     profile_pic: 头像
     logo: Logo

@@ -1,3 +1,5 @@
+{% trans_default_domain 'Elements' %}
+
 {% set profilePanel = profilePanel|default('visible') %}
 
 {% include 'AppBundle:elements:modal/simple-img-modal.html.twig' with {
@@ -43,18 +45,18 @@
                 <div class="panel-heading border-btm-solid-dark-4a">
                     <div class="panel-control girl-acceptable-opt-panel-control">
                         <a class="btn btn-link no-pad-hor save-desc">
-                            <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save description"></i>
+                            <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{{ 'tip.save_desc'|trans }}"></i>
                         </a>
                     </div>
 
                     <div class="panel-title girl-acceptable-opt-panel-title">
-                        <span class="text-lg">Description</span>
+                        <span class="text-lg">{{ 'label.description'|trans }}</span>
                     </div>
                 </div>
 
                 <!--Panel body-->
                 <div class="panel-body no-pad">
-                    <textarea rows="7" placeholder="Any thing to say about?" id="description" name="description" class="form-control"></textarea>
+                    <textarea rows="7" placeholder="{{ 'placeholder.any_thing_to_say'|trans }}" id="description" name="description" class="form-control"></textarea>
                 </div>
             </div>
             {# end description #}
@@ -64,12 +66,12 @@
                 <div class="panel-heading border-btm-solid-dark-4a">
                     <div class="panel-control girl-acceptable-opt-panel-control">
                         <a class="btn btn-link no-pad-hor save-calendar">
-                            <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save calendar events"></i>
+                            <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{{ 'tip.save_calendar'|trans }}"></i>
                         </a>
                     </div>
 
                     <div class="panel-title girl-acceptable-opt-panel-title">
-                        <span class="text-lg">Calendar</span>
+                        <span class="text-lg">{{ 'label.calendar'|trans }}</span>
                     </div>
                 </div>
 
@@ -94,7 +96,8 @@
                     {# profile #}
                     {% include 'AppBundle:elements:detail/profile.html.twig' with {
                         collapse: false,
-                        groups: detail.groups
+                        groups: detail.groups,
+                        targetClients: detail.targetClients
                     } %}
                 {% endif %}
 

@@ -1,3 +1,5 @@
+{% trans_default_domain 'Elements' %}
+
 {% set collapseIn = collapse|default(false) ? "collapse" : "collapse in" %}
 {% set accordionParent = accordionParent|default('') %}
 {% set itemIdentifier = "option" %}
@@ -9,13 +11,13 @@
     <div class="panel-heading border-btm-solid-dark-4a">
         <div class="panel-control girl-acceptable-opt-panel-control">
             <a class="btn btn-link no-pad-hor option-save" data-toggle="panel-overlay" data-target="#{{ optionPanelId }}" data-item-identifier="{{ itemIdentifier }}">
-                <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save options"></i>
+                <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{{ 'tip.save_opt'|trans }}"></i>
             </a>
         </div>
 
         <div class="panel-title">
             <a data-parent="#{{ accordionParent }}" data-toggle="collapse" href="#{{ optionPanelId }}">
-                <span class="text-lg">Acceptable options</span>
+                <span class="text-lg">{{ 'label.accptbl_opts'|trans }}</span>
             </a>
         </div>
     </div>

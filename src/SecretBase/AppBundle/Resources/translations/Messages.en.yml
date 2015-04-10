@@ -1,1 +1,3 @@
-no_contact: No contact details or not open for public
+message:
+    no_contact: No contact details or not open for public
+    empty_item: There are no items defined. Click "+" on top right corner to add new item.

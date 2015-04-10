@@ -1,3 +1,5 @@
+{% trans_default_domain 'Elements' %}
+
 {% set collapseIn = collapse|default(false) ? "collapse" : "collapse in" %}
 {% set accordionParent = collapseAll|default(true) ? accordionParent|default('') : '' %}
 
@@ -6,13 +8,13 @@
     <div class="panel-heading border-btm-solid-dark-4a">
         <div class="panel-control girl-acceptable-opt-panel-control">
             <a class="btn btn-link no-pad-hor save-profile">
-                <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save profile"></i>
+                <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{{ 'tip.save_profile'|trans }}"></i>
             </a>
         </div>
 
         <div class="panel-title">
             <a data-parent="#{{ accordionParent }}" data-toggle="collapse" href="#profile-panel">
-                <span class="text-lg">Profile</span>
+                <span class="text-lg">{{ 'label.profile'|trans }}</span>
             </a>
         </div>
     </div>
@@ -21,75 +23,84 @@
     <div class="panel-collapse {{ collapseIn }}" id="profile-panel">
         <div class="panel-body no-pad-btm">
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="name">Name</label>
+                <label class="col-sm-3 control-label" for="name">{{ 'label.name'|trans }}</label>
                 <div class="col-sm-9">
-                    <input type="email" placeholder="Name" id="name" name="name" class="form-control">
+                    <input type="email" placeholder="{{ 'label.name'|trans }}" id="name" name="name" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="age">Age</label>
+                <label class="col-sm-3 control-label" for="age">{{ 'label.age'|trans }}</label>
                 <div class="col-sm-9">
-                    <input type="text" placeholder="Age" id="age" name="age" class="form-control">
+                    <input type="text" placeholder="{{ 'label.age'|trans }}" id="age" name="age" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="occupation">Occupation</label>
+                <label class="col-sm-3 control-label" for="occupation">{{ 'label.occupation'|trans }}</label>
                 <div class="col-sm-9">
-                    <input type="text" placeholder="Occupation" id="occupation" name="occupation" class="form-control">
+                    <input type="text" placeholder="{{ 'label.occupation'|trans }}" id="occupation" name="occupation" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="dob">Date of Birth</label>
+                <label class="col-sm-3 control-label" for="dob">{{ 'label.dob'|trans }}</label>
                 <div class="col-sm-9">
-                    <input type="text" placeholder="Date of birth" id="dob" name="dob" class="form-control">
+                    <input type="text" placeholder="{{ 'label.dob'|trans }}" id="dob" name="dob" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="nationality">Nationality</label>
+                <label class="col-sm-3 control-label" for="nationality">{{ 'label.nationality'|trans }}</label>
                 <div class="col-sm-9">
-                    <input type="text" placeholder="Nationality" id="nationality" name="nationality" class="form-control">
+                    <input type="text" placeholder="{{ 'label.nationality'|trans }}" id="nationality" name="nationality" class="form-control">
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="">Target guest</label>
-                <div class="col-sm-9">
-                    {# target guest #}
-                    <select id="acceptable-clients" data-placeholder="Choose target guest..." multiple tabindex="4">
-                        <option value="Aland Islands">Any</option>
-                        <option value="United States">Chinese</option>
-                        <option value="United Kingdom">Local</option>
-                        <option value="Afghanistan">European</option>
-                        <option value="Aland Islands">American</option>
-                        <option value="Aland Islands">African</option>
-                        <option value="Aland Islands">Other Asian</option>
-                    </select>
+            {% if targetClients|length > 0 %}
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="">{{ 'label.targe_client'|trans }}</label>
+                    <div class="col-sm-9">
+                        {# target guest #}
+                        <select id="acceptable-clients" data-placeholder="{{ 'placeholder.choose_target_client'|trans }}" multiple tabindex="4">
+                            {% for targetClient in targetClients %}
+                                {% if targetClient.selected %}
+                                    <option value="{{ targetClient.id }}" selected>{{ targetClient.name }}</option>
+                                {% else %}
+                                    <option value="{{ targetClient.id }}">{{ targetClient.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="group">Group</label>
-                <div class="col-sm-9">
-                    <select id="group" name="group">
-                        {% for group in groups %}
-                            {% if group.isDefault %}
-                                <option value="{{ group.id }}" selected>{{ group.name }}</option>
-                            {% else %}
-                                <option value="{{ group.id }}">{{ group.name }}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
+            {% endif %}
+
+            {% if groups|length > 0 %}
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="group">{{ 'label.group'|trans }}</label>
+                    <div class="col-sm-9">
+                        <select id="group" name="group">
+                            {% for group in groups %}
+                                {% if group.isDefault %}
+                                    <option value="{{ group.id }}" selected>{{ group.name }}</option>
+                                {% else %}
+                                    <option value="{{ group.id }}">{{ group.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
-            </div>
+            {% endif %}
+
             <div class="form-group">
-                <label class="col-sm-3 control-label">Hybrid</label>
-                <div class="col-sm-9">
+                <label class="col-xs-12 col-sm-3 control-label">{{ 'label.hybrid'|trans }}</label>
+                <div class="col-xs-3 col-sm-4">
                     <div class="radio">
                         <label class="form-radio form-normal form-text">
-                            <input type="radio" name="hybrid">Yes
+                            <input type="radio" name="hybrid">{{ 'label.yes'|trans }}
                         </label>
                         <label class="form-radio form-normal form-text active">
-                            <input type="radio" name="hybrid" checked>No
+                            <input type="radio" name="hybrid" checked>{{ 'label.no'|trans }}
                         </label>
                     </div>
+                </div>
+                <div class="col-xs-9 col-sm-5">
+                    <input type="text" placeholder="{{ 'placeholder.hybrid_type'|trans }}" id="hybridType" name="hybridType" class="form-control">
                 </div>
             </div>
         </div>

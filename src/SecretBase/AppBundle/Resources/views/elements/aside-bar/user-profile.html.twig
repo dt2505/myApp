@@ -38,7 +38,7 @@
                             </li>
                         </ul>
                     </div>
-                    <button class="btn btn-block btn-primary">{{ 'button.follow'|trans }}</button>
+                    <button class="btn btn-block btn-primary">{{ 'label.follow'|trans }}</button>
 
                     <div class="pad-hor">
                         <h5>{{ 'label.about_me'|trans }}</h5>
@@ -48,7 +48,7 @@
                     {% if contact is defined %}
                         {{ userProfile.showContact(contact) }}
                     {% else %}
-                        <div class="pad-hor text-muted">{{ 'no_contact'|trans({}, 'Messages') }}</div>
+                        <div class="pad-hor text-muted">{{ 'message.no_contact'|trans({}, 'Messages') }}</div>
                     {% endif %}
                 </div>
             </div>

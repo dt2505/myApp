@@ -1,3 +1,5 @@
+{% trans_default_domain 'Elements' %}
+
 {% set collapseIn = collapse|default(false) ? "collapse" : "collapse in" %}
 {% set accordionParent = collapseAll|default(true) ? accordionParent|default('') : '' %}
 {% set servicesPanelId = "services-panel" %}
@@ -9,13 +11,13 @@
     <div class="panel-heading border-btm-solid-dark-4a">
         <div class="panel-control girl-acceptable-opt-panel-control">
             <a class="btn btn-link no-pad-hor service-save" data-toggle="panel-overlay" data-target="#{{ servicesPanelId }}" data-item-identifier="{{ itemIdentifier }}">
-                <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save services"></i>
+                <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{{ 'tip.save_services'|trans }}"></i>
             </a>
         </div>
 
         <div class="panel-title">
             <a data-parent="#{{ accordionParent }}" data-toggle="collapse" href="#{{ servicesPanelId }}">
-                <span class="text-lg">Services</span>
+                <span class="text-lg">{{ 'label.services'|trans }}</span>
             </a>
         </div>
     </div>
