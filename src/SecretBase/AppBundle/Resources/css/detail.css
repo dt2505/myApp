@@ -56,7 +56,7 @@
 .modal-dialog {
     margin: 30px auto;
 }
-/* nifty */
+
 #floating-top-right {
     top: 60px;
 }
@@ -66,6 +66,16 @@
 .input-group-addon {
     background-color: #eee;
 }
+
+/* change the dot color of radio button */
+fieldset:not([disabled]) .form-radio.form-normal:not(.disabled):hover:after,
+fieldset:not([disabled]) .form-radio.form-normal.active:after,
+.form-radio.form-normal:not(.disabled):hover:after,
+.form-radio.form-normal.active:after {
+    background-color: #c3cedb;
+}
+/* end nifty */
+
 /* end overwritten */
 
 textarea {
