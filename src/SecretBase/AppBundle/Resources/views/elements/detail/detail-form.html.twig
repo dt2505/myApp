@@ -18,7 +18,8 @@
 
 <form id="girl-profile-form" class="form-horizontal">
     <div class="center-block girl-profile-wrapper bg-dark">
-
+        <input type="hidden" id="object-id" value="{{ detail.id }}">
+        <input type="hidden" id="calendar-events-endpoint" value="{{ detail.calendarEventsEndpoint }}">
         {# preview and navigation menu panel #}
         <div class="col-xs-12 col-sm-6 col-md-7 pad-rgt-5">
 
@@ -42,7 +43,7 @@
                 <div class="panel-heading border-btm-solid-dark-4a">
                     <div class="panel-control girl-acceptable-opt-panel-control">
                         <a class="btn btn-link no-pad-hor save-desc">
-                            <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save"></i>
+                            <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save description"></i>
                         </a>
                     </div>
 
@@ -63,7 +64,7 @@
                 <div class="panel-heading border-btm-solid-dark-4a">
                     <div class="panel-control girl-acceptable-opt-panel-control">
                         <a class="btn btn-link no-pad-hor save-calendar">
-                            <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save"></i>
+                            <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save calendar events"></i>
                         </a>
                     </div>
 
@@ -76,6 +77,7 @@
                     {# hold place for full calendar #}
                     <div id="calendar"></div>
                 </div>
+
             </div>
             {# end calendar #}
         </div>
@@ -102,11 +104,13 @@
                     services: detail.services
                 } %}
 
-                {# acceptable options #}
-                {% include 'AppBundle:elements:detail/acceptable-options.html.twig' with {
-                    collapse: false,
-                    options: detail.options
-                } %}
+                {% if detail.options|length > 0 %}
+                    {# acceptable options #}
+                    {% include 'AppBundle:elements:detail/acceptable-options.html.twig' with {
+                        collapse: false,
+                        options: detail.options
+                    } %}
+                {% endif %}
             </div>
             {# end panel group accordion #}
         </div>

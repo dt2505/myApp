@@ -27,18 +27,9 @@
         <div class="boxed">
             <div id="content-container">
                 <div id="page-content" class="row">
-                    {# show empty message #}
-                    {% if detail|default(null) is null %}
-                        <div class="text-center pad-all text-white center-block girl-profile-wrapper">
-                            <h1>Good Day</h1>
-                            <p class="text-2x mar-btm">Girls are the key to success, and to enter guest's heart</p>
-                            <button class="btn btn-info btn-large"><span class="text-2x">Add new girl</span></button>
-                        </div>
-                    {% else %}
-                        {% include 'AppBundle:elements:detail/detail-form.html.twig' with {
-                            detail: detail
-                        } %}
-                    {% endif %}
+                    {% include 'AppBundle:elements:detail/detail-form.html.twig' with {
+                        detail: detail
+                    } %}
                 </div>
             </div>
         </div>

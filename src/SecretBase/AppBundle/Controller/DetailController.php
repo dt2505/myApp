@@ -23,7 +23,7 @@ class DetailController extends BaseController
     public function getDetailAction(Request $request)
     {
         return $this->render("AppBundle::detail.html.twig", array(
-            "detail" => $this->getGirlDetails()
+            "detail" => $this->getDetails()
         ));
     }
 
@@ -105,91 +105,7 @@ class DetailController extends BaseController
      */
     public function getCalendarEventsAction(Request $request)
     {
-        return new JsonResponse([
-            [
-                "title" => 'Happy Hour',
-                "start" => '2015-04-06',
-                "end" => '2015-04-07',
-                "className" => 'purple'
-            ],
-            [
-                "title" => 'Birthday Party',
-                "start" => '2015-01-15',
-                "end" => '2015-01-17',
-                "className" =>  'mint'
-            ],
-            [
-                "title" =>  'All Day Event',
-                "start" =>  '2015-01-15',
-                "className" =>  'warning'
-            ],
-            [
-                "title" =>  'Meeting',
-                "start" =>  '2015-04-07T10:30:00',
-                "end" =>  '2015-04-08T12:30:00',
-                "className" =>  'danger'
-            ],
-            [
-                "title" =>  'All Day Event',
-                "start" =>  '2015-02-01',
-                "className" =>  'warning'
-            ],
-            [
-                "title" =>  'Long Event',
-                "start" =>  '2015-02-07',
-                "end" =>  '2015-02-10',
-                "className" =>  'purple'
-            ],
-            [
-                "id" => 999,
-                "title" =>  'Repeating Event',
-                "start" =>  '2015-02-09T16:00:00'
-            ],
-            [
-                "id" => 999,
-                "title" =>  'Repeating Event',
-                "start" =>  '2015-02-16T16:00:00',
-                "className" =>  'success'
-            ],
-            [
-                "title" =>  'Conference',
-                "start" =>  '2015-02-11',
-                "end" =>  '2015-02-13',
-                "className" =>  'dark'
-            ],
-            [
-                "title" =>  'Meeting',
-                "start" =>  '2015-02-12T10:30:00',
-                "end" =>  '2015-02-12T12:30:00'
-            ],
-            [
-                "title" =>  'Lunch',
-                "start" =>  '2015-02-12T12:00:00',
-                "className" =>  'pink'
-            ],
-            [
-                "title" =>  'Meeting',
-                "start" =>  '2015-02-12T14:30:00',
-                "color: "#333333"
-            ],
-            [
-                "title" =>  'Happy Hour',
-                "start" =>  '2015-02-12T17:30:00'
-            ],
-            [
-                "title" =>  'Dinner',
-                "start" =>  '2015-02-12T20:00:00'
-            ],
-            [
-                "title" =>  'Birthday Party',
-                "start" =>  '2015-02-13T07:00:00'
-            ],
-            [
-                "title" =>  'Click for Google',
-                "url" =>  'http://google.com/',
-                "start" =>  '2015-02-28'
-            ]
-        ]);
+        return new JsonResponse($this->getCalendarEvents());
     }
 
     /**
@@ -340,13 +256,17 @@ class DetailController extends BaseController
         ];
     }
 
-    private function getGirlDetails()
+    private function getDetails($empty = false)
     {
+        $tokenGenerator = new TokenGenerator();
+        $id = $tokenGenerator->generate(8);
         return [
+            "id" => $id,
+            "calendarEventsEndpoint" => $this->generateUrl("get_calendar_events", array("objectId" => $id)),
             "media" => $this->getMedia(),
-            "groups" => $this->getGroup(),
-            "services" => $this->getServices(),
-            "options" => $this->getOptions()
+            "groups" => $this->getGroup($empty),
+            "services" => $this->getServices($empty),
+            "options" => $this->getOptions($empty),
         ];
     }
 
@@ -373,30 +293,14 @@ class DetailController extends BaseController
                 ]
             ]
         ];
-//        return [
-//            "album" => [
-//                "id" => 1,
-//                "name" => "Album one",
-//                "photos_count" => 12,
-//                "photos" => [
-//                    ["id" => 1, "url" => "/plugins/jssor-slider/img/paint/01.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/01.jpg"],
-//                    ["id" => 2, "url" => "/plugins/jssor-slider/img/paint/02.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/02.jpg"],
-//                    ["id" => 3, "url" => "/plugins/jssor-slider/img/paint/03.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/03.jpg"],
-//                    ["id" => 4, "url" => "/plugins/jssor-slider/img/paint/04.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/04.jpg"],
-//                    ["id" => 5, "url" => "/plugins/jssor-slider/img/paint/05.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/05.jpg"],                    ["id" => 6, "url" => "img/alila/06.jpg", "thumbnail" => "img/alila/thumb-06.jpg"],
-//                    ["id" => 6, "url" => "/plugins/jssor-slider/img/paint/06.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/06.jpg"],
-//                    ["id" => 7, "url" => "/plugins/jssor-slider/img/paint/07.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/07.jpg"],
-//                    ["id" => 8, "url" => "/plugins/jssor-slider/img/paint/08.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/08.jpg"],
-//                    ["id" => 9, "url" => "/plugins/jssor-slider/img/paint/09.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/09.jpg"],
-//                    ["id" => 10, "url" => "/plugins/jssor-slider/img/paint/10.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/10.jpg"],
-//                    ["id" => 11, "url" => "/plugins/jssor-slider/img/paint/11.jpg", "thumbnail" => "/plugins/jssor-slider/img/paint/11.jpg"],
-//                ]
-//            ]
-//        ];
     }
 
-    private function getGroup()
+    private function getGroup($empty = false)
     {
+        if ($empty) {
+            return [];
+        }
+
         return [
             ["id" => 1, "name" => "Model", "isDefault" => true],
             ["id" => 2, "name" => "Office Lady", "isDefault" => false],
@@ -405,8 +309,48 @@ class DetailController extends BaseController
         ];
     }
 
-    private function getServices()
+    private function getServices($empty = false)
     {
+        if ($empty) {
+            return [
+                [
+                    "id" => 1,
+                    "displayName" => "In-call",
+                    "checked" => true,
+                    "template" => "unit-price",
+                    "items" => []
+                ],
+                [
+                    "id" => 2,
+                    "displayName" => "Overnight",
+                    "checked" => false,
+                    "template" => "unit-price",
+                    "items" => []
+                ],
+                [
+                    "id" => 3,
+                    "displayName" => "Out-call",
+                    "checked" => false,
+                    "template" => "unit-price",
+                    "items" => []
+                ],
+                [
+                    "id" => 4,
+                    "displayName" => "Escort",
+                    "checked" => false,
+                    "template" => "unit-price",
+                    "items" => []
+                ],
+                [
+                    "id" => 5,
+                    "displayName" => "Suana",
+                    "checked" => false,
+                    "template" => "unit-price",
+                    "items" => []
+                ],
+            ];
+        }
+
         return [
             [
                 "id" => 1,
@@ -454,8 +398,12 @@ class DetailController extends BaseController
         ];
     }
 
-    private function getOptions()
+    private function getOptions($empty = false)
     {
+        if ($empty) {
+            return [];
+        }
+
         return [
             [
                 "id" => 1,
@@ -514,6 +462,95 @@ class DetailController extends BaseController
                     "selected" => $itemDetail["selectedCurrency"],
                     "options" => $this->getCurrencyOptions()
                 ]
+            ]
+        ];
+    }
+
+    private function getCalendarEvents()
+    {
+        return [
+            [
+                "title" => 'Happy Hour',
+                "start" => '2015-04-06',
+                "end" => '2015-04-07',
+                "className" => 'purple'
+            ],
+            [
+                "title" => 'Birthday Party',
+                "start" => '2015-01-15',
+                "end" => '2015-01-17',
+                "className" =>  'mint'
+            ],
+            [
+                "title" =>  'All Day Event',
+                "start" =>  '2015-01-15',
+                "className" =>  'warning'
+            ],
+            [
+                "title" =>  'Meeting',
+                "start" =>  '2015-04-07T10:30:00',
+                "end" =>  '2015-04-08T12:30:00',
+                "className" =>  'danger'
+            ],
+            [
+                "title" =>  'All Day Event',
+                "start" =>  '2015-02-01',
+                "className" =>  'warning'
+            ],
+            [
+                "title" =>  'Long Event',
+                "start" =>  '2015-02-07',
+                "end" =>  '2015-02-10',
+                "className" =>  'purple'
+            ],
+            [
+                "id" => 999,
+                "title" =>  'Repeating Event',
+                "start" =>  '2015-02-09T16:00:00'
+            ],
+            [
+                "id" => 999,
+                "title" =>  'Repeating Event',
+                "start" =>  '2015-02-16T16:00:00',
+                "className" =>  'success'
+            ],
+            [
+                "title" =>  'Conference',
+                "start" =>  '2015-02-11',
+                "end" =>  '2015-02-13',
+                "className" =>  'dark'
+            ],
+            [
+                "title" =>  'Meeting',
+                "start" =>  '2015-02-12T10:30:00',
+                "end" =>  '2015-02-12T12:30:00'
+            ],
+            [
+                "title" =>  'Lunch',
+                "start" =>  '2015-02-12T12:00:00',
+                "className" =>  'pink'
+            ],
+            [
+                "title" =>  'Meeting',
+                "start" =>  '2015-02-12T14:30:00',
+                "color: "#333333"
+            ],
+            [
+                "title" =>  'Happy Hour',
+                "start" =>  '2015-02-12T17:30:00'
+            ],
+            [
+                "title" =>  'Dinner',
+                "start" =>  '2015-02-12T20:00:00'
+            ],
+            [
+                "title" =>  'Birthday Party',
+                "start" =>  '2015-02-13T07:00:00'
+            ],
+            [
+                "title" =>  'Click for Google',
+                "url" =>  'http://google.com/',
+                "start" =>  '2015-02-28'
             ]
         ];
     }

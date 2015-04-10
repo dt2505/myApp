@@ -1,114 +1,115 @@
 $(document).ready(function() {
 
     var dateFormat = "YYYY-MM-DD",
+        objectId = $('#object-id').val(),
         $opt = {
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
-        timeFormat: 'H:mm',
-        selectable: true,
-        editable: true,
-        droppable: false, // this allows things to be dropped onto the calendar
-        select: function(start, end, jsEvent, view) {
-            CalendarEventModal.init({
-                modalId: "#new-event-modal",
-                btnOk: "#modal-ok",
-                btnCancel: "#modal-cancel",
-                details: [
-                    {
-                        selector: "#event-title",
-                        key: "title",
-                        showEmpty: true
-                    },
-                    {
-                        selector: "#start-date",
-                        value: start.format(dateFormat),
-                        key: "startDate"
-                    },
-                    {
-                        selector: "#end-date",
-                        value: end.subtract(1, "d").format(dateFormat),
-                        key: "endDate"
-                    },
-                    {
-                        selector: "#event-color",
-                        key: "className",
-                        value: "purple",
-                        inputType: "chosen"
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            timeFormat: 'H:mm',
+            selectable: true,
+            editable: true,
+            droppable: false, // this allows things to be dropped onto the calendar
+            select: function(start, end, jsEvent, view) {
+                CalendarEventModal.init({
+                    modalId: "#new-event-modal",
+                    btnOk: "#modal-ok",
+                    btnCancel: "#modal-cancel",
+                    details: [
+                        {
+                            selector: "#event-title",
+                            key: "title",
+                            showEmpty: true
+                        },
+                        {
+                            selector: "#start-date",
+                            value: start.format(dateFormat),
+                            key: "startDate"
+                        },
+                        {
+                            selector: "#end-date",
+                            value: end.subtract(1, "d").format(dateFormat),
+                            key: "endDate"
+                        },
+                        {
+                            selector: "#event-color",
+                            key: "className",
+                            value: "purple",
+                            inputType: "chosen"
+                        }
+                    ],
+                    done: function (result) {
+                        var endDate = result["endDate"] ? moment(result["endDate"], dateFormat) : end,
+                            option = {
+                                editable: true,
+                                title: result["title"],
+                                start: result["startDate"],
+                                end: endDate.add(1, "d"),
+                                className: result["className"],
+                                allDay: true
+                            };
+
+                        //TODO: add event from database with ajax
+                        $("#calendar").fullCalendar('renderEvent', option, true);
                     }
-                ],
-                done: function (result) {
-                    var endDate = result["endDate"] ? moment(result["endDate"], dateFormat) : end,
-                        option = {
-                            editable: true,
-                            title: result["title"],
-                            start: result["startDate"],
-                            end: endDate.add(1, "d"),
-                            className: result["className"],
-                            allDay: true
-                        };
+                }).modal();
+            },
+            eventClick: function(calEvent, jsEvent, view) {
+                CalendarEventModal.init({
+                    modalId: "#new-event-modal",
+                    btnOk: "#modal-ok",
+                    btnCancel: "#modal-cancel",
+                    btnRemove: "#modal-remove",
+                    showRemove: true,
+                    details: [
+                        {
+                            selector: "#event-title",
+                            value: calEvent.title,
+                            key: "title",
+                            focus: true
+                        },
+                        {
+                            selector: "#start-date",
+                            value: calEvent.start.format(dateFormat),
+                            key: "startDate"
+                        },
+                        {
+                            selector: "#end-date",
+                            value: calEvent.end.subtract(1, "d").format(dateFormat),
+                            key: "endDate"
+                        },
+                        {
+                            selector: "#event-color",
+                            value: calEvent.className,
+                            key: "className",
+                            inputType: "chosen"
+                        }
+                    ],
+                    done: function (result) {
+                        var endDate = result["endDate"] ? moment(result["endDate"], dateFormat) : end;
 
-                    //TODO: add event from database with ajax
-                    $("#calendar").fullCalendar('renderEvent', option, true);
-                }
-            }).modal();
-        },
-        eventClick: function(calEvent, jsEvent, view) {
-            CalendarEventModal.init({
-                modalId: "#new-event-modal",
-                btnOk: "#modal-ok",
-                btnCancel: "#modal-cancel",
-                btnRemove: "#modal-remove",
-                showRemove: true,
-                details: [
-                    {
-                        selector: "#event-title",
-                        value: calEvent.title,
-                        key: "title",
-                        focus: true
+                        calEvent.title = result["title"];
+                        calEvent.start = result["startDate"];
+                        calEvent.end = endDate.add(1, "d");
+                        calEvent.className = result["className"];
+
+                        //TODO: update event from database with ajax
+
+                        $("#calendar").fullCalendar('updateEvent', calEvent);
                     },
-                    {
-                        selector: "#start-date",
-                        value: calEvent.start.format(dateFormat),
-                        key: "startDate"
-                    },
-                    {
-                        selector: "#end-date",
-                        value: calEvent.end.subtract(1, "d").format(dateFormat),
-                        key: "endDate"
-                    },
-                    {
-                        selector: "#event-color",
-                        value: calEvent.className,
-                        key: "className",
-                        inputType: "chosen"
+                    remove: function() {
+                        //TODO: remove event from database with ajax
+                        $("#calendar").fullCalendar('removeEvents', calEvent._id);
                     }
-                ],
-                done: function (result) {
-                    var endDate = result["endDate"] ? moment(result["endDate"], dateFormat) : end;
-
-                    calEvent.title = result["title"];
-                    calEvent.start = result["startDate"];
-                    calEvent.end = endDate.add(1, "d");
-                    calEvent.className = result["className"];
-
-                    //TODO: update event from database with ajax
-
-                    $("#calendar").fullCalendar('updateEvent', calEvent);
-                },
-                remove: function() {
-                    //TODO: remove event from database with ajax
-                    $("#calendar").fullCalendar('removeEvents', calEvent._id);
-                }
-            }).modal();
-            //console.log(calEvent);
-        },
-        defaultDate: moment(), // giving an incorrect date format like '2015-01-1' will cause an issue not to display calendar in firefox, but it works in chrome
-        eventLimit: true, // allow "more" link when too many events
-        events: "/calendar/events"
-    };
+                }).modal();
+                //console.log(calEvent);
+            },
+            defaultDate: moment(), // giving an incorrect date format like '2015-01-1' will cause an issue not to display calendar in firefox, but it works in chrome
+            eventLimit: true, // allow "more" link when too many events
+            events: $('#calendar-events-endpoint').val()
+        };
     // Initialize calendar
     // -----------------------------------------------------------------
     $("#calendar").fullCalendar($opt);
