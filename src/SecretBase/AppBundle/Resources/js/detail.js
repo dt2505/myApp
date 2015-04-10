@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
     var dateFormat = "YYYY-MM-DD",
-        objectId = $('#object-id').val(),
         $opt = {
             header: {
                 left: 'prev,next today',
@@ -128,6 +127,7 @@ $(document).ready(function() {
     // -----------------------------------------------------------------
     $('#dp-start-date').find(".date").datepicker({autoclose:true, format: 'yyyy-mm-dd', todayHighlight: true});
     $('#dp-end-date').find(".date").datepicker({autoclose:true, format: 'yyyy-mm-dd', todayHighlight: true, todayBtn: "linked"});
+    $('#dob').datepicker({autoclose:true, format: 'yyyy-mm-dd', todayHighlight: true, todayBtn: "linked"});
 
     // Initialize click event
     // -----------------------------------------------------------------

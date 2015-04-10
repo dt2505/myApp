@@ -69,23 +69,6 @@ class DetailController extends BaseController
         $itemType = $request->get("itemType");
         $subitems = $request->get("subitems");
 
-        switch($itemType) {
-            case "service":
-                $maxItemId = $this->getMaxItemId($itemId, $this->getServices());
-                break;
-            case "option":
-                $maxItemId = $this->getMaxItemId($itemId, $this->getOptions());
-                break;
-        }
-
-        foreach ($subitems as $id) {
-            if ($id > $maxItemId) {
-                //TODO: ignore it
-            } else {
-                //TODO: find it from database
-            }
-        }
-
         return new Response(json_encode(["success" => true]));
     }
 
@@ -265,6 +248,7 @@ class DetailController extends BaseController
             "calendarEventsEndpoint" => $this->generateUrl("get_calendar_events", array("objectId" => $id)),
             "media" => $this->getMedia(),
             "groups" => $this->getGroup($empty),
+            "targetClients" => $this->getTargetClients(),
             "services" => $this->getServices($empty),
             "options" => $this->getOptions($empty),
         ];
@@ -555,20 +539,17 @@ class DetailController extends BaseController
         ];
     }
 
-    private function getMaxItemId($itemId, $haystack)
+    private function getTargetClients()
     {
-        $maxItemId = 0;
-        foreach ($haystack as $value) {
-            if ($value["id"] == $itemId) {
-                foreach ($value["items"] as $item) {
-                    if ($item["id"] > $maxItemId) {
-                        $maxItemId = $item["id"];
-                    }
-                }
-                break;
-            }
-        }
-
-        return $maxItemId;
+        return [
+            ["id" => 1, "name" => "Any", "selected" => false],
+            ["id" => 2, "name" => "Chinese", "selected" => true],
+            ["id" => 3, "name" => "Local", "selected" => false],
+            ["id" => 4, "name" => "European", "selected" => false],
+            ["id" => 5, "name" => "American", "selected" => false],
+            ["id" => 6, "name" => "African", "selected" => false],
+            ["id" => 7, "name" => "Japanese", "selected" => true],
+            ["id" => 8, "name" => "Korean", "selected" => true],
+        ];
     }
 }
