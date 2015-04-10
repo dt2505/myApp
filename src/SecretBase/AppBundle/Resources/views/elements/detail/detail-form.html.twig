@@ -90,20 +90,20 @@
 
                 {% if profilePanel == 'visible' %}
                     {# profile #}
-                    {% include 'AppBundle:elements:girl/profile.html.twig' with {
+                    {% include 'AppBundle:elements:detail/profile.html.twig' with {
                         collapse: false,
                         groups: detail.groups
                     } %}
                 {% endif %}
 
                 {# services #}
-                {% include 'AppBundle:elements:girl/services.html.twig' with {
+                {% include 'AppBundle:elements:detail/services.html.twig' with {
                     collapse: false,
                     services: detail.services
                 } %}
 
                 {# acceptable options #}
-                {% include 'AppBundle:elements:girl/acceptable-options.html.twig' with {
+                {% include 'AppBundle:elements:detail/acceptable-options.html.twig' with {
                     collapse: false,
                     options: detail.options
                 } %}

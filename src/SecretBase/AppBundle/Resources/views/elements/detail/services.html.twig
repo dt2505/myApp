@@ -32,7 +32,7 @@
             <div class="panel-group accordion no-mar-btm" id="services-panel-group">
                 {# load services #}
                 {% for service in services %}
-                    {% include 'AppBundle:elements:girl/item.html.twig' with {
+                    {% include 'AppBundle:elements:detail/item.html.twig' with {
                         accordionParent: 'services-panel-group',
                         item: service,
                         type: itemIdentifier,
