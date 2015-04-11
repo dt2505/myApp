@@ -1,7 +1,5 @@
 {% extends "::base.html.twig" %}
 
-{% trans_default_domain 'Elements' %}
-
 {% set albums = [
     {
          id: 1,
@@ -47,7 +45,7 @@
                             panelClass: "hidden"
                         } %}
                             {% block panel_title %}
-                                <input type="text" class="form-control input-lg bg-dark" placeholder="{{ 'placeholder.album_name'|trans }}">
+                                <input type="text" class="form-control input-lg bg-dark" placeholder="{{ 'placeholder.album_name'|trans({}, "Elements") }}">
                             {% endblock %}
                         {% endembed %}
 

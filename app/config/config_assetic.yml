@@ -88,7 +88,7 @@ assetic:
             output: css/bootstrap-select.min.css
         boostrap_css:
             inputs:
-                - @AppBundle/Resources/plugins/bootstrap.min.css
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.min.css
             output: css/bootstrap.min.css
         nifty_css:
             inputs:
