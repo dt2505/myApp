@@ -54,6 +54,11 @@ assetic:
                 - @AppBundle/Resources/css/card.css
                 - @AppBundle/Resources/css/lobby.css
             output: css/compiled/lobby.css
+        settings_css:
+            inputs:
+                - @AppBundle/Resources/css/settings.css
+                - @AppBundle/Resources/css/user-profile-aside.css
+            output: css/compiled/settings.css
         animate_css:
             inputs:
                 - @AppBundle/Resources/plugins/animate.css-3.2.3/animate.css
@@ -228,3 +233,7 @@ assetic:
                 - '@AppBundle/Resources/js/dropfile.js'
                 - '@AppBundle/Resources/js/album.js'
             output: js/compiled/album.js
+        settings:
+            inputs:
+                - '@AppBundle/Resources/js/settings.js'
+            output: js/compiled/settings.js

@@ -1,0 +1,89 @@
+{% trans_default_domain 'Elements' %}
+
+{# profile #}
+<div class="settings-profile-wrapper">
+    <div class="panel bg-dark panel-colorful mar-btm-5">
+        <div class="panel-heading border-btm-solid-dark-4a">
+            <div class="panel-control girl-acceptable-opt-panel-control">
+                <a class="btn btn-link no-pad-hor save-desc">
+                    <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save profile"></i>
+                </a>
+            </div>
+
+            <div class="panel-title girl-acceptable-opt-panel-title">
+                <span class="text-lg">Profile</span>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                {# first name #}
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">{{ 'label.first_name'|trans }}</label>
+                    <div class="col-sm-7">
+                        <input type="text" placeholder="{{ 'placeholder.first_name'|trans }}" name="firstName" class="form-control">
+                    </div>
+                </div>
+                {# last name #}
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">{{ 'label.last_name'|trans }}</label>
+                    <div class="col-sm-7">
+                        <input type="text" placeholder="{{ 'placeholder.last_name'|trans }}" name="lastName" class="form-control">
+                    </div>
+                </div>
+                {# category #}
+                <div class="form-group mar-btm-5">
+                    <label class="col-sm-3 control-label">Category</label>
+                    <div class="col-sm-7">
+                        <select id="category" name="category">
+                            <option value="house" selected>House</option>
+                            <option value="agency">Agency</option>
+                            <option value="suana">Club</option>
+                            <option value="se">Self employed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-push-3 col-sm-7">
+                        <input type="text" placeholder="Not found? specify category here" name="otherCategory" class="form-control">
+                    </div>
+                </div>
+
+                {# gender #}
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">{{ 'label.gender'|trans }}</label>
+                    <div class="col-sm-7">
+                        <div class="radio">
+                            <label class="form-radio form-normal form-text">
+                                <input type="radio" name="gender">{{ 'label.male'|trans }}
+                            </label>
+                            <label class="form-radio form-normal form-text active">
+                                <input type="radio" name="gender" checked>{{ 'label.female'|trans }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# description #}
+<div class="panel bg-dark panel-colorful">
+    <div class="panel-heading border-btm-solid-dark-4a">
+        <div class="panel-control girl-acceptable-opt-panel-control">
+            <a class="btn btn-link no-pad-hor save-desc">
+                <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save bio"></i>
+            </a>
+        </div>
+
+        <div class="panel-title girl-acceptable-opt-panel-title">
+            <span class="text-lg">Bio</span>
+        </div>
+    </div>
+
+    <!--Panel body-->
+    <div class="panel-body no-pad">
+        <textarea rows="7" placeholder="{{ 'placeholder.self_desc'|trans }}" id="bio" name="bio" class="form-control"></textarea>
+    </div>
+</div>
+{# end description #}

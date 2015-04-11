@@ -1,0 +1,94 @@
+{% trans_default_domain 'Elements' %}
+
+<div class="settings-account-wrapper">
+    {# account #}
+    <div class="panel bg-dark panel-colorful mar-btm-5">
+        <div class="panel-heading border-btm-solid-dark-4a">
+            <div class="panel-control girl-acceptable-opt-panel-control">
+                <a class="btn btn-link no-pad-hor save-desc">
+                    <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save account"></i>
+                </a>
+            </div>
+
+            <div class="panel-title girl-acceptable-opt-panel-title">
+                <span class="text-lg">Account</span>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">{{ 'label.username'|trans }}</label>
+                    <div class="col-lg-7">
+                        <input type="text" class="form-control" name="username" placeholder="{{ 'placeholder.username'|trans }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">{{ 'label.email'|trans }}</label>
+                    <div class="col-lg-7">
+                        <div class="input-group">
+                            <input type="email" class="form-control" name="email" placeholder="{{ 'placeholder.email'|trans }}" aria-describedby="email-description">
+                            <div class="input-group-btn">
+                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle dropdown-toggle-icon" type="button"><i class="dropdown-caret fa fa-globe"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="#" class="text-lg text-overflow dropdown-menu-public">
+                                            <label class="col-xs-2"><i class="fa fa-square-o"></i></label>
+                                            <span class="col-xs-10">Public</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-lg text-overflow dropdown-menu-private">
+                                            <label class="col-xs-2"><i class="fa fa-check-square-o"></i></label>
+                                            <span class="col-xs-10">Private</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <input type="hidden" id="email-privacy" value="">
+                            </div>
+                        </div>
+                        <span id="email-description" class="help-block">Email will not be opened to public unless you say so</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# password #}
+    <div class="panel bg-dark panel-colorful mar-btm-5">
+        <div class="panel-heading border-btm-solid-dark-4a">
+            <div class="panel-control girl-acceptable-opt-panel-control">
+                <a class="btn btn-link no-pad-hor save-desc">
+                    <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save password"></i>
+                </a>
+            </div>
+
+            <div class="panel-title girl-acceptable-opt-panel-title">
+                <span class="text-lg">Password</span>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Currenty password</label>
+                    <div class="col-lg-7">
+                        <input type="password" class="form-control" name="currentPassword" placeholder="{{ 'placeholder.password'|trans }}" aria-describedby="forgot-password">
+                        <a id="forgot-password" href="#" class="text-hover-info help-block no-mar-btm">Forgot password?</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">New password</label>
+                    <div class="col-lg-7">
+                        <input type="password" class="form-control" name="newPassword" placeholder="{{ 'placeholder.password'|trans }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Verify password</label>
+                    <div class="col-lg-7">
+                        <input type="password" class="form-control" name="confirmNewPassword" placeholder="{{ 'placeholder.re_enter_password'|trans }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

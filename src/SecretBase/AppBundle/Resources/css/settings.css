@@ -1,0 +1,59 @@
+/* overwritten */
+/* -===========================- */
+
+/* chosen */
+.chosen-container-single .chosen-single {
+    border-radius: 0;
+    height: 31px;
+    line-height: 31px;
+}
+.chosen-container-single .chosen-single div {
+    top: 3px;
+}
+
+/* end chosen */
+
+/* boostrap and nifty */
+
+/* change the dot color of radio button */
+.form-radio.form-normal:not(.disabled):hover:after,
+.form-radio.form-normal.active:after {
+    background-color: #c3cedb;
+}
+
+/**
+    solve the issue gap between two columns that contain calendar and photo preview panel
+    is too wide
+*/
+[class^="col-"]:not(.pad-no) {
+    padding-left: 0;
+}
+
+@media (max-width: 768px) {
+    /** reset back to default value - nifty */
+    [class^="col-"]:not(.pad-no) {
+        padding-right: 5px;
+    }
+}
+/* end boostrap and nifty */
+
+/* end overwritten */
+/* -===========================- */
+
+textarea {
+    resize: vertical;
+}
+
+.update-avatar-btn {
+    position: absolute;
+    left: 0;
+}
+.settings-wrapper {
+    width: 950px;
+}
+
+@media (max-width: 950px) {
+    .settings-wrapper {
+        width: 100%;
+    }
+}

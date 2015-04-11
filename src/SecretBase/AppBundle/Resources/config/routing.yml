@@ -22,3 +22,6 @@ gallery:
 detail:
     type: rest
     resource: SecretBase\AppBundle\Controller\DetailController
+setting:
+    type: rest
+    resource: SecretBase\AppBundle\Controller\SettingController

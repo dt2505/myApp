@@ -3,16 +3,14 @@
 {% block stylesheets %}
     {% stylesheets
         '@chosen_css'
-        '@fullcalendar_css'
-        '@bootstrap_datepicker_css'
-        '@detail_css'
+        '@settings_css'
     %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
 
 {% block body %}
-    <div id="container" class="effect navbar-fixed mainnav-out">
+    <div id="container" class="effect navbar-fixed">
         {# navbar #}
         {% include 'AppBundle:elements:navbar/lobby-navbar.html.twig' with {
             writeStatus: 'invisible',
@@ -23,9 +21,10 @@
         <div class="boxed">
             <div id="content-container">
                 <div id="page-content" class="row">
-                    {% include 'AppBundle:elements:detail/detail-form.html.twig' with {
-                        detail: detail
+                    {% include 'AppBundle:elements:settings/settings-panel.html.twig' with {
+                        active: "active"
                     } %}
+
                 </div>
             </div>
         </div>
@@ -38,13 +37,8 @@
 {% block javascripts %}
     {% javascripts
         '@chosen'
-        '@moment'
-        '@fullcalendar'
-        '@jssor'
-        '@jssor_slider'
-        '@boostrap_datepicker'
-        '@detail'
+        '@settings'
     %}
-        <script src="{{ asset_url }}"></script>
+    <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}

@@ -88,7 +88,7 @@ textarea {
 .girl-acceptable-opt-panel-control {
     line-height: 40px;
 }
-.girl-profile-wrapper {
+.detail-wrapper {
     width: 950px;
 }
 .photo-preview-box {
@@ -123,7 +123,7 @@ textarea {
     }
 
     .photo-preview-box,
-    .girl-profile-wrapper {
+    .detail-wrapper {
         width: 100%;
     }
 }

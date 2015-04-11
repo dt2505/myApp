@@ -1,0 +1,61 @@
+{% set name = "Lucy Moon" %}
+
+{% set showProfile = profile is defined %}
+{% set showAccount = account is defined %}
+{% set showContact = contact is defined %}
+{% set showGirl = girl is defined %}
+
+<div class="center-block settings-wrapper bg-dark">
+
+    {# left panel #}
+    <div class="col-xs-12 col-sm-4 pad-rgt-5">
+
+        {# user profile widget #}
+        <div class="panel bg-dark panel-colorful mar-btm-5">
+            <div class="panel-body no-pad-hor no-pad-top">
+                <div class="widget">
+                    <div class="widget-header bg-purple">
+                        <img class="widget-bg img-responsive" src="{{ asset('img/thumbs/img3.jpg') }}" alt="{{ 'alt.cover'|trans }}">
+                    </div>
+                    <div class="widget-body text-center user-profile-body">
+                        <img alt="{{ name }}" class="widget-img img-lg img-circle img-border user-profile-img" src="{{ asset('img/av1.png') }}">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h5 class="mar-no user-profile-name">{{ name }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# setting menu list #}
+        <div class="panel bg-dark panel-colorful">
+            <div class="panel-body no-pad">
+                <div class="list-group bg-trans no-mar-btm">
+                    <a class="list-group-item text-lg {{ showProfile ? 'active' : '' }}" href="{{ path('get_settings', {type: 'profile'}) }}">Profile <i class="fa fa-fw fa-chevron-right pull-right"></i> </a>
+                    <a class="list-group-item text-lg {{ showAccount ? 'active' : '' }}" href="{{ path('get_settings', {type: 'account'}) }}">Account <i class="fa fa-fw fa-chevron-right pull-right"></i> </a>
+                    <a class="list-group-item text-lg" href="{{ path('get_settings', {type: 'contact'}) }}">Contact <i class="fa fa-fw fa-chevron-right pull-right"></i></a>
+                    <a class="list-group-item text-lg" href="{{ path('get_settings', {type: 'girl'}) }}">Girl <i class="fa fa-fw fa-chevron-right pull-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# right panel #}
+    <div class="col-xs-12 col-sm-8">
+        {% if showProfile %}
+            {% include 'AppBundle:elements:settings/settings-profile.html.twig' with {
+                profile: profile
+            } %}
+        {% elseif showAccount %}
+            {% include 'AppBundle:elements:settings/settings-account.html.twig' with {
+                account: account
+            } %}
+        {% elseif showContact %}
+
+        {% elseif showGirl %}
+
+        {% endif %}
+    </div>
+</div>
