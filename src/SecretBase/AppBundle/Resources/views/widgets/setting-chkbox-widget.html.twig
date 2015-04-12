@@ -1,0 +1,18 @@
+{% set txtboxName = "text-box-name-unit-" ~ id %}
+{% set chkboxId = "check-box-id-unit-" ~ id %}
+{% set chkboxName = "check-box-name-unit-" ~ id %}
+{% set inputGroupColor = inputGroupColor|default('bg-gray-light') %}
+{% set showTrashLink = showTrashLink|default(false) %}
+
+<div class="input-group mar-btm-5">
+    <input type="text" name="{{ txtboxName }}" class="form-control" value="{{ name }}" {{ disabled }}>
+    <span class="input-group-addon no-border {{ inputGroupColor }}">
+        <label class="form-checkbox form-icon">
+            {% if showTrashLink %}
+                <input type="checkbox" id="{{ chkboxId }}" name="{{ chkboxName }}" data-unit-id="{{ id }}" {{ checked }}> {{ chkboxLabel }} <a href="#" class="mar-lft-5 text-danger trash"><i class="fa fa-trash"></i></a>
+            {% else %}
+                <input type="checkbox" id="{{ chkboxId }}" name="{{ chkboxName }}" data-unit-id="{{ id }}" {{ checked }}> {{ chkboxLabel }}
+            {% endif %}
+        </label>
+    </span>
+</div>

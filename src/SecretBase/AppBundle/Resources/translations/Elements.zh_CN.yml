@@ -134,6 +134,9 @@ label:
     yes: 是
     no: 否
     gallery: 相片库
+    public: 公开
+    private: 不公开
+    use: 使用
 tip:
     you_have_msg: '{0} 你没有消息|{1} 你有<b style="color:blue">一</b>个未读消息|[2,999] 你有<b style="color:blue">%count%</b>未读消息|[1000,Inf] 你有<b style="color:red">大量</b>未读消息'
     who_sent_u_msg: '%name% 给你发了消息'

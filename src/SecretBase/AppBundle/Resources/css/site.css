@@ -178,3 +178,11 @@
 #content-container {
     background-color: #000000;
 }
+
+/**
+ *  It is for solving the issue in which tool tip on control button in panel header
+ *  can not display correctly as by default overflow is set to 'hidden' by nifty
+ **/
+.panel-group.accordion .panel:last-child {
+    overflow: visible;
+}
