@@ -3,12 +3,12 @@
 {% set showProfile = profile is defined %}
 {% set showAccount = account is defined %}
 {% set showContact = contact is defined %}
-{% set showGirl = girl is defined %}
+{% set showDetail = detail is defined %}
 
 <div class="center-block settings-wrapper bg-dark">
 
     {# left panel #}
-    <div class="col-xs-12 col-sm-4 pad-rgt-5">
+    <div class="col-xs-12 col-sm-5 pad-rgt-5">
 
         {# user profile widget #}
         <div class="panel bg-dark panel-colorful mar-btm-5">
@@ -30,32 +30,41 @@
         </div>
 
         {# setting menu list #}
-        <div class="panel bg-dark panel-colorful">
+        <div class="panel bg-dark panel-colorful mar-btm-5">
             <div class="panel-body no-pad">
                 <div class="list-group bg-trans no-mar-btm">
                     <a class="list-group-item text-lg {{ showProfile ? 'active' : '' }}" href="{{ path('get_settings', {type: 'profile'}) }}">Profile <i class="fa fa-fw fa-chevron-right pull-right"></i> </a>
                     <a class="list-group-item text-lg {{ showAccount ? 'active' : '' }}" href="{{ path('get_settings', {type: 'account'}) }}">Account <i class="fa fa-fw fa-chevron-right pull-right"></i> </a>
-                    <a class="list-group-item text-lg" href="{{ path('get_settings', {type: 'contact'}) }}">Contact <i class="fa fa-fw fa-chevron-right pull-right"></i></a>
-                    <a class="list-group-item text-lg" href="{{ path('get_settings', {type: 'girl'}) }}">Girl <i class="fa fa-fw fa-chevron-right pull-right"></i></a>
+                    <a class="list-group-item text-lg {{ showContact ? 'active' : '' }}" href="{{ path('get_settings', {type: 'contact'}) }}">Contact <i class="fa fa-fw fa-chevron-right pull-right"></i></a>
+                    <a class="list-group-item text-lg {{ showDetail ? 'active' : '' }}" href="{{ path('get_settings', {type: 'detail'}) }}">Service details <i class="fa fa-fw fa-chevron-right pull-right"></i></a>
                 </div>
             </div>
         </div>
     </div>
 
     {# right panel #}
-    <div class="col-xs-12 col-sm-8">
-        {% if showProfile %}
-            {% include 'AppBundle:elements:settings/settings-profile.html.twig' with {
-                profile: profile
-            } %}
-        {% elseif showAccount %}
-            {% include 'AppBundle:elements:settings/settings-account.html.twig' with {
-                account: account
-            } %}
-        {% elseif showContact %}
+    <div class="col-xs-12 col-sm-7">
+        <div class="panel-group accordion" id="settings-girl-panel-group">
+            {# add accordionParent: 'settings-girl-panel-group' to each of the following
+                include statement for enabling accordion effect globally #}
 
-        {% elseif showGirl %}
-
-        {% endif %}
+            {% if showProfile %}
+                {% include 'AppBundle:elements:settings/settings-profile.html.twig' with {
+                    profile: profile
+                } %}
+            {% elseif showAccount %}
+                {% include 'AppBundle:elements:settings/settings-account.html.twig' with {
+                    account: account
+                } %}
+            {% elseif showContact %}
+                {% include 'AppBundle:elements:settings/settings-contact.html.twig' with {
+                    contact: contact
+                } %}
+            {% elseif showDetail %}
+                {% include 'AppBundle:elements:settings/settings-service-detail.html.twig' with {
+                    detail: detail
+                } %}
+            {% endif %}
+        </div>
     </div>
 </div>

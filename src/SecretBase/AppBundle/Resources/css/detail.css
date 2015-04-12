@@ -20,14 +20,6 @@
 /* boostrap and nifty */
 
 /**
- *  It is for solving the issue in which tool tip on control button in panel header
- *  can not display correctly as by default overflow is set to 'hidden' by nifty
- **/
-.panel-group.accordion .panel:last-child {
-    overflow: visible;
-}
-
-/**
     solve the issue gap between two columns that contain calendar and photo preview panel
     is too wide
 */

@@ -1,0 +1,126 @@
+{% trans_default_domain 'Elements' %}
+{% set accordionParent = accordionParent|default(null) ? 'data-parent="#' ~ accordionParent ~ '"' : '' %}
+
+{# service detail #}
+<div class="settings-contact-wrapper" id="setting-detail">
+    {# unit #}
+    <div class="panel bg-dark panel-colorful mar-btm-5">
+        <div class="panel-heading border-btm-solid-dark-4a">
+            <div class="panel-control setting-panel-control">
+                <a class="btn btn-link no-pad-hor">
+                    <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save unit changes"></i>
+                </a>
+            </div>
+
+            <div class="panel-title setting-panel-title">
+                <a {{ accordionParent }} data-toggle="collapse" href="#unit-panel-collapse">
+                    <span class="text-lg">Unit</span>
+                </a>
+            </div>
+        </div>
+        <div class="panel-collapse in" id="unit-panel-collapse" aria-expanded="true">
+            <div class="panel-body" id="unit-item-panel">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Time unit</label>
+                        <div class="col-lg-7" id="unit-group">
+                            {% for unit in detail.units %}
+                                {% include 'AppBundle:widgets:setting-chkbox-widget.html.twig' with {
+                                    checked: unit.checked|default(false) ? "checked" : "",
+                                    id: unit.id,
+                                    name: unit.name,
+                                    chkboxLabel: 'label.use'|trans,
+                                    disabled: unit.predefined ? "disabled" : "",
+                                    showTrashLink: not unit.predefined
+                                } %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# currency #}
+    <div class="panel bg-dark panel-colorful mar-btm-5">
+        <div class="panel-heading border-btm-solid-dark-4a">
+            <div class="panel-control setting-panel-control">
+                <a class="btn btn-link no-pad-hor">
+                    <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save currency changes"></i>
+                </a>
+            </div>
+
+            <div class="panel-title setting-panel-title">
+                <a {{ accordionParent }} data-toggle="collapse" href="#currency-panel-collapse">
+                    <span class="text-lg">Currency</span>
+                </a>
+            </div>
+        </div>
+        <div class="panel-collapse in" id="currency-panel-collapse" aria-expanded="true">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Acceptable currency</label>
+                        <div class="col-lg-7" id="currency-group">
+                            {% for currency in detail.currencies %}
+                                {% include 'AppBundle:widgets:setting-chkbox-widget.html.twig' with {
+                                    checked: currency.checked|default(false) ? "checked" : "",
+                                    id: currency.id,
+                                    name: currency.fullName,
+                                    chkboxLabel: 'label.use'|trans,
+                                    disabled: currency.predefined ? "disabled" : "",
+                                    showTrashLink: not currency.predefined
+                                } %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# services #}
+    <div class="panel bg-dark panel-colorful mar-btm-5">
+        <div class="panel-heading border-btm-solid-dark-4a">
+            <div class="panel-control setting-panel-control">
+                <a class="btn btn-link no-pad-hor">
+                    <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save service changes"></i>
+                </a>
+            </div>
+            <div class="panel-title setting-panel-title">
+                <a {{ accordionParent }} data-toggle="collapse" href="#service-panel-collapse">
+                    <span class="text-lg">Services</span>
+                </a>
+            </div>
+        </div>
+        <div class="panel-collapse in" id="service-panel-collapse" aria-expanded="true">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# options #}
+    <div class="panel bg-dark panel-colorful mar-btm-5">
+        <div class="panel-heading border-btm-solid-dark-4a">
+            <div class="panel-control setting-panel-control">
+                <a class="btn btn-link no-pad-hor">
+                    <i class="fa fa-check-circle fa-fw fa-lg text-dark text-hover-info add-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="Save option changes"></i>
+                </a>
+            </div>
+
+            <div class="panel-title setting-panel-title">
+                <a {{ accordionParent }} data-toggle="collapse" href="#option-panel-collapse">
+                    <span class="text-lg">Options</span>
+                </a>
+            </div>
+        </div>
+        <div class="panel-collapse in" id="option-panel-collapse" aria-expanded="true">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

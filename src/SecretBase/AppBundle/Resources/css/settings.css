@@ -1,6 +1,10 @@
 /* overwritten */
 /* -===========================- */
 
+.bg-dark a {
+    color: #0084B4;
+}
+
 /* chosen */
 .chosen-container-single .chosen-single {
     border-radius: 0;
@@ -9,6 +13,10 @@
 }
 .chosen-container-single .chosen-single div {
     top: 3px;
+}
+
+.chosen-container-single .chosen-search input {
+    color: #555;
 }
 
 /* end chosen */
@@ -44,6 +52,12 @@ textarea {
     resize: vertical;
 }
 
+.setting-panel-title {
+    font-size: 1em;
+}
+.setting-panel-control {
+    line-height: 40px;
+}
 .update-avatar-btn {
     position: absolute;
     left: 0;
