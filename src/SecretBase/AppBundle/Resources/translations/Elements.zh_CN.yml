@@ -46,6 +46,8 @@ placeholder:
     any_thing_to_say: 有任何想要说的吗?
     choose_target_client: 选择目标客户...
     hybrid_type: 欧亚混血？
+    dob: 出身年月 (年-月-日)
+    cup: 罩杯大小
 link:
     forgot_password: 忘记密码？
     create_new_account: 建立新账户
@@ -137,6 +139,11 @@ label:
     public: 公开
     private: 不公开
     use: 使用
+    height: 身高
+    weight: 体重
+    cm: 厘米
+    kg: 公斤
+    cup: 罩杯
 tip:
     you_have_msg: '{0} 你没有消息|{1} 你有<b style="color:blue">一</b>个未读消息|[2,999] 你有<b style="color:blue">%count%</b>未读消息|[1000,Inf] 你有<b style="color:red">大量</b>未读消息'
     who_sent_u_msg: '%name% 给你发了消息'

@@ -22,36 +22,69 @@
     <!--Accordion content-->
     <div class="panel-collapse {{ collapseIn }}" id="profile-panel">
         <div class="panel-body no-pad-btm">
+            {# name #}
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="name">{{ 'label.name'|trans }}</label>
                 <div class="col-sm-9">
                     <input type="email" placeholder="{{ 'label.name'|trans }}" id="name" name="name" class="form-control">
                 </div>
             </div>
+            {# dob #}
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="dob">{{ 'label.dob'|trans }}</label>
+                <div class="col-sm-9">
+                    <input type="text" placeholder="{{ 'placeholder.dob'|trans }}" id="dob" name="dob" class="form-control">
+                </div>
+            </div>
+            {# age #}
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="age">{{ 'label.age'|trans }}</label>
                 <div class="col-sm-9">
                     <input type="text" placeholder="{{ 'label.age'|trans }}" id="age" name="age" class="form-control">
                 </div>
             </div>
+            {# height #}
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="age">{{ 'label.height'|trans }}</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <input type="number" placeholder="{{ 'label.height'|trans }}" id="height" name="height" class="form-control" min="0">
+                        <span class="input-group-addon input-group-addon-primary no-border">{{ 'label.cm'|trans }}</span>
+                    </div>
+                </div>
+            </div>
+            {# weight #}
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="age">{{ 'label.weight'|trans }}</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <input type="number" placeholder="{{ 'label.weight'|trans }}" id="weight" name="weight" class="form-control" min="0">
+                        <span class="input-group-addon input-group-addon-primary no-border">{{ 'label.kg'|trans }}</span>
+                    </div>
+                </div>
+            </div>
+            {# cup #}
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="">{{ 'label.cup'|trans }}</label>
+                <div class="col-sm-9">
+                    <input type="text" placeholder="{{ 'placeholder.cup'|trans }}" id="cup" name="cup" class="form-control">
+                </div>
+            </div>
+            {# occupation #}
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="occupation">{{ 'label.occupation'|trans }}</label>
                 <div class="col-sm-9">
                     <input type="text" placeholder="{{ 'label.occupation'|trans }}" id="occupation" name="occupation" class="form-control">
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="dob">{{ 'label.dob'|trans }}</label>
-                <div class="col-sm-9">
-                    <input type="text" placeholder="{{ 'label.dob'|trans }}" id="dob" name="dob" class="form-control">
-                </div>
-            </div>
+            {# nationality #}
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="nationality">{{ 'label.nationality'|trans }}</label>
                 <div class="col-sm-9">
                     <input type="text" placeholder="{{ 'label.nationality'|trans }}" id="nationality" name="nationality" class="form-control">
                 </div>
             </div>
+            {# target clients #}
             {% if targetClients|length > 0 %}
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="">{{ 'label.targe_client'|trans }}</label>
@@ -69,7 +102,7 @@
                     </div>
                 </div>
             {% endif %}
-
+            {# group #}
             {% if groups|length > 0 %}
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="group">{{ 'label.group'|trans }}</label>
@@ -86,7 +119,7 @@
                     </div>
                 </div>
             {% endif %}
-
+            {# hybrid #}
             <div class="form-group">
                 <label class="col-xs-12 col-sm-3 control-label">{{ 'label.hybrid'|trans }}</label>
                 <div class="col-xs-3 col-sm-4">

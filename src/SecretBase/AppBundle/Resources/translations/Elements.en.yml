@@ -46,6 +46,8 @@ placeholder:
     any_thing_to_say: Any thing to say about?
     choose_target_client: Choose target guest...
     hybrid_type: Eurasian?
+    dob: Date of birth (yyyy-mm-dd)
+    cup: Cup size
 link:
     forgot_password: Forgot password ?
     create_new_account: Create a new account
@@ -137,6 +139,11 @@ label:
     public: Public
     private: Private
     use: Use
+    height: Height
+    weight: Weight
+    cm: CM
+    kg: KG
+    cup: Cup
 tip:
     you_have_msg: '{0} You have no messages|{1} You have <b style="color:blue">one</b> message unread|[2,999] You have <b style="color:blue">%count%</b> messages unread|[1000,Inf] You have <b style="color:red">so many</b> messages unread'
     who_sent_u_msg: '%name% sent you a message'

@@ -41,6 +41,10 @@
     color: #f76447;
 }
 
+.input-group-addon-primary {
+    background-color: #5fa2dd !important;
+    color: #ffffff !important;
+}
 /* overwritten the bg-color of navbar conatiner */
 #navbar-container{
     background-color: #333333;

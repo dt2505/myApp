@@ -150,6 +150,7 @@ class UserController extends BaseController
                 ["id" => 'm', "name" => "Minute", "predefined" => true, "checked" => true],
                 ["id" => 'h', "name" => "Hour", "predefined" => true, "checked" => true],
                 ["id" => 'd', "name" => "Day", "predefined" => true],
+                ["id" => 'w', "name" => "Week", "predefined" => true],
                 ["id" => 'M', "name" => "Month", "predefined" => true],
                 ["id" => 'y', "name" => "Year", "predefined" => true]
             ],
